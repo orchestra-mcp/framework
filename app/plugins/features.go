@@ -3,7 +3,7 @@ package plugins
 import (
 	"sync"
 
-	"github.com/nicepkg/orchestra-mcp/config"
+	"github.com/orchestra-mcp/framework/config"
 )
 
 // FeatureManager manages feature flags and disabled-plugin lists,

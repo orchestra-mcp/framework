@@ -1,0 +1,44 @@
+project_name: orchestra-mcp
+
+builds:
+  - main: ./src/cmd/
+    binary: orchestra-mcp
+    ldflags:
+      - -s -w
+      - -X github.com/orchestra-mcp/mcp/src/version.Version={{.Version}}
+      - -X github.com/orchestra-mcp/mcp/src/version.Commit={{.Commit}}
+      - -X github.com/orchestra-mcp/mcp/src/version.Date={{.Date}}
+    goos: [linux, darwin, windows]
+    goarch: [amd64, arm64]
+    env:
+      - CGO_ENABLED=0
+
+archives:
+  - format: tar.gz
+    format_overrides:
+      - goos: windows
+        format: zip
+    name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
+
+brews:
+  - repository:
+      owner: orchestra-mcp
+      name: homebrew-tap
+    homepage: https://github.com/orchestra-mcp/mcp
+    description: AI-powered project management via Model Context Protocol
+    install: |
+      bin.install "orchestra-mcp"
+
+checksum:
+  name_template: checksums.txt
+
+changelog:
+  sort: asc
+  filters:
+    exclude: ["^docs:", "^test:", "^ci:"]
+
+nfpms:
+  - package_name: orchestra-mcp
+    homepage: https://github.com/orchestra-mcp/mcp
+    description: AI-powered project management via Model Context Protocol
+    formats: [deb, rpm]

@@ -150,13 +150,13 @@ type MenuContribution struct {
 
 // SettingContribution represents a setting contributed by a plugin.
 type SettingContribution struct {
-	Key          string
-	Title        string
-	Description  string
-	Type         string
-	Default      any
-	Enum         []any
-	EnumLabels   []string
+	Key         string
+	Title       string
+	Description string
+	Type        string
+	Default     any
+	Enum        []any
+	EnumLabels  []string
 }
 
 // KeybindingContribution represents a keyboard shortcut contributed by a plugin.

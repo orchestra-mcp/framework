@@ -1,0 +1,55 @@
+name: Plugin Request
+description: Suggest a new plugin for Orchestra MCP
+labels: ["plugin", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Orchestra is plugin-first. Suggest a new plugin to extend the platform.
+
+  - type: input
+    id: name
+    attributes:
+      label: Plugin Name
+      description: A short name for the plugin.
+      placeholder: "orchestra/ai"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What would this plugin do?
+    validations:
+      required: true
+
+  - type: textarea
+    id: tools
+    attributes:
+      label: Proposed MCP Tools
+      description: List any MCP tools this plugin should expose.
+      placeholder: |
+        - `ai_suggest` — Generate code suggestions
+        - `ai_review` — Review a code diff
+
+  - type: textarea
+    id: capabilities
+    attributes:
+      label: Plugin Capabilities
+      description: Which capability interfaces would this plugin implement?
+      placeholder: |
+        - HasMcpTools (MCP tools)
+        - HasRoutes (REST API endpoints)
+        - HasConfig (configuration)
+
+  - type: dropdown
+    id: willing
+    attributes:
+      label: Would you submit a PR?
+      options:
+        - "Yes"
+        - "Yes, with guidance"
+        - "No"
+    validations:
+      required: true

@@ -1,0 +1,56 @@
+run:
+  timeout: 5m
+  modules-download-mode: readonly
+
+linters:
+  enable:
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
+    - gofumpt
+    - goimports
+    - goconst
+    - misspell
+    - unconvert
+    - unparam
+    - prealloc
+    - revive
+    - bodyclose
+    - nilerr
+    - errname
+    - exhaustive
+    - copyloopvar
+    - intrange
+
+linters-settings:
+  gofumpt:
+    extra-rules: true
+  goconst:
+    min-len: 3
+    min-occurrences: 3
+  revive:
+    rules:
+      - name: blank-imports
+      - name: exported
+      - name: unreachable-code
+      - name: dot-imports
+      - name: empty-block
+  exhaustive:
+    default-signifies-exhaustive: true
+
+issues:
+  exclude-dirs:
+    - old-ref
+    - vendor
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - errcheck
+        - unparam
+        - goconst
+    - path: cmd/
+      linters:
+        - unparam

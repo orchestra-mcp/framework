@@ -11,46 +11,31 @@ The old Laravel codebase is preserved at `old-ref/` for reference. All new devel
 ## Key Commands
 
 ```bash
-# Start everything (PostgreSQL, Redis, Go server, Rust engine, frontends)
-make dev
-
-# Individual services
-make dev-server          # Go server only
-make dev-engine          # Rust engine only
+# Development
+make dev                 # Start Go backend + Rust engine + all frontends
+make dev-go              # Go server only (air hot-reload)
+make dev-rust            # Rust engine only (cargo watch)
 make dev-frontend        # All frontends via Turborepo
-make dev-desktop         # Wails desktop app
-make dev-mobile          # React Native
 
 # Build
-make build               # Build everything
-make build-server        # Go binary
-make build-engine        # Rust binary
+make build               # Build everything (Go + Rust + MCP + frontends)
+make build-go            # Go server binary -> bin/server
+make build-rust          # Rust engine binary
+make build-mcp           # MCP plugin binary -> bin/orchestra-mcp
 make build-frontend      # All frontend apps
-make build-desktop       # Wails production binary
 
-# Database
-make migrate             # Run PostgreSQL migrations
-make migrate-rollback    # Rollback last migration
-make migrate-fresh       # Drop + recreate
-make seed                # Seed database
+# MCP Plugin
+make mcp-build           # Build MCP plugin binary
+make mcp-init            # Initialize MCP in current project
+make mcp-start           # Start MCP stdio server
 
-# Generators
-make make-handler name=X   # New Go handler
-make make-model name=X     # New GORM model
-make make-service name=X   # New service
-make make-migration name=X # New SQL migration
+# Install & Test
+make install             # Install all deps (Go + Rust + pnpm)
+make test                # All tests (Go + MCP + Rust + Frontend)
+make clean               # Remove build artifacts
 
 # Proto (generate Go + Rust + TypeScript from .proto files)
 make proto
-
-# Testing
-make test                # All tests (Go + Rust + Frontend)
-make test-go             # Go tests only
-make test-rust           # Rust tests only
-make test-frontend       # Frontend tests only
-
-# Linting
-make lint                # golangci-lint + cargo clippy + eslint
 
 # Add a shadcn component
 cd resources/ui && npx shadcn@latest add {component}
@@ -60,11 +45,6 @@ cd resources/ui && npx shadcn@latest add {component}
 
 ```
 orchestra-mcp/
-├── cmd/                      # Entry points
-│   ├── server/main.go        # Go HTTP server
-│   ├── daemon/main.go        # Desktop tray daemon
-│   ├── desktop/main.go       # Wails desktop app
-│   └── cli/main.go           # CLI tool
 ├── app/                      # Go backend (Fiber + GORM)
 │   ├── handlers/             # HTTP handlers (controllers)
 │   ├── models/               # GORM models
@@ -72,51 +52,73 @@ orchestra-mcp/
 │   ├── repositories/         # Data access
 │   ├── middleware/            # Fiber middleware
 │   ├── routes/               # Route registration
-│   ├── requests/             # Validation structs
-│   ├── resources/            # Response transformers
+│   ├── plugins/              # Plugin runtime (8 files — the foundation)
+│   │   ├── contracts.go      # Plugin interface + 15 Has* capability interfaces
+│   │   ├── manager.go        # PluginManager with topological sort
+│   │   ├── context.go        # PluginContext with DI
+│   │   ├── manifest.go       # PluginManifest
+│   │   ├── registry.go       # ServiceRegistry (thread-safe DI)
+│   │   ├── contributes.go    # ContributesRegistry
+│   │   ├── features.go       # FeatureManager (feature flags)
+│   │   └── loader.go         # PluginLoader (auto-discovery)
 │   └── gen/proto/            # Generated protobuf Go code
+├── config/                   # Go configuration
+│   └── plugins.go            # Plugin registry config
+├── plugins/                  # ALL PLUGINS (each is standalone)
+│   └── mcp/                  # MCP Plugin — first plugin (40 tools)
+│       ├── go.mod            # Standalone module
+│       ├── config/mcp.go     # McpConfig
+│       ├── providers/        # Plugin registration (bridges to app/plugins)
+│       ├── src/
+│       │   ├── cmd/main.go   # CLI entry -> orchestra-mcp binary
+│       │   ├── types/        # Type definitions (5 files)
+│       │   ├── toon/         # TOON/YAML file parser
+│       │   ├── workflow/     # State machine transitions
+│       │   ├── helpers/      # Shared utilities (5 files)
+│       │   ├── transport/    # MCP stdio JSON-RPC server
+│       │   ├── tools/        # All 40 MCP tools (10 files)
+│       │   └── bootstrap/    # Workspace init command
+│       └── resources/        # Bundled skills + agents
+├── cmd/server/main.go        # Go HTTP server entry point
 ├── engine/                   # Rust engine (gRPC)
-│   ├── Cargo.toml
-│   ├── build.rs              # Proto compilation
-│   └── src/
-│       ├── services/         # Parser, indexer, search, differ
-│       ├── handlers/         # gRPC handlers
-│       ├── repositories/     # Local SQLite (rusqlite)
-│       └── gen/              # Generated proto code
+│   └── src/                  # Tree-sitter, Tantivy, tower-lsp, rusqlite
 ├── proto/                    # Shared protobuf definitions
-│   ├── buf.yaml
-│   ├── common/               # Shared types
-│   ├── engine/               # Engine service definitions
-│   ├── sync/                 # Sync protocol
-│   └── ai/                   # AI agent protocol
-├── database/
-│   ├── migrations/           # PostgreSQL SQL migrations
-│   └── seeders/              # Go seeder functions
+├── database/migrations/      # PostgreSQL SQL migrations
 ├── resources/                # All frontends (pnpm monorepo)
-│   ├── shared/               # @orchestra/shared (types, API, hooks, stores)
-│   ├── ui/                   # @orchestra/ui (shadcn/ui component library)
+│   ├── shared/               # @orchestra/shared
+│   ├── ui/                   # @orchestra/ui (shadcn/ui)
 │   ├── extension/            # Chrome Extension
 │   ├── dashboard/            # Web Dashboard
-│   ├── admin/                # Admin Panel
 │   ├── desktop/              # Wails Desktop UI
-│   └── mobile/               # React Native (iOS + Android)
-├── config/                   # Go configuration
-├── storage/                  # Logs, cache, local SQLite
-├── tests/                    # Additional test files
-├── bridge/                   # Native widget bridge (per-platform)
-│   ├── bridge.go             # WidgetBridge interface + WidgetData
-│   ├── macos/                # macOS: CGo + Swift WidgetKit
-│   ├── windows/              # Windows: C# Adaptive Cards
-│   └── linux/                # Linux: GNOME Extension + KDE Plasmoid
-├── deploy/                   # Docker, k8s, CI/CD
-├── docs/adr/                 # Architecture Decision Records
+│   └── mobile/               # React Native
 ├── old-ref/                  # Old Laravel codebase (reference only)
 ├── Makefile                  # Central command runner
-├── docker-compose.yml        # Local dev (PostgreSQL + Redis)
-└── .env                      # Environment config
+├── go.mod                    # Root Go module
+└── pnpm-workspace.yaml       # Frontend workspace config
 ```
 
 ## Architecture
+
+### Plugin System (Component-First)
+
+Everything is a plugin. The plugin runtime at `app/plugins/` provides:
+- **Plugin interface** with capability contracts (Has* interfaces)
+- **PluginManager** with topological dependency sort and boot sequence
+- **FeatureManager** for runtime feature flags — disable any feature by turning off its plugin
+- **ServiceRegistry** for plugin-scoped dependency injection
+- **ContributesRegistry** for VS Code-style contributions (commands, menus, settings)
+
+Each plugin is a standalone Go module with its own `go.mod`, pushable as a separate GitHub repo. Plugin folder convention: `config/`, `providers/`, `src/`, `resources/`, `README.md`.
+
+### MCP Plugin (Pure Go, 40 tools)
+
+The first plugin at `plugins/mcp/`. Provides project management tools via MCP protocol:
+- **Build**: `cd plugins/mcp && go build -o orchestra-mcp ./src/cmd/`
+- **Run**: `orchestra-mcp --workspace .` (stdio JSON-RPC)
+- **Init**: `orchestra-mcp init --workspace .` (creates .mcp.json + .projects/)
+- **Packages**: `types/`, `toon/`, `workflow/`, `helpers/`, `transport/`, `tools/`, `bootstrap/`
+- **Workflow**: backlog -> todo -> in-progress -> review -> done (with validation)
+- **Extensible**: Other plugins push tools via `RegisterExternalTools()` — appears in stdio + REST
 
 ### Three-Layer Database
 
@@ -164,6 +166,8 @@ Every skill is both auto-activated by context AND available as a `/command`. Use
 | `/ai-agentic` | AI/LLM | Anthropic SDK, OpenAI SDK, langchaingo, chromem-go, pgvector, RAG |
 | `/gcp-infrastructure` | Infrastructure | Cloud Run, Cloud SQL, CDN, Cloud Build, Docker, nginx, Sentry, PostHog |
 | `/project-manager` | Process | Sprint planning, feature breakdown, ADRs, cross-team coordination |
+| `/docs` | Documentation | Architecture, plugin system, API references, package relationships |
+| `/qa-testing` | QA/Testing | Multi-agent: go test, cargo test, vitest, Playwright, coverage, CI |
 
 ## Agents
 
@@ -183,6 +187,10 @@ Specialized agents in `.claude/agents/` auto-delegate based on task context. See
 | `extension-architect` | Extension system (native, Raycast, VS Code, marketplace) |
 | `ai-engineer` | AI chat, RAG, agents, embeddings, vector search |
 | `devops` | Docker, GCP, CI/CD, monitoring, deployment |
+| `qa-go` | Go testing (go test, testify, httptest, plugin tests) |
+| `qa-rust` | Rust testing (cargo test, tokio::test, tempfile, tonic mock) |
+| `qa-node` | Node/React testing (vitest, @testing-library, component/store tests) |
+| `qa-playwright` | E2E browser testing (Playwright, page objects, visual regression) |
 
 ## Conventions
 

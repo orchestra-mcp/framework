@@ -200,6 +200,72 @@ Communication is one-way: Go writes `WidgetData` JSON, native widgets read and r
 
 All features use CGo with Objective-C bridges (`//go:build darwin`). Only WidgetKit requires Swift.
 
+## Plugin System (Component-First Architecture)
+
+Everything is a plugin. The runtime at `app/plugins/` (8 files) provides:
+
+```
+Plugin Interface
+├── Plugin (core)         — ID, Name, Version, Dependencies, Activate, Deactivate
+├── HasRoutes             — Register Fiber HTTP routes
+├── HasConfig             — ConfigKey + DefaultConfig
+├── HasCommands           — CLI commands
+├── HasMcpTools           — MCP tool definitions
+├── HasMigrations         — Database migrations
+├── HasMiddleware         — HTTP middleware
+├── HasJobs               — Background job definitions
+├── HasSchedule           — Scheduled tasks (gocron)
+├── HasServices           — Service definitions for DI
+├── Contributable         — VS Code-style contributions (commands, menus, settings, keybindings)
+├── HasFeatureFlag        — Feature flag gating
+├── Marketable            — Marketplace metadata
+├── HasDesktopViews       — Desktop resource paths
+├── HasChromeViews        — Chrome extension resource paths
+└── HasWebViews           — Web dashboard resource paths
+```
+
+**Plugin Manager** (`app/plugins/manager.go`):
+- Topological dependency sort before boot
+- Feature flag checks before activation
+- `CollectRoutes()`, `CollectMcpTools()`, `CollectJobs()` aggregate across all active plugins
+- Thread-safe `ServiceRegistry` for plugin-scoped DI
+
+**Plugin folder convention** (each plugin is a standalone Go module):
+```
+plugins/{name}/
+  go.mod                    # Standalone module (pushable as separate GitHub repo)
+  config/                   # Plugin config structs
+  providers/                # Plugin registration (bridges to app/plugins via replace directive)
+  src/                      # All source code
+  resources/                # Bundled assets (skills, agents, views)
+```
+
+## MCP Plugin (Pure Go, 40 Tools)
+
+First plugin built on the plugin system. Standalone module at `plugins/mcp/` (`github.com/orchestra-mcp/mcp`).
+
+```
+Claude Code ←→ stdio (JSON-RPC 2.0) ←→ orchestra-mcp binary
+                                              ↑ reads/writes .projects/ TOON files
+```
+
+**Build:** `cd plugins/mcp && go build -o orchestra-mcp ./src/cmd/`
+
+**Packages:**
+| Package | Purpose |
+|---------|---------|
+| `types/` | Protocol, tool, data, PRD, usage type definitions (5 files) |
+| `toon/` | TOON (YAML) file read/write via yaml.v3 |
+| `workflow/` | State machine: backlog → todo → in-progress → review → done |
+| `helpers/` | Paths, strings, args, results, issues (5 files) |
+| `transport/` | MCP stdio JSON-RPC server (request loop, tool dispatch) |
+| `tools/` | All 40 MCP tools across 11 files |
+| `bootstrap/` | Workspace init command (project detection, skill/agent injection) |
+
+**40 tools:** project (5), epic (5), story (5), task (5), workflow (5), PRD (7), bugfix (2), usage (3), readme (1), artifacts (2)
+
+**Issue hierarchy:** Project → Epic → Story → Task/Bug/Hotfix (stored as `.toon` YAML files in `.projects/`)
+
 ## Extension System
 
 Three-tier extension ecosystem:

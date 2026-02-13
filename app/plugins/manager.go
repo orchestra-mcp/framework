@@ -6,7 +6,7 @@ import (
 	"sync"
 
 	"github.com/gofiber/fiber/v3"
-	"github.com/nicepkg/orchestra-mcp/config"
+	"github.com/orchestra-mcp/framework/config"
 	"github.com/rs/zerolog"
 )
 

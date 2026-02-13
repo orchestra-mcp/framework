@@ -1,1 +1,58 @@
+# Binaries
+bin/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Go
+vendor/
+*.test
+*.out
+coverage.txt
+coverage.html
+
+# Rust
+engine/target/
+
+# Node / Frontend
+node_modules/
+resources/*/dist/
+.turbo/
+*.tsbuildinfo
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Build artifacts
+tmp/
+*.log
+
+# Projects data (generated at runtime)
+.projects/
+
+# Old Laravel reference (read-only)
 /old-ref
+
+# =============================================================================
+# Plugins — each plugin is a standalone repo, pulled in via git submodule
+# or go workspace. Ignore the plugins/ directory so plugins can be independently
+# managed, then whitelist specific plugins that ship with the monorepo.
+# =============================================================================
+plugins/*/
+
+# Keep the MCP plugin tracked (ships with the monorepo)
+!plugins/mcp/

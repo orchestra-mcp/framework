@@ -1,0 +1,17 @@
+id: OSV-98
+type: task
+parent: OSV-32
+title: Write tests for notification channels and IPC handlers
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+description: "Create tests for channels and handlers.\n\n**Target files:**\n- `src/app/Notifications/__tests__/channels.test.ts`\n- `src/app/Notifications/__tests__/handlers.test.ts`\n\n**Channel tests:**\n1. DesktopChannel creates Electron Notification with correct params\n2. DesktopChannel shows notification\n3. DesktopChannel routes action callbacks\n4. BrowserChannel publishes to WebSocket\n5. MobileChannel handler is no-op\n\n**Handler tests:**\n1. notification:send calls service.send\n2. notification:dismiss calls service.dismiss\n3. notification:getHistory returns history\n4. notification:clearHistory calls clearHistory\n5. notification:setChannelEnabled calls service\n6. cleanupNotificationHandlers removes all"
+acceptance_criteria[5]: Both test files exist,11 test cases total,Electron Notification mocked,IWebSocketService mocked,All tests pass
+story: OSV-32
+epic: OSV-5
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-5/OSV-32/OSV-98.toon

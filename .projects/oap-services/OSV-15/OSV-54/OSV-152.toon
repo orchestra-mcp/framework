@@ -1,0 +1,23 @@
+id: OSV-152
+type: task
+parent: OSV-54
+title: Implement LspServerService with lifecycle management and auto-download
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"ODS-1\"","\"ODS-2\"","\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"\\\"\\\\\\\"ODS-1\\\\\\\"\\\"\"","\"\\\"\\\\\\\"ODS-2\\\\\\\"\\\"\"","OSV-151"]
+description: "Create the LspServerService implementation.\n\n**Source reference:** Read `packages/desktop/src/main/platform/lspClient.ts` for existing LSP client spawn and communication patterns.\n\n**Target file:** `src/app/LSP/LspServerService.ts`\n\n**Implementation:**\n1. `Map<string, LanguageServerConfig>` for registrations\n2. `Map<string, ChildProcess>` for running servers\n3. `Map<string, LanguageServerInfo>` for status tracking\n4. `registerLanguageServer(config)`:\n   - Store config, return Disposable that stops server and removes\n5. `startServer(id)`:\n   - Get config, check if binary exists at config.command\n   - If missing and downloadUrl provided: download binary, set executable permissions\n   - Spawn child process: `spawn(config.command, config.args, { env })`\n   - Set up stdin/stdout for LSP JSON-RPC communication\n   - Send `initialize` request with workspace folders\n   - Store process, update status to 'running'\n   - Fire onServerStarted\n6. `stopServer(id)`:\n   - Send `shutdown` request, then `exit` notification\n   - Kill process after 5s timeout if still alive\n   - Update status, fire onServerStopped\n7. `restartServer(languageId)`:\n   - Find server for language, stop then start\n8. Auto-start: servers can be configured to auto-start when workspace opened\n9. Multi-root: pass all workspace folders in initialize params"
+acceptance_criteria[7]: LspServerService in src/app/LSP/LspServerService.ts,Binary auto-download from downloadUrl,LSP JSON-RPC initialize/shutdown/exit lifecycle,Process spawned with correct args and env,"Status tracking: stopped->starting->running",5s timeout on shutdown before kill,Multi-root workspace folders in initialize
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+
+**Dependencies:**
+This task requires the following tasks to be completed first: "ODS-1", "ODS-2", "\"ODS-1\"", "\"ODS-2\"", "\"\\\"ODS-1\\\"\"", "\"\\\"ODS-2\\\"\"", OSV-151
+story: OSV-54
+epic: OSV-15
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-15/OSV-54/OSV-152.toon

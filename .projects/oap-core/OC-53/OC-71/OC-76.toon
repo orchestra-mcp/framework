@@ -1,0 +1,11 @@
+id: OC-76
+type: task
+parent: OC-71
+title: Create .env.example with all Firebase config
+status: done
+created: 2026-02-09
+description: "Add to .env.example:\n```\n# Firebase Configuration\nFIREBASE_ENABLED=true\nFIREBASE_API_KEY=your_api_key\nFIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com\nFIREBASE_PROJECT_ID=your_project_id\nFIREBASE_STORAGE_BUCKET=your_project.appspot.com\nFIREBASE_MESSAGING_SENDER_ID=your_sender_id\nFIREBASE_APP_ID=your_app_id\nFIREBASE_MEASUREMENT_ID=G-XXXXXXXXXX\n```"
+acceptance_criteria[3]: All variables documented,Comments helpful,Example values clear
+estimate_minutes: 10
+estimate_tokens: 5000
+assignee: null

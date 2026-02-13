@@ -1,0 +1,24 @@
+id: OSV-80
+type: task
+parent: OSV-25
+title: Implement SettingsService with JSON storage and atomic writes
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"ODS-1\"","\"ODS-2\"","\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"\\\"\\\\\\\"ODS-1\\\\\\\"\\\"\"","\"\\\"\\\\\\\"ODS-2\\\\\\\"\\\"\"","\"\\\"\\\\\\\"\\\\\\\\\\\\\\\"OSV-79\\\\\\\\\\\\\\\"\\\\\\\"\\\"\"","OSV-79"]
+description: "Create the SettingsService implementation with persistent JSON storage.\n\n**Source reference:** Read `packages/desktop/src/main/services/settingsService.ts` for the existing settings storage and retrieval patterns.\n\n**Target file to create:** `src/app/Settings/SettingsService.ts`\n\n**Implementation requirements:**\n1. Internal storage:\n   - `Map<string, SettingsGroup>` for groups\n   - `Map<string, SettingDefinition>` for setting definitions\n   - `Record<string, any>` for current values (loaded from JSON file)\n2. `registerGroup(group)`: store, return Disposable that removes\n3. `registerSetting(setting)`: store definition, set default if no saved value, return Disposable\n4. `get<T>(key)`: return saved value or default from definition\n5. `set(key, value)`:\n   - Run validation function if defined on the SettingDefinition\n   - If validation fails, throw Error with descriptive message\n   - Update in-memory value\n   - Schedule debounced persist (200ms)\n   - Fire onDidChange callbacks for this key\n6. `onDidChange(key, callback)`: store callback, return Disposable that removes it\n7. JSON storage:\n   - File path: `{app.getPath('userData')}/settings.json`\n   - Atomic write: write to `settings.json.tmp`, then `fs.rename()` to `settings.json`\n   - Debounced: batch rapid set() calls into single write\n8. `exportSettings()`: return deep clone of all current values\n9. `importSettings(data)`: merge data into values, validate each, persist\n10. `resetToDefaults(groupId?)`: reset all or group settings to defaults, persist"
+acceptance_criteria[9]: SettingsService class in src/app/Settings/SettingsService.ts,"JSON file read on construction, created if not exists",Atomic writes via temp file + rename,"Validation runs on set(), rejects invalid values",onDidChange fires per-key callbacks,Debounced persist (200ms) batches rapid writes,exportSettings returns deep clone,importSettings validates and merges,resetToDefaults works per-group and globally
+
+**Dependencies:**
+This task requires the following tasks to be completed first: OSV-79
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-25
+epic: OSV-3
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-3/OSV-25/OSV-80.toon

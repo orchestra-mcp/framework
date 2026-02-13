@@ -1,0 +1,21 @@
+id: OSV-87
+type: task
+parent: OSV-28
+title: Implement ThemeService with built-in light and dark themes
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create the ThemeService implementation with default themes.\n\n**Source reference:** Read `packages/chrome-extension/src/theme/` for the color tokens used in light and dark modes.\n\n**Target files to create:**\n- `src/app/Themes/ThemeService.ts`\n- `src/app/Themes/builtinThemes.ts`\n\n**ThemeService implementation:**\n1. `Map<string, ThemeDefinition>` for registered themes\n2. `activeThemeId: string` persisted in ISettingsService under key `theme.activeThemeId`\n3. `registerTheme(theme)`: store in map, return Disposable. If disposed theme was active, fallback to 'dark'\n4. `setActiveTheme(id)`: validate theme exists, update activeThemeId, persist to settings, fire onDidChangeTheme\n5. `getActiveTheme()`: return theme by activeThemeId\n6. `getAvailableThemes()`: return Array.from(map.values())\n7. `getCssVariables()`: return active theme's colors\n8. `onDidChangeTheme`: Emitter fires with new ThemeDefinition\n\n**builtinThemes.ts:** Define two themes:\n- `orchestra-dark`: Dark theme with ~40 color tokens (bg, text, accent, border, etc.)\n- `orchestra-light`: Light theme with same ~40 tokens\n- Register both in ThemeService constructor"
+acceptance_criteria[6]: ThemeService class in src/app/Themes/ThemeService.ts,builtinThemes.ts defines orchestra-dark and orchestra-light,Both built-in themes registered on construction,Active theme persisted via ISettingsService,Fallback to dark theme if active theme disposed,onDidChangeTheme fires on setActiveTheme
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-28
+epic: OSV-4
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-4/OSV-28/OSV-87.toon

@@ -1,0 +1,21 @@
+id: OPK-81
+type: task
+parent: OPK-75
+title: Migrate Terminal Manager Chrome UI components and stores
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 25
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Copy and adapt all terminal UI components and stores.\n\nFILE MAPPING (components):\n1. packages/chrome-extension/src/terminal/TerminalPane.tsx -> src/packages/terminal-manager/resources/chrome/TerminalPane.tsx\n2. packages/chrome-extension/src/terminal/TerminalSearchBar.tsx -> src/packages/terminal-manager/resources/chrome/TerminalSearchBar.tsx\n3. packages/chrome-extension/src/terminal/TerminalSettingsPanel.tsx -> src/packages/terminal-manager/resources/chrome/TerminalSettingsPanel.tsx\n4. packages/chrome-extension/src/terminal/TerminalSidebar.tsx -> src/packages/terminal-manager/resources/chrome/TerminalSidebar.tsx\n5. packages/chrome-extension/src/terminal/SSHSidebar.tsx -> src/packages/terminal-manager/resources/chrome/SSHSidebar.tsx\n\nFILE MAPPING (stores):\n6. packages/chrome-extension/src/stores/terminalStore.ts -> src/packages/terminal-manager/resources/chrome/stores/terminalStore.ts\n7. packages/chrome-extension/src/stores/sshStore.ts -> src/packages/terminal-manager/resources/chrome/stores/sshStore.ts\n\nFor each: copy, update all import paths to package-local relative paths. Do NOT modify component logic."
+acceptance_criteria[5]: All 5 component .tsx files exist in resources/chrome/,Both store .ts files exist in resources/chrome/stores/,All imports updated to package-local paths,No imports reference packages/chrome-extension/,TypeScript compiles
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OPK-75
+epic: OPK-5
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-5/OPK-75/OPK-81.toon

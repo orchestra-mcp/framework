@@ -1,0 +1,20 @@
+id: OSV-144
+type: task
+parent: OSV-51
+title: Implement Account Center IPC handlers and settings integration
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create IPC handlers and register settings group for integrations.\n\n**Target files to create:**\n- `src/app/AccountCenter/handlers.ts`\n- `src/app/AccountCenter/settingsRegistration.ts`\n\n**IPC handlers:**\n```typescript\nexport function setupAccountHandlers(service: IAccountCenterService): void {\n  ipcMain.handle('account:connect', (_e, integrationId: string) => service.connect(integrationId));\n  ipcMain.handle('account:disconnect', (_e, integrationId: string) => service.disconnect(integrationId));\n  ipcMain.handle('account:list', () => service.getConnectedIntegrations());\n  ipcMain.handle('account:getToken', (_e, integrationId: string) => service.getAccessToken(integrationId));\n  ipcMain.handle('account:isConnected', (_e, id: string) => service.isConnected(id));\n}\n```\n\n**Settings registration:** Register 'Integrations' group in Settings with connected accounts list view (custom component)."
+acceptance_criteria[5]: handlers.ts with 5 IPC handlers,Settings group 'Integrations' registered,Connected accounts visible in settings,Connect/disconnect buttons in settings UI schema,cleanupAccountHandlers removes all handlers
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-51
+epic: OSV-13
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-13/OSV-51/OSV-144.toon

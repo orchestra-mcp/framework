@@ -1,0 +1,9 @@
+id: OCD-33
+type: story
+parent: OCD-7
+title: "Push Updates, Marketing Notifications & Analytics"
+status: backlog
+created: 2026-02-09
+user_story: "As an admin, I want to push IDE updates, send marketing notifications, and view analytics so that I can manage releases, engage users, and track platform health."
+points: 8
+acceptance_criteria[8]: Push new IDE version with release notes,Send notifications to all users or targeted groups,"Target by role, team, or specific users",Schedule notifications for future delivery,Notification template management,"Analytics: DAU/WAU/MAU charts",Extension install/uninstall rates,Feature usage metrics

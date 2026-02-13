@@ -1,0 +1,33 @@
+id: OCR-63
+type: task
+parent: OCR-7
+title: Wire SidebarService, unit, registerChromeContributions together
+status: backlog
+created: 2026-02-09
+priority: high
+estimate_minutes: 45
+blockers: ["OCR-28","OCR-29","OCR-34"]
+description: Create integration between SidebarService, unit, registerChromeContributions.
+
+**What to do:**
+1. Ensure all services are registered in the ServiceRegistry
+2. Wire up dependencies between services
+3. Test the integration end-to-end
+4. Document the service graph
+
+**Services to integrate:**
+- Create SidebarService class implementing IChromeSidebarService (OCR-28)
+- Create unit tests for SidebarService and sidebarRegistryStore (OCR-29)
+- "Create registerChromeContributions() for terminal, database, services, and logs extensions" (OCR-34)
+
+**Dependencies:**
+This task requires all service creation tasks to be completed first: OCR-28, OCR-29, OCR-34
+acceptance_criteria: - All services are registered
+- Dependencies are wired correctly
+- Integration test passes
+- Service graph is documented
+story: OCR-7
+epic: OCR-1
+project: oap-chrome
+projectKey: OCR
+path: .projects/oap-chrome/OCR-1/OCR-7/OCR-63.toon

@@ -1,0 +1,9 @@
+id: OSV-36
+type: story
+parent: OSV-6
+title: Migrate Existing MCP Tools & Documentation
+status: done
+created: 2026-02-09
+user_story: "As a developer, I want all existing MCP tools migrated to use registerTool and documentation written so that the migration is complete and the API is well-understood."
+points: 5
+acceptance_criteria[5]: All existing tools from extensions/mcp/src/main/tools/ migrated as registerTool calls,"Project, epic, story, task, PRD, workflow tools all registered dynamically",Notification tool registered dynamically,No hardcoded tool definitions remain in MCP server,"docs/core-services/mcp-server.md with API reference, tool authoring guide"

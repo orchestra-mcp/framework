@@ -1,0 +1,24 @@
+id: OCR-29
+type: task
+parent: OCR-7
+title: Create unit tests for SidebarService and sidebarRegistryStore
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 25
+estimate_tokens: null
+blockers: ["\"ODS-1\"","\"ODS-2\"","\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"\\\"\\\\\\\"ODS-1\\\\\\\"\\\"\"","\"\\\"\\\\\\\"ODS-2\\\\\\\"\\\"\"","\"\\\"\\\\\\\"\\\\\\\\\\\\\\\"OCR-27\\\\\\\\\\\\\\\"\\\\\\\"\\\"\"","\"\\\"\\\\\\\"\\\\\\\\\\\\\\\"OCR-28\\\\\\\\\\\\\\\"\\\\\\\"\\\"\"","OCR-27","OCR-28"]
+description: "Create comprehensive unit tests for the sidebar registration system.\n\n**Target file:** `src/app/Chrome/Sidebar/__tests__/SidebarService.test.ts`\n\n**Tests to write:**\n\n```typescript\nimport { describe, it, expect, beforeEach } from 'vitest';\nimport { sidebarService } from '../SidebarService';\nimport { useSidebarRegistryStore } from '../sidebarRegistryStore';\n\n// Dummy components\nconst IconA = () => null;\nconst IconB = () => null;\nconst PanelA = () => null;\nconst PanelB = () => null;\n\ndescribe('SidebarService', () => {\n  beforeEach(() => {\n    // Reset store state before each test\n    useSidebarRegistryStore.setState({\n      entries: [],\n      contentMap: new Map(),\n      activePanel: null,\n      loadedPanels: new Set(),\n    });\n  });\n\n  it('registers a sidebar entry', () => {\n    sidebarService.registerSidebarEntry({\n      id: 'test', icon: IconA, label: 'Test', order: 1,\n    });\n    const { entries } = useSidebarRegistryStore.getState();\n    expect(entries).toHaveLength(1);\n    expect(entries[0].id).toBe('test');\n  });\n\n  it('auto-sets first entry as active panel', () => {\n    sidebarService.registerSidebarEntry({\n      id: 'first', icon: IconA, label: 'First', order: 1,\n    });\n    expect(useSidebarRegistryStore.getState().activePanel).toBe('first');\n  });\n\n  it('sorts entries by order', () => {\n    sidebarService.registerSidebarEntry({ id: 'b', icon: IconB, label: 'B', order: 5 });\n    sidebarService.registerSidebarEntry({ id: 'a', icon: IconA, label: 'A', order: 1 });\n    const { entries } = useSidebarRegistryStore.getState();\n    expect(entries[0].id).toBe('a');\n    expect(entries[1].id).toBe('b');\n  });\n\n  it('unregisters a sidebar entry', () => {\n    sidebarService.registerSidebarEntry({ id: 'test', icon: IconA, label: 'Test', order: 1 });\n    sidebarService.unregisterSidebarEntry('test');\n    expect(useSidebarRegistryStore.getState().entries).toHaveLength(0);\n  });\n\n  it('updates badge on entry', () => {\n    sidebarService.registerSidebarEntry({ id: 'test', icon: IconA, label: 'Test', order: 1 });\n    sidebarService.updateBadge('test', 42);\n    expect(useSidebarRegistryStore.getState().entries[0].badge).toBe(42);\n  });\n\n  it('registers content for a sidebar entry', () => {\n    sidebarService.registerContent({ sidebarId: 'test', component: PanelA });\n    const { contentMap } = useSidebarRegistryStore.getState();\n    expect(contentMap.get('test')?.component).toBe(PanelA);\n  });\n\n  it('switches active panel', () => {\n    sidebarService.registerSidebarEntry({ id: 'a', icon: IconA, label: 'A', order: 1 });\n    sidebarService.registerSidebarEntry({ id: 'b', icon: IconB, label: 'B', order: 2 });\n    sidebarService.setActivePanel('b');\n    expect(useSidebarRegistryStore.getState().activePanel).toBe('b');\n  });\n\n  it('tracks loaded panels for lazy loading', () => {\n    sidebarService.registerSidebarEntry({ id: 'a', icon: IconA, label: 'A', order: 1 });\n    sidebarService.setActivePanel('a');\n    expect(useSidebarRegistryStore.getState().loadedPanels.has('a')).toBe(true);\n  });\n\n  it('falls back to first entry when active panel is unregistered', () => {\n    sidebarService.registerSidebarEntry({ id: 'a', icon: IconA, label: 'A', order: 1 });\n    sidebarService.registerSidebarEntry({ id: 'b', icon: IconB, label: 'B', order: 2 });\n    sidebarService.setActivePanel('b');\n    sidebarService.unregisterSidebarEntry('b');\n    expect(useSidebarRegistryStore.getState().activePanel).toBe('a');\n  });\n});\n```\n\nRun with: `pnpm vitest run src/app/Chrome/Sidebar/__tests__/SidebarService.test.ts`"
+acceptance_criteria[3]: Test file exists at src/app/Chrome/Sidebar/__tests__/SidebarService.test.ts,All 9 tests pass,"Tests cover: register, unregister, sort by order, badge update, content registration, active panel switching, lazy load tracking, fallback on unregister"
+
+**Dependencies:**
+This task requires the following tasks to be completed first: OCR-27, OCR-28
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OCR-7
+epic: OCR-1
+project: oap-chrome
+projectKey: OCR
+projectKey: OCR
+path: .projects/oap-chrome/OCR-1/OCR-7/OCR-29.toon

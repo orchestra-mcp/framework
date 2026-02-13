@@ -1,0 +1,17 @@
+id: OPK-52
+type: task
+parent: OPK-46
+title: Write Tasks Manager service unit tests
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 20
+estimate_tokens: null
+description: "Create unit tests for the migrated Tasks Manager services.\n\nTARGET: src/packages/tasks-manager/tests/TasksRpcHandlers.test.ts\n\nReference existing tests: packages/extensions/tasks/src/__tests__/tasksRpcHandlers.test.ts\n\nSteps:\n1. Read the existing test file for patterns and coverage\n2. Copy the test to src/packages/tasks-manager/tests/TasksRpcHandlers.test.ts\n3. Update all import paths to reference the new service locations\n4. Ensure mocks still work with the new module paths\n5. Run tests to verify they pass"
+acceptance_criteria[3]: Test file exists at src/packages/tasks-manager/tests/TasksRpcHandlers.test.ts,All imports updated to new paths,All tests pass when running vitest
+story: OPK-46
+epic: OPK-3
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-3/OPK-46/OPK-52.toon

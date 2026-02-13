@@ -1,0 +1,9 @@
+id: OPK-130
+type: story
+parent: OPK-10
+title: Migrate Alarm main services
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want the alarm service, handlers, and panel service migrated from extensions/alarms/ and desktop into the Alarm package."
+points: 3
+acceptance_criteria[5]: AlarmService.ts migrated to src/Services/,"alarmHandlers.ts, trayMenuIntegration.ts, types.ts migrated",alarmPanelService.ts migrated to src/Panels/,All imports updated,TypeScript compiles

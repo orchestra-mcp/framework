@@ -1,0 +1,7 @@
+id: OSV-12
+type: epic
+title: Dynamic Widget Control Service
+status: done
+created: 2026-02-09
+description: "Migrate widget management from widgetManagerService.ts + widgetRegistryService.ts + widgetExtensionApi.ts + widgetContextMenuService.ts + widgetThemeService.ts into src/app/Widgets/. Provides IWidgetControlService with registerWidget/showWidget/hideWidget/toggleWidget API. Multi-view support, theme integration, tray menu show/hide, state persistence, and widget events."
+priority: medium

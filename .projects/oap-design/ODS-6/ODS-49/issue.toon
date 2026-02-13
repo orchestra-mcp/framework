@@ -1,0 +1,9 @@
+id: ODS-49
+type: story
+parent: ODS-6
+title: Update all existing components to use design tokens
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want all existing custom components updated to use design tokens so that theme changes propagate everywhere."
+points: 8
+acceptance_criteria[5]: All hardcoded colors replaced with CSS variables,All hardcoded spacing uses design tokens,Typography uses design system fonts,Shadows and borders use design tokens,No inline color values in any component

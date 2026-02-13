@@ -1,0 +1,9 @@
+id: OCR-12
+type: story
+parent: OCR-2
+title: Build SplitView container for horizontal/vertical tab splitting
+status: backlog
+created: 2026-02-09
+user_story: "As a user, I want to split my tab view horizontally or vertically so that I can see two tabs side-by-side for comparing files or monitoring output while editing."
+points: 8
+acceptance_criteria[8]: SplitView component at src/app/Chrome/Tabs/SplitView.tsx renders split groups,Supports horizontal (side-by-side) and vertical (top-bottom) splits,Draggable divider between split panes for resizing,Each split pane has its own TabBar with independent active tab,Split initiated via context menu (Split Right / Split Down) or drag-to-edge,Closing last tab in a split group removes that split pane,Maximum 2 split groups (no recursive splitting),Split ratios persist during the session

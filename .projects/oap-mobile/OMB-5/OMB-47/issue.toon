@@ -1,0 +1,9 @@
+id: OMB-47
+type: story
+parent: OMB-5
+title: FCM Push Notification Setup (iOS + Android)
+status: backlog
+created: 2026-02-09
+user_story: "As an employee, I want to receive push notifications on my phone for agent permissions, agent questions, task assignments, and meeting reminders, so that I can respond promptly even when the app is in the background."
+points: 8
+acceptance_criteria[8]: FCM push notification permission requested on first login,FCM device token sent to server via POST /api/devices/register,Token refreshed and re-registered when FCM rotates it,Push notifications received in foreground (shown as in-app banner),Push notifications received in background (system notification),Push notifications received when app is killed (system notification),"Notification types handled: agent_permission, agent_question, task_assigned, meeting_reminder, mention, marketing",Tapping notification navigates to relevant screen based on notification type and data

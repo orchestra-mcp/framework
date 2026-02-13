@@ -1,0 +1,11 @@
+id: ODS-68
+type: task
+parent: ODS-47
+title: Audit Desktop widgets and create migration plan
+status: backlog
+created: 2026-02-09
+description: "Analyze all Desktop widget HTML files and create migration plan to React components with design system.\n\n**Files to analyze:**\n- `/Users/fadymondy/Sites/orchestra-app/packages/desktop/src/widget-renderer/timer-panel.html`\n- `/Users/fadymondy/Sites/orchestra-app/packages/desktop/src/widget-renderer/calendar-panel.html`\n- `/Users/fadymondy/Sites/orchestra-app/packages/desktop/src/widget-renderer/break-panel.html`\n- `/Users/fadymondy/Sites/orchestra-app/packages/desktop/src/widget-renderer/chat-box.html`\n- `/Users/fadymondy/Sites/orchestra-app/packages/desktop/src/widget-renderer/settings-renderer.ts`\n\n**Tasks:**\n1. Document current HTML/CSS structure\n2. Plan React component conversion\n3. Identify design system components to use\n4. Note Electron-specific requirements\n5. Create conversion checklist\n\n**Output:** `/Users/fadymondy/Sites/orchestra-app/.projects/oap-design/ODS-6/ODS-47/widget-migration-plan.md`\n\n**Key considerations:**\n- Widgets use raw HTML currently - need React conversion\n- Must maintain Electron preload script compatibility\n- Timer panel → Use design system Card, Button, Progress components\n- Calendar panel → Use design system Calendar (when available) or Card grid\n- Settings → Use design system Form components"
+acceptance_criteria[5]: All widget HTML files documented,React component structure planned,Design system component mapping created,Electron compatibility verified,Migration priority order established
+estimate_minutes: 35
+estimate_tokens: 18000
+assignee: null

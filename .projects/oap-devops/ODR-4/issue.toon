@@ -1,0 +1,7 @@
+id: ODR-4
+type: epic
+title: Release Automation & Version Management
+status: done
+created: 2026-02-09
+description: "Automated releases with changelogs, version bumping, and distribution"
+priority: high

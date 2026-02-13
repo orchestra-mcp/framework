@@ -1,0 +1,9 @@
+id: OCR-20
+type: story
+parent: OCR-4
+title: "Migrate task, timer, pomodoro, alarm, and calendar stores to extension packages"
+status: backlog
+created: 2026-02-09
+user_story: "As the system architect, I want productivity-related stores (tasks, timer, timeReport, pomodoro, alarm, calendar) moved to their respective extension packages, so that each productivity feature owns its own state."
+points: 5
+acceptance_criteria[9]: tasksStore.ts moved to src/packages/tasks-manager/resources/chrome/stores/tasksStore.ts,timerStore.ts moved to src/packages/time-tracker/resources/chrome/stores/timerStore.ts,timeReportStore.ts moved to src/packages/time-tracker/resources/chrome/stores/timeReportStore.ts,pomodoroStore.ts moved to src/packages/pomodoro/resources/chrome/stores/pomodoroStore.ts,alarmStore.ts moved to src/packages/alarm/resources/chrome/stores/alarmStore.ts,calendarStore.ts moved to src/packages/event-tracker/resources/chrome/stores/calendarStore.ts,All imports in consuming components updated,Each target directory has an index.ts barrel export,TypeScript strict mode passes

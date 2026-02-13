@@ -1,0 +1,9 @@
+id: OSV-24
+type: story
+parent: OSV-2
+title: Panel Manager Documentation
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want documentation for the Panel Manager Service so that I can register new panels and understand the lifecycle."
+points: 2
+acceptance_criteria[4]: docs/core-services/panel-manager.md created,API reference with all methods and types,Example showing full panel registration lifecycle,Migration guide from individual panel services

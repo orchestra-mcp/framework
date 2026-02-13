@@ -1,0 +1,7 @@
+id: OSV-16
+type: epic
+title: Dynamic Browser Script Injection
+status: done
+created: 2026-02-09
+description: "Extract content script injection from chrome-extension/src/content/ into src/app/BrowserInjection/. Provides IBrowserInjectionService with registerScript/injectOnUrl/sendToPage API. URL pattern matching, bidirectional messaging, script isolation per extension, and CSP handling."
+priority: low

@@ -1,0 +1,9 @@
+id: OPK-33
+type: story
+parent: OPK-2
+title: Write Editor documentation
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want comprehensive documentation for the Editor package so that future contributors understand its API and architecture."
+points: 2
+acceptance_criteria[4]: docs/README.md with package overview exists,docs/api/README.md with API reference exists,docs/guides/README.md with usage guides exists,docs/changelog/README.md initialized

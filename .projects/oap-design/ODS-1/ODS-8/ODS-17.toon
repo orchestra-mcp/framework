@@ -1,0 +1,13 @@
+id: ODS-17
+type: task
+parent: ODS-8
+title: Port first 5 themes to new token format
+status: done
+created: 2026-02-09
+description: "Port the first 5 themes (Orchestra, Deep Ocean, Dracula, Palenight, Material) from themeManager.ts to the new token format.\n\n**File to create:** `/Users/fadymondy/Sites/orchestra-app/packages/design-system/tokens/src/themes/index.ts`\n\n**Example structure:**\n```typescript\nimport type { ThemeTokens } from '../types';\n\nexport const orchestraTheme: ThemeTokens = {\n  name: 'Orchestra',\n  type: 'dark',\n  colors: {\n    bg: '#1e1e1e',\n    bgAlt: '#252526',\n    bgContrast: '#2d2d30',\n    bgActive: '#37373d',\n    bgSelection: '#264f78',\n    fg: '#d4d4d4',\n    fgDim: '#858585',\n    fgMuted: '#a0a0a0',\n    fgBright: '#ffffff',\n    border: '#3e3e42',\n    accent: '#a900ff',\n    blue: '#4fc3f7',\n    cyan: '#00bcd4',\n    green: '#66bb6a',\n    yellow: '#ffeb3b',\n    orange: '#ff9800',\n    red: '#ef5350',\n    purple: '#ab47bc',\n    teal: '#26a69a',\n  },\n};\n\n// Port deepOcean, dracula, palenight, material themes similarly\nexport const themes = {\n  orchestra: orchestraTheme,\n  // ... more themes\n};\n```\n\nRead the original values from themeManager.ts and map them correctly."
+acceptance_criteria[4]: First 5 themes ported to new format,Color values match original themeManager.ts,Each theme properly typed,All themes exported from index
+estimate_minutes: 35
+estimate_tokens: 15000
+assignee: null
+actual_minutes: 5
+actual_tokens: 1500

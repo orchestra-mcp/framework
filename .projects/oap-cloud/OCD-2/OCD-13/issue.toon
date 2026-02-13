@@ -1,0 +1,9 @@
+id: OCD-13
+type: story
+parent: OCD-2
+title: "Login, Register & Password Reset (Fortify)"
+status: backlog
+created: 2026-02-09
+user_story: "As a user, I want to register, log in, and reset my password so that I can securely access the platform."
+points: 5
+acceptance_criteria[6]: Login page with email + password works via Fortify,Registration page with name + email + password works via Fortify,Password reset via email link works via Fortify,All forms validate inputs and show errors,Successful login redirects to dashboard,All pages are Inertia React components with Tailwind styling

@@ -1,0 +1,9 @@
+id: OCD-109
+type: story
+parent: OCD-97
+title: Activity feed system
+status: backlog
+created: 2026-02-09
+user_story: "As a user, I want to see recent activity from people I follow so that I stay updated on their contributions"
+points: 4
+acceptance_criteria[4]: Activity model tracks all events,Feed query optimized,Activity types supported,Real-time updates via WebSocket

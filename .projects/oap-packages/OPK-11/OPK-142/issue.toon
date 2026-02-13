@@ -1,0 +1,9 @@
+id: OPK-142
+type: story
+parent: OPK-11
+title: Migrate Event Tracker Chrome UI
+status: done
+created: 2026-02-09
+user_story: "As a developer, I want the calendar UI store and desktop panel views migrated into the Event Tracker package."
+points: 3
+acceptance_criteria[3]: calendarStore.ts migrated to resources/chrome/stores/,"Desktop panel HTML, renderer, preload migrated to resources/desktop/",All imports updated

@@ -1,0 +1,17 @@
+id: OPK-62
+type: task
+parent: OPK-57
+title: Create Version Control directory structure and config files
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 20
+estimate_tokens: null
+description: "Create the complete directory tree for the Version Control package.\n\nCreate these directories and files:\n- src/packages/version-control/src/VersionControlServiceProvider.ts (empty stub)\n- src/packages/version-control/src/Services/\n- src/packages/version-control/src/Services/Providers/GitHub/\n- src/packages/version-control/src/Services/Providers/GitLab/\n- src/packages/version-control/src/Services/Providers/Bitbucket/\n- src/packages/version-control/src/Http/\n- src/packages/version-control/src/Models/\n- src/packages/version-control/src/Jobs/\n- src/packages/version-control/src/Notifications/\n- src/packages/version-control/src/Panels/\n- src/packages/version-control/src/Widgets/\n- src/packages/version-control/database/\n- src/packages/version-control/routes/web.ts (empty stub)\n- src/packages/version-control/routes/socket.ts (empty stub)\n- src/packages/version-control/resources/chrome/\n- src/packages/version-control/resources/chrome/stores/\n- src/packages/version-control/resources/desktop/\n- src/packages/version-control/resources/web/\n- src/packages/version-control/docs/README.md, docs/api/README.md, docs/guides/README.md, docs/changelog/README.md\n- src/packages/version-control/tests/\n\nCreate src/packages/version-control/package.json:\n{\n  \"name\": \"@orchestra/version-control\",\n  \"version\": \"0.1.0\",\n  \"private\": true,\n  \"main\": \"src/VersionControlServiceProvider.ts\",\n  \"contributes\": {\n    \"sidebar\": [{ \"id\": \"version-control\", \"title\": \"Source Control\", \"icon\": \"git-branch\" }],\n    \"tabs\": [\n      { \"id\": \"diff-view\", \"title\": \"Diff View\", \"closable\": true },\n      { \"id\": \"merge-conflict\", \"title\": \"Merge Conflict\", \"closable\": true }\n    ],\n    \"mcpTools\": [\"git_status\", \"git_commit\", \"git_push\", \"git_pull\", \"git_branch\", \"git_diff\", \"git_log\", \"git_blame\"],\n    \"searchProviders\": [\"commits\", \"branches\"],\n    \"settings\": {\n      \"vc.defaultProvider\": { \"type\": \"string\", \"default\": \"github\", \"enum\": [\"github\", \"gitlab\", \"bitbucket\"] },\n      \"vc.branchStrategy\": { \"type\": \"string\", \"default\": \"git-flow\", \"enum\": [\"git-flow\", \"trunk-based\", \"github-flow\"] }\n    },\n    \"statusBar\": [{ \"id\": \"current-branch\", \"alignment\": \"left\", \"priority\": 100 }],\n    \"integrations\": [\"github\", \"gitlab\", \"bitbucket\"]\n  }\n}\n\nCreate tsconfig.json (extends root, jsx: react-jsx) and vitest.config.ts."
+acceptance_criteria[3]: "All directories including Providers/GitHub/, Providers/GitLab/, Providers/Bitbucket/ exist","package.json has contributes with sidebar, tabs, mcpTools, searchProviders, settings, statusBar, integrations",tsconfig.json and vitest.config.ts exist
+story: OPK-57
+epic: OPK-4
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-4/OPK-57/OPK-62.toon

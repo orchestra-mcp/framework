@@ -1,0 +1,13 @@
+id: ODS-22
+type: task
+parent: ODS-9
+title: Create singleton theme engine instance and exports
+status: done
+created: 2026-02-09
+description: "Create a singleton instance of ThemeEngine and export utilities for easy consumption.\n\n**File to create:** `/Users/fadymondy/Sites/orchestra-app/packages/design-system/tokens/src/engine/index.ts`\n\n**Code:**\n```typescript\nimport { ThemeEngine } from './ThemeEngine';\n\n// Singleton instance\nlet themeEngineInstance: ThemeEngine | null = null;\n\n/**\n * Get or create the theme engine singleton instance\n */\nexport function getThemeEngine(): ThemeEngine {\n  if (!themeEngineInstance) {\n    themeEngineInstance = new ThemeEngine();\n    \n    // Apply theme immediately\n    if (typeof window !== 'undefined') {\n      themeEngineInstance.setTheme(themeEngineInstance.getTheme().name.toLowerCase());\n    }\n  }\n  return themeEngineInstance;\n}\n\n/**\n * Initialize theme engine with specific theme\n */\nexport function initThemeEngine(themeName?: string): ThemeEngine {\n  themeEngineInstance = new ThemeEngine(themeName);\n  \n  if (typeof window !== 'undefined') {\n    const theme = themeName || themeEngineInstance.getTheme().name.toLowerCase();\n    themeEngineInstance.setTheme(theme);\n  }\n  \n  return themeEngineInstance;\n}\n\n/**\n * Reset theme engine instance (useful for testing)\n */\nexport function resetThemeEngine(): void {\n  themeEngineInstance = null;\n}\n\n// Re-export for convenience\nexport { ThemeEngine } from './ThemeEngine';\nexport * from './cssGenerator';\n```\n\n**File to update:** `/Users/fadymondy/Sites/orchestra-app/packages/design-system/tokens/src/index.ts`\n\n**Add exports:**\n```typescript\nexport * from './engine';\n```"
+acceptance_criteria[5]: Singleton theme engine instance created,getThemeEngine() function returns singleton,initThemeEngine() allows custom initialization,All engine utilities exported from main index,SSR-safe (checks for window)
+estimate_minutes: 20
+estimate_tokens: 10000
+assignee: null
+actual_minutes: 15
+actual_tokens: 5000

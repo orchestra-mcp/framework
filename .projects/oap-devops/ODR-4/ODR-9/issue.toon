@@ -1,0 +1,9 @@
+id: ODR-9
+type: story
+parent: ODR-4
+title: Version Bumping & Changelog
+status: done
+created: 2026-02-09
+user_story: "As a release manager, I want automated version bumping and changelog generation so that releases are documented"
+points: null
+acceptance_criteria[4]: Version synced across all platform files,Changelog generated from conventional commits,Git tags created automatically,Release notes formatted properly

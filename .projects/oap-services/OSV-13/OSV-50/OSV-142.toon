@@ -1,0 +1,20 @@
+id: OSV-142
+type: task
+parent: OSV-50
+title: Implement AccountCenterService with OAuth2+PKCE and secure storage
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["OSV-141"]
+description: "Create the AccountCenterService implementation.\n\n**Source reference:** Read `packages/extensions/calendar/src/OAuthService.ts` for existing OAuth flow patterns.\n\n**Target file:** `src/app/AccountCenter/AccountCenterService.ts`\n\n**Implementation:**\n1. `Map<string, IntegrationDefinition>` for registered integrations\n2. `Map<string, AuthResult>` for stored credentials (loaded from secure storage)\n3. `registerIntegration(integration)`: store, return Disposable\n4. `connect(integrationId)`:\n   - Get integration definition\n   - Based on authType:\n     - `oauth2-pkce`: Generate code_verifier + code_challenge, open browser to authUrl, register OAuth callback via IWebServerService, exchange code for tokens\n     - `oauth2`: Same but with client_secret\n     - `api-key`: Prompt user for key (via IPC to renderer)\n     - `token`: Prompt user for token\n   - Store credentials in secure storage\n   - Fire onConnectionChange\n5. `disconnect(integrationId)`: remove from secure storage, fire event\n6. `getAccessToken(integrationId)`:\n   - Check if token expired, auto-refresh if refreshToken available\n   - Return access token\n7. Secure storage: use `safeStorage.encryptString()` / `decryptString()` from Electron, stored in `credentials.enc` file\n8. Auto-refresh: check expiry before returning token, refresh via tokenUrl if expired"
+acceptance_criteria[7]: AccountCenterService in src/app/AccountCenter/AccountCenterService.ts,"OAuth2+PKCE flow: code_verifier, code_challenge, browser open, callback",OAuth2 flow with client_secret,API key and token auth types supported,Secure storage via Electron safeStorage,Token auto-refresh before expiry,onConnectionChange fires on connect/disconnect
+
+**Dependencies:**
+This task requires the following tasks to be completed first: OSV-141
+story: OSV-50
+epic: OSV-13
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-13/OSV-50/OSV-142.toon

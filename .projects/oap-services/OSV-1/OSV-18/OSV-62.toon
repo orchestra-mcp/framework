@@ -1,0 +1,23 @@
+id: OSV-62
+type: task
+parent: OSV-18
+title: Write unit tests for TrayMenuService
+status: done
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+actual_minutes: 25
+actual_tokens: 18000
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create comprehensive unit tests for the TrayMenuService.\n\n**Target file to create:** `src/app/Tray/__tests__/TrayMenuService.test.ts`\n\n**Test cases to implement (use Vitest):**\n1. `register()` — adds item, returns Disposable\n2. `register()` — throws on duplicate id\n3. `register()` Disposable — calling dispose() removes the item\n4. `update()` — merges patch into existing item\n5. `update()` — throws on non-existent id\n6. `unregister()` — removes item from registry\n7. `unregister()` — no-op for non-existent id\n8. `getItems()` — returns items sorted by group then order\n9. `getItems()` — nests children under parentId\n10. `onDidChange` — fires after register with debounce\n11. `onDidChange` — fires once for rapid batch of register/update calls (debounce test)\n12. `onDidChange` — includes full sorted items in event payload\n13. Group separators — items in different groups are logically separated\n\n**Testing pattern:**\n```typescript\nimport { describe, it, expect, vi, beforeEach } from 'vitest';\nimport { TrayMenuService } from '../TrayMenuService';\n\n// Use vi.useFakeTimers() for debounce testing\n// Call vi.advanceTimersByTime(100) to trigger debounced rebuild\n```"
+acceptance_criteria[5]: Test file exists at src/app/Tray/__tests__/TrayMenuService.test.ts,All 13 test cases listed above are implemented,Tests use Vitest with fake timers for debounce verification,All tests pass with pnpm test,Coverage >90% for TrayMenuService.ts
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-18
+epic: OSV-1
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-1/OSV-18/OSV-62.toon

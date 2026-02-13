@@ -1,0 +1,21 @@
+id: OPK-54
+type: task
+parent: OPK-47
+title: Migrate tasksStore.ts to Tasks Manager package
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 15
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Copy and adapt the Zustand store for tasks from chrome-extension.\n\nSOURCE: packages/chrome-extension/src/stores/tasksStore.ts\nTARGET: src/packages/tasks-manager/resources/chrome/stores/tasksStore.ts\n\nSteps:\n1. Copy the source file to the target location\n2. Update all import paths within the store:\n   - Imports from '../sidepanel/tasks/' should reference '../' (parent)\n   - Imports from other stores should be replaced with cross-package imports or local type aliases\n3. Ensure the store hook (e.g., useTasksStore) is exported\n4. Do NOT change state shape or store logic"
+acceptance_criteria[5]: tasksStore.ts exists at src/packages/tasks-manager/resources/chrome/stores/tasksStore.ts,All imports use package-local paths,No imports reference packages/chrome-extension/,Store hook exported with same name,TypeScript compiles
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OPK-47
+epic: OPK-3
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-3/OPK-47/OPK-54.toon

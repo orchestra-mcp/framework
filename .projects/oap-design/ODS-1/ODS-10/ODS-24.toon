@@ -1,0 +1,13 @@
+id: ODS-24
+type: task
+parent: ODS-10
+title: Create useTheme and useThemeTokens hooks
+status: done
+created: 2026-02-09
+description: "Create React hooks for accessing theme context in components.\n\n**File to create:** `/Users/fadymondy/Sites/orchestra-app/packages/design-system/components/src/theme/useTheme.ts`\n\n**Code:**\n```typescript\nimport { useContext, useMemo } from 'react';\nimport { ThemeContext } from './ThemeProvider';\nimport type { ThemeTokens, ThemeColorTokens } from '@orchestra/tokens';\n\n/**\n * Hook to access theme context\n * @throws Error if used outside ThemeProvider\n */\nexport function useTheme() {\n  const context = useContext(ThemeContext);\n  \n  if (!context) {\n    throw new Error('useTheme must be used within a ThemeProvider');\n  }\n  \n  return context;\n}\n\n/**\n * Hook to access current theme tokens\n */\nexport function useThemeTokens(): ThemeTokens {\n  const { theme } = useTheme();\n  return theme;\n}\n\n/**\n * Hook to access color tokens only\n */\nexport function useThemeColors(): ThemeColorTokens {\n  const { theme } = useTheme();\n  return theme.colors;\n}\n\n/**\n * Hook to get a specific color token\n */\nexport function useThemeColor(colorKey: keyof ThemeColorTokens): string {\n  const colors = useThemeColors();\n  return colors[colorKey];\n}\n\n/**\n * Hook to check if current theme is dark\n */\nexport function useIsDarkTheme(): boolean {\n  const { theme } = useTheme();\n  return theme.type === 'dark';\n}\n\n/**\n * Hook to create theme-aware styles\n */\nexport function useThemeStyles<T extends Record<string, any>>(\n  stylesFn: (colors: ThemeColorTokens, isDark: boolean) => T\n): T {\n  const colors = useThemeColors();\n  const isDark = useIsDarkTheme();\n  \n  return useMemo(() => stylesFn(colors, isDark), [colors, isDark, stylesFn]);\n}\n```"
+acceptance_criteria[6]: useTheme() hook returns full context,useThemeTokens() returns current theme,useThemeColors() returns color tokens only,useIsDarkTheme() checks theme type,useThemeStyles() creates theme-aware styles,All hooks properly typed
+estimate_minutes: 20
+estimate_tokens: 10000
+assignee: null
+actual_minutes: 15
+actual_tokens: 6000

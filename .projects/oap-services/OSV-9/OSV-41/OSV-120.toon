@@ -1,0 +1,16 @@
+id: OSV-120
+type: task
+parent: OSV-41
+title: Implement SearchService with provider aggregation and history
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+description: "Create the SearchService implementation.\n\n**Target file:** `src/app/Search/SearchService.ts`\n\n**Implementation:**\n1. `Map<string, SearchProvider>` for providers\n2. `string[]` for search history (max 100, persisted via ISettingsService)\n3. `search(query, options)`:\n   - Parse query into ParsedQuery (see QueryParser task)\n   - Determine target providers: if options.providers specified, filter; otherwise all\n   - Call `provider.search(parsedQuery)` on each in parallel via `Promise.all()`\n   - Aggregate results, filter by options.types if specified\n   - Sort by score descending\n   - Limit to options.maxResults (default 50)\n   - Add raw query to history\n4. `getSuggestions(partial)`:\n   - Get history suggestions (matching prefix)\n   - Get provider suggestions in parallel\n   - Merge and deduplicate\n5. `getHistory()`: return copy of history array\n6. `registerProvider/registerFileType/registerPreviewRenderer`: store, return Disposable"
+acceptance_criteria[6]: SearchService in src/app/Search/SearchService.ts,Queries all registered providers in parallel,Results aggregated and sorted by score,History stored (max 100) and persisted,getSuggestions merges history + provider suggestions,All register methods return Disposable
+story: OSV-41
+epic: OSV-9
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-9/OSV-41/OSV-120.toon

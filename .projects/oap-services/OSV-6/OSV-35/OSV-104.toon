@@ -1,0 +1,21 @@
+id: OSV-104
+type: task
+parent: OSV-35
+title: Implement MCP stdio transport with JSON-RPC protocol
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create the stdio transport layer that handles JSON-RPC messages over stdin/stdout.\n\n**Source reference:** Read `packages/extensions/mcp/src/main/cli.ts` for the existing CLI entry point and stdio handling.\n\n**Target file to create:** `src/app/MCP/StdioTransport.ts`\n\n**Implementation:**\n1. Class `StdioTransport`:\n   - Reads JSON-RPC messages from `process.stdin` (newline-delimited JSON)\n   - Parses each line as JSON-RPC request: `{ jsonrpc: '2.0', method: string, params: any, id: number }`\n   - Routes to handler based on method\n   - Writes JSON-RPC responses to `process.stdout`\n2. Message routing:\n   - `initialize` -> return server capabilities (tools, resources, prompts)\n   - `tools/list` -> return `mcpService.getRegisteredTools()` formatted per MCP spec\n   - `tools/call` -> validate, call `mcpService.executeTool()`, return result\n   - `resources/list` -> return registered resources\n   - `resources/read` -> call resource handler\n   - `prompts/list` -> return registered prompts\n   - `prompts/get` -> call prompt handler\n   - `notifications/*` -> handle client notifications (no response)\n3. Error handling:\n   - Parse errors: return JSON-RPC error -32700\n   - Method not found: return -32601\n   - Invalid params: return -32602\n   - Internal errors: return -32603\n4. Graceful shutdown on SIGTERM/SIGINT: flush stdout, close stdin"
+acceptance_criteria[6]: StdioTransport class in src/app/MCP/StdioTransport.ts,Reads newline-delimited JSON from stdin,"Routes initialize, tools/list, tools/call, resources/list, resources/read, prompts/list, prompts/get","JSON-RPC error codes for parse, method not found, invalid params, internal",Graceful shutdown on SIGTERM/SIGINT,Responses written to stdout as JSON
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-35
+epic: OSV-6
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-6/OSV-35/OSV-104.toon

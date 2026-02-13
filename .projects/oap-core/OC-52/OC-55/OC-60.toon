@@ -1,0 +1,11 @@
+id: OC-60
+type: task
+parent: OC-55
+title: Write comprehensive tests for EnvironmentService
+status: done
+created: 2026-02-09
+description: "Create test suite covering all EnvironmentService functionality:\n- File loading and parsing\n- Priority handling (.env.local > .env)\n- Type conversions (string, number, boolean)\n- Error handling (missing required variables)\n- Edge cases (empty files, malformed lines, quotes)"
+acceptance_criteria[4]: Test suite covers all public methods,Edge cases handled,100% code coverage,All tests pass
+estimate_minutes: 30
+estimate_tokens: 10000
+assignee: null

@@ -1,0 +1,17 @@
+id: OSV-76
+type: task
+parent: OSV-23
+title: Migrate settingsWindowService and marketplaceWindowService to PanelManagerService
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+description: "Refactor the settings and marketplace window services to use the unified PanelManagerService.\n\n**Source files to read:**\n- `packages/desktop/src/main/services/settingsWindowService.ts`\n- `packages/desktop/src/main/services/marketplaceWindowService.ts`\n- `packages/desktop/src/widget-renderer/settings-renderer.ts`\n- `packages/desktop/src/widget-renderer/marketplace-renderer.ts`\n- `packages/desktop/src/main/settings-preload.ts`\n- `packages/desktop/src/main/marketplace-preload.ts`\n\n**Same migration pattern:**\n1. Replace direct BrowserWindow creation with `panelManager.registerPanel()`\n2. Settings window: likely larger defaultSize (800x600), resizable\n3. Marketplace window: likely larger defaultSize (900x700), resizable\n4. Move IPC handlers to PanelIpcBridge\n5. Ensure tray menu entries created"
+acceptance_criteria[5]: settingsWindowService uses panelManager.registerPanel(),marketplaceWindowService uses panelManager.registerPanel(),Settings window opens/closes via panelManager API,Marketplace window opens/closes via panelManager API,No regressions in settings or marketplace functionality
+story: OSV-23
+epic: OSV-2
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-2/OSV-23/OSV-76.toon

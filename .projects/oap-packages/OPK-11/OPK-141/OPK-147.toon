@@ -1,0 +1,16 @@
+id: OPK-147
+type: task
+parent: OPK-141
+title: Migrate and update Event Tracker unit tests
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 10
+estimate_tokens: null
+description: "Copy and adapt existing tests.\n\nFILE MAPPING:\n1. packages/extensions/calendar/src/__tests__/CalendarService.test.ts -> src/packages/event-tracker/tests/CalendarService.test.ts\n\nUpdate imports, ensure tests pass."
+acceptance_criteria[3]: Test file exists,Imports updated,Tests pass
+story: OPK-141
+epic: OPK-11
+project: oap-packages
+projectKey: OPK
+path: .projects/oap-packages/OPK-11/OPK-141/OPK-147.toon

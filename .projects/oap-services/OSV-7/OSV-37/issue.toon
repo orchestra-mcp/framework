@@ -1,0 +1,9 @@
+id: OSV-37
+type: story
+parent: OSV-7
+title: IWebSocketService Interface & Core Server
+status: done
+created: 2026-02-09
+user_story: "As a developer, I want a typed IWebSocketService with channel-based pub/sub so that extensions can register handlers and communicate in real-time with connected clients."
+points: 8
+acceptance_criteria[7]: IWebSocketService interface in src/app/Socket/IWebSocketService.ts,WebSocketService implements registerHandler/publish/subscribe/onConnection/onDisconnection,registerHandler and subscribe return Disposable,Channel-based pub/sub with wildcard support,Token-based auth on WebSocket upgrade handshake,Binary message support (ArrayBuffer),Unit tests for all pub/sub and handler registration

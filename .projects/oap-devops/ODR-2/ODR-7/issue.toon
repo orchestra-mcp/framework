@@ -1,0 +1,9 @@
+id: ODR-7
+type: story
+parent: ODR-2
+title: Code Signing & Notarization
+status: done
+created: 2026-02-09
+user_story: "As a user, I want signed applications so that I can trust the software and avoid security warnings"
+points: null
+acceptance_criteria[4]: macOS apps signed and notarized,Windows apps signed with Authenticode,No security warnings on first launch,Certificates stored securely in GitHub Secrets

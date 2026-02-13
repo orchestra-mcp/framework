@@ -1,0 +1,21 @@
+id: OSV-85
+type: task
+parent: OSV-27
+title: Write Settings documentation and barrel exports
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create comprehensive documentation and barrel export for the Settings module.\n\n**Target files:**\n- `docs/core-services/settings.md`\n- `src/app/Settings/README.md`\n- `src/app/Settings/index.ts`\n\n**docs/core-services/settings.md sections:**\n1. Overview\n2. API Reference — all methods\n3. Types — SettingsGroup, SettingDefinition with all type variants\n4. Usage Examples: registering a group, registering settings (each type), get/set, validation, onDidChange, export/import\n5. IPC Channels table\n6. Settings UI auto-generation (how renderers read schema to build UI)\n7. Cloud sync roadmap (future)\n\n**Barrel export:** All types, SettingsService, handlers, ICloudSyncService stub"
+acceptance_criteria[4]: docs/core-services/settings.md with all 7 sections,src/app/Settings/README.md exists,src/app/Settings/index.ts barrel exports all public API,"Examples for each setting type (string, number, boolean, enum, color, path, custom)"
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-27
+epic: OSV-3
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-3/OSV-27/OSV-85.toon

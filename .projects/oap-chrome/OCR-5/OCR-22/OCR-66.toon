@@ -1,0 +1,20 @@
+id: OCR-66
+type: task
+parent: OCR-22
+title: Move orchestraClient.ts to shared transport location
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 45
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Move the OrchestraClient WebSocket transport from its current location to the shared infrastructure location.\n\n**Source file:** `packages/chrome-extension/src/transport/orchestraClient.ts`\n**Target file:** `src/resources/chrome/transport/orchestraClient.ts`\n**Create directory:** `src/resources/chrome/transport/`\n\n**Steps:**\n1. Create directory `src/resources/chrome/transport/`\n2. Copy `orchestraClient.ts` to new location — content is UNCHANGED (do not modify the OrchestraClient class)\n3. Create barrel export `src/resources/chrome/transport/index.ts`:\n```typescript\nexport { OrchestraClient, getOrchestraClient, installWindowOrchestra } from './orchestraClient';\n```\n4. Search the ENTIRE codebase for imports of the old path. Use grep for:\n   - `from '../transport/orchestraClient'`\n   - `from '../../transport/orchestraClient'`\n   - `from '../stores/../transport/orchestraClient'` (unlikely but check)\n   - Any other variations\n5. Update EVERY import to point to the new location using relative paths\n6. Leave a re-export stub at the old location for safety during transition:\n```typescript\n// packages/chrome-extension/src/transport/orchestraClient.ts\n// DEPRECATED: Import from src/resources/chrome/transport/ instead\nexport { OrchestraClient, getOrchestraClient, installWindowOrchestra } from '../../../../src/resources/chrome/transport/orchestraClient';\n```\n\n**Files that import orchestraClient (at minimum):**\n- `packages/chrome-extension/src/sidepanel/index.tsx` (line 3)\n- ALL 26 stores that call `getOrchestraClient()` (every store file imports it)\n- `packages/chrome-extension/src/stores/settingsSync.ts`\n- `packages/chrome-extension/src/stores/workspaceSync.ts`\n\nSince all stores will also be migrated (Epic 4), the import path updates overlap. If Epic 4 runs BEFORE this task, update the imports at the NEW store locations. If this task runs BEFORE Epic 4, update the imports at the OLD store locations.\n\n**IMPORTANT for Sonnet:** This is a high-impact change touching 26+ files. Run `pnpm typecheck` after ALL imports are updated, NOT after each individual file. Fix any remaining broken imports iteratively."
+acceptance_criteria[6]: orchestraClient.ts exists at src/resources/chrome/transport/orchestraClient.ts,Barrel export at src/resources/chrome/transport/index.ts exports all 3 symbols,OrchestraClient class code is UNCHANGED (no functional modifications),All 26+ imports across the codebase updated to new path,Re-export stub left at old location for safety,pnpm typecheck passes with zero errors
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OCR-22
+epic: OCR-5
+project: oap-chrome
+projectKey: OCR
+path: .projects/oap-chrome/OCR-5/OCR-22/OCR-66.toon

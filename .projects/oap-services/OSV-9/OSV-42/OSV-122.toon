@@ -1,0 +1,16 @@
+id: OSV-122
+type: task
+parent: OSV-42
+title: Implement QueryParser for Jira-like filters and prefix operators
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+description: "Create the query language parser that converts search strings into structured ParsedQuery objects.\n\n**Target file to create:** `src/app/Search/QueryParser.ts`\n\n**Implementation:**\n```typescript\nexport class QueryParser {\n  parse(raw: string): ParsedQuery {\n    const result: ParsedQuery = {\n      text: '', filters: {}, mentions: [], tags: [], commands: []\n    };\n    \n    const tokens = this.tokenize(raw);\n    const textParts: string[] = [];\n    \n    for (const token of tokens) {\n      if (token.includes(':') && !token.startsWith('@') && !token.startsWith('#') && !token.startsWith('>')) {\n        // key:value filter — e.g., type:file, status:modified, lang:typescript\n        const [key, ...valueParts] = token.split(':');\n        result.filters[key] = valueParts.join(':');\n      } else if (token.startsWith('@')) {\n        result.mentions.push(token.slice(1));\n      } else if (token.startsWith('#')) {\n        result.tags.push(token.slice(1));\n      } else if (token.startsWith('>')) {\n        result.commands.push(token.slice(1));\n      } else {\n        textParts.push(token);\n      }\n    }\n    \n    result.text = textParts.join(' ');\n    return result;\n  }\n  \n  private tokenize(raw: string): string[] {\n    // Handle quoted strings as single tokens: \"hello world\"\n    // Split on whitespace otherwise\n  }\n}\n```\n\n**Edge cases to handle:**\n- Quoted strings: `\"hello world\"` is one token\n- Escaped quotes: `\\\"` inside quoted string\n- Empty query returns empty ParsedQuery\n- Multiple filters with same key: last wins\n- Colon in URL-like values: `url:https://foo.com` keeps full value"
+acceptance_criteria[8]: QueryParser class in src/app/Search/QueryParser.ts,"Parses key:value filters (type:file, status:modified)",Parses @mentions into mentions array,Parses #tags into tags array,Parses >commands into commands array,Remaining text collected as free-text query,Quoted strings handled as single tokens,URL-like values preserved (colon in value)
+story: OSV-42
+epic: OSV-9
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-9/OSV-42/OSV-122.toon

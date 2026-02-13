@@ -1,0 +1,9 @@
+id: OCD-21
+type: story
+parent: OCD-3
+title: Web Marketplace
+status: backlog
+created: 2026-02-09
+user_story: "As a visitor, I want to browse available extensions in a web marketplace and install them to my desktop app so that I can discover and add capabilities to my IDE."
+points: 8
+acceptance_criteria[7]: Extension catalog browsable by category,Search and filter extensions,"Extension detail page with README, screenshots, changelog","Install button triggers deep link orchestra://install/{extension-id}",Free vs paid badge,Rating/reviews display,Responsive grid layout

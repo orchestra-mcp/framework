@@ -1,0 +1,13 @@
+id: ODS-25
+type: task
+parent: ODS-10
+title: Create ThemeScript for SSR/hydration support
+status: done
+created: 2026-02-09
+description: "Create a script component that runs before React hydration to prevent theme flash.\n\n**File to create:** `/Users/fadymondy/Sites/orchestra-app/packages/design-system/components/src/theme/ThemeScript.tsx`\n\n**Code:**\n```typescript\nimport React from 'react';\n\n/**\n * Script that runs before React hydration to apply theme\n * This prevents flash of unstyled content (FOUC)\n * \n * Usage: Place in <head> of your HTML\n * <ThemeScript />\n */\nexport function ThemeScript() {\n  const script = `\n    (function() {\n      try {\n        // Get saved theme from localStorage\n        var theme = localStorage.getItem('orchestra-theme') || 'orchestra';\n        var autoMode = localStorage.getItem('orchestra-theme-auto') === 'true';\n        \n        // If auto mode, detect system preference\n        if (autoMode) {\n          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;\n          // This is a simplification - in production, you'd load the full theme data\n          document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');\n        } else {\n          // Set theme attribute immediately\n          document.documentElement.setAttribute('data-theme-name', theme);\n        }\n      } catch (e) {\n        // Ignore errors\n      }\n    })();\n  `;\n\n  return (\n    <script\n      dangerouslySetInnerHTML={{ __html: script }}\n      suppressHydrationWarning\n    />\n  );\n}\n\n/**\n * NoScript fallback for users without JavaScript\n */\nexport function ThemeNoScript() {\n  return (\n    <noscript>\n      <style>{`\n        :root {\n          /* Default theme colors as fallback */\n          --mt-bg: #1e1e1e;\n          --mt-fg: #d4d4d4;\n          --mt-accent: #a900ff;\n        }\n      `}</style>\n    </noscript>\n  );\n}\n```"
+acceptance_criteria[6]: ThemeScript component created,Script runs before React hydration,Prevents FOUC (flash of unstyled content),Reads from localStorage,Handles auto mode detection,NoScript fallback provided
+estimate_minutes: 20
+estimate_tokens: 10000
+assignee: null
+actual_minutes: 15
+actual_tokens: 5000

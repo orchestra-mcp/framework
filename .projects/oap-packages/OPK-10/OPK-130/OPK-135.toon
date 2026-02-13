@@ -1,0 +1,20 @@
+id: OPK-135
+type: task
+parent: OPK-130
+title: Migrate alarm service files
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 20
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Copy and adapt all alarm service files.\n\nFILE MAPPING (source -> target):\n1. packages/extensions/alarms/src/AlarmService.ts -> src/packages/alarm/src/Services/AlarmService.ts\n2. packages/extensions/alarms/src/alarmHandlers.ts -> src/packages/alarm/src/Services/alarmHandlers.ts\n3. packages/extensions/alarms/src/trayMenuIntegration.ts -> src/packages/alarm/src/Services/trayMenuIntegration.ts\n4. packages/extensions/alarms/src/types.ts -> src/packages/alarm/src/Services/types.ts\n5. packages/extensions/alarms/src/index.ts -> src/packages/alarm/src/Services/index.ts\n6. packages/desktop/src/main/services/alarmPanelService.ts -> src/packages/alarm/src/Panels/AlarmPanelService.ts\n\nFor each: copy, update imports, preserve signatures. The AlarmPanelService from desktop will need its Electron BrowserWindow references abstracted behind a panel interface."
+acceptance_criteria[4]: All 6 files exist at target paths,AlarmPanelService in src/Panels/,No imports reference packages/extensions/alarms/ or packages/desktop/,TypeScript compiles
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OPK-130
+epic: OPK-10
+project: oap-packages
+projectKey: OPK
+path: .projects/oap-packages/OPK-10/OPK-130/OPK-135.toon

@@ -1,0 +1,7 @@
+id: OSV-1
+type: epic
+title: Dynamic Tray Menu Service
+status: done
+created: 2026-02-09
+description: "Extract and wrap tray menu functionality from packages/desktop/src/main/services/trayService.ts + menuContributionService.ts into src/app/Tray/ with ITrayMenuService dynamic registration API. Supports real-time icon updates, debounced menu rebuild, group-based ordering, sub-menus, and Disposable pattern."
+priority: high

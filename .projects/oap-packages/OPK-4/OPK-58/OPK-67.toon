@@ -1,0 +1,17 @@
+id: OPK-67
+type: task
+parent: OPK-58
+title: Migrate Bitbucket provider services
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 20
+estimate_tokens: null
+description: "Copy and adapt all Bitbucket provider files from the bitbucket extension.\n\nFILE MAPPING (source -> target):\n1. packages/extensions/bitbucket/src/main/BitbucketApiClient.ts -> src/packages/version-control/src/Services/Providers/Bitbucket/BitbucketApiClient.ts\n2. packages/extensions/bitbucket/src/main/BitbucketIssueService.ts -> src/packages/version-control/src/Services/Providers/Bitbucket/BitbucketIssueService.ts\n3. packages/extensions/bitbucket/src/main/BitbucketPRService.ts -> src/packages/version-control/src/Services/Providers/Bitbucket/BitbucketPRService.ts\n4. Create src/packages/version-control/src/Services/Providers/Bitbucket/types.ts\n5. Create src/packages/version-control/src/Services/Providers/Bitbucket/index.ts that re-exports all services\n\nFor each file: copy, update imports, preserve signatures."
+acceptance_criteria[5]: All 3 Bitbucket service files exist in Providers/Bitbucket/,index.ts and types.ts exist,All imports updated,No imports reference packages/extensions/bitbucket/,TypeScript compiles
+story: OPK-58
+epic: OPK-4
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-4/OPK-58/OPK-67.toon

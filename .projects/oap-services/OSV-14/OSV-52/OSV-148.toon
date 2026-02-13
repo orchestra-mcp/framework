@@ -1,0 +1,20 @@
+id: OSV-148
+type: task
+parent: OSV-52
+title: Write unit tests for MarkdownRenderer and pipeline
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create tests for the markdown rendering pipeline.\n\n**Target file:** `src/app/Components/__tests__/MarkdownRenderer.test.ts`\n\n**Test cases:**\n1. Renders basic markdown (headings, paragraphs, lists)\n2. Renders GFM tables\n3. Renders strikethrough and task lists\n4. Renders code blocks with Shiki syntax highlighting\n5. Renders math/LaTeX inline and block\n6. Renders Mermaid diagrams (check SVG output)\n7. Table sorting works on click\n8. CSV export produces correct format\n9. XSS prevention: script tags stripped\n10. Empty content renders empty div"
+acceptance_criteria[4]: Test file at specified path,All 10 test cases pass,React Testing Library used for component tests,Coverage >90% for pipeline
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-52
+epic: OSV-14
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-14/OSV-52/OSV-148.toon

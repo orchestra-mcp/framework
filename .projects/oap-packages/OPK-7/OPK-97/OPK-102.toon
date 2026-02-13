@@ -1,0 +1,17 @@
+id: OPK-102
+type: task
+parent: OPK-97
+title: "Migrate ServiceManager, registry, handlers, and tools"
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 25
+estimate_tokens: null
+description: "Copy and adapt core service management files from dev-services extension.\n\nFILE MAPPING (source -> target):\n1. packages/extensions/dev-services/src/main/ServiceManager.ts -> src/packages/os-services-manager/src/Services/ServiceManager.ts\n2. packages/extensions/dev-services/src/main/ServiceAdapterRegistry.ts -> src/packages/os-services-manager/src/Services/ServiceAdapterRegistry.ts\n3. packages/extensions/dev-services/src/main/handlers.ts -> src/packages/os-services-manager/src/Services/handlers.ts\n4. packages/extensions/dev-services/src/main/mcpTools.ts -> src/packages/os-services-manager/src/Services/mcpTools.ts\n5. packages/extensions/dev-services/src/main/shell.ts -> src/packages/os-services-manager/src/Services/shell.ts\n6. packages/extensions/dev-services/src/main/index.ts -> src/packages/os-services-manager/src/Services/index.ts\n7. packages/extensions/dev-services/src/main/types/index.ts -> src/packages/os-services-manager/src/Services/types/index.ts\n8. packages/extensions/dev-services/src/main/types/service-adapter.ts -> src/packages/os-services-manager/src/Services/types/service-adapter.ts\n\nFor each: copy, update imports to local paths, preserve signatures."
+acceptance_criteria[4]: All 8 files exist at target paths,types/ subdirectory with both files,No imports reference packages/extensions/dev-services/,TypeScript compiles
+story: OPK-97
+epic: OPK-7
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-7/OPK-97/OPK-102.toon

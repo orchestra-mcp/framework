@@ -1,0 +1,20 @@
+id: OCD-38
+type: task
+parent: OCD-9
+title: Install Inertia.js 2 with React 19 adapter
+status: done
+created: 2026-02-09
+assignee: null
+estimate_minutes: 20
+estimate_tokens: null
+blockers: "[\"\\\"OCD-37\\\"\",\"OCD-37\"]"
+description: "Install Inertia.js 2 server-side (Laravel) and client-side (React 19) adapters.\n\n**Backend (Laravel) steps:**\n1. `cd src/platform`\n2. `composer require inertiajs/inertia-laravel:^2.0`\n3. Create the Inertia middleware: `php artisan inertia:middleware`\n4. Register the middleware in `src/platform/bootstrap/app.php`:\n```php\n->withMiddleware(function (Middleware $middleware) {\n    $middleware->web(append: [\n        \\App\\Http\\Middleware\\HandleInertiaRequests::class,\n    ]);\n})\n```\n5. Create the root Blade template at `src/platform/resources/views/app.blade.php`:\n```blade\n<!DOCTYPE html>\n<html lang=\"{{ str_replace('_', '-', app()->getLocale()) }}\">\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <title>{{ config('app.name', 'Orchestra') }}</title>\n    @viteReactRefresh\n    @vite(['resources/js/app.tsx', 'resources/css/app.css'])\n    @inertiaHead\n</head>\n<body>\n    @inertia\n</body>\n</html>\n```\n\n**Frontend (React) steps:**\n1. `cd src/platform`\n2. `npm install react@^19 react-dom@^19 @inertiajs/react@^2.0`\n3. `npm install -D @types/react @types/react-dom @vitejs/plugin-react`\n4. Create `src/platform/resources/js/app.tsx`:\n```tsx\nimport { createInertiaApp } from '@inertiajs/react';\nimport { createRoot } from 'react-dom/client';\nimport { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';\n\ncreateInertiaApp({\n    title: (title) => title ? `${title} - Orchestra` : 'Orchestra',\n    resolve: (name) => resolvePageComponent(`./Pages/${name}.tsx`, import.meta.glob('./Pages/**/*.tsx')),\n    setup({ el, App, props }) {\n        createRoot(el).render(<App {...props} />);\n    },\n});\n```\n5. Create a test page at `src/platform/resources/js/Pages/Welcome.tsx`:\n```tsx\nexport default function Welcome() {\n    return <div className=\"p-8\"><h1>Orchestra Platform</h1></div>;\n}\n```\n6. Update `src/platform/routes/web.php`:\n```php\nuse Inertia\\Inertia;\nRoute::get('/', fn () => Inertia::render('Welcome'));\n```\n\n**File paths:**\n- `src/platform/app/Http/Middleware/HandleInertiaRequests.php`\n- `src/platform/resources/views/app.blade.php`\n- `src/platform/resources/js/app.tsx`\n- `src/platform/resources/js/Pages/Welcome.tsx`"
+acceptance_criteria[7]: Inertia.js 2 server-side installed via composer,React 19 + @inertiajs/react installed via npm,HandleInertiaRequests middleware registered,Root Blade template app.blade.php created with @inertia directive,app.tsx entry point created with createInertiaApp,Welcome.tsx page renders at / route,Page renders without JavaScript errors
+"**Dependencies": **
+"This task requires the following tasks to be completed first": OCD-37
+story: OCD-9
+epic: OCD-1
+project: oap-cloud
+projectKey: OCD
+path: .projects/oap-cloud/OCD-1/OCD-9/OCD-38.toon
+actual_minutes: 15

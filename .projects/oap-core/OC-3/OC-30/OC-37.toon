@@ -1,0 +1,17 @@
+id: OC-37
+type: task
+parent: OC-30
+title: Configure package.json to reference the JSON Schema for IDE autocompletion
+status: done
+created: 2026-02-09
+assignee: null
+estimate_minutes: 10
+estimate_tokens: null
+description: "**Files to modify:**\n- `src/packages/example/package.json`\n- Optionally: `.vscode/settings.json` (for project-wide schema association)\n\n**What to do:**\n\n**Option A — Per-file schema reference (recommended for extension package.json files):**\n\nIn `src/packages/example/package.json`, add a `$schema` field at the top level:\n```json\n{\n  \"$schema\": \"../../schemas/orchestra-extension.schema.json\",\n  \"name\": \"@orchestra/example\",\n  \"version\": \"0.1.0\",\n  ...\n}\n```\n\n**Option B — Project-wide VS Code schema association:**\n\nCreate or update `.vscode/settings.json` to associate the schema with all extension package.json files:\n```json\n{\n  \"json.schemas\": [\n    {\n      \"fileMatch\": [\"src/packages/*/package.json\"],\n      \"url\": \"./src/schemas/orchestra-extension.schema.json\"\n    }\n  ]\n}\n```\n\n**Do BOTH options** for maximum coverage.\n\n**Verification:** Open `src/packages/example/package.json` in VS Code. You should see:\n1. Autocompletion suggestions when typing in the `contributes` section\n2. Validation errors for invalid fields\n3. Hover documentation for fields like `activationEvents`"
+acceptance_criteria[5]: src/packages/example/package.json has $schema field pointing to the schema,.vscode/settings.json has json.schemas mapping for src/packages/*/package.json,Opening an extension package.json in VS Code shows autocompletion for contributes fields,Invalid fields in package.json show validation warnings in VS Code,The $schema path resolves correctly relative to the package.json location
+story: OC-30
+epic: OC-3
+project: oap-core
+projectKey: OC
+projectKey: OC
+path: .projects/oap-core/OC-3/OC-30/OC-37.toon

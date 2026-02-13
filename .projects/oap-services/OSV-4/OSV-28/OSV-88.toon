@@ -1,0 +1,21 @@
+id: OSV-88
+type: task
+parent: OSV-28
+title: Write unit tests for ThemeService
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create unit tests for ThemeService.\n\n**Target file:** `src/app/Themes/__tests__/ThemeService.test.ts`\n\n**Test cases:**\n1. Built-in dark and light themes available on construction\n2. registerTheme adds theme, Disposable removes it\n3. setActiveTheme changes active theme\n4. setActiveTheme throws for non-existent theme\n5. getActiveTheme returns current active theme\n6. getCssVariables returns active theme colors\n7. onDidChangeTheme fires on setActiveTheme\n8. Disposing active theme falls back to dark\n9. Active theme ID persisted to settings\n10. getAvailableThemes returns all registered themes\n\n**Mock ISettingsService for persistence testing.**"
+acceptance_criteria[5]: Test file at src/app/Themes/__tests__/ThemeService.test.ts,All 10 test cases implemented,ISettingsService mocked,All tests pass,Coverage >90%
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-28
+epic: OSV-4
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-4/OSV-28/OSV-88.toon

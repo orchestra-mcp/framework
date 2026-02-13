@@ -1,0 +1,20 @@
+id: OSV-155
+type: task
+parent: OSV-55
+title: Write LSP documentation and barrel exports
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create documentation and barrel exports.\n\n**Target files:**\n- `docs/core-services/lsp-server.md`\n- `src/app/LSP/README.md`\n- `src/app/LSP/index.ts`\n\n**Docs sections:** Overview, API Reference, Types, Language Server Registration, Auto-Download, Lifecycle Management, VSCode Extension Compatibility, Multi-Root Workspace, IPC Channels, Language Server Authoring Guide\n\n**Barrel:**\n```typescript\nexport type { ILspServerService } from './ILspServerService';\nexport type { LanguageServerConfig, LanguageServerInfo } from './types';\nexport { LspServerService } from './LspServerService';\nexport { VscodeLangExtParser } from './VscodeLangExtParser';\n```"
+acceptance_criteria[3]: docs/core-services/lsp-server.md with all sections,Language server authoring guide included,src/app/LSP/index.ts barrel exports all public API
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-55
+epic: OSV-15
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-15/OSV-55/OSV-155.toon

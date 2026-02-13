@@ -1,0 +1,9 @@
+id: OCD-108
+type: story
+parent: OCD-97
+title: Follow system implementation
+status: backlog
+created: 2026-02-09
+user_story: "As a user, I want to follow other users so that I can see their activity in my feed"
+points: 3
+acceptance_criteria[4]: Follow/unfollow methods in User model,Followers and following relationships,Follow counts tracked,isFollowing check works

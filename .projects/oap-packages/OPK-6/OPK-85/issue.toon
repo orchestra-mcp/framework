@@ -1,0 +1,9 @@
+id: OPK-85
+type: story
+parent: OPK-6
+title: Migrate Database Manager main services
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want all database services, drivers, and tools migrated from extensions/dev-database/ into the Database Manager package."
+points: 8
+acceptance_criteria[5]: All 17 service files migrated to src/Services/,All 5 driver files migrated to src/Services/Drivers/,MCP tools migrated,All imports updated,TypeScript compiles

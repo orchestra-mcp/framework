@@ -1,0 +1,24 @@
+id: OCR-31
+type: task
+parent: OCR-8
+title: Build SidebarContent React component with lazy loading
+status: done
+created: 2026-02-09
+assignee: null
+estimate_minutes: 30
+estimate_tokens: null
+blockers: ["\"ODS-1\"","\"ODS-2\"","\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"\\\"\\\\\\\"ODS-1\\\\\\\"\\\"\"","\"\\\"\\\\\\\"ODS-2\\\\\\\"\\\"\"","\"\\\"\\\\\\\"\\\\\\\\\\\\\\\"OCR-30\\\\\\\\\\\\\\\"\\\\\\\"\\\"\"","OCR-30"]
+description: "Create the SidebarContent component that renders the content panel for the active sidebar entry, with lazy-loading support.\n\n**Source reference:** The current content area is in `packages/chrome-extension/src/sidepanel/App.tsx` lines 385-396 where panels are conditionally rendered with `{activePanel === 'explorer' && <FileExplorer />}`.\n\n**Target file:** `src/app/Chrome/Sidebar/SidebarContent.tsx`\n\n**Implementation details:**\n\n```typescript\nimport { Suspense, useMemo } from 'react';\nimport { useSidebarRegistryStore } from './sidebarRegistryStore';\n\n/** Loading fallback shown while content lazy-loads */\nfunction ContentLoading() {\n  return (\n    <div className=\"flex h-full items-center justify-center text-mt-fg-muted\">\n      <svg className=\"h-5 w-5 animate-spin\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.5\">\n        <circle cx=\"8\" cy=\"8\" r=\"6\" strokeOpacity=\"0.3\" />\n        <path d=\"M14 8a6 6 0 0 0-6-6\" strokeLinecap=\"round\" />\n      </svg>\n    </div>\n  );\n}\n\n/** Empty state when no content is registered for the active panel */\nfunction NoContent() {\n  return (\n    <div className=\"flex h-full items-center justify-center text-mt-fg-muted text-xs\">\n      No content registered for this panel\n    </div>\n  );\n}\n\nexport function SidebarContent() {\n  const activePanel = useSidebarRegistryStore((s) => s.activePanel);\n  const contentMap = useSidebarRegistryStore((s) => s.contentMap);\n  const loadedPanels = useSidebarRegistryStore((s) => s.loadedPanels);\n\n  // Get all sidebar IDs that have been loaded (for keeping them in DOM)\n  const panelIds = useMemo(() => {\n    const ids = new Set(loadedPanels);\n    if (activePanel) ids.add(activePanel);\n    return Array.from(ids);\n  }, [loadedPanels, activePanel]);\n\n  return (\n    <div className=\"flex-1 min-w-0 w-full overflow-hidden relative\">\n      {panelIds.map((panelId) => {\n        const registration = contentMap.get(panelId);\n        if (!registration) return null;\n\n        const Component = registration.component;\n        const isActive = panelId === activePanel;\n\n        return (\n          <div\n            key={panelId}\n            className=\"absolute inset-0 overflow-hidden\"\n            style={{ display: isActive ? 'block' : 'none' }}\n          >\n            <Suspense fallback={<ContentLoading />}>\n              <Component />\n            </Suspense>\n          </div>\n        );\n      })}\n      {activePanel && !contentMap.has(activePanel) && <NoContent />}\n    </div>\n  );\n}\n```\n\n**Key behaviors:**\n- Content panels are KEPT in the DOM after first load (hidden with `display: none`), NOT unmounted. This preserves scroll position, form state, etc. when switching panels.\n- Only panels in `loadedPanels` + current `activePanel` are rendered (lazy loading).\n- Suspense boundary for each panel supports React.lazy() components.\n- Active panel shown with `display: block`, inactive with `display: none`.\n- If no content registered for active panel, show \"No content registered\" message.\n\nUpdate barrel export in `src/app/Chrome/Sidebar/index.ts` to include:\n```typescript\nexport { SidebarContent } from './SidebarContent';\n```"
+acceptance_criteria[7]: File src/app/Chrome/Sidebar/SidebarContent.tsx exists,Active panel's content component rendered,"Inactive panels hidden with display:none (NOT unmounted from DOM)",Only panels that have been viewed are rendered (lazy loading via loadedPanels),Suspense fallback shown while content loads,NoContent fallback shown when active panel has no registered content,Barrel export updated
+
+**Dependencies:**
+This task requires the following tasks to be completed first: OCR-30
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OCR-8
+epic: OCR-1
+project: oap-chrome
+projectKey: OCR
+projectKey: OCR
+path: .projects/oap-chrome/OCR-1/OCR-8/OCR-31.toon

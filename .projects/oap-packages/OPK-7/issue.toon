@@ -1,0 +1,7 @@
+id: OPK-7
+type: epic
+title: OS Services Manager Package
+status: backlog
+created: 2026-02-09
+description: "Migrate the OS Services Manager package at src/packages/os-services-manager/. Sources: packages/extensions/dev-services/src/main/ (ServiceManager.ts, ServiceAdapterRegistry.ts, handlers.ts, mcpTools.ts, shell.ts, index.ts, types/ (index.ts, service-adapter.ts), adapters/ (BaseAdapter.ts, PostgresAdapter.ts, MysqlAdapter.ts, RedisAdapter.ts, DockerAdapter.ts, NginxAdapter.ts, ApacheAdapter.ts, NodeAdapter.ts, PythonAdapter.ts, PhpAdapter.ts, MailpitAdapter.ts, MeilisearchAdapter.ts, RubyAdapter.ts, index.ts)), packages/chrome-extension/src/sidepanel/services/ (ServicesPanel.tsx, ServicesList.tsx, ServiceDetail.tsx, ServiceVersions.tsx), packages/chrome-extension/src/stores/servicesStore.ts. The ServiceProvider registers: sidebar entry (services icon), tray menu (dynamic items per service with green/yellow/red iconColor), settings (service paths, auto-start), MCP tools (start/stop/restart services), notifications (service status change alerts)."
+priority: medium

@@ -1,0 +1,16 @@
+id: OSV-143
+type: task
+parent: OSV-50
+title: Write unit tests for AccountCenterService
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+description: "Create tests for AccountCenterService.\n\n**Target file:** `src/app/AccountCenter/__tests__/AccountCenterService.test.ts`\n\n**Test cases:**\n1. registerIntegration stores integration, Disposable removes it\n2. connect with oauth2-pkce generates code_verifier/challenge\n3. connect with oauth2 uses client_secret\n4. connect with api-key stores key\n5. connect fires onConnectionChange\n6. disconnect removes credentials\n7. disconnect fires onConnectionChange\n8. getAccessToken returns stored token\n9. getAccessToken auto-refreshes expired token\n10. isConnected returns correct boolean\n11. getConnectedIntegrations returns all connected\n12. Credentials encrypted via safeStorage\n\n**Mock Electron safeStorage, IWebServerService, shell.openExternal.**"
+acceptance_criteria[5]: Test file at specified path,All 12 test cases pass,Electron safeStorage mocked,OAuth flow mocked end-to-end,Coverage >90%
+story: OSV-50
+epic: OSV-13
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-13/OSV-50/OSV-143.toon

@@ -1,0 +1,17 @@
+id: OPK-94
+type: task
+parent: OPK-87
+title: Implement DatabaseManagerServiceProvider with all registrations
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 30
+estimate_tokens: null
+description: "Implement the full DatabaseManagerServiceProvider.\n\nTARGET: src/packages/database-manager/src/DatabaseManagerServiceProvider.ts\n\nThe class must:\n1. Import ConnectionManager, driver registry from './Services/'\n2. Implement boot() that:\n   a. Instantiates ConnectionManager with all drivers\n   b. Registers sidebar entry: { id: 'database', title: 'Database', icon: 'database', component: 'DatabasePanel', order: 6 }\n   c. Registers tab types:\n      - { id: 'query-editor', title: 'Query Editor', component: 'QueryEditor', closable: true, multiple: true }\n      - { id: 'table-browser', title: 'Table Browser', component: 'TableBrowser', closable: true }\n   d. Registers search provider: { id: 'schema-search', name: 'Schema', search: (q) => schemaTreeProvider.search(q) }\n   e. Registers settings: database.connections ([]), database.defaultDriver ('postgres')\n   f. Registers MCP tools: db_query, db_schema, db_tables, db_describe (from mcpTools.ts)\n3. Implement shutdown() that closes all database connections\n4. Export as default"
+acceptance_criteria[8]: DatabaseManagerServiceProvider fully implemented,boot() registers sidebar with database icon,boot() registers 2 tab types,boot() registers schema search provider,boot() registers 2 settings,boot() registers 4 MCP tools,shutdown() closes all connections,TypeScript compiles
+story: OPK-87
+epic: OPK-6
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-6/OPK-87/OPK-94.toon

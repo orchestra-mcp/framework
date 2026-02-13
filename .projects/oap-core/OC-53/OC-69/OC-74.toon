@@ -1,0 +1,11 @@
+id: OC-74
+type: task
+parent: OC-69
+title: Initialize Firebase in Electron main.ts
+status: done
+created: 2026-02-09
+description: "Add Firebase to Electron main process from PRD lines 1129-1142:\n- Resolve FirebaseService from DI\n- Track app_launch event with platform, OS, version\n- Set up automatic tracking for lifecycle events"
+acceptance_criteria[4]: Firebase initialized on startup,App launch tracked,Platform info included,No errors in production
+estimate_minutes: 20
+estimate_tokens: 8000
+assignee: null

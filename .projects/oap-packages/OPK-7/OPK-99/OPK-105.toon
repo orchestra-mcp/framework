@@ -1,0 +1,17 @@
+id: OPK-105
+type: task
+parent: OPK-99
+title: Implement OSServicesManagerServiceProvider with all registrations
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 35
+estimate_tokens: null
+description: "Implement the full OSServicesManagerServiceProvider.\n\nTARGET: src/packages/os-services-manager/src/OSServicesManagerServiceProvider.ts\n\nThe class must:\n1. Import ServiceManager, ServiceAdapterRegistry, all adapters\n2. Implement boot() that:\n   a. Instantiates ServiceAdapterRegistry, registers all 12 adapters\n   b. Instantiates ServiceManager with the registry\n   c. Registers sidebar entry: { id: 'services', title: 'Services', icon: 'server', component: 'ServicesPanel', order: 7 }\n   d. Registers dynamic tray menu: generates menu items per detected service, each with:\n      - label: service name (e.g., 'PostgreSQL')\n      - iconColor: 'green' (running), 'yellow' (starting), 'red' (stopped)\n      - submenu: [Start, Stop, Restart]\n   e. Registers settings: services.paths ({}), services.autoStart ([])\n   f. Registers MCP tools: service_start, service_stop, service_restart, service_status, service_list (from mcpTools.ts)\n   g. Registers notification handler for service-status-change events\n3. Implement shutdown() that stops auto-started services gracefully\n4. Export as default"
+acceptance_criteria[8]: OSServicesManagerServiceProvider fully implemented,boot() registers sidebar with server icon,boot() registers dynamic tray menu with status colors,boot() registers 2 settings,boot() registers 5 MCP tools,boot() registers notification handler,shutdown() stops services gracefully,TypeScript compiles
+story: OPK-99
+epic: OPK-7
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-7/OPK-99/OPK-105.toon

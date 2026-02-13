@@ -1,0 +1,20 @@
+id: OSV-159
+type: task
+parent: OSV-57
+title: Implement bidirectional messaging and CSP handling
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Add bidirectional messaging between injected scripts and extension host, plus CSP-safe injection.\n\n**Target files to create:**\n- `src/app/BrowserInjection/MessageBridge.ts`\n- `src/app/BrowserInjection/CspHandler.ts`\n\n**MessageBridge:**\n1. Server-side (Electron): register WebSocket handler on `injection:message` channel\n2. Incoming page messages: `{ tabId, extensionId, data, url }` -> fire onPageMessage\n3. `sendToPage(tabId, message)`: publish to WebSocket `injection:sendToTab:{tabId}` with message payload\n4. Chrome extension relay: content script listens for messages from WebSocket, forwards to page via `window.postMessage` or `CustomEvent`\n\n**CspHandler:**\n1. Scripts injected via `chrome.scripting.executeScript()` API to respect CSP\n2. CSS injected via `chrome.scripting.insertCSS()` to respect CSP\n3. For MAIN world scripts: warn if page has strict CSP that may block\n4. ISOLATED world scripts (default): run in isolated context, unaffected by page CSP\n5. Document supported patterns for each CSP scenario"
+acceptance_criteria[6]: MessageBridge handles bidirectional messaging via WebSocket,sendToPage delivers to correct tab,onPageMessage includes tab context,CSP-safe injection via chrome.scripting API,ISOLATED world default for script safety,Structured clone compatible serialization
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-57
+epic: OSV-16
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-16/OSV-57/OSV-159.toon

@@ -1,0 +1,9 @@
+id: OC-69
+type: story
+parent: OC-53
+title: Integrate Firebase in Electron main process
+status: backlog
+created: 2026-02-09
+user_story: "As a user, I want my desktop app usage tracked so that the team can improve features I use most"
+points: 3
+acceptance_criteria[5]: Firebase initialized on app launch,App launch event tracked with platform/version,Feature usage tracked,Command execution tracked,Extension activation tracked

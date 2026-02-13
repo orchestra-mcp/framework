@@ -1,0 +1,20 @@
+id: OSV-162
+type: task
+parent: OSV-58
+title: Implement theme and grammar file parsers
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create parsers for .tmTheme, VS Code JSON themes, and .tmLanguage grammars.\n\n**Source reference:** Read:\n- `packages/desktop/src/main/platform/textmateService.ts`\n- `packages/desktop/src/main/platform/grammarLoader.ts`\n\n**Target files to create:**\n- `src/app/VS/ThemeParser.ts`\n- `src/app/VS/GrammarParser.ts`\n\n**ThemeParser:**\n1. `parseTmTheme(xmlContent: string): ThemeDefinition`:\n   - Parse XML plist format\n   - Extract `settings[0].settings` for editor colors (background, foreground, caret, etc.)\n   - Extract `settings[1..]` for tokenColors (scope -> foreground/fontStyle)\n   - Map to ThemeDefinition colors + tokenColors\n2. `parseVscodeJsonTheme(jsonContent: string): ThemeDefinition`:\n   - Parse VS Code JSON theme format\n   - `colors` object maps to ThemeDefinition.colors (with key name conversion)\n   - `tokenColors` array maps to ThemeDefinition.tokenColors\n3. Color key mapping: `VSCODE_TO_ORCHESTRA_COLOR_MAP` constant\n\n**GrammarParser:**\n1. `parseTmLanguage(content: string): TextMateGrammar`:\n   - Parse .tmLanguage (XML plist) or .tmLanguage.json\n   - Extract: scopeName, fileTypes, patterns, repository\n   - Return structured TextMateGrammar object\n2. `parseJsonGrammar(jsonContent: string): TextMateGrammar`:\n   - Parse .tmLanguage.json format directly"
+acceptance_criteria[6]: ThemeParser handles .tmTheme XML plist format,ThemeParser handles VS Code JSON theme format,Both formats produce valid ThemeDefinition,GrammarParser handles .tmLanguage XML plist,GrammarParser handles .tmLanguage.json,Color key mapping from VSCode to Orchestra convention
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-58
+epic: OSV-17
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-17/OSV-58/OSV-162.toon

@@ -1,0 +1,25 @@
+id: OC-24
+type: task
+parent: OC-17
+title: Create LifecycleService.ts with phase management and events
+status: done
+created: 2026-02-09
+assignee: null
+estimate_minutes: 25
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "**File to create:** `src/app/Providers/LifecycleService.ts`\n\n**Reference file to copy from:** `packages/desktop/src/main/platform/lifecycleService.ts`\n\n**What to do:**\n1. Create `src/app/Providers/LifecycleService.ts`\n2. Copy the reference file with these adaptations:\n\n**a) Copy the LifecyclePhase enum exactly:**\n```typescript\nexport enum LifecyclePhase {\n  Starting = 1,\n  Ready = 2,\n  Stopping = 3,\n  Stopped = 4,\n}\n```\n\n**b) Copy the LifecycleEvent type and LifecycleHandler type exactly:**\n```typescript\nexport type LifecycleEvent = 'onWillStartup' | 'onDidStartup' | 'onWillShutdown' | 'onDidShutdown';\nexport type LifecycleHandler = () => void | Promise<void>;\n```\n\n**c) Copy the ILifecycleService interface exactly:**\n```typescript\nexport interface ILifecycleService {\n  readonly phase: LifecyclePhase;\n  on(event: LifecycleEvent, handler: LifecycleHandler): void;\n  off(event: LifecycleEvent, handler: LifecycleHandler): void;\n  when(phase: LifecyclePhase): Promise<void>;\n}\n```\n\n**d) Create the service identifier using our new ServiceRegistry:**\n```typescript\nimport { createServiceId } from './ServiceRegistry';\n// Import ServiceIdentifier type from ServiceRegistry too\nexport const ILifecycleService = createServiceId<ILifecycleService>('ILifecycleService');\n```\n\n**e) Copy the LifecycleService class exactly from reference.** Key implementation details to preserve:\n- Uses Node.js `EventEmitter` internally\n- Constructor creates Promise + resolver pairs for each phase\n- `Starting` phase is resolved immediately in constructor\n- `setPhase()` is one-directional (cannot go backwards, logs warning)\n- `setPhase()` emits events based on phase transition:\n  - Starting -> Ready: emits onWillStartup then onDidStartup\n  - Any -> Stopping: emits onWillShutdown\n  - Any -> Stopped: emits onDidShutdown\n- `emit()` calls all handlers sequentially, catching errors per handler\n- `when(phase)` returns immediately if phase already reached\n\n**f) Copy the factory function:**\n```typescript\nexport function createLifecycleService(): LifecycleService {\n  return new LifecycleService();\n}\n```\n\n**g) Add to `src/app/Providers/index.ts`:**\n```typescript\nexport { LifecycleService, LifecyclePhase, createLifecycleService, ILifecycleService } from './LifecycleService';\nexport type { ILifecycleService as ILifecycleServiceType, LifecycleEvent, LifecycleHandler } from './LifecycleService';\n```\n\n**Verification:** `pnpm typecheck` passes. LifecycleService can be instantiated and phases can be set."
+acceptance_criteria[11]: src/app/Providers/LifecycleService.ts exists and exports LifecycleService class,"LifecyclePhase enum has Starting(1), Ready(2), Stopping(3), Stopped(4)","ILifecycleService interface defines phase, on, off, when methods",ILifecycleService service identifier is created via createServiceId,setPhase() is one-directional and logs warning on invalid transitions,Phase transitions emit correct lifecycle events in order,when(phase) resolves immediately if phase already reached,Handler errors are caught and logged without blocking other handlers,createLifecycleService factory function is exported,All exports added to src/app/Providers/index.ts,File passes pnpm typecheck
+
+**IMPORTANT:** Before starting, use the Read tool to read `packages/desktop/src/main/platform/lifecycleService.ts` to understand the structure and implementation patterns.
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+
+**IMPORTANT:** Before starting, use the Read tool to read `packages/desktop/src/main/platform/lifecycleService.ts` to understand the structure and implementation patterns.
+story: OC-17
+epic: OC-2
+project: oap-core
+projectKey: OC
+projectKey: OC
+path: .projects/oap-core/OC-2/OC-17/OC-24.toon

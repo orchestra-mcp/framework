@@ -1,0 +1,9 @@
+id: OSV-48
+type: story
+parent: OSV-12
+title: IWidgetControlService Interface & Core Implementation
+status: done
+created: 2026-02-09
+user_story: "As a developer, I want a typed IWidgetControlService so that extensions can register, show, hide, and toggle widgets with state persistence and theme integration."
+points: 5
+acceptance_criteria[7]: IWidgetControlService interface in src/app/Widgets/IWidgetControlService.ts,WidgetControlService implements registerWidget/showWidget/hideWidget/toggleWidget/getRegisteredWidgets,registerWidget returns Disposable,Multi-view support per widget,"State persistence: position, size, visibility across restarts","Widget events: onShow, onHide, onResize, onMove",Unit tests for all public methods

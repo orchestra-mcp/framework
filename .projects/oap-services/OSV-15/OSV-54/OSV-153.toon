@@ -1,0 +1,16 @@
+id: OSV-153
+type: task
+parent: OSV-54
+title: Write unit tests for LspServerService
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+description: "Create tests for LspServerService.\n\n**Target file:** `src/app/LSP/__tests__/LspServerService.test.ts`\n\n**Test cases:**\n1. registerLanguageServer stores config, Disposable removes it\n2. startServer spawns child process with correct args\n3. startServer downloads binary if missing and downloadUrl provided\n4. startServer sends initialize request\n5. startServer fires onServerStarted\n6. stopServer sends shutdown then exit\n7. stopServer kills after timeout\n8. stopServer fires onServerStopped\n9. restartServer stops then starts\n10. getActiveServers returns running servers\n11. getServerForLanguage returns correct server"
+acceptance_criteria[5]: Test file at specified path,All 11 test cases pass,child_process.spawn mocked,Download mocked,Coverage >90%
+story: OSV-54
+epic: OSV-15
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-15/OSV-54/OSV-153.toon

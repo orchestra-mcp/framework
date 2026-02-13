@@ -1,0 +1,9 @@
+id: OMB-57
+type: story
+parent: OMB-6
+title: Theme System and Offline Support
+status: backlog
+created: 2026-02-09
+user_story: "As a user, I want the app to follow my IDE theme preference and work offline with cached data and queued actions, so that I have a consistent visual experience and can use the app without internet."
+points: 8
+acceptance_criteria[9]: Theme system maps IDE CSS variables to NativeWind theme tokens,Light and dark themes fully implemented,System theme auto-detection (follows device setting),Theme selection persisted in settings,Offline indicator banner shown when device loses connectivity,"Recent dashboard, task, and notification data cached locally via AsyncStorage","Actions performed offline (status changes, timer start/stop) queued for sync",Queued actions replay on reconnect with conflict resolution,Network status monitored via NetInfo library

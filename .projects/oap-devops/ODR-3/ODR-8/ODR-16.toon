@@ -1,0 +1,12 @@
+id: ODR-16
+type: task
+parent: ODR-8
+title: Create Chrome extension build workflow
+status: done
+created: 2026-02-09
+description: Build extension and create signed CRX file. Creates .github/workflows/build-chrome.yml that builds on push to main or workflow_dispatch. Generates ZIP file for Chrome Web Store. Complete workflow in DevOps PRD lines 172-186.
+acceptance_criteria[4]: Extension builds successfully,ZIP file created with correct structure,Manifest V3 validation passes,No console errors in extension
+estimate_minutes: 40
+estimate_tokens: 18000
+assignee: null
+actual_minutes: 20

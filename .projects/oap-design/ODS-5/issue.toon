@@ -1,0 +1,7 @@
+id: ODS-5
+type: epic
+title: Platform Adapters
+status: backlog
+created: 2026-02-09
+description: "Create platform-specific adapters for web/Electron, Chrome extension, and React Native. Set up Storybook documentation site."
+priority: medium

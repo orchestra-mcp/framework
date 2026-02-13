@@ -1,0 +1,11 @@
+id: OC-63
+type: task
+parent: OC-56
+title: Write tests for AccountIntegrationService
+status: done
+created: 2026-02-09
+description: "Create comprehensive test suite:\n- Test account CRUD operations\n- Test encryption/decryption flow\n- Test OAuth credential reading from .env\n- Test connection validation\n- Mock external API calls"
+acceptance_criteria[4]: All methods tested,Mocks for external dependencies,Edge cases covered,Tests pass
+estimate_minutes: 35
+estimate_tokens: 15000
+assignee: null

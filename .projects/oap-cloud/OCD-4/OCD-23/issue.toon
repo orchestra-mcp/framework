@@ -1,0 +1,9 @@
+id: OCD-23
+type: story
+parent: OCD-4
+title: Documentation Search
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want to search within documentation so that I can find specific topics or references without manually browsing."
+points: 3
+acceptance_criteria[5]: Full-text search across all documentation,"Search results show title, path, and content snippet",Search is fast (indexed or pre-built),Search input accessible from sidebar,Results link directly to matching doc page

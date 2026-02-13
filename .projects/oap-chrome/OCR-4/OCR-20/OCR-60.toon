@@ -1,0 +1,21 @@
+id: OCR-60
+type: task
+parent: OCR-20
+title: "Move tasksStore, timerStore, and timeReportStore to extension packages"
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 30
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Move task management and time tracking stores to their extension packages.\n\n**Store 1: tasksStore.ts**\n- Source: `packages/chrome-extension/src/stores/tasksStore.ts`\n- Target: `src/packages/tasks-manager/resources/chrome/stores/tasksStore.ts`\n- Create directory: `src/packages/tasks-manager/resources/chrome/stores/`\n\n**Store 2: timerStore.ts**\n- Source: `packages/chrome-extension/src/stores/timerStore.ts`\n- Target: `src/packages/time-tracker/resources/chrome/stores/timerStore.ts`\n- Create directory: `src/packages/time-tracker/resources/chrome/stores/`\n- Exports: `useTimerStore`, `subscribeTimerEvents`\n\n**Store 3: timeReportStore.ts**\n- Source: `packages/chrome-extension/src/stores/timeReportStore.ts`\n- Target: `src/packages/time-tracker/resources/chrome/stores/timeReportStore.ts`\n\n**Steps for each:**\n1. Copy file to new location\n2. Update `getOrchestraClient` import with TODO comment\n3. Grep for old import paths, update all consumers\n4. Create barrel exports\n5. Delete or stub old files\n\n**Consumer files to update:**\n- tasksStore: `TasksPanel.tsx`, `Dashboard.tsx`, `BacklogTree.tsx`, `TaskDetailView.tsx`, and other task components\n- timerStore: `App.tsx` (lines 6, 242-243), task components that show timer\n- timeReportStore: `TimeReportPanel.tsx`\n\n**Barrel export for src/packages/tasks-manager/resources/chrome/stores/index.ts:**\n```typescript\nexport { useTasksStore } from './tasksStore';\n// Include all exported types from tasksStore\n```\n\n**Barrel export for src/packages/time-tracker/resources/chrome/stores/index.ts:**\n```typescript\nexport { useTimerStore, subscribeTimerEvents } from './timerStore';\nexport { useTimeReportStore } from './timeReportStore';\n// Include all exported types\n```"
+acceptance_criteria[6]: tasksStore.ts exists at src/packages/tasks-manager/resources/chrome/stores/tasksStore.ts,timerStore.ts exists at src/packages/time-tracker/resources/chrome/stores/timerStore.ts,timeReportStore.ts exists at src/packages/time-tracker/resources/chrome/stores/timeReportStore.ts,"All consumer imports updated (task components, App.tsx, timer components)",Barrel exports include all exported symbols and types,pnpm typecheck passes
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OCR-20
+epic: OCR-4
+project: oap-chrome
+projectKey: OCR
+projectKey: OCR
+path: .projects/oap-chrome/OCR-4/OCR-20/OCR-60.toon

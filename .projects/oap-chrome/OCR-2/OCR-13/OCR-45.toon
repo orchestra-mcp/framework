@@ -1,0 +1,21 @@
+id: OCR-45
+type: task
+parent: OCR-13
+title: Register terminal tab type and migrate sessions to tabService.openTab()
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 35
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Register the terminal as a tab type and make terminal sessions openable as tabs.\n\n**Source files to modify:**\n- `src/packages/terminal-manager/resources/chrome/contributions.ts` (extend existing contributions)\n\n**Changes to contributions.ts:**\n\nAdd tab type registration:\n\n```typescript\nimport { tabService } from '../../../../app/Chrome/Tabs';\nimport { TerminalTabContent } from './components/TerminalTabContent';\n\n// Inside registerChromeContributions():\ntabService.registerTabType({\n  id: 'terminal',\n  label: 'Terminal',\n  icon: TerminalIcon,\n  component: TerminalTabContent,\n  closable: true,\n  parentSidebar: 'terminal',\n});\n```\n\n**Create new file:** `src/packages/terminal-manager/resources/chrome/components/TerminalTabContent.tsx`\n\n```typescript\nimport { TerminalPane } from '../../../../../chrome-extension/src/terminal/TerminalPane';\n\ninterface TerminalTabContentProps {\n  tabId: string;\n  data?: unknown;\n}\n\nexport function TerminalTabContent({ tabId, data }: TerminalTabContentProps) {\n  const sessionId = data as string | undefined;\n  if (!sessionId) {\n    return <div className=\"flex h-full items-center justify-center text-mt-fg-muted text-xs\">No terminal session</div>;\n  }\n  return <TerminalPane sessionId={sessionId} active={true} />;\n}\n```\n\n**Modify terminal session creation:**\n\nWhen a new terminal session is created (via `useTerminalStore.getState().createSession()`), also open a tab:\n```typescript\n// In the terminal store's subscription or event handler:\nconst sessionId = newSession.id;\ntabService.openTab('terminal', {\n  label: `Terminal ${sessionId.slice(0, 6)}`,\n  data: sessionId,\n});\n```\n\n**Key point for Sonnet:** Terminal sessions currently live in the terminalStore. The tab system provides the tab bar UI, while terminalStore still manages the actual PTY sessions and xterm.js instances. The `data` field carries the sessionId so the TerminalTabContent knows which session to render."
+acceptance_criteria[6]: Terminal tab type registered via tabService.registerTabType(),TerminalTabContent component created that renders TerminalPane for a given sessionId,New terminal sessions automatically open as tabs,Tab label shows truncated session id,Closing a terminal tab also cleans up the terminal session,"Existing terminal functionality (input, output, resize) still works"
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OCR-13
+epic: OCR-2
+project: oap-chrome
+projectKey: OCR
+projectKey: OCR
+path: .projects/oap-chrome/OCR-2/OCR-13/OCR-45.toon

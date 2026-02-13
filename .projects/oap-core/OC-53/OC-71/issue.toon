@@ -1,0 +1,9 @@
+id: OC-71
+type: story
+parent: OC-53
+title: Create .env.example with Firebase variables
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want a template for Firebase configuration so that I can set up analytics quickly"
+points: 1
+acceptance_criteria[3]: .env.example includes all Firebase variables,Comments explain each variable,Optional variables marked clearly

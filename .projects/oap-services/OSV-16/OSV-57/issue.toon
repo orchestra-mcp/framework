@@ -1,0 +1,9 @@
+id: OSV-57
+type: story
+parent: OSV-16
+title: "Browser Messaging, CSP Handling & Documentation"
+status: done
+created: 2026-02-09
+user_story: "As a developer, I want bidirectional messaging between injected scripts and the extension host, CSP handling, and documentation for the injection API."
+points: 3
+acceptance_criteria[5]: sendToPage sends message to specific tab's injected script,onPageMessage receives messages from any injected script with tab context,"CSP handling: scripts injected via chrome.scripting API respecting page CSP",Message serialization handles structured clone compatible objects,docs/core-services/browser-injection.md with API reference and examples

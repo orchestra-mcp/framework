@@ -1,0 +1,7 @@
+id: OSV-8
+type: epic
+title: Fast Web Server
+status: done
+created: 2026-02-09
+description: "Extract HTTP server from extensions/http-server/ into src/app/Http/. Provides IWebServerService with registerRoute/registerStaticPath/getBaseUrl API. Dynamic route registration, OAuth callback helper, IDE deep links, orchestra:// protocol handler, static file serving, and CORS configuration."
+priority: medium

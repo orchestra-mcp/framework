@@ -1,0 +1,9 @@
+id: OCD-110
+type: story
+parent: OCD-97
+title: Profile controller and routes
+status: backlog
+created: 2026-02-09
+user_story: "As a user, I want to view and edit my profile at /@username so that I can showcase my work"
+points: 5
+acceptance_criteria[5]: ProfileController with show/update methods from PRD,Routes at /@username,Avatar upload with Spatie Media,SEO meta tags included,Privacy controls work

@@ -1,0 +1,26 @@
+id: OCD-40
+type: task
+parent: OCD-10
+title: Install Jetstream with Inertia stack and Teams
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 20
+estimate_tokens: null
+description: "Install Laravel Jetstream with the Inertia stack and Teams support.\n\n**Steps:**\n1. `cd src/platform`\n2. `composer require laravel/jetstream:^5.0`\n3. `php artisan jetstream:install inertia --teams`\n   - This will scaffold auth pages, team management, profile pages\n   - It publishes Inertia pages to `resources/js/Pages/`\n4. `php artisan migrate` to run Jetstream migrations (teams, team_user, team_invitations tables)\n5. `npm install` to install any new JS dependencies added by Jetstream\n6. `npm run build` to verify everything compiles\n\n**IMPORTANT:** Jetstream will scaffold Vue.js pages by default. Since we use React, we need to convert or replace them. After installation:\n- Check if Jetstream supports React stack natively in v5. If not, you'll need to:\n  - Delete the Vue pages in `resources/js/Pages/`\n  - Re-create them as React TSX components (this will be done in subsequent auth tasks)\n  - Keep the backend controllers and routes intact\n\n7. Verify these config files exist and are correct:\n   - `src/platform/config/jetstream.php` - ensure `'stack' => 'inertia'` and `Features::teams()` is enabled\n   - `src/platform/config/fortify.php` - ensure features array includes registration, resetPasswords, emailVerification, updateProfileInformation, updatePasswords, twoFactorAuthentication\n\n**File paths modified/created:**\n- `src/platform/config/jetstream.php`\n- `src/platform/config/fortify.php`\n- `src/platform/app/Models/User.php` (updated with HasTeams trait)\n- `src/platform/app/Models/Team.php` (created)\n- `src/platform/app/Providers/JetstreamServiceProvider.php`\n- `src/platform/database/migrations/*_create_teams_table.php`\n- `src/platform/database/migrations/*_create_team_user_table.php`\n- `src/platform/database/migrations/*_create_team_invitations_table.php`"
+acceptance_criteria:
+  - "Jetstream v5 installed via composer"
+  - "Inertia stack selected during installation"
+  - "Teams support enabled"
+  - "Jetstream migrations run successfully"
+  - "config/jetstream.php has teams feature enabled"
+  - "config/fortify.php has all features enabled"
+  - "User model has HasTeams trait"
+  - "Team model exists"
+story: OCD-10
+epic: OCD-1
+project: oap-cloud
+projectKey: OCD
+status: done
+actual_minutes: 15
+path: .projects/oap-cloud/OCD-1/OCD-10/OCD-40.toon

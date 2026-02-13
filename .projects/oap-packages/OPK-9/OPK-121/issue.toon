@@ -1,0 +1,9 @@
+id: OPK-121
+type: story
+parent: OPK-9
+title: Build Time Tracker ServiceProvider
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want the TimeTrackerServiceProvider to register all contributions with core services."
+points: 5
+acceptance_criteria[5]: Registers widget for timer panel,Registers tray menu Start/Stop Timer,Registers panel for time reports,Registers settings for tracking mode and report format,Registers MCP tools for start/stop timer and get reports

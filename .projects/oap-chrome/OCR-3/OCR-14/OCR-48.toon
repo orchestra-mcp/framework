@@ -1,0 +1,24 @@
+id: OCR-48
+type: task
+parent: OCR-14
+title: Create StatusBar TypeScript interfaces and statusBarStore
+status: done
+created: 2026-02-09
+assignee: null
+estimate_minutes: 25
+estimate_tokens: null
+blockers: ["\"ODS-1\"","\"ODS-2\"","\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"\\\"\\\\\\\"ODS-1\\\\\\\"\\\"\"","\"\\\"\\\\\\\"ODS-2\\\\\\\"\\\"\"","\"\\\"\\\\\\\"\\\\\\\\\\\\\\\"OCR-47\\\\\\\\\\\\\\\"\\\\\\\"\\\"\"","OCR-47"]
+description: "Create TypeScript interfaces and Zustand store for the StatusBar registration system.\n\n**Target files:**\n\n1. `src/app/Chrome/Status/types.ts`\n2. `src/app/Chrome/Status/statusBarStore.ts`\n3. `src/app/Chrome/Status/index.ts`\n\n**Exact interfaces for types.ts:**\n\n```typescript\nimport type { ComponentType } from 'react';\n\n/** Alignment in the status bar */\nexport type StatusBarAlignment = 'left' | 'right';\n\n/** A status bar item registered by an extension */\nexport interface StatusBarItem {\n  id: string;\n  /** Display text */\n  text: string;\n  /** Optional icon component (12x12) */\n  icon?: ComponentType;\n  /** Tooltip on hover */\n  tooltip?: string;\n  /** Left or right alignment */\n  alignment: StatusBarAlignment;\n  /** Sort order within alignment group (lower = first) */\n  order: number;\n  /** Click handler (optional — makes item clickable) */\n  onClick?: () => void;\n  /** Optional CSS class for text color (e.g., 'text-mt-green') */\n  className?: string;\n  /** Whether item is currently visible (default: true) */\n  visible?: boolean;\n}\n\n/** Service interface for status bar registration */\nexport interface IStatusBarService {\n  registerStatusBarItem(item: StatusBarItem): void;\n  updateStatusBarItem(id: string, updates: Partial<Omit<StatusBarItem, 'id'>>): void;\n  unregisterStatusBarItem(id: string): void;\n}\n```\n\n**statusBarStore.ts:**\n```typescript\nimport { create } from 'zustand';\nimport type { StatusBarItem } from './types';\n\ninterface StatusBarStoreState {\n  items: StatusBarItem[];\n  registerItem: (item: StatusBarItem) => void;\n  updateItem: (id: string, updates: Partial<Omit<StatusBarItem, 'id'>>) => void;\n  unregisterItem: (id: string) => void;\n}\n\nexport const useStatusBarStore = create<StatusBarStoreState>((set) => ({\n  items: [],\n\n  registerItem: (item) => set((s) => ({\n    items: [...s.items.filter((i) => i.id !== item.id), item]\n      .sort((a, b) => a.order - b.order),\n  })),\n\n  updateItem: (id, updates) => set((s) => ({\n    items: s.items.map((item) =>\n      item.id === id ? { ...item, ...updates } : item\n    ),\n  })),\n\n  unregisterItem: (id) => set((s) => ({\n    items: s.items.filter((i) => i.id !== id),\n  })),\n}));\n```\n\n**Key design decision:** The `updateItem` method is critical for real-time updates. Extensions call it to update text, className, visibility, etc. without re-registering the entire item. For example, the timer extension calls `updateItem('timer', { text: '5:23', className: 'text-mt-green' })` every second.\n\n**barrel export index.ts:**\n```typescript\nexport type { StatusBarItem, StatusBarAlignment, IStatusBarService } from './types';\nexport { useStatusBarStore } from './statusBarStore';\n```"
+acceptance_criteria[7]: File src/app/Chrome/Status/types.ts exists with StatusBarItem and IStatusBarService,File src/app/Chrome/Status/statusBarStore.ts exists with useStatusBarStore,"StatusBarItem has text, icon, tooltip, alignment, order, onClick, className, visible fields",updateItem allows partial updates without re-registering,"IStatusBarService has register, update, unregister methods",Barrel export at src/app/Chrome/Status/index.ts exports all types and store,pnpm typecheck passes
+
+**Dependencies:**
+This task requires the following tasks to be completed first: OCR-47
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OCR-14
+epic: OCR-3
+project: oap-chrome
+projectKey: OCR
+projectKey: OCR
+path: .projects/oap-chrome/OCR-3/OCR-14/OCR-48.toon

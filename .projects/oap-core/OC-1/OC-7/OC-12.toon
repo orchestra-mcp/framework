@@ -1,0 +1,21 @@
+id: OC-12
+type: task
+parent: OC-7
+title: "Verify pnpm dev:desktop starts successfully from src/ structure"
+status: done
+created: 2026-02-09
+assignee: Claude
+estimate_minutes: 15
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "**Command to run:** `pnpm dev:desktop`\n\n**What to do:**\n1. Run `pnpm dev:desktop` from the project root\n2. Verify the Electron tray app starts without crashing\n3. Check the console output for any errors related to:\n   - Missing modules or unresolved imports\n   - Path resolution failures (e.g., cannot find `src/app/...` or `src/packages/...`)\n   - electron-vite compilation errors\n4. If errors occur, trace them back to the config files modified in OC-8, OC-9, OC-10, OC-11 and fix\n\n**Common issues to watch for:**\n- `MODULE_NOT_FOUND` errors: usually means a path alias is wrong in tsconfig or vite config\n- `Cannot find module '@app/...'`: means the Vite alias or tsconfig paths are misconfigured\n- Build errors in the terminal: check that `electron.vite.config.ts` entry points resolve\n\n**Verification:** The tray app appears in the macOS menu bar. No errors in the terminal output."
+acceptance_criteria[5]: "pnpm dev:desktop starts without crashing",Electron tray icon appears in macOS menu bar,No MODULE_NOT_FOUND errors in console output,No path resolution errors in console output,Hot reload works when editing a file in src/
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OC-7
+epic: OC-1
+project: oap-core
+projectKey: OC
+projectKey: OC
+path: .projects/oap-core/OC-1/OC-7/OC-12.toon

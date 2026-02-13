@@ -1,0 +1,11 @@
+id: ODS-67
+type: task
+parent: ODS-46
+title: Migrate database panel components to design system
+status: backlog
+created: 2026-02-09
+description: "Migrate DatabasePanel and related components to use design system components.\n\n**Files to update:**\n- `/Users/fadymondy/Sites/orchestra-app/packages/chrome-extension/src/sidepanel/database/DatabasePanel.tsx`\n- `/Users/fadymondy/Sites/orchestra-app/packages/chrome-extension/src/sidepanel/database/QueryEditor.tsx`\n- `/Users/fadymondy/Sites/orchestra-app/packages/chrome-extension/src/sidepanel/database/SchemaTree.tsx`\n- `/Users/fadymondy/Sites/orchestra-app/packages/chrome-extension/src/sidepanel/database/TableBrowser.tsx`\n\n**Replacements:**\n- Custom styled divs → `Card`, `Panel` from design system\n- Custom buttons → `Button`, `IconButton` from design system\n- Custom inputs → `Input`, `TextArea` from design system\n- Custom tables → `Table` from design system (when available)\n- Inline styles → Tailwind utilities with CSS variables\n\n**Example migration:**\n```typescript\n// Before\n<div style={{ background: '#1e1e1e', padding: '16px' }}>\n  <button style={{ background: '#a900ff', color: 'white' }}>\n    Run Query\n  </button>\n</div>\n\n// After\nimport { Card, Button } from '@orchestra/components';\n\n<Card>\n  <Button variant=\"primary\">\n    Run Query\n  </Button>\n</Card>\n```"
+acceptance_criteria[5]: All database panel components use design system,No inline styles remaining,All custom components replaced,Functionality preserved,Visual consistency with design system
+estimate_minutes: 45
+estimate_tokens: 22000
+assignee: null

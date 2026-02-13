@@ -1,0 +1,17 @@
+id: OPK-89
+type: task
+parent: OPK-84
+title: Create Database Manager directory structure and config files
+status: done
+created: 2026-02-09
+assignee: null
+estimate_minutes: 20
+estimate_tokens: null
+description: "Create the complete directory tree for the Database Manager package.\n\nCreate all standard directories plus:\n- src/packages/database-manager/src/DatabaseManagerServiceProvider.ts (stub)\n- src/packages/database-manager/src/Services/Drivers/ (for database driver files)\n- All standard subdirectories: Http/, Models/, Jobs/, Notifications/, Panels/, Widgets/\n- database/, routes/web.ts, routes/socket.ts\n- resources/chrome/, resources/chrome/stores/, resources/desktop/, resources/web/\n- docs/README.md, docs/api/README.md, docs/guides/README.md, docs/changelog/README.md\n- tests/\n\nCreate package.json:\n{\n  \"name\": \"@orchestra/database-manager\",\n  \"version\": \"0.1.0\",\n  \"private\": true,\n  \"main\": \"src/DatabaseManagerServiceProvider.ts\",\n  \"contributes\": {\n    \"sidebar\": [{ \"id\": \"database\", \"title\": \"Database\", \"icon\": \"database\" }],\n    \"tabs\": [\n      { \"id\": \"query-editor\", \"title\": \"Query Editor\", \"closable\": true, \"multiple\": true },\n      { \"id\": \"table-browser\", \"title\": \"Table Browser\", \"closable\": true }\n    ],\n    \"searchProviders\": [\"schema\"],\n    \"settings\": {\n      \"database.connections\": { \"type\": \"array\", \"default\": [] },\n      \"database.defaultDriver\": { \"type\": \"string\", \"default\": \"postgres\", \"enum\": [\"postgres\", \"mysql\", \"sqlite\", \"mongodb\", \"redis\"] }\n    },\n    \"mcpTools\": [\"db_query\", \"db_schema\", \"db_tables\", \"db_describe\"]\n  }\n}\n\nCreate tsconfig.json (extends root, jsx: react-jsx) and vitest.config.ts."
+acceptance_criteria[3]: All directories including Drivers/ exist,"package.json has sidebar, tabs, searchProviders, settings, mcpTools",tsconfig.json and vitest.config.ts exist
+story: OPK-84
+epic: OPK-6
+project: oap-packages
+projectKey: OPK
+path: .projects/oap-packages/OPK-6/OPK-84/OPK-89.toon
+actual_minutes: 5

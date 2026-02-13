@@ -1,0 +1,20 @@
+id: OPK-157
+type: task
+parent: OPK-152
+title: Migrate pomodoro service files
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 25
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Copy and adapt all pomodoro service files.\n\nFILE MAPPING (source -> target):\n1. packages/extensions/pomodoro/src/PomodoroService.ts -> src/packages/pomodoro/src/Services/PomodoroService.ts\n2. packages/extensions/pomodoro/src/BreakCategoryService.ts -> src/packages/pomodoro/src/Services/BreakCategoryService.ts\n3. packages/extensions/pomodoro/src/pomodoroHandlers.ts -> src/packages/pomodoro/src/Services/pomodoroHandlers.ts\n4. packages/extensions/pomodoro/src/trayMenuIntegration.ts -> src/packages/pomodoro/src/Services/trayMenuIntegration.ts\n5. packages/extensions/pomodoro/src/types.ts -> src/packages/pomodoro/src/Services/types.ts\n6. packages/extensions/pomodoro/src/index.ts -> src/packages/pomodoro/src/Services/index.ts\n7. packages/desktop/src/main/services/pomodoroPanelService.ts -> src/packages/pomodoro/src/Panels/PomodoroPanelService.ts\n\nFor each: copy, update imports, preserve signatures. Abstract Electron BrowserWindow references in PomodoroPanelService behind a panel interface."
+acceptance_criteria[4]: All 7 files exist at target paths,PomodoroPanelService in src/Panels/,No imports reference packages/extensions/pomodoro/ or packages/desktop/,TypeScript compiles
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OPK-152
+epic: OPK-12
+project: oap-packages
+projectKey: OPK
+path: .projects/oap-packages/OPK-12/OPK-152/OPK-157.toon

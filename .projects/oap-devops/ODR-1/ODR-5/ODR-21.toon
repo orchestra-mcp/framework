@@ -1,0 +1,11 @@
+id: ODR-21
+type: task
+parent: ODR-5
+title: Add npm audit and security scanning to CI
+status: done
+created: 2026-02-09
+description: Add security vulnerability scanning to CI pipeline. Runs npm audit and Snyk scanning on every PR. Fails CI if high/critical vulnerabilities found. Generates weekly security reports.
+acceptance_criteria[4]: Fails CI if high/critical vulnerabilities,Weekly security reports generated,Snyk monitoring enabled,Security status visible in PR
+estimate_minutes: 25
+estimate_tokens: 12000
+assignee: null

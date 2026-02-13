@@ -1,0 +1,12 @@
+id: ODR-18
+type: task
+parent: ODR-9
+title: Create version bump script for all platforms
+status: done
+created: 2026-02-09
+description: "Sync version across all package.json and platform-specific files (manifest.json, Info.plist, build.gradle). Create scripts/version-bump.mjs that updates 7+ files and creates git commit. Complete 100+ line implementation in DevOps PRD."
+acceptance_criteria[4]: Bumps version in all files,Follows semver (major/minor/patch),Syncs to platform-specific files,Creates git commit with version
+estimate_minutes: 45
+estimate_tokens: 20000
+assignee: null
+actual_minutes: 5

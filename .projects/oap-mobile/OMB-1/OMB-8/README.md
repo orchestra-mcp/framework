@@ -1,0 +1,15 @@
+# OMB-8: Install & Configure NativeWind 4 and React Navigation 7
+
+**Type**: Story | **Status**: backlog | **Points**: 5
+
+As a developer, I want NativeWind 4 (Tailwind CSS for React Native) and React Navigation 7 configured, so that I can style screens using Tailwind classes and navigate between screens using a modern navigation system.
+
+## Acceptance Criteria
+
+- [ ] NativeWind 4 installed and configured with tailwind.config.js
+- [ ] Tailwind classes work in components via className prop
+- [ ] React Navigation 7 installed with all required peer dependencies
+- [ ] NavigationContainer renders in App.tsx
+- [ ] A test screen renders with NativeWind styling and is navigable
+- [ ] Metro config updated for NativeWind CSS processing
+- [ ] babel.config.js includes NativeWind preset

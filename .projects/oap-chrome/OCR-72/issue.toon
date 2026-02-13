@@ -1,0 +1,7 @@
+id: OCR-72
+type: epic
+title: File Explorer + Code Editor (Sidebar IDE)
+status: backlog
+created: 2026-02-09
+description: "Complete IDE experience in Chrome side panel with file explorer, code editor with CodeMirror 6, tab management, file operations (CRUD), workspace management, and search capabilities."
+priority: high

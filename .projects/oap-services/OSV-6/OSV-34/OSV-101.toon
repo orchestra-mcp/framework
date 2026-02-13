@@ -1,0 +1,21 @@
+id: OSV-101
+type: task
+parent: OSV-34
+title: Define IMcpServerService interface and MCP types
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create the TypeScript interface and types for the MCP Server Service.\n\n**Source reference:** Read `packages/extensions/mcp/src/main/index.ts` for existing MCP server setup and `packages/extensions/mcp/src/main/tools/` directory for tool definitions.\n\n**Target files to create:**\n- `src/app/MCP/IMcpServerService.ts`\n- `src/app/MCP/types.ts`\n\n**Exact interfaces:**\n```typescript\n// src/app/MCP/types.ts\nexport interface McpToolDefinition {\n  name: string;  // namespaced: extension.toolName\n  description: string;\n  inputSchema: Record<string, any>;  // JSON Schema\n  handler: (params: Record<string, any>) => Promise<McpToolResult>;\n}\n\nexport interface McpToolResult {\n  content: { type: 'text'; text: string }[];\n  isError?: boolean;\n}\n\nexport interface McpResourceDefinition {\n  uri: string;\n  name: string;\n  description?: string;\n  mimeType?: string;\n  handler: () => Promise<{ contents: { uri: string; text: string; mimeType?: string }[] }>;\n}\n\nexport interface McpPromptDefinition {\n  name: string;\n  description?: string;\n  arguments?: { name: string; description?: string; required?: boolean }[];\n  handler: (args: Record<string, string>) => Promise<{ messages: { role: string; content: string }[] }>;\n}\n\n// src/app/MCP/IMcpServerService.ts\nexport interface IMcpServerService {\n  registerTool(tool: McpToolDefinition): Disposable;\n  registerResource(resource: McpResourceDefinition): Disposable;\n  registerPrompt(prompt: McpPromptDefinition): Disposable;\n  unregisterTool(name: string): void;\n  getRegisteredTools(): McpToolDefinition[];\n  getRegisteredResources(): McpResourceDefinition[];\n  getRegisteredPrompts(): McpPromptDefinition[];\n}\n```"
+acceptance_criteria[5]: src/app/MCP/IMcpServerService.ts with full interface,"src/app/MCP/types.ts with McpToolDefinition, McpResourceDefinition, McpPromptDefinition, McpToolResult",Tool name enforces namespace format (contains dot),All register methods return Disposable,inputSchema is JSON Schema compatible
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-34
+epic: OSV-6
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-6/OSV-34/OSV-101.toon

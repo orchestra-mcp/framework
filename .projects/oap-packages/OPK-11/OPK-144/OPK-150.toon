@@ -1,0 +1,16 @@
+id: OPK-150
+type: task
+parent: OPK-144
+title: Write Event Tracker package documentation
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 15
+estimate_tokens: null
+description: "Create documentation for the Event Tracker package.\n\n1. docs/README.md: Package overview — multi-account calendar with Google, Outlook, Apple providers, meeting reminders, multi-calendar sync\n2. docs/api/README.md: MultiAccountCalendarService API, MeetingReminderService API, provider interface (GoogleProvider, OutlookProvider, AppleProvider), settings schema\n3. docs/guides/README.md: How to connect calendar accounts, configure refresh interval, set up meeting reminders, add a custom calendar provider\n4. docs/changelog/README.md: \"## 0.1.0 - Initial migration from packages/extensions/calendar/\""
+acceptance_criteria[4]: All 4 docs files exist,API covers multi-account and all 3 providers,Guides cover account connection,Changelog has initial version
+story: OPK-144
+epic: OPK-11
+project: oap-packages
+projectKey: OPK
+path: .projects/oap-packages/OPK-11/OPK-144/OPK-150.toon

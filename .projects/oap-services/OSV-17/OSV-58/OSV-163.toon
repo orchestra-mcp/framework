@@ -1,0 +1,20 @@
+id: OSV-163
+type: task
+parent: OSV-58
+title: Implement snippet extractor
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create the snippet extraction from VSCode extensions.\n\n**Target file:** `src/app/VS/SnippetExtractor.ts`\n\n**Implementation:**\n1. `extractSnippets(snippetPath: string): Snippet[]`:\n   - Read VSCode snippet JSON file\n   - Format: `{ \"Snippet Name\": { prefix: \"trigger\", body: [\"line1\", \"line2\"], description: \"desc\" } }`\n   - Convert to Orchestra Snippet format:\n     ```typescript\n     interface Snippet {\n       name: string;\n       prefix: string;\n       body: string;  // joined with \\n\n       description: string;\n       language: string;  // from manifest contributes\n     }\n     ```\n2. Handle tabstops: `$1`, `${1:default}`, `$0` (final cursor)\n3. Handle variables: `$TM_FILENAME`, `$CLIPBOARD`, etc."
+acceptance_criteria[6]: SnippetExtractor parses VSCode snippet JSON,Converts to Orchestra Snippet format,Body lines joined with newlines,Tabstops preserved in body,Variables preserved in body,Language associated from manifest
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-58
+epic: OSV-17
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-17/OSV-58/OSV-163.toon

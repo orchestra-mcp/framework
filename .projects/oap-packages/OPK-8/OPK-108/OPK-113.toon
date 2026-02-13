@@ -1,0 +1,17 @@
+id: OPK-113
+type: task
+parent: OPK-108
+title: Migrate log service and parser files
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 30
+estimate_tokens: null
+description: "Copy and adapt all log service files from dev-logs extension.\n\nFILE MAPPING (source -> target):\nCore services:\n1. packages/extensions/dev-logs/src/main/LogScannerService.ts -> src/packages/log-viewer/src/Services/LogScannerService.ts\n2. packages/extensions/dev-logs/src/main/LogTailService.ts -> src/packages/log-viewer/src/Services/LogTailService.ts\n3. packages/extensions/dev-logs/src/main/GenericLogParser.ts -> src/packages/log-viewer/src/Services/GenericLogParser.ts\n4. packages/extensions/dev-logs/src/main/LogParserRegistry.ts -> src/packages/log-viewer/src/Services/LogParserRegistry.ts\n5. packages/extensions/dev-logs/src/main/tools.ts -> src/packages/log-viewer/src/Services/tools.ts\n6. packages/extensions/dev-logs/src/main/index.ts -> src/packages/log-viewer/src/Services/index.ts\n7. packages/extensions/dev-logs/src/types.ts -> src/packages/log-viewer/src/Services/types.ts\n\nFramework parsers:\n8. packages/extensions/dev-logs/src/main/parsers/LaravelParser.ts -> src/packages/log-viewer/src/Services/Parsers/LaravelParser.ts\n9. packages/extensions/dev-logs/src/main/parsers/DjangoParser.ts -> src/packages/log-viewer/src/Services/Parsers/DjangoParser.ts\n10. packages/extensions/dev-logs/src/main/parsers/NodejsParser.ts -> src/packages/log-viewer/src/Services/Parsers/NodejsParser.ts\n11. packages/extensions/dev-logs/src/main/parsers/RailsParser.ts -> src/packages/log-viewer/src/Services/Parsers/RailsParser.ts\n12. packages/extensions/dev-logs/src/main/parsers/index.ts -> src/packages/log-viewer/src/Services/Parsers/index.ts\n\nFor each: copy, update imports, preserve signatures."
+acceptance_criteria[4]: All 12 files exist at target paths,Parsers/ subdirectory has all 4 framework parsers + index,No imports reference packages/extensions/dev-logs/,TypeScript compiles
+story: OPK-108
+epic: OPK-8
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-8/OPK-108/OPK-113.toon

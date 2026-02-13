@@ -1,0 +1,20 @@
+id: OPK-145
+type: task
+parent: OPK-140
+title: Create Event Tracker directory structure and config files
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 15
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create the complete directory tree for the Event Tracker package.\n\nCreate all standard directories plus:\n- src/packages/event-tracker/src/EventTrackerServiceProvider.ts (stub)\n- src/packages/event-tracker/src/Services/Providers/ (for Google, Outlook, Apple providers)\n- All standard subdirectories\n- resources/chrome/, resources/chrome/stores/, resources/desktop/\n- docs/ with all 4 README.md files, tests/\n\nCreate package.json:\n{\n  \"name\": \"@orchestra/event-tracker\",\n  \"version\": \"0.1.0\",\n  \"private\": true,\n  \"main\": \"src/EventTrackerServiceProvider.ts\",\n  \"contributes\": {\n    \"widgets\": [{ \"id\": \"calendar-panel\", \"title\": \"Calendar\" }],\n    \"sidebar\": [{ \"id\": \"calendar\", \"title\": \"Calendar\", \"icon\": \"calendar\" }],\n    \"trayMenu\": [{ \"label\": \"Upcoming Events\", \"command\": \"calendar.showUpcoming\" }],\n    \"integrations\": [\"google-calendar\", \"outlook\"],\n    \"settings\": {\n      \"calendar.refreshInterval\": { \"type\": \"number\", \"default\": 300, \"description\": \"Refresh interval in seconds\" },\n      \"calendar.defaultCalendar\": { \"type\": \"string\", \"default\": \"\" }\n    },\n    \"notifications\": [\"meeting-reminder\"]\n  }\n}\n\nCreate tsconfig.json (extends root, jsx: react-jsx) and vitest.config.ts."
+acceptance_criteria[3]: All directories including Providers/ exist,"package.json has widgets, sidebar, trayMenu, integrations, settings, notifications",tsconfig.json and vitest.config.ts exist
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OPK-140
+epic: OPK-11
+project: oap-packages
+projectKey: OPK
+path: .projects/oap-packages/OPK-11/OPK-140/OPK-145.toon

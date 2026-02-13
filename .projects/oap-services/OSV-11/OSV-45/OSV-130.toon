@@ -1,0 +1,23 @@
+id: OSV-130
+type: task
+parent: OSV-45
+title: Implement MarketplaceService with install/uninstall and dependency resolution
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"ODS-1\"","\"ODS-2\"","\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"\\\"\\\\\\\"ODS-1\\\\\\\"\\\"\"","\"\\\"\\\\\\\"ODS-2\\\\\\\"\\\"\"","OSV-129"]
+description: "Create the MarketplaceService implementation.\n\n**Source reference:** Read `packages/desktop/src/main/platform/marketplaceClient.ts` for existing install/search logic.\n\n**Target file:** `src/app/Marketplace/MarketplaceService.ts`\n\n**Implementation:**\n1. Extensions directory: `{app.getPath('userData')}/extensions/`\n2. Installed extensions tracked in `extensions.json` manifest file\n3. `installExtension(id)`:\n   - Fetch extension package from marketplace API (or local path)\n   - Check dependencies: for each dep, recursively install if not present\n   - Extract to `extensions/{id}/`\n   - Read and validate manifest\n   - Add to installed list, persist\n   - Fire onExtensionInstalled\n4. `uninstallExtension(id)`:\n   - Check no other installed extension depends on it\n   - Remove directory\n   - Remove from installed list, persist\n   - Fire onExtensionUninstalled\n5. `enableExtension(id)`: set enabled flag, call extension activate\n6. `disableExtension(id)`: set disabled flag, call extension deactivate\n7. `searchExtensions(query)`: query marketplace HTTP API (stub with local catalog for now)\n8. `getInstalledExtensions()`: return from in-memory list"
+acceptance_criteria[7]: MarketplaceService in src/app/Marketplace/MarketplaceService.ts,Extensions installed to userData/extensions/ directory,"Dependency resolution: missing deps installed first",Uninstall checks for dependents,Enable/disable toggles without uninstalling,Installed list persisted to extensions.json,Events fire on install/uninstall
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+
+**Dependencies:**
+This task requires the following tasks to be completed first: "ODS-1", "ODS-2", "\"ODS-1\"", "\"ODS-2\"", "\"\\\"ODS-1\\\"\"", "\"\\\"ODS-2\\\"\"", OSV-129
+story: OSV-45
+epic: OSV-11
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-11/OSV-45/OSV-130.toon

@@ -1,0 +1,16 @@
+id: OSV-138
+type: task
+parent: OSV-48
+title: Write unit tests for WidgetControlService
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+description: "Create tests for WidgetControlService.\n\n**Target file:** `src/app/Widgets/__tests__/WidgetControlService.test.ts`\n\n**Test cases:**\n1. registerWidget stores registration, Disposable removes it\n2. showWidget creates window and loads HTML\n3. showWidget fires onWidgetShow\n4. hideWidget hides window (not destroyed)\n5. hideWidget fires onWidgetHide\n6. toggleWidget shows when hidden, hides when visible\n7. setWidgetView changes active view\n8. getWidgetState returns current state\n9. State persisted on position change\n10. getRegisteredWidgets returns all widgets with state"
+acceptance_criteria[4]: Test file at specified path,All 10 test cases pass,BrowserWindow mocked,Coverage >90%
+story: OSV-48
+epic: OSV-12
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-12/OSV-48/OSV-138.toon

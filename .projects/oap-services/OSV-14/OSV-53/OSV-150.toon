@@ -1,0 +1,20 @@
+id: OSV-150
+type: task
+parent: OSV-53
+title: Write Markdown Parser documentation and barrel exports
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create documentation and barrel exports.\n\n**Target files:**\n- `docs/core-services/markdown-parser.md`\n- `src/app/Components/README.md`\n- `src/app/Components/index.ts`\n\n**Docs sections:** Overview, Component API (MarkdownRenderer props), Supported Features (GFM, code, tables, math, Mermaid), Code Block Highlighting (Shiki + theme), Interactive Tables (sorting, CSV export), Export Options (HTML, plain text), Theme Integration, Adding New Languages, Dependencies\n\n**Barrel:**\n```typescript\nexport { MarkdownRenderer } from './MarkdownRenderer';\nexport { MarkdownTable } from './MarkdownTable';\nexport { MermaidRenderer } from './MermaidRenderer';\nexport { CodeBlockActions } from './CodeBlockActions';\nexport { createMarkdownPipeline } from './markdownPipeline';\nexport { copyAsHtml, copyAsPlainText } from './MarkdownExport';\n```"
+acceptance_criteria[4]: docs/core-services/markdown-parser.md with all sections,Component API fully documented with props,src/app/Components/index.ts barrel exports all public API,Supported features list complete
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-53
+epic: OSV-14
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-14/OSV-53/OSV-150.toon

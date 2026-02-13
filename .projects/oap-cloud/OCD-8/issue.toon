@@ -1,0 +1,7 @@
+id: OCD-8
+type: epic
+title: Real-time & API Layer
+status: backlog
+created: 2026-02-09
+description: "Laravel Reverb WebSocket setup for bidirectional IDE-web communication. Event-driven architecture with Laravel Events + Listeners. Webhook support for external integrations. Laravel Echo + Socket.io frontend integration. Sanctum API layer (RESTful, versioned v1/, rate limited) for mobile app, desktop app, and Chrome extension consumption. Channels: user.{id}, team.{id}, agent.{id}."
+priority: high

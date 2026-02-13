@@ -1,0 +1,9 @@
+id: ODS-28
+type: story
+parent: ODS-2
+title: "Input components (Input, TextArea, Select, Checkbox, Radio, Switch)"
+status: in_progress
+created: 2026-02-09
+user_story: "As a developer, I want form input components that follow design system patterns so that all forms have a consistent look and feel."
+points: 8
+acceptance_criteria[7]: Input component with validation states,TextArea component for multi-line input,Select component with dropdown,Checkbox component with indeterminate state,Radio component for radio groups,Switch component for toggles,All components theme-aware and accessible

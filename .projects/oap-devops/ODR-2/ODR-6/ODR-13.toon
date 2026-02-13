@@ -1,0 +1,12 @@
+id: ODR-13
+type: task
+parent: ODR-6
+title: Implement electron-builder configuration
+status: done
+created: 2026-02-09
+description: "Configure electron-builder for all platforms in packages/desktop/package.json. Define build targets, icons, installers for macOS (dmg, zip), Windows (nsis, portable), Linux (AppImage, deb, rpm). Complete config in DevOps PRD."
+acceptance_criteria[4]: electron-builder builds all targets,Icons and metadata correctly set,Installers work on all platforms,Build configuration validates
+estimate_minutes: 45
+estimate_tokens: 20000
+assignee: null
+actual_minutes: 20

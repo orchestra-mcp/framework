@@ -1,0 +1,17 @@
+id: OSV-66
+type: task
+parent: OSV-20
+title: Write tray menu service documentation
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+description: "Create comprehensive documentation for the Tray Menu Service.\n\n**Target files to create:**\n- `docs/core-services/tray-menu.md` — full API reference and guide\n- `src/app/Tray/README.md` — directory overview\n\n**Content for docs/core-services/tray-menu.md:**\n1. **Overview** — what the service does, when to use it\n2. **API Reference** — every method on ITrayMenuService with params, return types, examples\n3. **Types** — TrayMenuItem with all fields documented\n4. **Usage Examples:**\n   - Registering a simple menu item\n   - Registering a sub-menu\n   - Updating icon color for status indication\n   - Using hotkeys\n   - Disposing of registered items\n5. **IPC Channels** — table of all IPC channels with request/response types\n6. **Migration Guide** — how to migrate from old trayService.ts / menuContributionService.ts patterns\n7. **Architecture** — diagram showing TrayMenuService -> ElectronTrayAdapter -> Electron Tray\n\n**Content for src/app/Tray/README.md:**\n- Brief description\n- File listing with purpose of each file\n- Link to full docs"
+acceptance_criteria[5]: docs/core-services/tray-menu.md exists with all 7 sections,src/app/Tray/README.md exists with file listing,API reference covers every method and type,At least 4 code examples included,Migration guide references old source file paths
+story: OSV-20
+epic: OSV-1
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-1/OSV-20/OSV-66.toon

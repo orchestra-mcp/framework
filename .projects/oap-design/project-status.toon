@@ -1,0 +1,80 @@
+project: OAP Design System
+slug: oap-design
+key: ODS
+status: active
+created: 2026-02-09
+updated: 2026-02-09
+nextId: 73
+issues[72]{id,type,parent,title,status,assignee,priority}:
+  ODS-1,epic,"-",Design Tokens & Theme Engine,done,"-",high
+  ODS-2,epic,"-",Core Component Library - Atoms,in_progress,"-",high
+  ODS-3,epic,"-",Core Component Library - Molecules,in_progress,"-",high
+  ODS-4,epic,"-",Core Component Library - Organisms,backlog,"-",medium
+  ODS-5,epic,"-",Platform Adapters,backlog,"-",medium
+  ODS-6,epic,"-",Migration & Integration,backlog,"-",low
+  ODS-7,story,ODS-1,Extract brand colors from arts/ folder into design tokens,done,"-",high
+  ODS-8,story,ODS-1,Port Material Theme system to design tokens,done,"-",high
+  ODS-9,story,ODS-1,Build theme engine with CSS custom properties,done,"-",high
+  ODS-10,story,ODS-1,Create theme provider for React,done,"-",high
+  ODS-11,task,ODS-7,Analyze arts/ folder and extract brand color values,done,"-",high
+  ODS-12,task,ODS-7,Create TypeScript types for color tokens,done,"-",high
+  ODS-13,task,ODS-7,Implement brand color tokens module,done,"-",high
+  ODS-14,task,ODS-7,Export color tokens as JSON and set up build,done,"-",high
+  ODS-15,task,ODS-8,Analyze existing themeManager.ts structure,done,"-",high
+  ODS-16,task,ODS-8,Create theme token types matching PRD spec,done,"-",high
+  ODS-17,task,ODS-8,Port first 5 themes to new token format,done,"-",high
+  ODS-18,task,ODS-8,Port remaining 20+ themes to new token format,done,"-",high
+  ODS-19,task,ODS-9,Create ThemeEngine class with core functionality,done,"-",high
+  ODS-20,task,ODS-9,Add system theme detection and auto-switching,done,"-",medium
+  ODS-21,task,ODS-9,Create CSS custom properties generator utility,done,"-",medium
+  ODS-22,task,ODS-9,Create singleton theme engine instance and exports,done,"-",high
+  ODS-23,task,ODS-10,Create ThemeContext and ThemeProvider component,done,"-",high
+  ODS-24,task,ODS-10,Create useTheme and useThemeTokens hooks,done,"-",high
+  ODS-25,task,ODS-10,Create ThemeScript for SSR/hydration support,done,"-",medium
+  ODS-26,task,ODS-10,Set up components package structure and exports,done,"-",high
+  ODS-27,story,ODS-2,"Button components (Button, IconButton, LinkButton)",in_progress,"-",high
+  ODS-28,story,ODS-2,"Input components (Input, TextArea, Select, Checkbox, Radio, Switch)",in_progress,"-",high
+  ODS-29,story,ODS-2,"Badge components (Badge, Chip, Tag, Label)",backlog,"-",medium
+  ODS-30,story,ODS-2,"Feedback components (Icon, Avatar, Spinner, Skeleton)",backlog,"-",medium
+  ODS-31,story,ODS-2,"Layout components (Divider, Spacer)",backlog,"-",low
+  ODS-32,story,ODS-3,"Form components (FormField, InputGroup, SelectMenu)",in_progress,"-",high
+  ODS-33,story,ODS-3,"Navigation components (TabBar, Breadcrumb, Pagination)",backlog,"-",medium
+  ODS-34,story,ODS-3,"Alert components (Alert, Toast, Banner)",in_progress,"-",high
+  ODS-35,story,ODS-3,"Container components (Card, Panel, Well)",in_progress,"-",medium
+  ODS-36,story,ODS-3,"List components (TreeItem, ListItem, MenuItem)",backlog,"-",medium
+  ODS-37,story,ODS-4,"Sidebar system (Sidebar, SidebarPanel, SidebarIconRail)",backlog,"-",high
+  ODS-38,story,ODS-4,"Chrome components (Header, StatusBar, ActivityBar)",backlog,"-",medium
+  ODS-39,story,ODS-4,"Modal system (Modal, Dialog, Drawer, Sheet)",backlog,"-",high
+  ODS-40,story,ODS-4,"Dropdown system (Dropdown, Popover, Tooltip, ContextMenu)",backlog,"-",high
+  ODS-41,story,ODS-4,"Data display (Table, DataGrid, VirtualList)",backlog,"-",medium
+  ODS-42,story,ODS-5,Web/Electron adapter with Tailwind CSS 4,backlog,"-",high
+  ODS-43,story,ODS-5,Chrome extension adapter,backlog,"-",high
+  ODS-44,story,ODS-5,React Native adapter for mobile,backlog,"-",medium
+  ODS-45,story,ODS-5,Storybook documentation site,backlog,"-",medium
+  ODS-46,story,ODS-6,Migrate Chrome extension to use design system,backlog,"-",high
+  ODS-47,story,ODS-6,Migrate Desktop widgets to use design system,backlog,"-",medium
+  ODS-48,story,ODS-6,Migrate Mobile app to use design system,backlog,"-",low
+  ODS-49,story,ODS-6,Update all existing components to use design tokens,backlog,"-",medium
+  ODS-50,task,ODS-27,Create base Button component with variants,done,"-",high
+  ODS-51,task,ODS-27,Create IconButton component,backlog,"-",high
+  ODS-52,task,ODS-27,Create LinkButton component,backlog,"-",medium
+  ODS-53,task,ODS-27,Export Button components and add to index,done,"-",high
+  ODS-54,task,ODS-28,Create base Input component with validation states,done,"-",high
+  ODS-55,task,ODS-28,Create TextArea component,backlog,"-",high
+  ODS-56,task,ODS-28,Create Checkbox and Radio components,done,"-",high
+  ODS-57,task,ODS-28,Create Switch component,done,"-",medium
+  ODS-58,task,ODS-37,Create Sidebar container with resize functionality,backlog,"-",high
+  ODS-59,task,ODS-37,Create SidebarIconRail for icon navigation,backlog,"-",high
+  ODS-60,task,ODS-37,Create SidebarPanel component,backlog,"-",high
+  ODS-61,task,ODS-37,Create complete Sidebar example and documentation,backlog,"-",medium
+  ODS-62,task,ODS-42,Set up Tailwind CSS 4 configuration with design tokens,backlog,"-",high
+  ODS-63,task,ODS-42,Create base CSS file with design system variables,backlog,"-",high
+  ODS-64,task,ODS-42,Create PostCSS configuration for build optimization,backlog,"-",medium
+  ODS-65,task,ODS-46,Audit Chrome extension components and create migration plan,backlog,"-",high
+  ODS-66,task,ODS-46,Replace Chrome extension theme system with ThemeProvider,backlog,"-",high
+  ODS-67,task,ODS-46,Migrate database panel components to design system,backlog,"-",high
+  ODS-68,task,ODS-47,Audit Desktop widgets and create migration plan,backlog,"-",medium
+  ODS-69,task,ODS-34,Create Toast component with positioning system,backlog,"-",high
+  ODS-70,task,ODS-39,Create Modal component with backdrop and focus trap,backlog,"-",high
+  ODS-71,task,ODS-45,Set up Storybook 8 with all components,backlog,"-",medium
+  ODS-72,task,ODS-45,Create Storybook theme switcher addon,backlog,"-",low

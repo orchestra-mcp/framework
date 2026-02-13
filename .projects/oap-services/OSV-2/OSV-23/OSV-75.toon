@@ -1,0 +1,17 @@
+id: OSV-75
+type: task
+parent: OSV-23
+title: Migrate breakPanelService and pomodoroPanelService to PanelManagerService
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+description: "Refactor the break and pomodoro panel services to use the unified PanelManagerService.\n\n**Source files to read:**\n- `packages/desktop/src/main/services/breakPanelService.ts`\n- `packages/desktop/src/main/services/pomodoroPanelService.ts` (may be in `packages/desktop/src/main/services/` or newly created)\n- `packages/desktop/src/widget-renderer/break-panel.html`\n- `packages/desktop/src/widget-renderer/pomodoro-panel.html`\n- `packages/desktop/src/main/break-panel-preload.ts`\n- `packages/desktop/src/main/pomodoro-panel-preload.ts`\n\n**Same migration pattern as timer/calendar:**\n1. Replace direct BrowserWindow creation with `panelManager.registerPanel()`\n2. Move IPC handlers to PanelIpcBridge\n3. Keep extension business logic separate\n4. Ensure tray menu entries are auto-created"
+acceptance_criteria[5]: breakPanelService uses panelManager.registerPanel(),pomodoroPanelService uses panelManager.registerPanel(),Break panel opens/closes via panelManager API,Pomodoro panel opens/closes via panelManager API,No regressions in break or pomodoro panel functionality
+story: OSV-23
+epic: OSV-2
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-2/OSV-23/OSV-75.toon

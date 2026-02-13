@@ -1,0 +1,21 @@
+id: OCR-49
+type: task
+parent: OCR-15
+title: Build TopBar React component rendering registered items by position
+status: done
+created: 2026-02-09
+assignee: null
+estimate_minutes: 20
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create the TopBar component that renders registered top bar items grouped by position (left, center, right).\n\n**Target file:** `src/app/Chrome/Header/TopBar.tsx`\n\n**Implementation:**\n\n```typescript\nimport { useMemo } from 'react';\nimport { useTopBarStore } from './topBarStore';\n\nexport function TopBar() {\n  const items = useTopBarStore((s) => s.items);\n\n  const leftItems = useMemo(() => items.filter((i) => i.position === 'left'), [items]);\n  const centerItems = useMemo(() => items.filter((i) => i.position === 'center'), [items]);\n  const rightItems = useMemo(() => items.filter((i) => i.position === 'right'), [items]);\n\n  // Don't render if no items registered\n  if (items.length === 0) return null;\n\n  return (\n    <div className=\"flex items-center h-[28px] px-2 border-b border-mt-border bg-mt-bg-contrast shrink-0 text-[11px] text-mt-fg-muted\">\n      {/* Left group */}\n      <div className=\"flex items-center gap-2 min-w-0\">\n        {leftItems.map((item) => {\n          const Component = item.component;\n          return <Component key={item.id} />;\n        })}\n      </div>\n\n      {/* Center group — takes remaining space, centered */}\n      <div className=\"flex-1 flex items-center justify-center gap-2 min-w-0\">\n        {centerItems.map((item) => {\n          const Component = item.component;\n          return <Component key={item.id} />;\n        })}\n      </div>\n\n      {/* Right group */}\n      <div className=\"flex items-center gap-2 min-w-0\">\n        {rightItems.map((item) => {\n          const Component = item.component;\n          return <Component key={item.id} />;\n        })}\n      </div>\n    </div>\n  );\n}\n```\n\n**Key requirements:**\n- Height: 28px (matches status bar aesthetic)\n- Background: `bg-mt-bg-contrast` with bottom border\n- Three position groups: left, center (flex-1 centered), right\n- Items within each group sorted by `order` (already sorted by store)\n- Returns `null` when no items registered (so it doesn't take up space)\n- Each item rendered as a React component (the `component` field from TopBarItem)\n\nUpdate barrel export in `src/app/Chrome/Header/index.ts` to include `TopBar`."
+acceptance_criteria[7]: File src/app/Chrome/Header/TopBar.tsx exists,"Renders items from useTopBarStore grouped by position (left, center, right)",Returns null when no items registered,Height is 28px with border-b and bg-mt-bg-contrast,Center group is flex-1 and centered,Each item rendered as its component field,Barrel export updated
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OCR-15
+epic: OCR-3
+project: oap-chrome
+projectKey: OCR
+projectKey: OCR
+path: .projects/oap-chrome/OCR-3/OCR-15/OCR-49.toon

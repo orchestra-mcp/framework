@@ -1,0 +1,20 @@
+id: OPK-126
+type: task
+parent: OPK-120
+title: Migrate Time Tracker UI stores and desktop panels
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 25
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Copy and adapt the timer stores and desktop panel views.\n\nFILE MAPPING (stores):\n1. packages/chrome-extension/src/stores/timerStore.ts -> src/packages/time-tracker/resources/chrome/stores/timerStore.ts\n2. packages/chrome-extension/src/stores/timeReportStore.ts -> src/packages/time-tracker/resources/chrome/stores/timeReportStore.ts\n\nFILE MAPPING (desktop panels):\n3. packages/desktop/src/widget-renderer/timer-panel.html -> src/packages/time-tracker/resources/desktop/timer-panel.html\n4. packages/desktop/src/widget-renderer/timer-panel-renderer.ts -> src/packages/time-tracker/resources/desktop/timer-panel-renderer.ts\n5. packages/desktop/src/main/services/timerPanelService.ts -> src/packages/time-tracker/src/Panels/TimerPanelService.ts\n6. packages/desktop/src/widget-renderer/time-report-panel.html -> src/packages/time-tracker/resources/desktop/time-report-panel.html\n7. packages/desktop/src/widget-renderer/time-report-panel-renderer.ts -> src/packages/time-tracker/resources/desktop/time-report-panel-renderer.ts\n8. packages/desktop/src/main/services/timeReportPanelService.ts -> src/packages/time-tracker/src/Panels/TimeReportPanelService.ts\n\nFor stores: update imports to package-local paths.\nFor desktop panels: copy HTML and renderer files, update service imports."
+acceptance_criteria[6]: Both store files exist in resources/chrome/stores/,Desktop panel HTML and renderer files exist in resources/desktop/,Panel services exist in src/Panels/,All imports updated,No imports reference packages/desktop/ or packages/chrome-extension/,TypeScript compiles
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OPK-120
+epic: OPK-9
+project: oap-packages
+projectKey: OPK
+path: .projects/oap-packages/OPK-9/OPK-120/OPK-126.toon

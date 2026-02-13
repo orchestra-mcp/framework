@@ -1,0 +1,17 @@
+id: OCD-37
+type: task
+parent: OCD-9
+title: Create Laravel 12 project with Composer
+status: done
+created: 2026-02-09
+assignee: null
+estimate_minutes: 15
+estimate_tokens: null
+description: "Create a new Laravel 12 project at `src/platform/` using Composer.\n\n**Steps:**\n1. `cd src/` and run: `composer create-project laravel/laravel platform \"^12.0\"`\n2. Verify the project structure exists at `src/platform/`\n3. Run `cd src/platform && php artisan --version` to confirm Laravel 12.x\n4. Run `php artisan serve` to verify the welcome page loads at http://localhost:8000\n5. Update `src/platform/.env` with:\n   - `APP_NAME=Orchestra`\n   - `APP_URL=http://localhost:8000`\n   - `DB_CONNECTION=mysql` (or sqlite for dev)\n6. Run `php artisan migrate` to confirm database connection works\n7. Commit the scaffolded project\n\n**File paths created:**\n- `src/platform/artisan`\n- `src/platform/composer.json`\n- `src/platform/app/`\n- `src/platform/config/`\n- `src/platform/database/`\n- `src/platform/resources/`\n- `src/platform/routes/web.php`\n- `src/platform/routes/api.php`"
+acceptance_criteria[5]: Laravel 12 project exists at src/platform/,php artisan --version shows 12.x,php artisan serve starts without errors,php artisan migrate runs successfully,.env configured with APP_NAME=Orchestra
+story: OCD-9
+epic: OCD-1
+project: oap-cloud
+projectKey: OCD
+path: .projects/oap-cloud/OCD-1/OCD-9/OCD-37.toon
+actual_minutes: 10

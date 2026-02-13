@@ -1,0 +1,16 @@
+id: OPK-136
+type: task
+parent: OPK-130
+title: Migrate and update Alarm unit tests
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 10
+estimate_tokens: null
+description: "Copy and adapt existing tests.\n\nFILE MAPPING:\n1. packages/extensions/alarms/src/__tests__/AlarmService.test.ts -> src/packages/alarm/tests/AlarmService.test.ts\n\nUpdate imports, ensure tests pass."
+acceptance_criteria[3]: Test file exists,Imports updated,Tests pass
+story: OPK-130
+epic: OPK-10
+project: oap-packages
+projectKey: OPK
+path: .projects/oap-packages/OPK-10/OPK-130/OPK-136.toon

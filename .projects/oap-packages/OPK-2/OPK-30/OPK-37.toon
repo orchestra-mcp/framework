@@ -1,0 +1,21 @@
+id: OPK-37
+type: task
+parent: OPK-30
+title: Create EditorService.ts with open/save/format methods
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 30
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create the main EditorService that manages file editing operations. This is a new service that wraps Monaco editor configuration and file I/O.\n\nTARGET: src/packages/editor/src/Services/EditorService.ts\n\nThe EditorService class should have these methods:\n1. openFile(path: string): Promise<EditorTab> — reads file content, detects language, returns tab data\n2. saveFile(path: string, content: string): Promise<void> — writes content to file\n3. formatDocument(path: string, content: string, language: string): Promise<string> — formats using configured formatter\n4. getLanguageForFile(path: string): string — returns Monaco language ID based on file extension\n5. getEditorConfig(): EditorConfig — returns current editor settings (fontSize, fontFamily, tabSize, theme, minimap, wordWrap)\n\nAlso create src/packages/editor/src/Services/types.ts with:\n- EditorTab interface: { id: string; path: string; content: string; language: string; isDirty: boolean }\n- EditorConfig interface: { fontSize: number; fontFamily: string; tabSize: number; theme: string; minimap: boolean; wordWrap: string }\n\nThe service should NOT import from packages/chrome-extension/ or packages/desktop/. It should be a pure business logic service that the UI components consume via the store."
+acceptance_criteria[5]: EditorService.ts exists at src/packages/editor/src/Services/EditorService.ts,"Has openFile, saveFile, formatDocument, getLanguageForFile, getEditorConfig methods",types.ts exists with EditorTab and EditorConfig interfaces,No imports from packages/chrome-extension/ or packages/desktop/,TypeScript compiles without errors
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OPK-30
+epic: OPK-2
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-2/OPK-30/OPK-37.toon

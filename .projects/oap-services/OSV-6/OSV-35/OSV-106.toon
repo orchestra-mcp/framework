@@ -1,0 +1,24 @@
+id: OSV-106
+type: task
+parent: OSV-35
+title: Write integration tests for stdio transport and CLI
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"ODS-1\"","\"ODS-2\"","\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"\\\"\\\\\\\"ODS-1\\\\\\\"\\\"\"","\"\\\"\\\\\\\"ODS-2\\\\\\\"\\\"\"","\"\\\"\\\\\\\"\\\\\\\\\\\\\\\"OSV-105\\\\\\\\\\\\\\\"\\\\\\\"\\\"\"","OSV-105"]
+description: "Create integration tests for the MCP stdio transport.\n\n**Target file:** `src/app/MCP/__tests__/StdioTransport.test.ts`\n\n**Test approach:** Create mock stdin/stdout streams and pipe JSON-RPC messages.\n\n**Test cases:**\n1. initialize returns server capabilities\n2. tools/list returns registered tools\n3. tools/call executes tool and returns result\n4. tools/call with invalid params returns error -32602\n5. resources/list returns registered resources\n6. resources/read calls resource handler\n7. prompts/list returns registered prompts\n8. prompts/get calls prompt handler\n9. Unknown method returns -32601\n10. Malformed JSON returns -32700\n11. Tool handler error returns -32603 with error message"
+acceptance_criteria[5]: Test file at specified path,Mock stdin/stdout streams used,All 11 test cases implemented,All tests pass,Verifies JSON-RPC protocol compliance
+
+**Dependencies:**
+This task requires the following tasks to be completed first: OSV-105
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-35
+epic: OSV-6
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-6/OSV-35/OSV-106.toon

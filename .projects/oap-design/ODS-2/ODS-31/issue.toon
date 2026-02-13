@@ -1,0 +1,9 @@
+id: ODS-31
+type: story
+parent: ODS-2
+title: "Layout components (Divider, Spacer)"
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want simple layout components so that I can add consistent spacing and dividers between UI elements."
+points: 2
+acceptance_criteria[4]: Divider component with horizontal and vertical orientation,Spacer component for flexible spacing,Theme-aware colors,Proper TypeScript types

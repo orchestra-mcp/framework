@@ -1,0 +1,20 @@
+id: OSV-136
+type: task
+parent: OSV-48
+title: Define IWidgetControlService interface and widget types
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create the TypeScript interface and types for the Widget Control Service.\n\n**Source reference:** Read these files:\n- `packages/desktop/src/main/services/widgetManagerService.ts`\n- `packages/desktop/src/main/services/widgetRegistryService.ts`\n- `packages/desktop/src/main/services/widgetExtensionApi.ts`\n\n**Target files to create:**\n- `src/app/Widgets/IWidgetControlService.ts`\n- `src/app/Widgets/types.ts`\n\n**Exact interfaces:**\n```typescript\n// src/app/Widgets/types.ts\nexport interface WidgetRegistration {\n  id: string;\n  name: string;\n  icon: string;\n  views: WidgetView[];\n  defaultView?: string;\n  defaultState?: Partial<WidgetState>;\n}\n\nexport interface WidgetView {\n  id: string;\n  htmlPath: string;\n  preloadPath?: string;\n}\n\nexport interface WidgetState {\n  x: number; y: number;\n  width: number; height: number;\n  visible: boolean;\n  activeViewId: string;\n}\n\nexport interface WidgetInfo {\n  registration: WidgetRegistration;\n  state: WidgetState;\n}\n\n// src/app/Widgets/IWidgetControlService.ts\nexport interface IWidgetControlService {\n  registerWidget(widget: WidgetRegistration): Disposable;\n  showWidget(id: string): void;\n  hideWidget(id: string): void;\n  toggleWidget(id: string): void;\n  getRegisteredWidgets(): WidgetInfo[];\n  getWidgetState(id: string): WidgetState | undefined;\n  setWidgetView(id: string, viewId: string): void;\n  onWidgetShow: Event<string>;\n  onWidgetHide: Event<string>;\n}\n```"
+acceptance_criteria[5]: src/app/Widgets/IWidgetControlService.ts with full interface,"src/app/Widgets/types.ts with WidgetRegistration, WidgetView, WidgetState, WidgetInfo",Multi-view support via views array,registerWidget returns Disposable,Events for show/hide
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-48
+epic: OSV-12
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-12/OSV-48/OSV-136.toon

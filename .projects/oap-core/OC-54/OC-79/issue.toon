@@ -1,0 +1,9 @@
+id: OC-79
+type: story
+parent: OC-54
+title: Create UpdateManagerService for staged rollouts
+status: backlog
+created: 2026-02-09
+user_story: "As an admin, I want to push updates with controlled rollout so that I can ensure stability before full deployment"
+points: 5
+acceptance_criteria[5]: Update checking works,Background download implemented,Rollout percentage respected,Channel selection functional,Mandatory updates enforced

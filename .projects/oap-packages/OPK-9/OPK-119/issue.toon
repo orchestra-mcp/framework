@@ -1,0 +1,9 @@
+id: OPK-119
+type: story
+parent: OPK-9
+title: Migrate Time Tracker main services
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want the timer, storage, and report services migrated from extensions/time-tracker/ and extensions/time-reports/ into the Time Tracker package."
+points: 5
+acceptance_criteria[6]: "TimerService.ts, TimeStorageService.ts migrated to src/Services/",ReportService.ts migrated to src/Services/Reports/,All handler files and types migrated,Desktop panel service migrated,All imports updated,TypeScript compiles

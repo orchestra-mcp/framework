@@ -1,0 +1,9 @@
+id: OC-68
+type: story
+parent: OC-53
+title: Create FirebaseService with cross-platform support
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want a unified Firebase service that works across Electron, Web, Chrome, and Mobile so that I can track analytics and performance consistently"
+points: 8
+acceptance_criteria[6]: Service initializes Firebase with config from .env,Analytics tracking works on web/electron platforms,Performance monitoring integrated,Error tracking implemented,Platform detection works correctly,Service degrades gracefully if Firebase unavailable

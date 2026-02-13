@@ -1,0 +1,9 @@
+id: ODS-27
+type: story
+parent: ODS-2
+title: "Button components (Button, IconButton, LinkButton)"
+status: in_progress
+created: 2026-02-09
+user_story: "As a developer, I want button components with multiple variants (primary, secondary, ghost, outline) so that I can create consistent interactive elements across the application."
+points: 5
+acceptance_criteria[6]: "Button component with variant prop (primary, secondary, ghost, outline)",IconButton component for icon-only buttons,LinkButton component for link-styled buttons,"Size variants (xs, sm, md, lg, xl)",Loading and disabled states,TypeScript types and proper accessibility

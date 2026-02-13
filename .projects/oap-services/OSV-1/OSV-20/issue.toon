@@ -1,0 +1,9 @@
+id: OSV-20
+type: story
+parent: OSV-1
+title: Tray Menu Documentation & Migration Guide
+status: done
+created: 2026-02-09
+user_story: "As a developer, I want documentation for the Tray Menu Service so that I can understand the API, see usage examples, and migrate existing tray code to the new dynamic system."
+points: 2
+acceptance_criteria[4]: "docs/core-services/tray-menu.md created with API reference, examples, and migration guide",README.md in src/app/Tray/ explains directory structure,Code examples show register/update/dispose lifecycle,Migration notes from old trayService.ts to new ITrayMenuService

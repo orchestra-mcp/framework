@@ -1,0 +1,180 @@
+project: OAP Extension Packages
+slug: oap-packages
+key: OPK
+status: active
+created: 2026-02-09
+updated: 2026-02-09
+nextId: 173
+issues[172]{id,type,parent,title,status,assignee,priority}:
+  OPK-1,epic,"-",Explorer Package,done,"-",high
+  OPK-2,epic,"-",Editor Package,in_progress,"-",high
+  OPK-3,epic,"-",Tasks Manager Package,backlog,"-",high
+  OPK-4,epic,"-",Version Control Package,done,"-",high
+  OPK-5,epic,"-",Terminal Manager Package,in_progress,"-",high
+  OPK-6,epic,"-",Database Manager Package,in_progress,"-",medium
+  OPK-7,epic,"-",OS Services Manager Package,in_progress,"-",medium
+  OPK-8,epic,"-",Log Viewer Package,done,"-",medium
+  OPK-9,epic,"-",Time Tracker Package,in_progress,"-",medium
+  OPK-10,epic,"-",Alarm Package,in_progress,"-",low
+  OPK-11,epic,"-",Event Tracker Package,done,"-",medium
+  OPK-12,epic,"-",Pomodoro Package,done,"-",low
+  OPK-13,epic,"-",Break Tracker Package,done,"-",low
+  OPK-14,story,OPK-1,Scaffold Explorer package structure,done,"-",high
+  OPK-15,story,OPK-1,Migrate Explorer main services,done,"-",high
+  OPK-16,story,OPK-1,Migrate Explorer Chrome UI,done,"-",high
+  OPK-17,story,OPK-1,Build Explorer ServiceProvider,done,"-",high
+  OPK-18,story,OPK-1,Write Explorer documentation,done,"-",medium
+  OPK-19,task,OPK-14,Create Explorer directory structure,done,"-",high
+  OPK-20,task,OPK-14,Create Explorer package.json with contributes manifest,done,"-",high
+  OPK-21,task,OPK-14,Create Explorer tsconfig.json and vitest.config.ts,done,"-",high
+  OPK-22,task,OPK-15,Migrate fileSystemService.ts to ExplorerService.ts,done,"-",high
+  OPK-23,task,OPK-15,Create Explorer MCP tool definitions,done,"-",high
+  OPK-24,task,OPK-15,Write ExplorerService unit tests,done,"-",medium
+  OPK-25,task,OPK-16,Migrate Explorer Chrome UI components,in_progress,"-",high
+  OPK-26,task,OPK-16,Migrate fileExplorerStore.ts to Explorer package,backlog,"-",high
+  OPK-27,task,OPK-17,Implement ExplorerServiceProvider with all registrations,backlog,"-",high
+  OPK-28,task,OPK-18,Write Explorer package documentation,backlog,"-",medium
+  OPK-29,story,OPK-2,Scaffold Editor package structure,in_progress,"-",high
+  OPK-30,story,OPK-2,Migrate Editor main services,backlog,"-",high
+  OPK-31,story,OPK-2,Migrate Editor Chrome UI,backlog,"-",high
+  OPK-32,story,OPK-2,Build Editor ServiceProvider,backlog,"-",high
+  OPK-33,story,OPK-2,Write Editor documentation,backlog,"-",medium
+  OPK-34,task,OPK-29,Create Editor directory structure,done,"-",high
+  OPK-35,task,OPK-29,Create Editor package.json with contributes manifest,in_progress,"-",high
+  OPK-36,task,OPK-29,Create Editor tsconfig.json and vitest.config.ts,backlog,"-",high
+  OPK-37,task,OPK-30,Create EditorService.ts with open/save/format methods,backlog,"-",high
+  OPK-38,task,OPK-30,Create Monaco configuration module,backlog,"-",high
+  OPK-39,task,OPK-30,Write EditorService unit tests,backlog,"-",medium
+  OPK-40,task,OPK-31,Migrate Editor panel components to Chrome UI,backlog,"-",high
+  OPK-41,task,OPK-31,Migrate Markdown renderer components to Chrome UI,backlog,"-",high
+  OPK-42,task,OPK-31,Migrate editorStore.ts to Editor package,backlog,"-",high
+  OPK-43,task,OPK-32,Implement EditorServiceProvider with all registrations,backlog,"-",high
+  OPK-44,task,OPK-33,Write Editor package documentation,backlog,"-",medium
+  OPK-45,story,OPK-3,Scaffold Tasks Manager package structure,backlog,"-",high
+  OPK-46,story,OPK-3,Migrate Tasks Manager main services,backlog,"-",high
+  OPK-47,story,OPK-3,Migrate Tasks Manager Chrome UI,backlog,"-",high
+  OPK-48,story,OPK-3,Build Tasks Manager ServiceProvider,backlog,"-",high
+  OPK-49,story,OPK-3,Write Tasks Manager documentation,backlog,"-",medium
+  OPK-50,task,OPK-45,Create Tasks Manager directory structure and config files,backlog,"-",high
+  OPK-51,task,OPK-46,Migrate tasksRpcHandlers.ts to Tasks Manager services,backlog,"-",high
+  OPK-52,task,OPK-46,Write Tasks Manager service unit tests,backlog,"-",medium
+  OPK-53,task,OPK-47,Migrate Tasks Manager Chrome UI components,backlog,"-",high
+  OPK-54,task,OPK-47,Migrate tasksStore.ts to Tasks Manager package,backlog,"-",high
+  OPK-55,task,OPK-48,Implement TasksManagerServiceProvider with all registrations,backlog,"-",high
+  OPK-56,task,OPK-49,Write Tasks Manager package documentation,backlog,"-",medium
+  OPK-57,story,OPK-4,Scaffold Version Control package structure,done,"-",high
+  OPK-58,story,OPK-4,Migrate Version Control main services,done,"-",high
+  OPK-59,story,OPK-4,Migrate Version Control Chrome UI,done,"-",high
+  OPK-60,story,OPK-4,Build Version Control ServiceProvider,done,"-",high
+  OPK-61,story,OPK-4,Write Version Control documentation,done,"-",medium
+  OPK-62,task,OPK-57,Create Version Control directory structure and config files,backlog,"-",high
+  OPK-63,task,OPK-58,Migrate core Git service files,backlog,"-",high
+  OPK-64,task,OPK-58,Migrate git UI helpers and tools,backlog,"-",high
+  OPK-65,task,OPK-58,Migrate GitHub provider services,backlog,"-",high
+  OPK-66,task,OPK-58,Migrate GitLab provider services,backlog,"-",high
+  OPK-67,task,OPK-58,Migrate Bitbucket provider services,backlog,"-",high
+  OPK-68,task,OPK-58,Migrate and update Version Control unit tests,backlog,"-",medium
+  OPK-69,task,OPK-59,Migrate Version Control Chrome UI components,backlog,"-",high
+  OPK-70,task,OPK-59,Migrate git stores to Version Control package,backlog,"-",high
+  OPK-71,task,OPK-60,Implement VersionControlServiceProvider with all registrations,backlog,"-",high
+  OPK-72,task,OPK-61,Write Version Control package documentation,backlog,"-",medium
+  OPK-73,story,OPK-5,Scaffold Terminal Manager package structure,in_progress,"-",high
+  OPK-74,story,OPK-5,Migrate Terminal Manager main services,backlog,"-",high
+  OPK-75,story,OPK-5,Migrate Terminal Manager Chrome UI,backlog,"-",high
+  OPK-76,story,OPK-5,Build Terminal Manager ServiceProvider,backlog,"-",high
+  OPK-77,story,OPK-5,Write Terminal Manager documentation,backlog,"-",medium
+  OPK-78,task,OPK-73,Create Terminal Manager directory structure and config files,done,"-",high
+  OPK-79,task,OPK-74,Migrate terminal service files,backlog,"-",high
+  OPK-80,task,OPK-74,Migrate and update Terminal Manager unit tests,backlog,"-",medium
+  OPK-81,task,OPK-75,Migrate Terminal Manager Chrome UI components and stores,backlog,"-",high
+  OPK-82,task,OPK-76,Implement TerminalManagerServiceProvider with all registrations,backlog,"-",high
+  OPK-83,task,OPK-77,Write Terminal Manager package documentation,backlog,"-",medium
+  OPK-84,story,OPK-6,Scaffold Database Manager package structure,in_progress,"-",high
+  OPK-85,story,OPK-6,Migrate Database Manager main services,backlog,"-",high
+  OPK-86,story,OPK-6,Migrate Database Manager Chrome UI,backlog,"-",high
+  OPK-87,story,OPK-6,Build Database Manager ServiceProvider,backlog,"-",high
+  OPK-88,story,OPK-6,Write Database Manager documentation,backlog,"-",medium
+  OPK-89,task,OPK-84,Create Database Manager directory structure and config files,done,"-",high
+  OPK-90,task,OPK-85,Migrate database service and manager files,backlog,"-",high
+  OPK-91,task,OPK-85,Migrate database driver files,backlog,"-",high
+  OPK-92,task,OPK-85,Migrate and update Database Manager unit tests,backlog,"-",medium
+  OPK-93,task,OPK-86,Migrate Database Manager Chrome UI components and store,backlog,"-",high
+  OPK-94,task,OPK-87,Implement DatabaseManagerServiceProvider with all registrations,backlog,"-",high
+  OPK-95,task,OPK-88,Write Database Manager package documentation,backlog,"-",medium
+  OPK-96,story,OPK-7,Scaffold OS Services Manager package structure,in_progress,"-",high
+  OPK-97,story,OPK-7,Migrate OS Services Manager main services,backlog,"-",high
+  OPK-98,story,OPK-7,Migrate OS Services Manager Chrome UI,backlog,"-",high
+  OPK-99,story,OPK-7,Build OS Services Manager ServiceProvider,backlog,"-",high
+  OPK-100,story,OPK-7,Write OS Services Manager documentation,backlog,"-",medium
+  OPK-101,task,OPK-96,Create OS Services Manager directory structure and config files,in_progress,"-",high
+  OPK-102,task,OPK-97,"Migrate ServiceManager, registry, handlers, and tools",backlog,"-",high
+  OPK-103,task,OPK-97,Migrate all 12 service adapters,backlog,"-",high
+  OPK-104,task,OPK-98,Migrate OS Services Manager Chrome UI components and store,backlog,"-",high
+  OPK-105,task,OPK-99,Implement OSServicesManagerServiceProvider with all registrations,backlog,"-",high
+  OPK-106,task,OPK-100,Write OS Services Manager package documentation,backlog,"-",medium
+  OPK-107,story,OPK-8,Scaffold Log Viewer package structure,done,"-",high
+  OPK-108,story,OPK-8,Migrate Log Viewer main services,done,"-",high
+  OPK-109,story,OPK-8,Migrate Log Viewer Chrome UI,done,"-",high
+  OPK-110,story,OPK-8,Build Log Viewer ServiceProvider,done,"-",high
+  OPK-111,story,OPK-8,Write Log Viewer documentation,done,"-",medium
+  OPK-112,task,OPK-107,Create Log Viewer directory structure and config files,in_progress,"-",high
+  OPK-113,task,OPK-108,Migrate log service and parser files,backlog,"-",high
+  OPK-114,task,OPK-108,Migrate and update Log Viewer unit tests,backlog,"-",medium
+  OPK-115,task,OPK-109,Migrate Log Viewer Chrome UI components and store,backlog,"-",high
+  OPK-116,task,OPK-110,Implement LogViewerServiceProvider with all registrations,backlog,"-",high
+  OPK-117,task,OPK-111,Write Log Viewer package documentation,backlog,"-",medium
+  OPK-118,story,OPK-9,Scaffold Time Tracker package structure,in_progress,"-",high
+  OPK-119,story,OPK-9,Migrate Time Tracker main services,backlog,"-",high
+  OPK-120,story,OPK-9,Migrate Time Tracker Chrome UI,backlog,"-",high
+  OPK-121,story,OPK-9,Build Time Tracker ServiceProvider,backlog,"-",high
+  OPK-122,story,OPK-9,Write Time Tracker documentation,backlog,"-",medium
+  OPK-123,task,OPK-118,Create Time Tracker directory structure and config files,in_progress,"-",high
+  OPK-124,task,OPK-119,Migrate timer and storage service files,backlog,"-",high
+  OPK-125,task,OPK-119,Migrate and update Time Tracker unit tests,backlog,"-",medium
+  OPK-126,task,OPK-120,Migrate Time Tracker UI stores and desktop panels,backlog,"-",high
+  OPK-127,task,OPK-121,Implement TimeTrackerServiceProvider with all registrations,backlog,"-",high
+  OPK-128,task,OPK-122,Write Time Tracker package documentation,backlog,"-",medium
+  OPK-129,story,OPK-10,Scaffold Alarm package structure,in_progress,"-",high
+  OPK-130,story,OPK-10,Migrate Alarm main services,backlog,"-",high
+  OPK-131,story,OPK-10,Migrate Alarm Chrome UI,backlog,"-",high
+  OPK-132,story,OPK-10,Build Alarm ServiceProvider,backlog,"-",high
+  OPK-133,story,OPK-10,Write Alarm documentation,backlog,"-",medium
+  OPK-134,task,OPK-129,Create Alarm directory structure and config files,in_progress,"-",high
+  OPK-135,task,OPK-130,Migrate alarm service files,backlog,"-",high
+  OPK-136,task,OPK-130,Migrate and update Alarm unit tests,backlog,"-",medium
+  OPK-137,task,OPK-131,Migrate Alarm Chrome UI and desktop panel views,backlog,"-",high
+  OPK-138,task,OPK-132,Implement AlarmServiceProvider with all registrations,backlog,"-",high
+  OPK-139,task,OPK-133,Write Alarm package documentation,backlog,"-",medium
+  OPK-140,story,OPK-11,Scaffold Event Tracker package structure,done,"-",high
+  OPK-141,story,OPK-11,Migrate Event Tracker main services,done,"-",high
+  OPK-142,story,OPK-11,Migrate Event Tracker Chrome UI,done,"-",high
+  OPK-143,story,OPK-11,Build Event Tracker ServiceProvider,done,"-",high
+  OPK-144,story,OPK-11,Write Event Tracker documentation,done,"-",medium
+  OPK-145,task,OPK-140,Create Event Tracker directory structure and config files,backlog,"-",high
+  OPK-146,task,OPK-141,Migrate calendar service files and providers,backlog,"-",high
+  OPK-147,task,OPK-141,Migrate and update Event Tracker unit tests,backlog,"-",medium
+  OPK-148,task,OPK-142,Migrate Event Tracker Chrome store and desktop panel views,backlog,"-",high
+  OPK-149,task,OPK-143,Implement EventTrackerServiceProvider with all registrations,backlog,"-",high
+  OPK-150,task,OPK-144,Write Event Tracker package documentation,backlog,"-",medium
+  OPK-151,story,OPK-12,Scaffold Pomodoro package structure,done,"-",high
+  OPK-152,story,OPK-12,Migrate Pomodoro main services,done,"-",high
+  OPK-153,story,OPK-12,Migrate Pomodoro Chrome UI,done,"-",high
+  OPK-154,story,OPK-12,Build Pomodoro ServiceProvider,done,"-",high
+  OPK-155,story,OPK-12,Write Pomodoro documentation,done,"-",medium
+  OPK-156,task,OPK-151,Create Pomodoro directory structure and config files,backlog,"-",high
+  OPK-157,task,OPK-152,Migrate pomodoro service files,backlog,"-",high
+  OPK-158,task,OPK-152,Migrate and update Pomodoro unit tests,backlog,"-",medium
+  OPK-159,task,OPK-153,"Migrate Pomodoro Chrome UI components, store, and desktop panel",backlog,"-",high
+  OPK-160,task,OPK-154,Implement PomodoroServiceProvider with all registrations,backlog,"-",high
+  OPK-161,task,OPK-155,Write Pomodoro package documentation,backlog,"-",medium
+  OPK-162,story,OPK-13,Scaffold Break Tracker package structure,in_progress,"-",high
+  OPK-163,story,OPK-13,Migrate Break Tracker main services,backlog,"-",high
+  OPK-164,story,OPK-13,Migrate Break Tracker Chrome UI,backlog,"-",high
+  OPK-165,story,OPK-13,Build Break Tracker ServiceProvider,backlog,"-",high
+  OPK-166,story,OPK-13,Write Break Tracker documentation,backlog,"-",medium
+  OPK-167,task,OPK-162,Create Break Tracker directory structure and config files,done,"-",high
+  OPK-168,task,OPK-163,Create BreakService and migrate breakPanelService,backlog,"-",high
+  OPK-169,task,OPK-163,Write BreakService unit tests,backlog,"-",medium
+  OPK-170,task,OPK-164,Migrate Break Tracker desktop panel views,backlog,"-",high
+  OPK-171,task,OPK-165,Implement BreakTrackerServiceProvider with all registrations,backlog,"-",high
+  OPK-172,task,OPK-166,Write Break Tracker package documentation,backlog,"-",medium

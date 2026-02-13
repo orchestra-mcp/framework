@@ -1,0 +1,9 @@
+id: ODS-7
+type: story
+parent: ODS-1
+title: Extract brand colors from arts/ folder into design tokens
+status: done
+created: 2026-02-09
+user_story: "As a developer, I want design tokens that capture Orchestra's brand colors from the arts/ folder so that all components use consistent brand colors across platforms."
+points: 3
+acceptance_criteria[5]: Brand colors extracted from arts/ folder and documented,TypeScript types for color tokens created,Color tokens exported as JSON and TypeScript,Primary purple (#a900ff) properly defined,"All semantic colors (success, warning, error, info) defined"

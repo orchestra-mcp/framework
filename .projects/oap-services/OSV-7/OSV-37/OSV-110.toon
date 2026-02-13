@@ -1,0 +1,24 @@
+id: OSV-110
+type: task
+parent: OSV-37
+title: Implement WebSocketService with channel pub/sub and token auth
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"ODS-1\"","\"ODS-2\"","\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"\\\"\\\\\\\"ODS-1\\\\\\\"\\\"\"","\"\\\"\\\\\\\"ODS-2\\\\\\\"\\\"\"","\"\\\"\\\\\\\"\\\\\\\\\\\\\\\"OSV-109\\\\\\\\\\\\\\\"\\\\\\\"\\\"\"","OSV-109"]
+description: "Create the WebSocketService implementation.\n\n**Source reference:** Read `packages/desktop/src/main/services/websocketBridgeService.ts` for the existing ws server setup, message routing, and auth patterns.\n\n**Target file:** `src/app/Socket/WebSocketService.ts`\n\n**Implementation using `ws` package:**\n1. Create `WebSocketServer` on configurable port (default 9600, from settings)\n2. Token auth on upgrade:\n   ```typescript\n   wss.on('upgrade', (request, socket, head) => {\n     const url = new URL(request.url, 'http://localhost');\n     const token = url.searchParams.get('token');\n     if (!this.validateToken(token)) {\n       socket.destroy();\n       return;\n     }\n     wss.handleUpgrade(request, socket, head, (ws) => {\n       wss.emit('connection', ws, request);\n     });\n   });\n   ```\n3. Token validation: compare against stored auth token (generated on startup, saved to file)\n4. Message format: `{ channel: string, data: any }`\n5. `registerHandler(channel, handler)`: store in `Map<string, Set<MessageHandler>>`, return Disposable\n6. `publish(channel, data)`: send `{ channel, data }` to ALL connected clients\n7. `subscribe(channel, callback)`: internal pub/sub (server-side subscription), return Disposable\n8. Channel wildcard: `*` matches all channels\n9. Binary message support: if message is ArrayBuffer, route to handler as-is\n10. `getConnectedClients()`: return array of WebSocketClient wrappers"
+acceptance_criteria[8]: WebSocketService in src/app/Socket/WebSocketService.ts,ws WebSocketServer created on configurable port,Token auth rejects invalid connections,Channel-based message routing to handlers,publish sends to all connected clients,Binary message support,Wildcard * channel matches all,getConnectedClients returns client list
+
+**Dependencies:**
+This task requires the following tasks to be completed first: OSV-109
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-37
+epic: OSV-7
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-7/OSV-37/OSV-110.toon

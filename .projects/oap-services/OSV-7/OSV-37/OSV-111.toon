@@ -1,0 +1,21 @@
+id: OSV-111
+type: task
+parent: OSV-37
+title: Write unit tests for WebSocketService
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create unit tests for WebSocketService.\n\n**Target file:** `src/app/Socket/__tests__/WebSocketService.test.ts`\n\n**Test cases (mock ws module):**\n1. Server starts on configured port\n2. Token auth rejects invalid token\n3. Token auth accepts valid token\n4. registerHandler stores handler, Disposable removes it\n5. Incoming message routes to correct channel handler\n6. publish sends to all connected clients\n7. subscribe receives published messages\n8. Wildcard handler receives all messages\n9. Binary message passed to handler as ArrayBuffer\n10. onConnection fires when client connects\n11. onDisconnection fires when client disconnects\n12. getConnectedClients returns current clients"
+acceptance_criteria[5]: Test file at specified path,ws module mocked,All 12 test cases implemented,All tests pass,Coverage >90%
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-37
+epic: OSV-7
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-7/OSV-37/OSV-111.toon

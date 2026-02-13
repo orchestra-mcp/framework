@@ -1,0 +1,17 @@
+id: OPK-80
+type: task
+parent: OPK-74
+title: Migrate and update Terminal Manager unit tests
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 20
+estimate_tokens: null
+description: "Copy and adapt existing unit tests from the terminal extension.\n\nFILE MAPPING:\n1. packages/extensions/terminal/src/__tests__/terminalHandlers.test.ts -> src/packages/terminal-manager/tests/terminalHandlers.test.ts\n2. packages/extensions/terminal/src/__tests__/SSHService.test.ts -> src/packages/terminal-manager/tests/SSHService.test.ts\n3. packages/extensions/terminal/src/__tests__/TerminalService.test.ts -> src/packages/terminal-manager/tests/TerminalService.test.ts\n4. packages/extensions/terminal/src/__tests__/CredentialService.test.ts -> src/packages/terminal-manager/tests/CredentialService.test.ts\n\nFor each: copy, update imports to new service paths, ensure tests pass."
+acceptance_criteria[3]: All 4 test files exist in tests/,All imports updated,All tests pass
+story: OPK-74
+epic: OPK-5
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-5/OPK-74/OPK-80.toon

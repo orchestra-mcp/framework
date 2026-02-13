@@ -1,0 +1,7 @@
+id: OSV-5
+type: epic
+title: Dynamic Notification Service
+status: done
+created: 2026-02-09
+description: "Unify scattered notification code from extensions/notifications/src/index.ts + notificationService.ts + notificationIpcServer.ts into src/app/Notifications/. Provides INotificationService with send/dismiss/getHistory/registerChannel API. Supports desktop (Electron native), browser (WebSocket push), sound control, notification history, and channel-based routing."
+priority: high

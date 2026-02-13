@@ -1,0 +1,7 @@
+id: OSV-14
+type: epic
+title: Universal Markdown Parser
+status: done
+created: 2026-02-09
+description: "Extract markdown rendering from Chrome extension rehype/remark/Shiki setup into src/app/Components/. Build shared React component MarkdownRenderer that works across Chrome ext, Electron panels, web platform, and mobile. Supports GFM, Shiki code blocks with theme, sortable tables with CSV export, Mermaid diagrams, math/LaTeX, and HTML/plain text export."
+priority: high

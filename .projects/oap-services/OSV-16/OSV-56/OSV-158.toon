@@ -1,0 +1,20 @@
+id: OSV-158
+type: task
+parent: OSV-56
+title: Write unit tests for BrowserInjectionService
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create tests for BrowserInjectionService.\n\n**Target file:** `src/app/BrowserInjection/__tests__/BrowserInjectionService.test.ts`\n\n**Test cases:**\n1. registerScript stores script, Disposable removes it\n2. URL glob pattern matching works (*.google.com/*)\n3. URL RegExp pattern matching works\n4. injectOnUrl creates and registers script\n5. sendToPage publishes to WebSocket with tabId\n6. onPageMessage fires when message received from WebSocket\n7. getRegisteredScripts returns all scripts\n8. Script isolation: scripts from different extensions separated"
+acceptance_criteria[4]: Test file at specified path,All 8 test cases pass,WebSocket mocked,URL matching edge cases covered
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-56
+epic: OSV-16
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-16/OSV-56/OSV-158.toon

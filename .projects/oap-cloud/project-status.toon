@@ -1,0 +1,129 @@
+project: OAP Cloud Platform
+slug: oap-cloud
+key: OCD
+status: active
+created: 2026-02-09
+updated: 2026-02-09
+nextId: 122
+issues[121]{id,type,parent,title,status,assignee,priority}:
+  OCD-1,epic,"-",Laravel Project Setup,done,"-",high
+  OCD-2,epic,"-",Authentication System,backlog,"-",high
+  OCD-3,epic,"-",Public Pages,backlog,"-",medium
+  OCD-4,epic,"-",Documentation System,backlog,"-",medium
+  OCD-5,epic,"-",Employee Dashboard,backlog,"-",high
+  OCD-6,epic,"-",Team Owner Dashboard,backlog,"-",medium
+  OCD-7,epic,"-",Admin Dashboard,backlog,"-",medium
+  OCD-8,epic,"-",Real-time & API Layer,backlog,"-",high
+  OCD-9,story,OCD-1,Scaffold Laravel 12 + Inertia.js + React + TypeScript,done,"-",high
+  OCD-10,story,OCD-1,"Install & Configure Auth Packages (Jetstream, Fortify, Sanctum)",done,"-",high
+  OCD-11,story,OCD-1,Install Spatie Packages & Tailwind CSS 4 Setup,done,"-",high
+  OCD-12,story,OCD-1,"Base Layouts, Routing & Testing Setup",done,"-",high
+  OCD-13,story,OCD-2,"Login, Register & Password Reset (Fortify)",backlog,"-",high
+  OCD-14,story,OCD-2,OTP / 2FA & Magic Login,backlog,"-",high
+  OCD-15,story,OCD-2,"Profile Management (Avatar, Devices, API Keys, Password)",backlog,"-",high
+  OCD-16,story,OCD-2,User Settings & Notification Preferences,backlog,"-",medium
+  OCD-17,story,OCD-2,Teams & Roles (Jetstream Teams),backlog,"-",high
+  OCD-18,story,OCD-3,Landing Page & Download Page,backlog,"-",high
+  OCD-19,story,OCD-3,Support Page & Email Subscription,backlog,"-",medium
+  OCD-20,story,OCD-3,Blog System,backlog,"-",medium
+  OCD-21,story,OCD-3,Web Marketplace,backlog,"-",medium
+  OCD-22,story,OCD-4,Documentation Reader & Sidebar Navigation,backlog,"-",high
+  OCD-23,story,OCD-4,Documentation Search,backlog,"-",medium
+  OCD-24,story,OCD-5,Progress Widgets & Dashboard Overview,backlog,"-",high
+  OCD-25,story,OCD-5,Synced Tasks (Project/Epic/Story/Task Hierarchy),backlog,"-",high
+  OCD-26,story,OCD-5,"Timer, Break & Pomodoro Reports",backlog,"-",medium
+  OCD-27,story,OCD-5,Version Control & AI Agent Control,backlog,"-",high
+  OCD-28,story,OCD-5,Notifications & Sprint Tracking,backlog,"-",medium
+  OCD-29,story,OCD-6,Team Activity Widgets & Community Page,backlog,"-",high
+  OCD-30,story,OCD-6,"Team Management (Invite, Roles, Assignments)",backlog,"-",high
+  OCD-31,story,OCD-7,Entity CRUD & User Management,backlog,"-",high
+  OCD-32,story,OCD-7,Marketplace Control & Feature Flags,backlog,"-",medium
+  OCD-33,story,OCD-7,"Push Updates, Marketing Notifications & Analytics",backlog,"-",medium
+  OCD-34,story,OCD-8,Laravel Reverb WebSocket & Event-Driven Architecture,backlog,"-",high
+  OCD-35,story,OCD-8,Laravel Echo Frontend & Real-time UI Integration,backlog,"-",high
+  OCD-36,story,OCD-8,"Sanctum API Layer (RESTful, Versioned, Rate Limited)",backlog,"-",high
+  OCD-37,task,OCD-9,Create Laravel 12 project with Composer,done,"-",high
+  OCD-38,task,OCD-9,Install Inertia.js 2 with React 19 adapter,done,"-",high
+  OCD-39,task,OCD-9,Configure TypeScript and Vite for React,done,"-",high
+  OCD-40,task,OCD-10,Install Jetstream with Inertia stack and Teams,done,"-",high
+  OCD-41,task,OCD-10,Configure Fortify features and Sanctum for API tokens,done,"-",high
+  OCD-42,task,OCD-11,Install and configure Spatie Media Library,done,"-",high
+  OCD-43,task,OCD-11,Install Spatie Settings and configure Tailwind CSS 4,done,"-",high
+  OCD-44,task,OCD-12,"Create base Inertia layouts (App, Guest, Dashboard)",done,"-",high
+  OCD-45,task,OCD-12,Set up route structure and middleware groups,done,"-",high
+  OCD-46,task,OCD-12,Set up PHPUnit and Vitest testing infrastructure,done,"-",medium
+  OCD-47,task,OCD-13,Build Login page with Fortify,backlog,"-",high
+  OCD-48,task,OCD-13,Build Register page with Fortify,backlog,"-",high
+  OCD-49,task,OCD-13,Build Password Reset flow (Forgot + Reset pages),backlog,"-",high
+  OCD-50,task,OCD-14,Build 2FA setup and verification pages,backlog,"-",high
+  OCD-51,task,OCD-14,Build Magic Login system (custom),backlog,"-",high
+  OCD-52,task,OCD-15,Build Profile page with avatar upload (Spatie Media Library),backlog,"-",high
+  OCD-53,task,OCD-15,"Build profile sub-components (AvatarUpload, ActiveSessions, ApiTokens, PasswordChange)",backlog,"-",high
+  OCD-54,task,OCD-16,Create UserSettings class and settings page,backlog,"-",medium
+  OCD-55,task,OCD-16,Build notification preferences UI with toggle controls,backlog,"-",medium
+  OCD-56,task,OCD-17,Configure Jetstream Teams with custom roles and permissions,backlog,"-",high
+  OCD-57,task,OCD-17,"Build Team management pages (create, settings, invite members)",backlog,"-",high
+  OCD-58,task,OCD-18,"Build Landing page with hero, features, testimonials, CTA",backlog,"-",high
+  OCD-59,task,OCD-18,Build Download page with platform detection,backlog,"-",high
+  OCD-60,task,OCD-19,Build Support page with FAQ accordion and contact form,backlog,"-",medium
+  OCD-61,task,OCD-19,Build email subscription with double opt-in,backlog,"-",medium
+  OCD-62,task,OCD-20,"Build Blog backend (model, migration, controller, seeder)",backlog,"-",medium
+  OCD-63,task,OCD-20,"Build Blog frontend pages (listing, detail with markdown rendering)",backlog,"-",medium
+  OCD-64,task,OCD-21,"Build Marketplace backend (Extension model, categories, reviews)",backlog,"-",medium
+  OCD-65,task,OCD-21,"Build Marketplace frontend (catalog, detail, search, deep link install)",backlog,"-",medium
+  OCD-66,task,OCD-22,Build documentation file scanner and sidebar tree generator,backlog,"-",high
+  OCD-67,task,OCD-22,"Build documentation frontend (sidebar, content, breadcrumbs, edit link)",backlog,"-",high
+  OCD-68,task,OCD-23,Build documentation search backend (index and query),backlog,"-",medium
+  OCD-69,task,OCD-23,Build documentation search UI component,backlog,"-",medium
+  OCD-70,task,OCD-24,"Create dashboard data models and migrations (TaskEntry, TimeEntry, CommitEntry)",backlog,"-",high
+  OCD-71,task,OCD-24,Build Dashboard overview page with progress widgets and charts,backlog,"-",high
+  OCD-72,task,OCD-25,Build synced tasks page with project/epic/story/task hierarchy,backlog,"-",high
+  OCD-73,task,OCD-25,Build task sync service for real-time IDE updates,backlog,"-",high
+  OCD-74,task,OCD-26,Build Timer/Break/Pomodoro reports page with charts and filters,backlog,"-",medium
+  OCD-75,task,OCD-27,"Build Version Control page (commits, PRs, issues)",backlog,"-",high
+  OCD-76,task,OCD-27,Build AI Agent control panel with WebSocket communication,backlog,"-",high
+  OCD-77,task,OCD-28,Build Notification center with filters and agent alerts,backlog,"-",medium
+  OCD-78,task,OCD-28,Build Sprint tracking page with external sync,backlog,"-",medium
+  OCD-79,task,OCD-29,Build Team Activity widgets page with online/offline status,backlog,"-",high
+  OCD-80,task,OCD-29,Build Community page with real-time member activity indicators,backlog,"-",high
+  OCD-81,task,OCD-30,"Build Team Management page (invite, roles, bulk operations)",backlog,"-",high
+  OCD-82,task,OCD-30,Build member profile view for team owners,backlog,"-",medium
+  OCD-83,task,OCD-31,Build Admin entity CRUD system with data tables,backlog,"-",high
+  OCD-84,task,OCD-31,Build Admin team and content management CRUD,backlog,"-",medium
+  OCD-85,task,OCD-32,"Build Marketplace control panel (approve/reject, categories, analytics)",backlog,"-",medium
+  OCD-86,task,OCD-32,Build Feature Flags system,backlog,"-",medium
+  OCD-87,task,OCD-33,Build Push Updates and Marketing Notifications system,backlog,"-",medium
+  OCD-88,task,OCD-33,"Build Admin Analytics dashboard (DAU/WAU/MAU, extension metrics)",backlog,"-",medium
+  OCD-89,task,OCD-34,Install and configure Laravel Reverb WebSocket server,backlog,"-",high
+  OCD-90,task,OCD-34,Create all event classes and register listeners,backlog,"-",high
+  OCD-91,task,OCD-35,Install and configure Laravel Echo with Reverb in React,backlog,"-",high
+  OCD-92,task,OCD-35,Integrate real-time Echo listeners into all dashboard components,backlog,"-",high
+  OCD-93,task,OCD-36,Build Sanctum API controllers and resource classes,backlog,"-",high
+  OCD-94,task,OCD-36,"Configure API routes, rate limiting, and versioning",backlog,"-",high
+  OCD-95,task,OCD-36,"Build API sync controller for IDE data (time entries, commits, agent)",backlog,"-",high
+  OCD-96,epic,"-",Subscription & Billing System,backlog,"-",high
+  OCD-97,epic,"-",User Profile & Community System,backlog,"-",high
+  OCD-98,epic,"-",SEO & Analytics System,backlog,"-",medium
+  OCD-99,epic,"-",Payment Integration,backlog,"-",high
+  OCD-100,story,OCD-96,Database Schema & Models for Subscriptions,backlog,"-",high
+  OCD-101,story,OCD-96,Laravel Pennant Feature Flags,backlog,"-",high
+  OCD-102,story,OCD-96,Admin Subscription Management,backlog,"-",high
+  OCD-103,story,OCD-96,Team Subscription Logic,backlog,"-",high
+  OCD-104,task,OCD-100,Create subscription tables migration,backlog,"-",high
+  OCD-105,story,OCD-97,Database schema for profiles and community,backlog,"-",high
+  OCD-106,story,OCD-97,Profile models and relationships,backlog,"-",high
+  OCD-107,story,OCD-97,"Social features: posts, comments, likes, shares",backlog,"-",medium
+  OCD-108,story,OCD-97,Follow system implementation,backlog,"-",medium
+  OCD-109,story,OCD-97,Activity feed system,backlog,"-",low
+  OCD-110,story,OCD-97,Profile controller and routes,backlog,"-",high
+  OCD-111,story,OCD-97,Admin profile management dashboard,backlog,"-",medium
+  OCD-112,story,OCD-98,SSR setup with Inertia.js,backlog,"-",high
+  OCD-113,story,OCD-98,SeoService with meta tags and structured data,backlog,"-",high
+  OCD-114,story,OCD-98,Sitemap generation and scheduling,backlog,"-",medium
+  OCD-115,story,OCD-98,Firebase Analytics integration for web,backlog,"-",medium
+  OCD-116,story,OCD-99,GitHub Sponsors webhook integration,backlog,"-",high
+  OCD-117,story,OCD-99,Bank transfer payment flow,backlog,"-",medium
+  OCD-118,story,OCD-99,Manual payment processing for admins,backlog,"-",medium
+  OCD-119,task,OCD-105,Create profiles and community migration with 6 tables,backlog,"-",medium
+  OCD-120,task,OCD-113,Implement SeoService with 87 lines from PRD,backlog,"-",medium
+  OCD-121,task,OCD-116,Create GitHub Sponsors webhook controller with signature verification,backlog,"-",medium

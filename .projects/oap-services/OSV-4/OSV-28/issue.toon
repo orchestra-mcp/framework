@@ -1,0 +1,9 @@
+id: OSV-28
+type: story
+parent: OSV-4
+title: IThemeService Interface & Core Theme Engine
+status: done
+created: 2026-02-09
+user_story: "As a developer, I want a typed IThemeService so that extensions can register custom themes and the IDE can switch between them with CSS custom properties injected everywhere."
+points: 5
+acceptance_criteria[7]: IThemeService interface in src/app/Themes/IThemeService.ts,ThemeService implements registerTheme/setActiveTheme/getActiveTheme/getAvailableThemes/onDidChangeTheme,registerTheme returns Disposable,Built-in light and dark themes registered on startup,CSS custom properties map generated from ThemeDefinition.colors,Active theme persisted in settings across restarts,"Unit tests for theme registration, switching, and event firing"

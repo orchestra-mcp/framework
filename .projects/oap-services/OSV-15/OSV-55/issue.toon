@@ -1,0 +1,9 @@
+id: OSV-55
+type: story
+parent: OSV-15
+title: LSP VSCode Compatibility & Documentation
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want VSCode language extension compatibility and documentation so that existing VSCode language extensions work and developers know how to register new servers."
+points: 5
+acceptance_criteria[4]: VSCode language extension contributes.languages parsed from VSIX manifest,Language server config extracted from VSCode extension package.json,"IPC handlers: lsp:register, lsp:getActive, lsp:restart",docs/core-services/lsp-server.md with API reference and language server authoring guide

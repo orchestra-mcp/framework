@@ -1,0 +1,21 @@
+id: OSV-65
+type: task
+parent: OSV-19
+title: Write integration tests for Electron tray adapter and IPC handlers
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create integration tests that verify the Electron adapter and IPC handlers work correctly.\n\n**Target file to create:** `src/app/Tray/__tests__/ElectronTrayAdapter.test.ts` and `src/app/Tray/__tests__/handlers.test.ts`\n\n**Test approach:** Mock Electron APIs (`Tray`, `Menu`, `nativeImage`, `ipcMain`, `shell`).\n\n**Test cases for ElectronTrayAdapter:**\n1. Rebuilds menu when onDidChange fires\n2. Creates nativeImage from file path\n3. Creates colored circle for iconColor\n4. Inserts separators between groups\n5. Renders sub-menus correctly\n6. Routes IPC action on click\n7. Routes link action via shell.openExternal\n8. Sets accelerator from hotkey\n\n**Test cases for handlers:**\n1. tray:register calls service.register and returns id\n2. tray:update calls service.update\n3. tray:unregister calls service.unregister\n4. tray:getItems returns service.getItems()\n5. cleanupTrayHandlers removes all handlers"
+acceptance_criteria[4]: Test files exist at specified paths,Electron APIs properly mocked,All 13 test cases implemented and passing,Tests verify Tray.setContextMenu called with correct menu template
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-19
+epic: OSV-1
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-1/OSV-19/OSV-65.toon

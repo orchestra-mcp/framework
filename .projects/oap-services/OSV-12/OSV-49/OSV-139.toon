@@ -1,0 +1,20 @@
+id: OSV-139
+type: task
+parent: OSV-49
+title: "Implement widget theme integration, tray menu, and context menu"
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Add theme CSS injection, auto tray menu entries, and context menu for widgets.\n\n**Source reference:** Read `packages/desktop/src/main/services/widgetContextMenuService.ts` and `packages/desktop/src/main/services/widgetThemeService.ts`.\n\n**Target file to modify:** `src/app/Widgets/WidgetControlService.ts` (extend)\n**Target file to create:** `src/app/Widgets/WidgetContextMenu.ts`\n\n**Implementation:**\n1. Theme: reuse PanelThemeInjector from Panels module to inject CSS variables into widget windows\n2. Tray menu: on registerWidget, auto-register tray menu item via ITrayMenuService with toggle action\n3. Context menu: right-click on widget shows context menu with:\n   - Switch View (submenu of available views)\n   - Always On Top (toggle)\n   - Reset Position\n   - Close Widget"
+acceptance_criteria[5]: Widget windows receive theme CSS variables,Theme changes propagated to open widgets,Tray menu entry auto-created per registered widget,"Context menu with Switch View, Always On Top, Reset Position, Close",Context menu actions work correctly
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-49
+epic: OSV-12
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-12/OSV-49/OSV-139.toon

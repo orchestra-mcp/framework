@@ -1,0 +1,9 @@
+id: OC-70
+type: story
+parent: OC-53
+title: Integrate Firebase in Chrome extension
+status: backlog
+created: 2026-02-09
+user_story: "As a Chrome extension user, I want analytics tracked so that the team knows which features are most valuable"
+points: 2
+acceptance_criteria[4]: Firebase in background script,Extension install/update events tracked,Panel views tracked,User interactions tracked

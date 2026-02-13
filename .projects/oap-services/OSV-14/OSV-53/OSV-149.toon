@@ -1,0 +1,20 @@
+id: OSV-149
+type: task
+parent: OSV-53
+title: "Implement markdown export (HTML, plain text) and code block copy"
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Add export buttons and code block copy functionality to MarkdownRenderer.\n\n**Target files to create/modify:**\n- `src/app/Components/MarkdownExport.ts` — export utilities\n- `src/app/Components/CodeBlockActions.tsx` — code block overlay actions\n\n**MarkdownExport:**\n```typescript\nexport function copyAsHtml(html: string): void {\n  clipboard.writeText(html, 'text/html');\n  // Also write to clipboard as HTML mime type\n}\n\nexport function copyAsPlainText(html: string): void {\n  // Strip all HTML tags, preserve whitespace structure\n  const text = htmlToPlainText(html);\n  clipboard.writeText(text);\n}\n\nfunction htmlToPlainText(html: string): string {\n  // Replace <br> with \\n, <p> with \\n\\n, strip all other tags\n  // Preserve code block formatting\n}\n```\n\n**CodeBlockActions:**\n1. Overlay on each code block with: Copy button, Language label\n2. Copy button copies code content (not the HTML) to clipboard\n3. Language detected from code block class name\n\n**Theme integration:** Shiki theme derived from active ThemeDefinition.tokenColors. Map tokenColors to Shiki theme format."
+acceptance_criteria[5]: Copy as HTML preserves formatting,"Copy as plain text strips tags, preserves structure",Code block copy button copies raw code,Language label shown on code blocks,Shiki theme derived from active IDE theme
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-53
+epic: OSV-14
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-14/OSV-53/OSV-149.toon

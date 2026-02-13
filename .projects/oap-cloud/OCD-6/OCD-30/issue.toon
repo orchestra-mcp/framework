@@ -1,0 +1,9 @@
+id: OCD-30
+type: story
+parent: OCD-6
+title: "Team Management (Invite, Roles, Assignments)"
+status: backlog
+created: 2026-02-09
+user_story: "As a team owner, I want to invite/remove members, assign roles, and set task assignments so that I can manage my team effectively."
+points: 5
+acceptance_criteria[7]: Invite members by email with role selection,Remove members from team,Change member roles,Assign tasks to team members,View member profiles and activity summaries,Bulk invite via CSV upload,Pending invitations list with resend/cancel

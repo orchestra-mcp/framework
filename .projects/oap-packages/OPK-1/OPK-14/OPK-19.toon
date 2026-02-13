@@ -1,0 +1,17 @@
+id: OPK-19
+type: task
+parent: OPK-14
+title: Create Explorer directory structure
+status: done
+created: 2026-02-09
+assignee: null
+estimate_minutes: 15
+estimate_tokens: null
+description: "Create the complete directory tree for the Explorer package following the standard template from src/packages/example/.\n\nCreate these directories and files:\n- src/packages/explorer/src/ExplorerServiceProvider.ts (empty stub: export class ExplorerServiceProvider {})\n- src/packages/explorer/src/Services/ (empty directory)\n- src/packages/explorer/src/Http/ (empty directory)\n- src/packages/explorer/src/Models/ (empty directory)\n- src/packages/explorer/src/Jobs/ (empty directory)\n- src/packages/explorer/src/Notifications/ (empty directory)\n- src/packages/explorer/src/Panels/ (empty directory)\n- src/packages/explorer/src/Widgets/ (empty directory)\n- src/packages/explorer/database/ (empty directory)\n- src/packages/explorer/routes/web.ts (empty stub)\n- src/packages/explorer/routes/socket.ts (empty stub)\n- src/packages/explorer/resources/chrome/ (empty directory)\n- src/packages/explorer/resources/chrome/stores/ (empty directory)\n- src/packages/explorer/resources/desktop/ (empty directory)\n- src/packages/explorer/resources/web/ (empty directory)\n- src/packages/explorer/docs/README.md (placeholder)\n- src/packages/explorer/docs/api/README.md (placeholder)\n- src/packages/explorer/docs/guides/README.md (placeholder)\n- src/packages/explorer/docs/changelog/README.md (placeholder)\n- src/packages/explorer/tests/ (empty directory)\n\nReference: Use src/packages/example/ as the template for the structure."
+acceptance_criteria[3]: All directories listed above exist,All stub files are created with minimal valid TypeScript/markdown content,Directory structure matches the PRD specification exactly
+story: OPK-14
+epic: OPK-1
+project: oap-packages
+projectKey: OPK
+path: .projects/oap-packages/OPK-1/OPK-14/OPK-19.toon
+actual_minutes: 5

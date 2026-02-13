@@ -1,0 +1,17 @@
+id: OSV-103
+type: task
+parent: OSV-34
+title: Write unit tests for McpServerService
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+description: "Create comprehensive unit tests for McpServerService.\n\n**Target file:** `src/app/MCP/__tests__/McpServerService.test.ts`\n\n**Test cases:**\n1. registerTool stores tool and returns Disposable\n2. registerTool throws on name without namespace dot\n3. registerTool throws on duplicate name\n4. Disposable.dispose() removes tool\n5. registerResource stores resource\n6. registerPrompt stores prompt\n7. getRegisteredTools returns all tools\n8. executeTool calls handler with params\n9. executeTool validates params against schema (rejects invalid)\n10. executeTool catches handler errors and returns isError result\n11. unregisterTool removes tool from registry\n12. getRegisteredResources and getRegisteredPrompts return arrays"
+acceptance_criteria[4]: Test file at specified path,All 12 test cases implemented,All tests pass,Coverage >90%
+story: OSV-34
+epic: OSV-6
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-6/OSV-34/OSV-103.toon

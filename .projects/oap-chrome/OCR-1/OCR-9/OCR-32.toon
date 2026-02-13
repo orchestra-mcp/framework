@@ -1,0 +1,17 @@
+id: OCR-32
+type: task
+parent: OCR-9
+title: Extract 8 SVG icon components to shared icon files
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 25
+estimate_tokens: null
+description: "Extract the 8 hardcoded SVG icon components from `packages/chrome-extension/src/sidepanel/App.tsx` (lines 37-99) into individual files that can be imported by extension registration modules.\n\n**Source file:** `packages/chrome-extension/src/sidepanel/App.tsx` lines 37-99\n\n**Target files:** Each icon goes to its extension package's chrome resources:\n\n1. `ExplorerIcon` (lines 37-41) -> `src/packages/explorer/resources/chrome/icons/ExplorerIcon.tsx`\n2. `EditorIcon` (lines 43-48) -> `src/packages/editor/resources/chrome/icons/EditorIcon.tsx`\n3. `TasksIcon` (lines 50-58) -> `src/packages/tasks-manager/resources/chrome/icons/TasksIcon.tsx`\n4. `GitBranchIcon` (lines 60-67) -> `src/packages/version-control/resources/chrome/icons/GitBranchIcon.tsx`\n5. `TerminalIcon` (lines 69-75) -> `src/packages/terminal-manager/resources/chrome/icons/TerminalIcon.tsx`\n6. `DatabaseIcon` (lines 77-83) -> `src/packages/database-manager/resources/chrome/icons/DatabaseIcon.tsx`\n7. `ServicesIcon` (lines 85-90) -> `src/packages/os-services-manager/resources/chrome/icons/ServicesIcon.tsx`\n8. `LogsIcon` (lines 92-99) -> `src/packages/log-viewer/resources/chrome/icons/LogsIcon.tsx`\n\n**Each icon file pattern:**\n```typescript\n// Example: src/packages/explorer/resources/chrome/icons/ExplorerIcon.tsx\nexport const ExplorerIcon = () => (\n  <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.5\">\n    <path d=\"M3 7V17a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-8l-2-2H5a2 2 0 00-2 2z\" />\n  </svg>\n);\n```\n\nCopy the SVG JSX EXACTLY from App.tsx for each icon. Do not modify the SVG paths, viewBox, or stroke attributes.\n\nEach icon directory should also have an `index.ts` barrel:\n```typescript\nexport { ExplorerIcon } from './ExplorerIcon';\n```"
+acceptance_criteria[5]: 8 icon component files created in their respective extension package directories,SVG JSX matches the original App.tsx exactly (no modifications to paths or attributes),Each icon directory has an index.ts barrel export,Icons are exported as named exports (not default exports),Each icon is a React functional component returning an SVG element
+story: OCR-9
+epic: OCR-1
+project: oap-chrome
+projectKey: OCR
+projectKey: OCR
+path: .projects/oap-chrome/OCR-1/OCR-9/OCR-32.toon

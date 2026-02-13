@@ -1,0 +1,12 @@
+id: ODS-12
+type: task
+parent: ODS-7
+title: Create TypeScript types for color tokens
+status: done
+created: 2026-02-09
+description: "Create TypeScript interfaces and types for color tokens following the PRD specification.\n\n**File to create:** `/Users/fadymondy/Sites/orchestra-app/packages/design-system/tokens/src/types.ts`\n\n**Code:**\n```typescript\nexport interface ColorTokens {\n  // Brand colors\n  brand: {\n    primary: string;      // #a900ff - Orchestra purple\n    secondary: string;\n    tertiary: string;\n  };\n  \n  // Semantic colors\n  semantic: {\n    success: string;\n    warning: string;\n    error: string;\n    info: string;\n  };\n  \n  // Neutral colors\n  neutral: {\n    black: string;\n    white: string;\n    gray: {\n      50: string;\n      100: string;\n      200: string;\n      300: string;\n      400: string;\n      500: string;\n      600: string;\n      700: string;\n      800: string;\n      900: string;\n    };\n  };\n}\n\nexport interface ThemeColorTokens {\n  // Background\n  bg: string;\n  bgAlt: string;\n  bgContrast: string;\n  bgActive: string;\n  bgSelection: string;\n  \n  // Foreground\n  fg: string;\n  fgDim: string;\n  fgMuted: string;\n  fgBright: string;\n  \n  // Border\n  border: string;\n  \n  // Accent\n  accent: string;\n  \n  // Syntax\n  blue: string;\n  cyan: string;\n  green: string;\n  yellow: string;\n  orange: string;\n  red: string;\n  purple: string;\n  teal: string;\n}\n```"
+acceptance_criteria[4]: TypeScript types for ColorTokens created,TypeScript types for ThemeColorTokens created,All PRD color categories included,Types exported from index
+estimate_minutes: 15
+estimate_tokens: null
+assignee: null
+actual_minutes: 8

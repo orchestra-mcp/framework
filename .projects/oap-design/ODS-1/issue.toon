@@ -1,0 +1,7 @@
+id: ODS-1
+type: epic
+title: Design Tokens & Theme Engine
+status: done
+created: 2026-02-09
+description: "Build the foundation of the design system with design tokens, theme engine, and CSS custom properties. Port the existing Material Theme system from the Chrome extension and extract brand colors from the arts/ folder."
+priority: high

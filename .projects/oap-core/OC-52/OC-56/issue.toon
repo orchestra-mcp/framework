@@ -1,0 +1,9 @@
+id: OC-56
+type: story
+parent: OC-52
+title: Create AccountIntegrationService with OAuth support
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want a centralized service to manage third-party accounts so that I can securely connect to Cloudflare, GitHub, Google, and other services"
+points: 8
+acceptance_criteria[7]: Service manages multiple service accounts with encrypted storage,Supports API key and OAuth authentication methods,Reads OAuth client credentials from .env,Validates connections before storing,Provides CRUD operations for accounts,Integrates with EncryptionService for secure storage,Exports getCredentials() for decrypted access

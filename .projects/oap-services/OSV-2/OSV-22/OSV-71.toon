@@ -1,0 +1,21 @@
+id: OSV-71
+type: task
+parent: OSV-22
+title: Implement theme CSS injection into panel BrowserWindows
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create the logic that injects IDE theme CSS custom properties into every panel BrowserWindow.\n\n**Source reference:** Read `packages/desktop/src/widget-renderer/timer-panel-renderer.ts` and `packages/desktop/src/widget-renderer/calendar-panel-renderer.ts` to see how themes are currently applied to panels.\n\n**Target file to create:** `src/app/Panels/PanelThemeInjector.ts`\n\n**Implementation:**\n1. Class `PanelThemeInjector`:\n   - Constructor takes `IThemeService` \n   - Method `injectTheme(win: BrowserWindow)`: executes JS in webContents to set CSS variables on `document.documentElement`\n   - Subscribes to `themeService.onDidChangeTheme` and re-injects into all tracked windows\n   - Tracks open windows via WeakSet (auto-cleaned on GC)\n2. CSS injection:\n   ```typescript\n   const cssVars = themeService.getActiveTheme().colors;\n   const css = Object.entries(cssVars)\n     .map(([key, value]) => `--${key}: ${value}`)\n     .join('; ');\n   win.webContents.executeJavaScript(\n     `document.documentElement.style.cssText += '${css}'`\n   );\n   ```\n3. Integrate with PanelManagerService: after `openPanel()` creates window, call `themeInjector.injectTheme(win)`"
+acceptance_criteria[5]: PanelThemeInjector class in src/app/Panels/PanelThemeInjector.ts,injectTheme sets CSS custom properties on BrowserWindow,Theme changes re-inject into all open panels,Integration with PanelManagerService.openPanel(),"No memory leaks: windows tracked via WeakRef or cleaned on close"
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-22
+epic: OSV-2
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-2/OSV-22/OSV-71.toon

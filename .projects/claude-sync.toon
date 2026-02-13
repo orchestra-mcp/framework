@@ -1,0 +1,22 @@
+last_sync: "2026-02-06T01:47:54.638Z"
+last_totals:
+  "claude-opus-4-5-20251101":
+    inputTokens: 6280547
+    outputTokens: 6661654
+    cacheReadInputTokens: 13092355081
+    cacheCreationInputTokens: 530099877
+  "claude-sonnet-4-5-20250929":
+    inputTokens: 46140
+    outputTokens: 4728
+    cacheReadInputTokens: 168560583
+    cacheCreationInputTokens: 13740040
+  "hhao/qwen2.5-coder-tools:14b":
+    inputTokens: 0
+    outputTokens: 0
+    cacheReadInputTokens: 0
+    cacheCreationInputTokens: 0
+  "claude-sonnet-4-20250514":
+    inputTokens: 98
+    outputTokens: 141
+    cacheReadInputTokens: 359929
+    cacheCreationInputTokens: 91275

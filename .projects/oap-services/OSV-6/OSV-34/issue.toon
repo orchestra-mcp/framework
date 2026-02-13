@@ -1,0 +1,9 @@
+id: OSV-34
+type: story
+parent: OSV-6
+title: IMcpServerService Interface & Tool Registry
+status: done
+created: 2026-02-09
+user_story: "As a developer, I want a typed IMcpServerService so that extensions can dynamically register MCP tools, resources, and prompts with schema validation and namespacing."
+points: 8
+acceptance_criteria[7]: IMcpServerService interface in src/app/MCP/IMcpServerService.ts,McpServerService implements registerTool/registerResource/registerPrompt/unregisterTool/getRegisteredTools,registerTool returns Disposable,"Tool namespacing: extension.toolName format enforced",JSON Schema validation on tool inputs,Dynamic runtime registration and unregistration,"Unit tests for registration, namespacing, and schema validation"

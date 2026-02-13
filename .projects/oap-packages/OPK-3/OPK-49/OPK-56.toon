@@ -1,0 +1,17 @@
+id: OPK-56
+type: task
+parent: OPK-49
+title: Write Tasks Manager package documentation
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 20
+estimate_tokens: null
+description: "Create documentation for the Tasks Manager package.\n\n1. src/packages/tasks-manager/docs/README.md:\n   - Package overview: Jira-compatible task management with backlog trees, workflows, PRD wizard\n   - Architecture: TasksRpcHandlers + TimeTrackingReader + 16 Chrome UI components\n   - MCP tools provided (7 tools)\n   - Settings and widgets contributed\n\n2. src/packages/tasks-manager/docs/api/README.md:\n   - TasksRpcHandlers API: all handler functions with parameters and return types\n   - MCP tool schemas for all 7 tools\n   - WebSocket event reference\n   - Settings schema\n\n3. src/packages/tasks-manager/docs/guides/README.md:\n   - How to create and manage projects/epics/stories/tasks\n   - How to use the PRD wizard\n   - How to configure task sync\n   - How to use the workflow status system (backlog -> refinement -> ready -> in_progress -> review -> done)\n\n4. src/packages/tasks-manager/docs/changelog/README.md:\n   - \"## 0.1.0 - Initial migration from packages/extensions/tasks/ and packages/chrome-extension/src/sidepanel/tasks/\""
+acceptance_criteria[4]: All 4 docs files exist with substantive content,API reference covers all 7 MCP tools,Guides cover workflow and PRD wizard,Changelog has initial version
+story: OPK-49
+epic: OPK-3
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-3/OPK-49/OPK-56.toon

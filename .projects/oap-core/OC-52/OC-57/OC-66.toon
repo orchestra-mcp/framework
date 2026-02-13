@@ -1,0 +1,11 @@
+id: OC-66
+type: task
+parent: OC-57
+title: Register Google OAuth integration
+status: done
+created: 2026-02-09
+description: "Add Google OAuth integration (from PRD lines 581-602):\n- OAuth flow for Google accounts\n- Client credentials from .env\n- Scopes: email, profile\n- Token validation via Google userinfo endpoint"
+acceptance_criteria[4]: OAuth config complete,Credentials from .env,Validation works,Integration registered
+estimate_minutes: 25
+estimate_tokens: 10000
+assignee: null

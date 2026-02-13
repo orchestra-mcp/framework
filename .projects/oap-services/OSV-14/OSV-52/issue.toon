@@ -1,0 +1,9 @@
+id: OSV-52
+type: story
+parent: OSV-14
+title: MarkdownRenderer Component & Core Pipeline
+status: done
+created: 2026-02-09
+user_story: "As a developer, I want a shared MarkdownRenderer React component with a unified remark/rehype pipeline so that markdown is rendered consistently across Chrome ext, Electron panels, web, and mobile."
+points: 8
+acceptance_criteria[8]: MarkdownRenderer component in src/app/Components/MarkdownRenderer.tsx,Unified remark/rehype pipeline with GFM support,Shiki code block highlighting with theme integration,Table rendering with sorting and CSV export,Mermaid diagram rendering,Math/LaTeX rendering via remark-math + rehype-katex,Component works in React 18+ environments,Unit tests for each rendering feature

@@ -1,0 +1,21 @@
+id: OPK-42
+type: task
+parent: OPK-31
+title: Migrate editorStore.ts to Editor package
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 15
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Copy and adapt the Zustand store for the editor from chrome-extension.\n\nSOURCE: packages/chrome-extension/src/stores/editorStore.ts\nTARGET: src/packages/editor/resources/chrome/stores/editorStore.ts\n\nSteps:\n1. Copy the source file to the target location\n2. Update all import paths:\n   - Any imports from '../sidepanel/editor/' should reference '../' (parent)\n   - Any imports from other stores should be replaced with cross-package imports or local types\n3. If the store imports types from other packages, create local type aliases in the store file or import from ../../src/Services/types\n4. Ensure the store hook (e.g., useEditorStore) is exported\n\nDo NOT change store logic or state shape — only update import paths."
+acceptance_criteria[5]: editorStore.ts exists at src/packages/editor/resources/chrome/stores/editorStore.ts,All imports updated to use package-local paths,No imports reference packages/chrome-extension/,Store exports the same hook name,TypeScript compiles without errors
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OPK-31
+epic: OPK-2
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-2/OPK-31/OPK-42.toon

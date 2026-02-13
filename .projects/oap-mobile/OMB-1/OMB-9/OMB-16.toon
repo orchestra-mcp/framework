@@ -1,0 +1,23 @@
+id: OMB-16
+type: task
+parent: OMB-9
+title: "Install axios, Socket.io client, and create API/WebSocket service skeletons"
+status: done
+created: 2026-02-09
+assignee: Claude
+estimate_minutes: 30
+estimate_tokens: null
+actual_minutes: 10
+actual_tokens: 2000
+completed: 2026-02-10
+blockers: []
+description: "Install networking libraries and create service skeletons for API calls and WebSocket.\n\n1. Install dependencies:\n   ```bash\n   cd src/mobile\n   npm install axios socket.io-client\n   npm install -D @types/axios\n   ```\n\n2. Create `src/mobile/src/services/apiClient.ts`:\n   ```typescript\n   import axios, { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse } from 'axios';\n   import { config } from '@utils/config';\n   import { useAuthStore } from '@stores/authStore';\n\n   const apiClient: AxiosInstance = axios.create({\n     baseURL: config.apiBaseUrl + '/api',\n     timeout: 30000,\n     headers: {\n       'Content-Type': 'application/json',\n       'Accept': 'application/json',\n     },\n   });\n\n   // Request interceptor: attach Bearer token\n   apiClient.interceptors.request.use(\n     (requestConfig: InternalAxiosRequestConfig) => {\n       const token = useAuthStore.getState().token;\n       if (token) {\n         requestConfig.headers.Authorization = `Bearer ${token}`;\n       }\n       return requestConfig;\n     },\n     (error) => Promise.reject(error),\n   );\n\n   // Response interceptor: handle 401 (token expired)\n   apiClient.interceptors.response.use(\n     (response: AxiosResponse) => response,\n     (error) => {\n       if (error.response?.status === 401) {\n         useAuthStore.getState().logout();\n       }\n       return Promise.reject(error);\n     },\n   );\n\n   export { apiClient };\n   ```\n\n3. Create `src/mobile/src/services/socketService.ts`:\n   ```typescript\n   import { io, Socket } from 'socket.io-client';\n   import { config } from '@utils/config';\n   import { useAuthStore } from '@stores/authStore';\n\n   class SocketService {\n     private socket: Socket | null = null;\n\n     connect(): void {\n       const token = useAuthStore.getState().token;\n       if (!token) return;\n\n       this.socket = io(config.wsUrl, {\n         auth: { token },\n         transports: ['websocket'],\n         reconnection: true,\n         reconnectionAttempts: 10,\n         reconnectionDelay: 1000,\n       });\n\n       this.socket.on('connect', () => {\n         console.log('[Socket] Connected');\n       });\n\n       this.socket.on('disconnect', (reason) => {\n         console.log('[Socket] Disconnected:', reason);\n       });\n\n       this.socket.on('connect_error', (error) => {\n         console.error('[Socket] Connection error:', error.message);\n       });\n     }\n\n     disconnect(): void {\n       if (this.socket) {\n         this.socket.disconnect();\n         this.socket = null;\n       }\n     }\n\n     on<T = unknown>(event: string, callback: (data: T) => void): void {\n       this.socket?.on(event, callback);\n     }\n\n     off(event: string): void {\n       this.socket?.off(event);\n     }\n\n     emit<T = unknown>(event: string, data?: T): void {\n       this.socket?.emit(event, data);\n     }\n\n     get isConnected(): boolean {\n       return this.socket?.connected ?? false;\n     }\n   }\n\n   export const socketService = new SocketService();\n   ```\n\n4. Create `src/mobile/src/services/index.ts`:\n   ```typescript\n   export { apiClient } from './apiClient';\n   export { socketService } from './socketService';\n   ```\n\n5. Verify: `npx tsc --noEmit` passes with no errors."
+acceptance_criteria[6]: axios and socket.io-client installed in package.json,"apiClient.ts creates an axios instance with baseURL from config, Bearer token interceptor, and 401 logout handler",socketService.ts creates a Socket.io singleton with connect/disconnect/on/off/emit methods,Both services import config and auth store correctly,Services export from services/index.ts barrel file,npx tsc --noEmit passes with no errors
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OMB-9
+epic: OMB-1
+project: oap-mobile
+projectKey: OMB
+path: .projects/oap-mobile/OMB-1/OMB-9/OMB-16.toon

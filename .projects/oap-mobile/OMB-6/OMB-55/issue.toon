@@ -1,0 +1,9 @@
+id: OMB-55
+type: story
+parent: OMB-6
+title: Markdown Renderer and Chart Components
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want a React Native markdown renderer using the same remark/rehype pipeline as other platforms and reusable chart components, so that task descriptions render consistently and dashboards display data visually."
+points: 8
+acceptance_criteria[7]: "Markdown renderer component handles: headings, bold, italic, links, code blocks, inline code, lists, blockquotes, images, tables",Code blocks have syntax highlighting with a dark theme,Links are tappable and open in system browser,Images load with loading placeholder and error fallback,"BarChart, LineChart, and PieChart wrapper components with Orchestra styling",Charts accept simple data props and handle empty/loading states,Markdown renderer matches visual appearance of web/IDE markdown rendering

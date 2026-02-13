@@ -1,0 +1,21 @@
+id: OPK-55
+type: task
+parent: OPK-48
+title: Implement TasksManagerServiceProvider with all registrations
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 30
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Implement the full TasksManagerServiceProvider.\n\nTARGET: src/packages/tasks-manager/src/TasksManagerServiceProvider.ts\n\nThe class must:\n1. Import TasksRpcHandlers from './Services/TasksRpcHandlers'\n2. Implement boot() method that:\n   a. Registers sidebar entry: { id: 'tasks', title: 'Tasks', icon: 'check-square', component: 'TasksPanel', order: 3 }\n   b. Registers MCP tools: create_project, create_epic, create_story, create_task, get_next_task, complete_task, search_tasks (delegate to TasksRpcHandlers)\n   c. Registers search provider: { id: 'task-search', name: 'Tasks', search: (query) => tasksRpcHandlers.search(query) }\n   d. Registers settings: { 'tasks.syncEnabled': true, 'tasks.providers': [] }\n   e. Registers tray menu: { label: 'My Tasks', command: 'tasks.showMyTasks', order: 20 }\n   f. Registers widget: { id: 'task-summary', title: 'Task Summary', component: 'Dashboard' }\n3. Implement shutdown() that cleans up\n4. Export as default"
+acceptance_criteria[9]: TasksManagerServiceProvider fully implemented,boot() registers sidebar entry with check-square icon,boot() registers 7 MCP tools,boot() registers task search provider,boot() registers 2 settings,boot() registers tray menu My Tasks,boot() registers task-summary widget,shutdown() cleans up,TypeScript compiles
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OPK-48
+epic: OPK-3
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-3/OPK-48/OPK-55.toon

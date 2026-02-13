@@ -1,0 +1,25 @@
+id: OC-22
+type: task
+parent: OC-16
+title: Create ExtensionHost.ts with lifecycle management and error isolation
+status: done
+created: 2026-02-09
+assignee: null
+estimate_minutes: 45
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "**File to create:** `src/app/Providers/ExtensionHost.ts`\n\n**Reference file to copy from:** `packages/desktop/src/main/platform/extensionHost.ts`\n\n**What to do:**\n1. Create `src/app/Providers/ExtensionHost.ts`\n2. Copy the reference ExtensionHost class and adapt imports to use the new paths:\n   - Import types from `./types` (not from `./types/extension`)\n   - Import `scanExtensions` from `./ExtensionScanner`\n   - Import `ServiceRegistry` from `./ServiceRegistry`\n\n3. **Keep the following methods exactly as-is from reference:**\n   - `constructor(extensionsPath, storagePath)`\n   - `setServiceRegistry(registry)`\n   - `discoverExtensions()` — calls scanExtensions\n   - `loadExtension(manifest, extensionPath)` — creates internal MutableExtension\n   - `activateExtension(id)` — imports module, calls activate with timeout\n   - `deactivateExtension(id)` — calls deactivate, disposes subscriptions\n   - `getExtension(id)`, `getAllExtensions()`, `hasExtension(id)`\n   - `unloadExtension(id)` — removes from memory\n   - `shutdown()` — deactivates all active extensions\n   - `installErrorHandler()` — traces uncaught errors to source extension\n   - `safeCall(extensionId, fn)` — error-isolated function call\n\n4. **ADD dependency-order activation:**\n```typescript\n/**\n * Activate all discovered extensions in dependency order.\n * Reads extensionDependencies from manifests and uses topological sort.\n */\nasync activateAll(): Promise<void> {\n  const order = this.topologicalSort();\n  for (const id of order) {\n    try {\n      await this.activateExtension(id);\n    } catch (err) {\n      console.error(`[ExtensionHost] Failed to activate ${id}, continuing with others:`, err);\n    }\n  }\n}\n\n/**\n * Topological sort of extensions by their extensionDependencies.\n * Throws if a circular dependency is detected.\n */\nprivate topologicalSort(): string[] {\n  const visited = new Set<string>();\n  const visiting = new Set<string>();\n  const result: string[] = [];\n\n  const visit = (id: string) => {\n    if (visited.has(id)) return;\n    if (visiting.has(id)) {\n      throw new Error(`Circular extension dependency detected involving: ${id}`);\n    }\n    visiting.add(id);\n    const ext = this.extensions.get(id);\n    if (ext?.manifest.extensionDependencies) {\n      for (const dep of ext.manifest.extensionDependencies) {\n        if (this.extensions.has(dep)) {\n          visit(dep);\n        }\n      }\n    }\n    visiting.delete(id);\n    visited.add(id);\n    result.push(id);\n  };\n\n  for (const id of this.extensions.keys()) {\n    visit(id);\n  }\n  return result;\n}\n```\n\n5. **ADD enable/disable support:**\n```typescript\nprivate readonly disabledExtensions = new Set<string>();\n\ndisableExtension(id: string): void {\n  this.disabledExtensions.add(id);\n}\n\nenableExtension(id: string): void {\n  this.disabledExtensions.delete(id);\n}\n\nisDisabled(id: string): boolean {\n  return this.disabledExtensions.has(id);\n}\n```\nModify `activateAll()` to skip disabled extensions.\n\n6. **Export from index.ts:**\n```typescript\nexport { ExtensionHost, createExtensionHost } from './ExtensionHost';\n```\n\n**Verification:** `pnpm typecheck` passes. The class can be instantiated with a path to `src/packages/`."
+acceptance_criteria[12]: src/app/Providers/ExtensionHost.ts exists and exports ExtensionHost class,ExtensionHost scans src/packages/ using ExtensionScanner,loadExtension creates internal MutableExtension with correct state tracking,"activateExtension imports the module, calls activate() with 10s timeout",deactivateExtension calls deactivate() with 5s timeout and disposes subscriptions,activateAll() activates extensions in topological (dependency) order,topologicalSort() throws on circular extension dependencies,"Error isolation: one extension failure does not prevent others from activating",installErrorHandler traces uncaught errors to source extension via stack analysis,"Enable/disable support: disabledExtensions set, skip disabled in activateAll",createExtensionHost factory function is exported,File passes pnpm typecheck
+
+**IMPORTANT:** Before starting, use the Read tool to read `packages/desktop/src/main/platform/extensionHost.ts` to understand the structure and implementation patterns.
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+
+**IMPORTANT:** Before starting, use the Read tool to read `packages/desktop/src/main/platform/extensionHost.ts` to understand the structure and implementation patterns.
+story: OC-16
+epic: OC-2
+project: oap-core
+projectKey: OC
+projectKey: OC
+path: .projects/oap-core/OC-2/OC-16/OC-22.toon

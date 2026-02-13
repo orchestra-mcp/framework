@@ -1,0 +1,16 @@
+id: OPK-125
+type: task
+parent: OPK-119
+title: Migrate and update Time Tracker unit tests
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 15
+estimate_tokens: null
+description: "Copy and adapt existing tests.\n\nFILE MAPPING:\n1. packages/extensions/time-tracker/src/__tests__/TimerService.test.ts -> src/packages/time-tracker/tests/TimerService.test.ts\n2. packages/extensions/time-reports/src/__tests__/ReportService.test.ts -> src/packages/time-tracker/tests/ReportService.test.ts\n\nUpdate imports, ensure tests pass."
+acceptance_criteria[3]: Both test files exist,Imports updated,Tests pass
+story: OPK-119
+epic: OPK-9
+project: oap-packages
+projectKey: OPK
+path: .projects/oap-packages/OPK-9/OPK-119/OPK-125.toon

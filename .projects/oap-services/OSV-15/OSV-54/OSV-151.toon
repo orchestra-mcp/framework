@@ -1,0 +1,20 @@
+id: OSV-151
+type: task
+parent: OSV-54
+title: Define ILspServerService interface and language server types
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create the TypeScript interface and types for the LSP Server Service.\n\n**Source reference:** Read these files:\n- `packages/desktop/src/main/platform/lspClient.ts`\n- `packages/desktop/src/main/platform/lspServers/` directory\n- `packages/desktop/src/main/services/lspManagerService.ts` (if exists)\n\n**Target files to create:**\n- `src/app/LSP/ILspServerService.ts`\n- `src/app/LSP/types.ts`\n\n**Exact interfaces:**\n```typescript\n// src/app/LSP/types.ts\nexport interface LanguageServerConfig {\n  id: string;\n  name: string;\n  languageIds: string[];      // e.g. ['typescript', 'javascript']\n  filePatterns: string[];     // e.g. ['*.ts', '*.tsx', '*.js']\n  command: string;            // binary path or command\n  args?: string[];\n  env?: Record<string, string>;\n  initializationOptions?: any;\n  settings?: Record<string, any>;\n  downloadUrl?: string;       // auto-download if binary missing\n  version?: string;\n}\n\nexport interface LanguageServerInfo {\n  config: LanguageServerConfig;\n  status: 'stopped' | 'starting' | 'running' | 'error';\n  pid?: number;\n  capabilities?: any;  // LSP ServerCapabilities\n}\n\n// src/app/LSP/ILspServerService.ts\nexport interface ILspServerService {\n  registerLanguageServer(config: LanguageServerConfig): Disposable;\n  getActiveServers(): LanguageServerInfo[];\n  getServerForLanguage(languageId: string): LanguageServerInfo | undefined;\n  startServer(id: string): Promise<void>;\n  stopServer(id: string): Promise<void>;\n  restartServer(languageId: string): Promise<void>;\n  onServerStarted: Event<LanguageServerInfo>;\n  onServerStopped: Event<string>;\n}\n```"
+acceptance_criteria[5]: src/app/LSP/ILspServerService.ts with full interface,src/app/LSP/types.ts with LanguageServerConfig and LanguageServerInfo,Config supports downloadUrl for auto-download,"Server status tracking: stopped, starting, running, error",registerLanguageServer returns Disposable
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-54
+epic: OSV-15
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-15/OSV-54/OSV-151.toon

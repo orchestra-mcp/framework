@@ -1,0 +1,9 @@
+id: OMB-7
+type: story
+parent: OMB-1
+title: Scaffold React Native Project & TypeScript Config
+status: done
+created: 2026-02-09
+user_story: "As a developer, I want a properly scaffolded React Native 0.76+ project at src/mobile/ with strict TypeScript 5.9 configuration, so that I have a working foundation to build all mobile features on."
+points: 5
+acceptance_criteria[8]: React Native 0.76+ project initialized at src/mobile/ using @react-native-community/cli,TypeScript 5.9 strict mode enabled in tsconfig.json,Project builds and runs on both iOS simulator and Android emulator,"Folder structure matches PRD: src/mobile/src/{app,components,stores,services,navigation,theme,utils}/",Metro bundler configured in metro.config.js,"package.json has correct scripts: start, ios, android, test, lint",ESLint configured with @react-native/eslint-config,app.json configured with correct app name and bundle identifier

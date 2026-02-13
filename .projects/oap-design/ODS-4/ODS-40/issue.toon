@@ -1,0 +1,9 @@
+id: ODS-40
+type: story
+parent: ODS-4
+title: "Dropdown system (Dropdown, Popover, Tooltip, ContextMenu)"
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want dropdown and popover components so that I can display contextual content and menus that are properly positioned."
+points: 8
+acceptance_criteria[6]: Dropdown component with trigger and content,Popover component with positioning,Tooltip component with hover delay,ContextMenu component for right-click menus,Auto-positioning to stay in viewport,Click outside to close

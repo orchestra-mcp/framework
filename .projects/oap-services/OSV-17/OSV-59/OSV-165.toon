@@ -1,0 +1,20 @@
+id: OSV-165
+type: task
+parent: OSV-59
+title: Implement TextMate grammar registry and semantic token registry
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create the TextMate service and semantic token registry for syntax highlighting.\n\n**Source reference:** Read:\n- `packages/desktop/src/main/platform/textmateService.ts`\n- `packages/desktop/src/main/platform/semanticTokenRegistry.ts` (if exists)\n\n**Target files to create:**\n- `src/app/VS/TextMateRegistry.ts`\n- `src/app/VS/SemanticTokenRegistry.ts`\n\n**TextMateRegistry:**\n1. `Map<string, TextMateGrammar>` keyed by scopeName\n2. `registerGrammar(grammar: TextMateGrammar): Disposable`\n3. `getGrammar(scopeName: string): TextMateGrammar | undefined`\n4. `getGrammarForLanguage(languageId: string): TextMateGrammar | undefined`\n5. Language-to-scope mapping from VSCode extension manifests\n6. Integration: grammars feed into Shiki highlighter for code blocks\n\n**SemanticTokenRegistry:**\n1. Stores semantic token types and modifiers\n2. `registerTokenType(type: string, description: string): Disposable`\n3. `registerTokenModifier(modifier: string, description: string): Disposable`\n4. Maps token types to theme colors via ThemeDefinition.tokenColors\n5. Standard types: `namespace`, `type`, `class`, `enum`, `interface`, `struct`, `parameter`, `variable`, `property`, `function`, `method`, `keyword`, `comment`, `string`, `number`, `regexp`, `operator`"
+acceptance_criteria[5]: TextMateRegistry stores grammars by scopeName,Language-to-scope mapping works,SemanticTokenRegistry stores standard token types,Both registries use Disposable pattern,Integration point with ThemeService for color resolution
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-59
+epic: OSV-17
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-17/OSV-59/OSV-165.toon

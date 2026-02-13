@@ -1,0 +1,9 @@
+id: OCD-19
+type: story
+parent: OCD-3
+title: Support Page & Email Subscription
+status: backlog
+created: 2026-02-09
+user_story: "As a visitor, I want to find answers to common questions, contact support, and subscribe to updates so that I can get help and stay informed."
+points: 5
+acceptance_criteria[6]: Support page with FAQ accordion (admin-manageable),Contact form that sends email to admin and creates notification,Email subscription form with double opt-in,Unsubscribe link in emails,FAQ CRUD in admin panel,Subscription model with email verification

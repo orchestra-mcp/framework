@@ -1,0 +1,9 @@
+id: ODS-43
+type: story
+parent: ODS-5
+title: Chrome extension adapter
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want a Chrome extension adapter so that the design system works in Chrome extension contexts with proper CSP compliance."
+points: 5
+acceptance_criteria[6]: Content Security Policy compliant styling,No inline styles or scripts,Proper shadow DOM support,Extension-specific optimizations,Message passing for theme sync,Documentation for extension usage

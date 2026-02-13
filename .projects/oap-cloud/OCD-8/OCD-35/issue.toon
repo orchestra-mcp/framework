@@ -1,0 +1,9 @@
+id: OCD-35
+type: story
+parent: OCD-8
+title: Laravel Echo Frontend & Real-time UI Integration
+status: backlog
+created: 2026-02-09
+user_story: "As a frontend developer, I want Laravel Echo configured in React so that all dashboard widgets update in real time without page refreshes."
+points: 5
+acceptance_criteria[7]: Laravel Echo + Socket.io client installed in React,Echo configured to connect to Reverb,Presence channels for team activity working,Private channels for user-specific data working,React hooks for subscribing to channels,Real-time updates render on all dashboard widgets,Connection status indicator in UI

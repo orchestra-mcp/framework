@@ -1,0 +1,17 @@
+# OMB-18: Login, Register, and Reset Password Screens
+
+**Type**: Story | **Status**: backlog | **Points**: 8
+
+As a user, I want to log in with email/password, register a new account, and reset my password, so that I can access the Orchestra mobile app with my cloud platform credentials.
+
+## Acceptance Criteria
+
+- [ ] Login screen with email and password fields, 'Forgot Password?' link, and submit button
+- [ ] Register screen with name, email, password, confirm password fields and submit button
+- [ ] Reset Password screen with email field and submit button
+- [ ] All forms validate input (email format, password min length 8, passwords match)
+- [ ] API calls to Sanctum endpoints: POST /api/login, POST /api/register, POST /api/forgot-password
+- [ ] Loading states shown during API calls
+- [ ] Error messages displayed for validation failures and API errors
+- [ ] Successful login stores token via secureStorage and navigates to Main
+- [ ] Auth stack navigator connects all three screens

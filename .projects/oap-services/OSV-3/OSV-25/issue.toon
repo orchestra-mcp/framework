@@ -1,0 +1,9 @@
+id: OSV-25
+type: story
+parent: OSV-3
+title: ISettingsService Interface & Storage Engine
+status: done
+created: 2026-02-09
+user_story: "As a developer, I want a typed ISettingsService interface with JSON storage so that extensions can register settings groups and individual settings with validation, defaults, and atomic writes."
+points: 8
+acceptance_criteria[7]: ISettingsService interface in src/app/Settings/ISettingsService.ts,SettingsService implements registerGroup/registerSetting/get/set/onDidChange/exportSettings/importSettings,registerGroup and registerSetting return Disposable,"Local JSON storage with atomic writes (write to temp, rename)","Validation functions run on set(), reject invalid values",onDidChange fires per-key callbacks and cross-process IPC broadcasts,Unit tests for all methods including validation edge cases

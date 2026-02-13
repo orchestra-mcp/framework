@@ -1,0 +1,18 @@
+id: OPK-20
+type: task
+parent: OPK-14
+title: Create Explorer package.json with contributes manifest
+status: done
+created: 2026-02-09
+assignee: null
+estimate_minutes: 10
+estimate_tokens: null
+blockers: "[]"
+description: "Create src/packages/explorer/package.json with the following content:\n\n{\n  \"name\": \"@orchestra/explorer\",\n  \"version\": \"0.1.0\",\n  \"private\": true,\n  \"main\": \"src/ExplorerServiceProvider.ts\",\n  \"contributes\": {\n    \"sidebar\": [{ \"id\": \"explorer\", \"title\": \"Explorer\", \"icon\": \"folder\" }],\n    \"mcpTools\": [\"list_files\", \"read_file\", \"write_file\"],\n    \"searchProviders\": [\"file\"],\n    \"settings\": {\n      \"explorer.excludePatterns\": { \"type\": \"array\", \"default\": [\"node_modules\", \".git\"] },\n      \"explorer.showHiddenFiles\": { \"type\": \"boolean\", \"default\": false }\n    },\n    \"trayMenu\": [{ \"label\": \"Open Workspace\", \"command\": \"explorer.openWorkspace\" }]\n  },\n  \"dependencies\": {},\n  \"devDependencies\": {}\n}\n\nThis manifest tells the core service loader what the Explorer package contributes to the application."
+acceptance_criteria: "[\"package.json exists at src/packages/explorer/package.json\", \"Has correct name @orchestra/explorer\", \"contributes.sidebar has explorer entry with folder icon\", \"contributes.mcpTools lists list_files, read_file, write_file\", \"contributes.searchProviders lists file\", \"contributes.settings has excludePatterns and showHiddenFiles\", \"contributes.trayMenu has Open Workspace entry\"]"
+story: OPK-14
+epic: OPK-1
+project: oap-packages
+projectKey: OPK
+path: .projects/oap-packages/OPK-1/OPK-14/OPK-20.toon
+actual_minutes: 2

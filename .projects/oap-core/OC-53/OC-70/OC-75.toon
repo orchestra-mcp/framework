@@ -1,0 +1,11 @@
+id: OC-75
+type: task
+parent: OC-70
+title: Add Firebase to Chrome extension background
+status: done
+created: 2026-02-09
+description: "Integrate Firebase in Chrome extension from PRD lines 1144-1152:\n- Initialize in background script\n- Track extension_installed event\n- Track version from manifest"
+acceptance_criteria[4]: Firebase in background.js,Install event tracked,Version included,Works in production
+estimate_minutes: 15
+estimate_tokens: 7000
+assignee: null

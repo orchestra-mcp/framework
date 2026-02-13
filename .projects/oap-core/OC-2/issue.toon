@@ -1,0 +1,7 @@
+id: OC-2
+type: epic
+title: Extension Runtime & DI Container
+status: done
+created: 2026-02-09
+description: "Build the ServiceRegistry (DI container), ExtensionHost (discovers and loads packages), LifecycleService, ActivationService. Migrated from packages/desktop/src/main/platform/ into src/app/Providers/."
+priority: high

@@ -1,0 +1,20 @@
+id: OPK-146
+type: task
+parent: OPK-141
+title: Migrate calendar service files and providers
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 35
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Copy and adapt all calendar service files from extensions/calendar/.\n\nFILE MAPPING (source -> target):\nCore services:\n1. packages/extensions/calendar/src/CalendarService.ts -> src/packages/event-tracker/src/Services/CalendarService.ts\n2. packages/extensions/calendar/src/MultiAccountCalendarService.ts -> src/packages/event-tracker/src/Services/MultiAccountCalendarService.ts\n3. packages/extensions/calendar/src/MeetingReminderService.ts -> src/packages/event-tracker/src/Services/MeetingReminderService.ts\n4. packages/extensions/calendar/src/OAuthService.ts -> src/packages/event-tracker/src/Services/OAuthService.ts (add TODO comment: \"// TODO: Replace with AccountCenter service integration\")\n5. packages/extensions/calendar/src/calendarHandlers.ts -> src/packages/event-tracker/src/Services/calendarHandlers.ts\n6. packages/extensions/calendar/src/trayMenuIntegration.ts -> src/packages/event-tracker/src/Services/trayMenuIntegration.ts\n7. packages/extensions/calendar/src/types.ts -> src/packages/event-tracker/src/Services/types.ts\n8. packages/extensions/calendar/src/index.ts -> src/packages/event-tracker/src/Services/index.ts\n\nProviders:\n9. packages/extensions/calendar/src/providers/GoogleProvider.ts -> src/packages/event-tracker/src/Services/Providers/GoogleProvider.ts\n10. packages/extensions/calendar/src/providers/OutlookProvider.ts -> src/packages/event-tracker/src/Services/Providers/OutlookProvider.ts\n11. packages/extensions/calendar/src/providers/AppleProvider.ts -> src/packages/event-tracker/src/Services/Providers/AppleProvider.ts\n12. packages/extensions/calendar/src/providers/types.ts -> src/packages/event-tracker/src/Services/Providers/types.ts\n13. packages/extensions/calendar/src/providers/index.ts -> src/packages/event-tracker/src/Services/Providers/index.ts\n\nDesktop panel:\n14. packages/desktop/src/main/services/calendarPanelService.ts -> src/packages/event-tracker/src/Panels/CalendarPanelService.ts\n\nFor each: copy, update imports, preserve signatures."
+acceptance_criteria[6]: All 14 files exist at target paths,"Providers/ has Google, Outlook, Apple providers + types + index",OAuthService has TODO comment for AccountCenter,CalendarPanelService in src/Panels/,No imports reference packages/extensions/calendar/ or packages/desktop/,TypeScript compiles
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OPK-141
+epic: OPK-11
+project: oap-packages
+projectKey: OPK
+path: .projects/oap-packages/OPK-11/OPK-141/OPK-146.toon

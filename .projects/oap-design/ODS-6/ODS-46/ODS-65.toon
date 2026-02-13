@@ -1,0 +1,11 @@
+id: ODS-65
+type: task
+parent: ODS-46
+title: Audit Chrome extension components and create migration plan
+status: backlog
+created: 2026-02-09
+description: "Analyze all Chrome extension components and create a detailed migration plan.\n\n**Files to analyze:**\n- `/Users/fadymondy/Sites/orchestra-app/packages/chrome-extension/src/sidepanel/` (all component files)\n- `/Users/fadymondy/Sites/orchestra-app/packages/chrome-extension/src/theme/themeManager.ts`\n\n**Tasks:**\n1. List all custom components in sidepanel\n2. Identify which design system components can replace them\n3. Note any custom styling that needs migration\n4. Document breaking changes\n5. Create migration checklist\n\n**Output file:** `/Users/fadymondy/Sites/orchestra-app/.projects/oap-design/ODS-6/ODS-46/migration-plan.md`\n\n**Expected findings:**\n- DatabasePanel, QueryEditor, SchemaTree → Use design system Table, Input, Tree components\n- SourceControlPanel, BranchesPanel → Use design system List, Card components\n- All custom styles → Replace with design system utilities\n- themeManager.ts → Replace with ThemeProvider from design system"
+acceptance_criteria[5]: All sidepanel components inventoried,Design system replacement mapping created,Migration checklist with priorities,Breaking changes documented,Estimated effort per component
+estimate_minutes: 35
+estimate_tokens: 18000
+assignee: null

@@ -1,0 +1,11 @@
+id: OC-73
+type: task
+parent: OC-68
+title: Write tests for FirebaseService
+status: done
+created: 2026-02-09
+description: "Test suite covering:\n- Initialization with valid/invalid config\n- Event logging\n- User properties\n- Performance traces\n- Platform detection\n- Error handling and graceful degradation"
+acceptance_criteria[4]: All methods tested,Mock Firebase SDK,Edge cases covered,Tests pass
+estimate_minutes: 30
+estimate_tokens: 12000
+assignee: null

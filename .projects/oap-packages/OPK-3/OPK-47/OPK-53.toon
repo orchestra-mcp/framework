@@ -1,0 +1,21 @@
+id: OPK-53
+type: task
+parent: OPK-47
+title: Migrate Tasks Manager Chrome UI components
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 40
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Copy and adapt all 16 task panel React components from chrome-extension into the Tasks Manager package.\n\nFILE MAPPING (source -> target):\n1. packages/chrome-extension/src/sidepanel/tasks/TasksPanel.tsx -> src/packages/tasks-manager/resources/chrome/TasksPanel.tsx\n2. packages/chrome-extension/src/sidepanel/tasks/BacklogTree.tsx -> src/packages/tasks-manager/resources/chrome/BacklogTree.tsx\n3. packages/chrome-extension/src/sidepanel/tasks/TaskDetailView.tsx -> src/packages/tasks-manager/resources/chrome/TaskDetailView.tsx\n4. packages/chrome-extension/src/sidepanel/tasks/Dashboard.tsx -> src/packages/tasks-manager/resources/chrome/Dashboard.tsx\n5. packages/chrome-extension/src/sidepanel/tasks/FilterBar.tsx -> src/packages/tasks-manager/resources/chrome/FilterBar.tsx\n6. packages/chrome-extension/src/sidepanel/tasks/TreeNode.tsx -> src/packages/tasks-manager/resources/chrome/TreeNode.tsx\n7. packages/chrome-extension/src/sidepanel/tasks/WorkflowStatus.tsx -> src/packages/tasks-manager/resources/chrome/WorkflowStatus.tsx\n8. packages/chrome-extension/src/sidepanel/tasks/CreateForms.tsx -> src/packages/tasks-manager/resources/chrome/CreateForms.tsx\n9. packages/chrome-extension/src/sidepanel/tasks/ProjectSelector.tsx -> src/packages/tasks-manager/resources/chrome/ProjectSelector.tsx\n10. packages/chrome-extension/src/sidepanel/tasks/PrdWizard.tsx -> src/packages/tasks-manager/resources/chrome/PrdWizard.tsx\n11. packages/chrome-extension/src/sidepanel/tasks/ContextMenu.tsx -> src/packages/tasks-manager/resources/chrome/ContextMenu.tsx\n12. packages/chrome-extension/src/sidepanel/tasks/SyncConflictDialog.tsx -> src/packages/tasks-manager/resources/chrome/SyncConflictDialog.tsx\n13. packages/chrome-extension/src/sidepanel/tasks/TimeReportPanel.tsx -> src/packages/tasks-manager/resources/chrome/TimeReportPanel.tsx\n14. packages/chrome-extension/src/sidepanel/tasks/AlarmSettings.tsx -> src/packages/tasks-manager/resources/chrome/AlarmSettings.tsx\n15. packages/chrome-extension/src/sidepanel/tasks/PomodoroCycleSetup.tsx -> src/packages/tasks-manager/resources/chrome/PomodoroCycleSetup.tsx\n16. packages/chrome-extension/src/sidepanel/tasks/PomodoroPanel.tsx -> src/packages/tasks-manager/resources/chrome/PomodoroPanel.tsx\n\nFor each file:\n1. Copy to target location\n2. Update all import paths: change '../stores/tasksStore' to './stores/tasksStore'\n3. Update cross-component imports to be relative within resources/chrome/\n4. Update any shared component imports (e.g., from '../components/') to use package-local paths or copy shared components\n5. Do NOT modify component logic — only update import paths"
+acceptance_criteria[4]: All 16 .tsx files exist in src/packages/tasks-manager/resources/chrome/,All import paths updated to package-local relative paths,No imports reference packages/chrome-extension/,TypeScript compiles without errors
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OPK-47
+epic: OPK-3
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-3/OPK-47/OPK-53.toon

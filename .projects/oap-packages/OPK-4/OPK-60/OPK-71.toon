@@ -1,0 +1,21 @@
+id: OPK-71
+type: task
+parent: OPK-60
+title: Implement VersionControlServiceProvider with all registrations
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 40
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Implement the full VersionControlServiceProvider.\n\nTARGET: src/packages/version-control/src/VersionControlServiceProvider.ts\n\nThe class must:\n1. Import GitService, RemoteService, and provider services\n2. Implement boot() that:\n   a. Instantiates GitService and provider services\n   b. Registers sidebar entry: { id: 'version-control', title: 'Source Control', icon: 'git-branch', component: 'SourceControlPanel', order: 2 }\n   c. Registers tab types:\n      - { id: 'diff-view', title: 'Diff View', component: 'DiffViewer', closable: true }\n      - { id: 'merge-conflict', title: 'Merge Conflict', component: 'MergeConflictPanel', closable: true }\n   d. Registers MCP tools: git_status, git_commit, git_push, git_pull, git_branch, git_diff, git_log, git_blame (from tools.ts and remoteTools.ts)\n   e. Registers search providers:\n      - { id: 'commit-search', name: 'Commits', search: (q) => gitService.searchCommits(q) }\n      - { id: 'branch-search', name: 'Branches', search: (q) => gitService.searchBranches(q) }\n   f. Registers settings: vc.defaultProvider ('github'), vc.branchStrategy ('git-flow')\n   g. Registers status bar item: { id: 'current-branch', alignment: 'left', priority: 100, getValue: () => gitService.getCurrentBranch() }\n   h. Registers integrations: ['github', 'gitlab', 'bitbucket'] with their respective service classes\n3. Implement shutdown() that cleans up watchers, connections\n4. Export as default"
+acceptance_criteria[10]: VersionControlServiceProvider fully implemented,boot() registers sidebar with git-branch icon,"boot() registers 2 tab types (diff, merge conflict)",boot() registers 8 MCP tools,"boot() registers 2 search providers (commits, branches)",boot() registers 2 settings,boot() registers status bar current-branch,boot() registers 3 integrations,shutdown() cleans up,TypeScript compiles
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OPK-60
+epic: OPK-4
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-4/OPK-60/OPK-71.toon

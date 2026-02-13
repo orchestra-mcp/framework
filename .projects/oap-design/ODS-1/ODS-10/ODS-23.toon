@@ -1,0 +1,13 @@
+id: ODS-23
+type: task
+parent: ODS-10
+title: Create ThemeContext and ThemeProvider component
+status: done
+created: 2026-02-09
+description: "Create React context and provider component for theme management.\n\n**File to create:** `/Users/fadymondy/Sites/orchestra-app/packages/design-system/components/src/theme/ThemeProvider.tsx`\n\n**Code:**\n```typescript\nimport React, { createContext, useEffect, useState, useCallback } from 'react';\nimport type { ThemeTokens } from '@orchestra/tokens';\nimport { getThemeEngine } from '@orchestra/tokens';\n\ninterface ThemeContextValue {\n  theme: ThemeTokens;\n  setTheme: (themeName: string) => void;\n  availableThemes: string[];\n  isAutoMode: boolean;\n  enableAutoMode: () => void;\n  disableAutoMode: () => void;\n}\n\nexport const ThemeContext = createContext<ThemeContextValue | null>(null);\n\ninterface ThemeProviderProps {\n  children: React.ReactNode;\n  defaultTheme?: string;\n}\n\nexport function ThemeProvider({ children, defaultTheme }: ThemeProviderProps) {\n  const engine = getThemeEngine();\n  const [theme, setThemeState] = useState<ThemeTokens>(engine.getTheme());\n  const [isAutoMode, setIsAutoMode] = useState(engine.isAutoMode());\n\n  useEffect(() => {\n    // Initialize with default theme if provided\n    if (defaultTheme) {\n      engine.setTheme(defaultTheme);\n      setThemeState(engine.getTheme());\n    }\n\n    // Subscribe to theme changes\n    const unsubscribe = engine.subscribe((newTheme) => {\n      setThemeState(newTheme);\n      setIsAutoMode(engine.isAutoMode());\n    });\n\n    return () => {\n      unsubscribe();\n    };\n  }, [defaultTheme]);\n\n  const setTheme = useCallback((themeName: string) => {\n    engine.setTheme(themeName);\n    setThemeState(engine.getTheme());\n  }, []);\n\n  const enableAutoMode = useCallback(() => {\n    engine.enableAutoMode();\n    setIsAutoMode(true);\n    setThemeState(engine.getTheme());\n  }, []);\n\n  const disableAutoMode = useCallback(() => {\n    engine.disableAutoMode();\n    setIsAutoMode(false);\n  }, []);\n\n  const value: ThemeContextValue = {\n    theme,\n    setTheme,\n    availableThemes: engine.getAvailableThemes(),\n    isAutoMode,\n    enableAutoMode,\n    disableAutoMode,\n  };\n\n  return (\n    <ThemeContext.Provider value={value}>\n      {children}\n    </ThemeContext.Provider>\n  );\n}\n```"
+acceptance_criteria[5]: ThemeContext created with proper typing,ThemeProvider component wraps children,Theme state synced with ThemeEngine,Provider subscribes to theme changes,defaultTheme prop supported
+estimate_minutes: 25
+estimate_tokens: 12000
+assignee: null
+actual_minutes: 15
+actual_tokens: 6000

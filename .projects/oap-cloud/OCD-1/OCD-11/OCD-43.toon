@@ -1,0 +1,18 @@
+id: OCD-43
+type: task
+parent: OCD-11
+title: Install Spatie Settings and configure Tailwind CSS 4
+status: done
+actual_minutes: 18
+created: 2026-02-09
+assignee: null
+estimate_minutes: 20
+estimate_tokens: null
+description: "Install Spatie Laravel Settings for user preferences and set up Tailwind CSS 4 with Vite.\n\n**Spatie Settings steps:**\n1. `cd src/platform`\n2. `composer require spatie/laravel-settings:^3.0`\n3. `php artisan vendor:publish --provider=\"Spatie\\LaravelSettings\\LaravelSettingsServiceProvider\"`\n4. This creates `src/platform/config/settings.php` and a migration\n5. `php artisan migrate`\n6. Create the first settings class at `src/platform/app/Settings/GeneralSettings.php`:\n```php\n<?php\nnamespace App\\Settings;\n\nuse Spatie\\LaravelSettings\\Settings;\n\nclass GeneralSettings extends Settings\n{\n    public string $site_name;\n    public string $site_description;\n    public bool $registration_enabled;\n    public bool $maintenance_mode;\n\n    public static function group(): string\n    {\n        return 'general';\n    }\n}\n```\n7. Create a migration for the default values:\n```bash\nphp artisan make:settings-migration CreateGeneralSettings\n```\nEdit the created migration at `src/platform/database/settings/`:\n```php\nuse Spatie\\LaravelSettings\\Migrations\\SettingsMigration;\n\nclass CreateGeneralSettings extends SettingsMigration\n{\n    public function up(): void\n    {\n        $this->migrator->add('general.site_name', 'Orchestra');\n        $this->migrator->add('general.site_description', 'AI-Agentic IDE Platform');\n        $this->migrator->add('general.registration_enabled', true);\n        $this->migrator->add('general.maintenance_mode', false);\n    }\n}\n```\n8. `php artisan migrate`\n\n**Tailwind CSS 4 steps:**\n1. `npm install tailwindcss@^4.0 @tailwindcss/vite`\n2. Update `src/platform/vite.config.ts` to add Tailwind plugin:\n```ts\nimport tailwindcss from '@tailwindcss/vite';\n\nexport default defineConfig({\n    plugins: [\n        tailwindcss(),\n        laravel({ ... }),\n        react(),\n    ],\n});\n```\n3. Update `src/platform/resources/css/app.css`:\n```css\n@import \"tailwindcss\";\n```\n4. Verify by adding Tailwind classes to Welcome.tsx and confirming they render:\n```tsx\nexport default function Welcome() {\n    return (\n        <div className=\"min-h-screen bg-gray-100 flex items-center justify-center\">\n            <h1 className=\"text-4xl font-bold text-indigo-600\">Orchestra Platform</h1>\n        </div>\n    );\n}\n```\n5. Run `npm run dev` and verify styles apply correctly\n\n**File paths:**\n- `src/platform/config/settings.php`\n- `src/platform/app/Settings/GeneralSettings.php`\n- `src/platform/database/settings/*_CreateGeneralSettings.php`\n- `src/platform/vite.config.ts` (updated)\n- `src/platform/resources/css/app.css` (updated)"
+acceptance_criteria[9]: Spatie Settings v3 installed,Settings config published,"GeneralSettings class created with site_name, site_description, registration_enabled, maintenance_mode",Settings migration created and run successfully,Tailwind CSS 4 installed via npm,@tailwindcss/vite plugin added to vite.config.ts,app.css imports tailwindcss,Tailwind utility classes render correctly in React components,npm run dev and npm run build both succeed
+story: OCD-11
+epic: OCD-1
+project: oap-cloud
+projectKey: OCD
+projectKey: OCD
+path: .projects/oap-cloud/OCD-1/OCD-11/OCD-43.toon

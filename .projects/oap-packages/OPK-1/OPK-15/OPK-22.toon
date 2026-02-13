@@ -1,0 +1,17 @@
+id: OPK-22
+type: task
+parent: OPK-15
+title: Migrate fileSystemService.ts to ExplorerService.ts
+status: done
+created: 2026-02-09
+assignee: null
+estimate_minutes: 30
+estimate_tokens: null
+description: "Copy and adapt the file system service from the desktop package into the Explorer package.\n\nSOURCE: packages/desktop/src/main/services/fileSystemService.ts\nTARGET: src/packages/explorer/src/Services/ExplorerService.ts\n\nSteps:\n1. Read the source file packages/desktop/src/main/services/fileSystemService.ts\n2. Create src/packages/explorer/src/Services/ExplorerService.ts\n3. Rename the class from fileSystemService (or whatever it's called) to ExplorerService\n4. Update all imports: replace any references to packages/desktop/ internals with local package imports\n5. The ExplorerService should expose these public methods (adapt from source):\n   - listFiles(path: string, options?: { showHidden?: boolean; excludePatterns?: string[] }): Promise<FileEntry[]>\n   - readFile(path: string): Promise<string>\n   - writeFile(path: string, content: string): Promise<void>\n   - createFile(path: string): Promise<void>\n   - createDirectory(path: string): Promise<void>\n   - deleteEntry(path: string): Promise<void>\n   - renameEntry(oldPath: string, newPath: string): Promise<void>\n   - getFileInfo(path: string): Promise<FileInfo>\n6. Create src/packages/explorer/src/Services/types.ts with FileEntry and FileInfo interfaces extracted from the source\n\nEnsure no Electron-specific imports (like 'electron' module) leak into the service — abstract those behind interfaces if needed."
+acceptance_criteria[6]: ExplorerService.ts exists at src/packages/explorer/src/Services/ExplorerService.ts,Class is named ExplorerService with all 8 public methods listed,types.ts exists with FileEntry and FileInfo interfaces,No direct imports from packages/desktop/,No direct 'electron' imports in the service,TypeScript compiles without errors
+story: OPK-15
+epic: OPK-1
+project: oap-packages
+projectKey: OPK
+path: .projects/oap-packages/OPK-1/OPK-15/OPK-22.toon
+actual_minutes: 10

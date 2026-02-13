@@ -1,0 +1,13 @@
+id: ODS-16
+type: task
+parent: ODS-8
+title: Create theme token types matching PRD spec
+status: done
+created: 2026-02-09
+description: "Create TypeScript interfaces for theme tokens following the PRD specification.\n\n**Add to file:** `/Users/fadymondy/Sites/orchestra-app/packages/design-system/tokens/src/types.ts`\n\n**Code to add:**\n```typescript\nexport interface ThemeTokens {\n  // Metadata\n  name: string;\n  type: 'light' | 'dark';\n  \n  // Colors\n  colors: ThemeColorTokens;\n}\n\nexport interface ThemeCollection {\n  [themeName: string]: ThemeTokens;\n}\n\n// Typography tokens\nexport interface TypographyTokens {\n  fontFamily: {\n    sans: string;\n    mono: string;\n  };\n  fontSize: {\n    xs: string;\n    sm: string;\n    base: string;\n    md: string;\n    lg: string;\n    xl: string;\n    '2xl': string;\n    '3xl': string;\n  };\n  fontWeight: {\n    light: number;\n    normal: number;\n    medium: number;\n    semibold: number;\n    bold: number;\n  };\n  lineHeight: {\n    tight: number;\n    normal: number;\n    relaxed: number;\n  };\n}\n\n// Spacing tokens\nexport interface SpacingTokens {\n  0: string;\n  1: string;\n  2: string;\n  3: string;\n  4: string;\n  5: string;\n  6: string;\n  8: string;\n  10: string;\n  12: string;\n  16: string;\n}\n\n// Radii tokens\nexport interface RadiiTokens {\n  none: string;\n  sm: string;\n  base: string;\n  md: string;\n  lg: string;\n  xl: string;\n  '2xl': string;\n  full: string;\n}\n\n// Shadow tokens\nexport interface ShadowTokens {\n  sm: string;\n  base: string;\n  md: string;\n  lg: string;\n  xl: string;\n  inner: string;\n}\n```"
+acceptance_criteria[4]: ThemeTokens interface created,All token type interfaces defined,Matches PRD specification exactly,Types exported from index
+estimate_minutes: 20
+estimate_tokens: 10000
+assignee: null
+actual_minutes: 5
+actual_tokens: 2000

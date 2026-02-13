@@ -1,0 +1,21 @@
+id: OPK-26
+type: task
+parent: OPK-16
+title: Migrate fileExplorerStore.ts to Explorer package
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 15
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Copy and adapt the Zustand store for the file explorer from the chrome-extension package.\n\nSOURCE: packages/chrome-extension/src/stores/fileExplorerStore.ts\nTARGET: src/packages/explorer/resources/chrome/stores/fileExplorerStore.ts\n\nSteps:\n1. Copy the source file to the target location\n2. Update all import paths within the store file:\n   - Any imports from '../sidepanel/explorer/' should now reference '../' (parent directory)\n   - Any imports from other stores in packages/chrome-extension/src/stores/ should be replaced with appropriate cross-package imports or local types\n3. If the store imports types from the desktop service, update to import from ../../src/Services/types instead\n4. Ensure the store's WebSocket/IPC message types match what the new ExplorerService will emit\n5. Export the store hook (e.g., useFileExplorerStore) as the default export\n\nDo NOT change store logic or state shape — only update import paths and type references."
+acceptance_criteria[5]: fileExplorerStore.ts exists at src/packages/explorer/resources/chrome/stores/fileExplorerStore.ts,All imports updated to use package-local paths,No imports reference packages/chrome-extension/,Store exports the same hook name as the original,TypeScript compiles without errors
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OPK-16
+epic: OPK-1
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-1/OPK-16/OPK-26.toon

@@ -1,0 +1,20 @@
+id: OSV-157
+type: task
+parent: OSV-56
+title: Implement BrowserInjectionService with URL matching and script registry
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create the BrowserInjectionService implementation.\n\n**Target file:** `src/app/BrowserInjection/BrowserInjectionService.ts`\n\n**Implementation:**\n1. `Map<string, InjectionScript>` for registered scripts\n2. `registerScript(script)`: validate URL patterns, store, return Disposable\n3. `injectOnUrl(pattern, scriptPath)`: convenience wrapper that creates InjectionScript and registers\n4. URL matching:\n   - String patterns: convert glob to regex (`*` -> `.*`, `?` -> `.`)\n   - RegExp patterns: use directly\n   - Match against full URL\n5. `sendToPage(tabId, message)`: route via WebSocket to Chrome extension, which forwards to content script in tab\n6. `onPageMessage`: receives messages from content scripts via WebSocket\n7. Script registration communicated to Chrome extension via WebSocket `injection:register` channel\n8. Chrome extension side: receives registrations, uses `chrome.scripting.registerContentScripts()` API"
+acceptance_criteria[6]: BrowserInjectionService in src/app/BrowserInjection/BrowserInjectionService.ts,"URL matching: glob and RegExp patterns",Script registrations pushed to Chrome extension via WebSocket,sendToPage routes through WebSocket to correct tab,onPageMessage receives from content scripts,Each extension's scripts isolated by extensionId
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-56
+epic: OSV-16
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-16/OSV-56/OSV-157.toon

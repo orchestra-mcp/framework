@@ -1,0 +1,9 @@
+id: OPK-74
+type: story
+parent: OPK-5
+title: Migrate Terminal Manager main services
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want the terminal, SSH, and credential services migrated from extensions/terminal/ into the Terminal Manager package."
+points: 5
+acceptance_criteria[5]: "TerminalService.ts, SSHService.ts, CredentialService.ts migrated to src/Services/",All handler files migrated,Types and settings migrated,All imports updated,TypeScript compiles

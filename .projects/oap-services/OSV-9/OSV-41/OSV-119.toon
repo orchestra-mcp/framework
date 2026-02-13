@@ -1,0 +1,20 @@
+id: OSV-119
+type: task
+parent: OSV-41
+title: Define ISearchService interface and search types
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create the TypeScript interface and types for the Search Service.\n\n**Source reference:** Read `packages/extensions/search/` if it exists.\n\n**Target files to create:**\n- `src/app/Search/ISearchService.ts`\n- `src/app/Search/types.ts`\n\n**Exact interfaces:**\n```typescript\n// src/app/Search/types.ts\nexport interface SearchProvider {\n  id: string;\n  name: string;\n  search(query: ParsedQuery): Promise<SearchResult[]>;\n  getSuggestions?(partial: string): Promise<Suggestion[]>;\n}\n\nexport interface SearchResult {\n  id: string;\n  type: string;       // 'file', 'symbol', 'task', etc.\n  title: string;\n  subtitle?: string;\n  icon?: string;\n  score: number;       // relevance score 0-100\n  data?: any;          // provider-specific data\n  previewType?: string; // for custom preview renderer\n}\n\nexport interface Suggestion {\n  text: string;\n  type: 'history' | 'provider' | 'operator';\n}\n\nexport interface SearchOptions {\n  maxResults?: number;\n  providers?: string[];  // filter by provider id\n  types?: string[];      // filter by result type\n}\n\nexport interface FileTypeDefinition {\n  extension: string;\n  icon: string;\n  language?: string;\n}\n\nexport interface PreviewRenderer {\n  type: string;\n  render(result: SearchResult): string;  // returns HTML\n}\n\nexport interface ParsedQuery {\n  text: string;\n  filters: Record<string, string>;  // key:value pairs\n  mentions: string[];    // @mentions\n  tags: string[];        // #tags\n  commands: string[];    // >commands\n}\n\n// src/app/Search/ISearchService.ts\nexport interface ISearchService {\n  registerProvider(provider: SearchProvider): Disposable;\n  registerFileType(fileType: FileTypeDefinition): Disposable;\n  search(query: string, options?: SearchOptions): Promise<SearchResult[]>;\n  getSuggestions(partial: string): Promise<Suggestion[]>;\n  getHistory(): string[];\n  registerPreviewRenderer(type: string, renderer: PreviewRenderer): Disposable;\n}\n```"
+acceptance_criteria[5]: src/app/Search/ISearchService.ts with full interface,src/app/Search/types.ts with all types defined,"ParsedQuery supports filters, mentions, tags, commands",All register methods return Disposable,SearchResult includes score for ranking
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-41
+epic: OSV-9
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-9/OSV-41/OSV-119.toon

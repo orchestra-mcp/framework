@@ -1,0 +1,9 @@
+id: OPK-154
+type: story
+parent: OPK-12
+title: Build Pomodoro ServiceProvider
+status: done
+created: 2026-02-09
+user_story: "As a developer, I want the PomodoroServiceProvider to register all contributions with core services."
+points: 3
+acceptance_criteria[4]: Registers widget for pomodoro panel,Registers tray menu Pomodoro with timer display,"Registers notifications for phase changes (work, break, long break)",Registers settings for intervals and sounds

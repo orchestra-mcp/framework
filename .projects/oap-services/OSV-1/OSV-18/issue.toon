@@ -1,0 +1,9 @@
+id: OSV-18
+type: story
+parent: OSV-1
+title: ITrayMenuService Interface & Core Implementation
+status: done
+created: 2026-02-09
+user_story: "As a developer, I want a typed ITrayMenuService interface and core implementation so that extensions can dynamically register, update, and unregister tray menu items at runtime using the Disposable pattern."
+points: 5
+acceptance_criteria[7]: ITrayMenuService interface defined in src/app/Tray/ITrayMenuService.ts,TrayMenuService class implements interface with register/update/unregister/onDidChange,Every register() call returns a Disposable that removes the item on dispose(),Debounced menu rebuild (100ms) on batch changes,Group-based ordering with separators between groups,Sub-menu support via parentId field,Unit tests cover all public methods with >90% coverage

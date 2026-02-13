@@ -1,0 +1,9 @@
+id: OCD-117
+type: story
+parent: OCD-99
+title: Bank transfer payment flow
+status: backlog
+created: 2026-02-09
+user_story: "As a user, I want to pay via bank transfer so that I can subscribe without a credit card"
+points: 5
+acceptance_criteria[5]: Payment controller from PRD lines 1819-1896,Bank details display page,Proof upload form,Admin approval workflow,Email notifications on submission and approval

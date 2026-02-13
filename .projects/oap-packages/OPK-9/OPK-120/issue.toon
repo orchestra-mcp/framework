@@ -1,0 +1,9 @@
+id: OPK-120
+type: story
+parent: OPK-9
+title: Migrate Time Tracker Chrome UI
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want the timer panel UI and desktop panel views migrated into the Time Tracker package."
+points: 3
+acceptance_criteria[3]: timerStore.ts and timeReportStore.ts migrated to resources/chrome/stores/,Desktop panel HTML and renderer migrated to resources/desktop/,All imports updated

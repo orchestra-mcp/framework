@@ -1,0 +1,9 @@
+id: OSV-23
+type: story
+parent: OSV-2
+title: Migrate Existing Panel Services to Unified API
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want all existing panel services migrated to use IPanelManagerService so that the codebase is consistent and uses the new dynamic registration pattern."
+points: 5
+acceptance_criteria[8]: timerPanelService migrated to PanelManagerService.registerPanel call,calendarPanelService migrated to PanelManagerService.registerPanel call,breakPanelService migrated to PanelManagerService.registerPanel call,pomodoroPanelService migrated to PanelManagerService.registerPanel call,settingsWindowService migrated to PanelManagerService.registerPanel call,marketplaceWindowService migrated to PanelManagerService.registerPanel call,All original panel services removed or deprecated,No regressions in panel functionality

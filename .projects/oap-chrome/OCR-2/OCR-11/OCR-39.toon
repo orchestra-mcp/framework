@@ -1,0 +1,21 @@
+id: OCR-39
+type: task
+parent: OCR-11
+title: "Build TabBar React component with click, close, and active state"
+status: done
+created: 2026-02-09
+assignee: null
+estimate_minutes: 35
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create the TabBar component that renders open tabs for a given split group with click-to-focus, close button, and active tab highlighting.\n\n**Source reference:** The existing editor tab bar is at `packages/chrome-extension/src/sidepanel/editor/TabBar.tsx`. The new TabBar is a generic replacement.\n\n**Target file:** `src/app/Chrome/Tabs/TabBar.tsx`\n\n**Implementation details:**\n\n```typescript\nimport { useTabStore } from './tabStore';\nimport type { TabInstance } from './types';\n\ninterface TabBarProps {\n  /** Which split group to show tabs for (default: 0) */\n  splitGroup?: number;\n}\n\nfunction TabItem({ tab, isActive, onClose, onFocus }: {\n  tab: TabInstance;\n  isActive: boolean;\n  onClose: () => void;\n  onFocus: () => void;\n}) {\n  const Icon = tab.icon;\n\n  return (\n    <div\n      onClick={onFocus}\n      className={`group flex h-[32px] items-center gap-1.5 px-3 border-r border-mt-border cursor-pointer select-none shrink-0 text-[11px] ${\n        isActive\n          ? 'bg-mt-bg text-mt-fg-bright border-b-2 border-b-mt-accent'\n          : 'bg-mt-bg-contrast text-mt-fg-muted hover:bg-mt-bg-active/30'\n      }`}\n    >\n      {Icon && <Icon />}\n      <span className=\"truncate max-w-[120px]\">{tab.label}</span>\n      {tab.dirty && (\n        <div className=\"w-2 h-2 rounded-full bg-mt-fg-muted/50 shrink-0\" />\n      )}\n      {tab.closable && (\n        <button\n          onClick={(e) => { e.stopPropagation(); onClose(); }}\n          className=\"ml-1 flex h-4 w-4 items-center justify-center rounded opacity-0 group-hover:opacity-100 hover:bg-mt-bg-active/50 transition-opacity\"\n        >\n          <svg width=\"8\" height=\"8\" viewBox=\"0 0 8 8\" stroke=\"currentColor\" strokeWidth=\"1.5\">\n            <path d=\"M1 1l6 6M7 1l-6 6\" />\n          </svg>\n        </button>\n      )}\n    </div>\n  );\n}\n\nexport function TabBar({ splitGroup = 0 }: TabBarProps) {\n  const tabs = useTabStore((s) => s.tabs.filter((t) => t.splitGroup === splitGroup));\n  const activeTabId = useTabStore((s) => s.activeTabIds[splitGroup]);\n  const closeTab = useTabStore((s) => s.closeTab);\n  const focusTab = useTabStore((s) => s.focusTab);\n\n  if (tabs.length === 0) return null;\n\n  return (\n    <div className=\"flex h-[32px] shrink-0 border-b border-mt-border bg-mt-bg-contrast overflow-x-auto scrollbar-none\">\n      {tabs.map((tab) => (\n        <TabItem\n          key={tab.id}\n          tab={tab}\n          isActive={tab.id === activeTabId}\n          onClose={() => closeTab(tab.id)}\n          onFocus={() => focusTab(tab.id)}\n        />\n      ))}\n    </div>\n  );\n}\n```\n\n**Key styling requirements:**\n- Tab height: 32px (matching common IDE tab heights)\n- Active tab: `bg-mt-bg` with accent bottom border (2px)\n- Inactive tab: `bg-mt-bg-contrast` with muted text\n- Close button: hidden by default, shown on hover via `group-hover:opacity-100`\n- Dirty indicator: small dot next to label\n- Tab container: horizontal scroll with hidden scrollbar (`scrollbar-none`)\n- Text truncation at 120px max width\n\nUpdate barrel export to include `TabBar`."
+acceptance_criteria[8]: File src/app/Chrome/Tabs/TabBar.tsx exists,TabBar renders tabs filtered by splitGroup prop,Active tab highlighted with accent bottom border,Close button appears on hover for closable tabs,Close button click stops propagation (doesn't also focus the tab),Dirty indicator dot shown when tab.dirty is true,Tab container scrolls horizontally on overflow,Barrel export updated
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OCR-11
+epic: OCR-2
+project: oap-chrome
+projectKey: OCR
+projectKey: OCR
+path: .projects/oap-chrome/OCR-2/OCR-11/OCR-39.toon

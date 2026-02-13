@@ -1,0 +1,7 @@
+id: OSV-17
+type: epic
+title: VSCode Compatibility Layer
+status: backlog
+created: 2026-02-09
+description: "Extract VSCode compatibility from vscodeExtensionService.ts + vsixInstaller.ts + textmateService.ts + grammarLoader.ts + semanticTokenRegistry.ts into src/app/VS/. Provides VSIX install/extraction, theme parsing (.tmTheme, VS Code JSON), grammar parsing (.tmLanguage), snippet extraction, and unification with Marketplace, Theme, and LSP services."
+priority: medium

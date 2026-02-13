@@ -1,0 +1,20 @@
+id: OSV-115
+type: task
+parent: OSV-39
+title: Implement WebServerService with dynamic route registration
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create the WebServerService implementation using Node.js http module.\n\n**Target file:** `src/app/Http/WebServerService.ts`\n\n**Implementation (use Node.js http, no Express dependency):**\n1. Create `http.createServer()` on configurable port (default 9601, from settings)\n2. Internal route table: `Map<string, { method: string; pathPattern: RegExp; paramNames: string[]; handler: RouteHandler }>`\n3. `registerRoute(method, path, handler)`:\n   - Convert path pattern to regex: `/users/:id` -> `/^\\/users\\/([^/]+)$/`\n   - Extract param names from `:param` segments\n   - Store in route table, return Disposable that removes\n4. Request routing:\n   - Parse URL, match against route table (method + path regex)\n   - Extract path params from regex groups\n   - Parse query string\n   - Create HttpRequest/HttpResponse wrappers around Node req/res\n5. `registerStaticPath(urlPath, fsPath)`:\n   - Register catch-all route under urlPath\n   - Serve files from fsPath with correct MIME types (lookup by extension)\n   - Return 404 for non-existent files\n6. CORS: read allowed origins from settings, set headers on all responses\n7. `getBaseUrl()`: return `http://localhost:{port}`"
+acceptance_criteria[7]: WebServerService in src/app/Http/WebServerService.ts,No Express dependency — uses Node http module,"Path parameters extracted from :param patterns",Query string parsed into object,Static file serving with MIME type detection,CORS headers from settings,registerRoute returns Disposable that removes route
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-39
+epic: OSV-8
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-8/OSV-39/OSV-115.toon

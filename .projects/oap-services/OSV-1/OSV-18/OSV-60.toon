@@ -1,0 +1,23 @@
+id: OSV-60
+type: task
+parent: OSV-18
+title: Define ITrayMenuService interface and TrayMenuItem types
+status: done
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+actual_minutes: 15
+actual_tokens: 16000
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create the TypeScript interface file for the Tray Menu Service. \n\n**Source reference:** Read `packages/desktop/src/main/services/trayService.ts` and `packages/desktop/src/main/services/menuContributionService.ts` to understand the existing tray menu patterns.\n\n**Target files to create:**\n- `src/app/Tray/ITrayMenuService.ts` — the interface\n- `src/app/Tray/types.ts` — TrayMenuItem and related types\n\n**Exact interface to implement:**\n```typescript\n// src/app/Tray/types.ts\nimport { Disposable, Event } from '@core/types';\n\nexport interface TrayMenuItem {\n  id: string;\n  icon: string;\n  iconColor?: string;\n  label: string;\n  group: string;\n  hotkey?: string;\n  action: { type: 'ipc' | 'link'; target: string };\n  order: number;\n  visible?: boolean;\n  enabled?: boolean;\n  parentId?: string; // for sub-menus\n  children?: TrayMenuItem[];\n}\n\n// src/app/Tray/ITrayMenuService.ts\nexport interface ITrayMenuService {\n  register(item: TrayMenuItem): Disposable;\n  update(id: string, patch: Partial<TrayMenuItem>): void;\n  unregister(id: string): void;\n  getItems(): TrayMenuItem[];\n  onDidChange: Event<TrayMenuItem[]>;\n}\n```\n\n**Pattern:** Every `register()` method MUST return a `Disposable` object. The Disposable's `dispose()` method calls `unregister(id)` internally. Import `Disposable` from `@core/types` (defined in PRD 1 oap-core)."
+acceptance_criteria[6]: File src/app/Tray/ITrayMenuService.ts exists with ITrayMenuService interface,"File src/app/Tray/types.ts exists with TrayMenuItem, action types","TrayMenuItem includes all fields: id, icon, iconColor, label, group, hotkey, action, order, visible, enabled, parentId, children",ITrayMenuService has register/update/unregister/getItems/onDidChange,register() return type is Disposable,All types exported from src/app/Tray/index.ts barrel file
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-18
+epic: OSV-1
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-1/OSV-18/OSV-60.toon

@@ -1,0 +1,16 @@
+id: OPK-139
+type: task
+parent: OPK-133
+title: Write Alarm package documentation
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 15
+estimate_tokens: null
+description: "Create documentation for the Alarm package.\n\n1. docs/README.md: Package overview — alarm management with snooze, sound customization, system notifications\n2. docs/api/README.md: AlarmService API (create, delete, snooze, list, getNext), notification events, settings schema\n3. docs/guides/README.md: How to create alarms, configure sounds, set snooze duration\n4. docs/changelog/README.md: \"## 0.1.0 - Initial migration from packages/extensions/alarms/ and packages/desktop/services/alarmPanelService.ts\""
+acceptance_criteria[3]: All 4 docs files exist,API covers AlarmService,Changelog has initial version
+story: OPK-133
+epic: OPK-10
+project: oap-packages
+projectKey: OPK
+path: .projects/oap-packages/OPK-10/OPK-133/OPK-139.toon

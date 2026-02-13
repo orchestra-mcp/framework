@@ -1,0 +1,36 @@
+id: OC-52
+type: task
+parent: OC-15
+title: Wire ServiceRegistry, LifecycleService, ActivationService together
+status: done
+created: 2026-02-09
+priority: high
+estimate_minutes: 45
+blockers: ["\"\\\"\\\\\\\"OC-19\\\\\\\"\\\"\"","\"\\\"\\\\\\\"OC-24\\\\\\\"\\\"\"","\"\\\"\\\\\\\"OC-26\\\\\\\"\\\"\"","\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: Create integration between ServiceRegistry, LifecycleService, ActivationService.
+
+**What to do:**
+1. Ensure all services are registered in the ServiceRegistry
+2. Wire up dependencies between services
+3. Test the integration end-to-end
+4. Document the service graph
+
+**Services to integrate:**
+- Create ServiceRegistry.ts with DI container and createServiceId (OC-19)
+- Create LifecycleService.ts with phase management and events (OC-24)
+- Create ActivationService.ts with event-driven activation (OC-26)
+
+**Dependencies:**
+This task requires all service creation tasks to be completed first: OC-19, OC-24, OC-26
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+acceptance_criteria: - All services are registered
+- Dependencies are wired correctly
+- Integration test passes
+- Service graph is documented
+story: OC-15
+epic: OC-2
+project: oap-core
+projectKey: OC
+path: .projects/oap-core/OC-2/OC-15/OC-52.toon

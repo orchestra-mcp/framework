@@ -1,0 +1,21 @@
+id: OPK-123
+type: task
+parent: OPK-118
+title: Create Time Tracker directory structure and config files
+status: done
+created: 2026-02-09
+assignee: null
+estimate_minutes: 15
+estimate_tokens: null
+actual_minutes: 5
+blockers: []
+description: "Created directory structure and config files"
+acceptance_criteria:
+  - All directories including Reports/ exist
+  - package.json has widgets, trayMenu, panels, settings, mcpTools
+  - tsconfig.json and vitest.config.ts exist
+story: OPK-118
+epic: OPK-9
+project: oap-packages
+projectKey: OPK
+path: .projects/oap-packages/OPK-9/OPK-118/OPK-123.toon

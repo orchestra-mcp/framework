@@ -1,0 +1,7 @@
+id: ODS-4
+type: epic
+title: Core Component Library - Organisms
+status: backlog
+created: 2026-02-09
+description: "Implement complex UI patterns (organisms) including sidebars, modals, dropdowns, and data display components. These are complete UI sections."
+priority: medium

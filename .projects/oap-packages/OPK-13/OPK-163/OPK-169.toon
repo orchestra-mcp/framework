@@ -1,0 +1,20 @@
+id: OPK-169
+type: task
+parent: OPK-163
+title: Write BreakService unit tests
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 25
+estimate_tokens: null
+blockers: ["OPK-168"]
+description: "Create unit tests for BreakService (there are no existing tests to migrate since this is extracted from desktop code).\n\nTARGET: src/packages/break-tracker/tests/BreakService.test.ts\n\nWrite tests using Vitest for:\n1. startTracking() — sets isTracking to true, schedules next break\n2. stopTracking() — sets isTracking to false, cancels timers\n3. takeBreak() — sets isBreakActive to true, records lastBreakAt\n4. dismissBreak() — sets isBreakActive to false, schedules next break\n5. snoozeBreak(5) — postpones break by 5 minutes\n6. getTimeUntilBreak() — returns correct remaining minutes\n7. isBreakDue() — returns true when interval has passed\n\nUse fake timers (vi.useFakeTimers()) for time-dependent tests."
+acceptance_criteria[4]: Test file exists at tests/BreakService.test.ts,Tests cover all 7 methods,Uses fake timers for time-dependent logic,All tests pass
+
+**Dependencies:**
+This task requires the following tasks to be completed first: OPK-168
+story: OPK-163
+epic: OPK-13
+project: oap-packages
+projectKey: OPK
+path: .projects/oap-packages/OPK-13/OPK-163/OPK-169.toon

@@ -1,0 +1,20 @@
+id: OCR-67
+type: task
+parent: OCR-22
+title: Remove deprecated re-export stub and verify no old transport imports remain
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 15
+estimate_tokens: null
+blockers: ["OCR-66"]
+description: "After all store migrations and transport move are complete, remove the re-export stub at the old transport location and verify no imports reference it.\n\n**Steps:**\n1. Run grep across the entire codebase for any import referencing `chrome-extension/src/transport/`:\n   - `grep -r \"chrome-extension/src/transport\" --include=\"*.ts\" --include=\"*.tsx\"`\n   - `grep -r \"from.*transport/orchestraClient\" --include=\"*.ts\" --include=\"*.tsx\"`\n2. If any imports still point to the old location, update them to point to `src/resources/chrome/transport/`\n3. Delete the old file: `packages/chrome-extension/src/transport/orchestraClient.ts`\n4. Delete the old directory if empty: `packages/chrome-extension/src/transport/`\n5. Run `pnpm typecheck` to verify no broken imports\n6. Run `pnpm lint` to verify no lint errors"
+acceptance_criteria[5]: No file in the codebase imports from packages/chrome-extension/src/transport/,Old orchestraClient.ts file deleted,Old transport directory deleted if empty,pnpm typecheck passes,pnpm lint passes
+
+**Dependencies:**
+This task requires the following tasks to be completed first: OCR-66
+story: OCR-22
+epic: OCR-5
+project: oap-chrome
+projectKey: OCR
+path: .projects/oap-chrome/OCR-5/OCR-22/OCR-67.toon

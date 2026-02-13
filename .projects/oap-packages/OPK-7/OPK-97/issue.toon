@@ -1,0 +1,9 @@
+id: OPK-97
+type: story
+parent: OPK-7
+title: Migrate OS Services Manager main services
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want all service manager, adapter registry, 12 adapters, and tools migrated from extensions/dev-services/."
+points: 8
+acceptance_criteria[5]: "ServiceManager.ts, ServiceAdapterRegistry.ts migrated to src/Services/",All 12 adapter files migrated to src/Services/Adapters/,"handlers.ts, mcpTools.ts, shell.ts, types migrated",All imports updated,TypeScript compiles

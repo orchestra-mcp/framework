@@ -1,0 +1,11 @@
+id: ODR-24
+type: task
+parent: ODR-23
+title: Implement electron-updater with GitHub Releases
+status: backlog
+created: 2026-02-09
+description: "Configure auto-update using electron-updater. Create packages/desktop/src/main/services/autoUpdater.ts (200+ lines) that checks for updates, downloads in background, and installs on quit. Uses GitHub Releases as update feed. Complete implementation in DevOps PRD."
+acceptance_criteria[4]: Checks for updates on launch,Downloads updates in background,Prompts user to restart when ready,Installs update on quit
+estimate_minutes: 70
+estimate_tokens: 30000
+assignee: null

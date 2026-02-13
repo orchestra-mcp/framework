@@ -1,0 +1,9 @@
+id: OCD-102
+type: story
+parent: OCD-96
+title: Admin Subscription Management
+status: backlog
+created: 2026-02-09
+user_story: "As an admin, I need a dashboard to manage subscriptions so that I can manually activate, extend, or cancel user subscriptions."
+points: 8
+acceptance_criteria[6]: Admin can view all subscriptions,Admin can create manual subscriptions,Admin can extend subscriptions,Admin can cancel subscriptions,Admin can create custom subscriptions,Real-time updates work

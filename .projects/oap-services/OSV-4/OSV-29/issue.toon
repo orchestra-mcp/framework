@@ -1,0 +1,9 @@
+id: OSV-29
+type: story
+parent: OSV-4
+title: Theme CSS Injection & Real-Time Propagation
+status: done
+created: 2026-02-09
+user_story: "As a developer, I want theme CSS variables injected into all panels and Chrome extension so that switching themes updates the entire IDE in real-time."
+points: 5
+acceptance_criteria[5]: CSS custom properties injected into all open BrowserWindows on theme change,WebSocket message broadcasts theme change to Chrome extension,Editor syntax highlighting colors derived from active theme,"Real-time preview: no page reload required on switch","IPC handlers: theme:setActive, theme:getActive, theme:getAll, theme:getCssVariables"

@@ -1,0 +1,20 @@
+id: OSV-117
+type: task
+parent: OSV-40
+title: "Implement deep links, orchestra:// protocol handler, and OAuth callbacks"
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Add deep link routes, protocol handler, and OAuth callback helper.\n\n**Target files to create:**\n- `src/app/Http/DeepLinkHandler.ts`\n- `src/app/Http/OAuthCallbackHelper.ts`\n\n**DeepLinkHandler:**\n1. Register built-in routes on WebServerService:\n   - `GET /open` — parses `?workspace=`, `?file=`, `?line=` query params, emits events for the app to handle\n   - `GET /api/status` — returns server health\n2. Register `orchestra://` protocol with Electron:\n   ```typescript\n   app.setAsDefaultProtocolClient('orchestra');\n   app.on('open-url', (_event, url) => {\n     const parsed = new URL(url);\n     // Route based on parsed.pathname\n   });\n   ```\n3. Protocol URL format: `orchestra://open?file=/path/to/file&line=42`\n\n**OAuthCallbackHelper:**\n```typescript\nexport class OAuthCallbackHelper {\n  registerOAuthCallback(\n    webServer: IWebServerService,\n    path: string,\n    handler: (code: string, state: string) => Promise<void>\n  ): Disposable {\n    return webServer.registerRoute('GET', path, async (req, res) => {\n      const { code, state } = req.query;\n      await handler(code, state);\n      res.send('<html><body>Authorization complete. You can close this window.</body></html>');\n    });\n  }\n}\n```"
+acceptance_criteria[6]: DeepLinkHandler registers /open and /api/status routes,"orchestra:// protocol registered with Electron",Protocol URLs parsed and routed correctly,OAuthCallbackHelper registers GET route for OAuth code exchange,OAuth callback sends completion HTML to browser,All handlers return Disposable
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-40
+epic: OSV-8
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-8/OSV-40/OSV-117.toon

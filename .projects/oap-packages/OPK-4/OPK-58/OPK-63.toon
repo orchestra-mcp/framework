@@ -1,0 +1,17 @@
+id: OPK-63
+type: task
+parent: OPK-58
+title: Migrate core Git service files
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 40
+estimate_tokens: null
+description: "Copy and adapt all core git service files from the git extension.\n\nFILE MAPPING (source -> target):\n1. packages/extensions/git/src/main/GitService.ts -> src/packages/version-control/src/Services/GitService.ts\n2. packages/extensions/git/src/main/DiffProvider.ts -> src/packages/version-control/src/Services/DiffProvider.ts\n3. packages/extensions/git/src/main/BranchStrategyEngine.ts -> src/packages/version-control/src/Services/BranchStrategyEngine.ts\n4. packages/extensions/git/src/main/ConflictResolver.ts -> src/packages/version-control/src/Services/ConflictResolver.ts\n5. packages/extensions/git/src/main/RemoteService.ts -> src/packages/version-control/src/Services/RemoteService.ts\n6. packages/extensions/git/src/main/BlameEnricher.ts -> src/packages/version-control/src/Services/BlameEnricher.ts\n7. packages/extensions/git/src/main/BlameCache.ts -> src/packages/version-control/src/Services/BlameCache.ts\n8. packages/extensions/git/src/main/TrackedRepository.ts -> src/packages/version-control/src/Services/TrackedRepository.ts\n9. packages/extensions/git/src/main/safety.ts -> src/packages/version-control/src/Services/safety.ts\n10. packages/extensions/git/src/types.ts -> src/packages/version-control/src/Services/types.ts\n\nFor each file:\n1. Copy to target location\n2. Update all imports: replace 'packages/extensions/git/' paths with local './' paths\n3. If any file imports from the desktop package or MCP extension, abstract behind interfaces\n4. Preserve all class/function signatures exactly"
+acceptance_criteria[5]: All 10 files exist at their target paths in src/packages/version-control/src/Services/,All imports updated to package-local paths,No imports reference packages/extensions/git/,All class and function signatures preserved,TypeScript compiles without errors
+story: OPK-58
+epic: OPK-4
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-4/OPK-58/OPK-63.toon

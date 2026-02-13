@@ -1,0 +1,16 @@
+id: OSV-145
+type: task
+parent: OSV-51
+title: Write Account Center documentation and barrel exports
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+description: "Create documentation and barrel exports.\n\n**Target files:**\n- `docs/core-services/account-center.md`\n- `src/app/AccountCenter/README.md`\n- `src/app/AccountCenter/index.ts`\n\n**Docs sections:** Overview, API Reference, Types, Auth Types (OAuth2, PKCE, API Key, Token), OAuth Flow Walkthrough, Secure Storage, Token Auto-Refresh, Settings Integration, IPC Channels, Examples\n\n**Barrel:**\n```typescript\nexport type { IAccountCenterService } from './IAccountCenterService';\nexport type { IntegrationDefinition, AuthResult, IntegrationStatus, AuthType } from './types';\nexport { AccountCenterService } from './AccountCenterService';\nexport { setupAccountHandlers, cleanupAccountHandlers } from './handlers';\nexport { registerAccountSettings } from './settingsRegistration';\n```"
+acceptance_criteria[3]: docs/core-services/account-center.md with all sections,OAuth flow walkthrough with PKCE example,src/app/AccountCenter/index.ts barrel exports all public API
+story: OSV-51
+epic: OSV-13
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-13/OSV-51/OSV-145.toon

@@ -1,0 +1,9 @@
+id: ODS-37
+type: story
+parent: ODS-4
+title: "Sidebar system (Sidebar, SidebarPanel, SidebarIconRail)"
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want a flexible sidebar system so that I can build VS Code-style sidebars with icon rails and panels."
+points: 8
+acceptance_criteria[6]: Sidebar component with collapsible behavior,SidebarPanel component for content sections,SidebarIconRail component for icon navigation,Resizable sidebar with drag handle,State persistence in localStorage,Keyboard shortcuts for toggle

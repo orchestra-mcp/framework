@@ -1,0 +1,20 @@
+id: OMB-23
+type: task
+parent: OMB-18
+title: Build RegisterScreen and ResetPasswordScreen
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 40
+estimate_tokens: null
+blockers: []
+description: "Create the Register and Reset Password screens following the same patterns as LoginScreen.\n\n1. Create `src/mobile/src/app/auth/RegisterScreen.tsx`:\n   - Fields: name (required, min 2 chars), email (required, valid format), password (required, min 8 chars), password_confirmation (required, must match password)\n   - Submit button: \"Create Account\"\n   - API call: `authService.register({ name, email, password, password_confirmation, device_name })`\n   - On success: if requires_2fa, navigate to OTPVerification; otherwise store token and navigate to Main\n   - On error: show Alert with server validation message\n   - Link at bottom: \"Already have an account? Sign In\" -> navigates to Login\n   - Layout: same KeyboardAvoidingView + ScrollView pattern as LoginScreen\n   - Title: \"Create Account\" with subtitle \"Join Orchestra\"\n   - All styling via NativeWind className\n\n   The full component structure:\n   ```typescript\n   import React, { useState } from 'react';\n   import {\n     View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert,\n     KeyboardAvoidingView, Platform, ScrollView,\n   } from 'react-native';\n   import type { AuthScreenProps } from '@navigation/types';\n   import { authService } from '@services/authService';\n   import { useAuthStore } from '@stores';\n   import { secureStorage } from '@services/secureStorage';\n\n   export const RegisterScreen: React.FC<AuthScreenProps<'Register'>> = ({ navigation }) => {\n     // State: name, email, password, passwordConfirmation, errors, isLoading\n     // Validate: all fields required, email format, password min 8, passwords match\n     // handleRegister: call authService.register, handle 2FA redirect or store token\n     // UI: same card-style form layout as LoginScreen\n   };\n   ```\n\n2. Create `src/mobile/src/app/auth/ResetPasswordScreen.tsx`:\n   - Fields: email (required, valid format)\n   - Submit button: \"Send Reset Link\"\n   - API call: `authService.forgotPassword(email)`\n   - On success: show success Alert \"Check your email for a password reset link\", then navigate back to Login\n   - On error: show Alert with server message\n   - Back button at top or \"Back to Sign In\" link at bottom\n   - Title: \"Reset Password\" with subtitle \"We'll send you a reset link\"\n   - All styling via NativeWind className\n\n3. Create barrel export at `src/mobile/src/app/auth/index.ts`:\n   ```typescript\n   export { LoginScreen } from './LoginScreen';\n   export { RegisterScreen } from './RegisterScreen';\n   export { ResetPasswordScreen } from './ResetPasswordScreen';\n   ```\n\n4. Verify: Both screens render, validation works, navigation between Login/Register/ResetPassword works correctly."
+acceptance_criteria[11]: RegisterScreen.tsx exists at src/mobile/src/app/auth/RegisterScreen.tsx,"Register form has name, email, password, password_confirmation fields with validation",Register validates passwords match and shows error if they don't,Register calls authService.register with all fields plus device_name,ResetPasswordScreen.tsx exists at src/mobile/src/app/auth/ResetPasswordScreen.tsx,Reset Password validates email format before submitting,Reset Password calls authService.forgotPassword and shows success Alert,Both screens use NativeWind className exclusively,Both screens handle loading states and API errors,Navigation between all auth screens works correctly,Barrel export at src/mobile/src/app/auth/index.ts exports all screens
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OMB-18
+epic: OMB-2
+project: oap-mobile
+projectKey: OMB
+path: .projects/oap-mobile/OMB-2/OMB-18/OMB-23.toon

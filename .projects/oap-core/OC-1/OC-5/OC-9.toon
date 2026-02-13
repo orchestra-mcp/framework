@@ -1,0 +1,16 @@
+id: OC-9
+type: task
+parent: OC-5
+title: Update root package.json scripts for new src/ structure
+status: done
+created: 2026-02-09
+assignee: null
+estimate_minutes: 15
+estimate_tokens: null
+description: "**File to modify:** `/package.json`\n\n**Reference:** The current package.json has scripts that reference `@orchestra-mcp/desktop` workspace package. Since the desktop package is moving from `packages/desktop` to `src/packages/desktop` (in a later phase), for now the scripts need to work with whatever workspace packages exist in `src/packages/`.\n\n**What to do:**\n1. Open `/package.json`\n2. Review all scripts in the `\"scripts\"` section\n3. Update any scripts that reference old workspace package paths. Key scripts to check:\n   - `dev:desktop` — should reference the desktop package via workspace protocol\n   - `build:desktop` — should reference the desktop package via workspace protocol  \n   - `typecheck` — typically runs `tsc --build`, ensure tsconfig references are correct\n   - `lint` — ensure ESLint config can find source files in `src/`\n   - `test` — ensure Vitest can find test files in `src/`\n4. If scripts use `--filter` flags (pnpm filtering), update the filter patterns\n\n**Note:** At this stage, the desktop package may still be at `packages/desktop`. The main goal is ensuring the workspace scripts can find and build packages under `src/packages/`. The desktop migration happens in a later task.\n\n**Verification:** Run `pnpm run` to list all available scripts. Verify no script references a non-existent path."
+acceptance_criteria[4]: All scripts in package.json use correct paths for the src/ structure,No script references non-existent workspace packages or paths,pnpm run lists all scripts without errors,Scripts that use pnpm --filter use correct filter patterns for src/packages
+story: OC-5
+epic: OC-1
+project: oap-core
+projectKey: OC
+path: .projects/oap-core/OC-1/OC-5/OC-9.toon

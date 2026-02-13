@@ -1,0 +1,8 @@
+# Claude Code Usage Limits
+# Configure these to match your plan's actual limits from /usage
+# These are approximations based on your /usage output showing 42% at ~1M tokens
+
+session_tokens: 88000
+session_hours: 5
+weekly_tokens: 2500000
+weekly_sonnet_tokens: 50000000

@@ -1,0 +1,17 @@
+id: OPK-68
+type: task
+parent: OPK-58
+title: Migrate and update Version Control unit tests
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 45
+estimate_tokens: null
+description: "Copy and adapt all existing unit tests from the git, github, gitlab, and bitbucket extensions.\n\nFILE MAPPING (source -> target):\nFrom packages/extensions/git/src/__tests__/:\n1. GitService.test.ts -> src/packages/version-control/tests/GitService.test.ts\n2. GitService.integration.test.ts -> src/packages/version-control/tests/GitService.integration.test.ts\n3. DiffProvider.test.ts -> src/packages/version-control/tests/DiffProvider.test.ts\n4. BranchStrategyEngine.test.ts -> src/packages/version-control/tests/BranchStrategyEngine.test.ts\n5. ConflictResolver.test.ts -> src/packages/version-control/tests/ConflictResolver.test.ts\n6. RemoteService.test.ts -> src/packages/version-control/tests/RemoteService.test.ts\n7. BlameEnricher.test.ts -> src/packages/version-control/tests/BlameEnricher.test.ts\n8. BlameCache.test.ts -> src/packages/version-control/tests/BlameCache.test.ts\n9. ActionBar.test.ts -> src/packages/version-control/tests/ActionBar.test.ts\n10. tools.test.ts -> src/packages/version-control/tests/tools.test.ts\n11. remoteTools.test.ts -> src/packages/version-control/tests/remoteTools.test.ts\n12. safety.test.ts -> src/packages/version-control/tests/safety.test.ts\n13. DashboardAggregator.test.ts, DashboardSearch.test.ts, PageContext.test.ts, TrackedRepository.test.ts, UrlPatterns.test.ts, VCSettings.test.ts, VCStatusWidget.test.ts, WidgetDataProvider.test.ts -> same pattern\n\nFrom packages/extensions/github/src/__tests__/:\n14. GitHubAuthService.test.ts -> src/packages/version-control/tests/providers/GitHubAuthService.test.ts\n15. GitHubIssueService.test.ts -> src/packages/version-control/tests/providers/GitHubIssueService.test.ts\n16. GitHubPRService.test.ts -> src/packages/version-control/tests/providers/GitHubPRService.test.ts\n17. TokenStorage.test.ts -> src/packages/version-control/tests/providers/TokenStorage.test.ts\n\nFrom packages/extensions/gitlab/src/__tests__/:\n18. GitLabServices.test.ts -> src/packages/version-control/tests/providers/GitLabServices.test.ts\n\nFrom packages/extensions/bitbucket/src/__tests__/:\n19. BitbucketServices.test.ts -> src/packages/version-control/tests/providers/BitbucketServices.test.ts\n\nFor each: copy, update all import paths to reference new service locations, ensure mocks still work."
+acceptance_criteria[4]: All test files copied to src/packages/version-control/tests/,Provider tests in tests/providers/ subdirectory,All imports updated to new service paths,All tests pass when running vitest
+story: OPK-58
+epic: OPK-4
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-4/OPK-58/OPK-68.toon

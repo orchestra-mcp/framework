@@ -1,0 +1,21 @@
+id: OCR-51
+type: task
+parent: OCR-16
+title: Build StatusBar React component rendering registered items by alignment
+status: done
+created: 2026-02-09
+assignee: null
+estimate_minutes: 25
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create the StatusBar component that renders registered status bar items grouped by alignment (left, right).\n\n**Source reference:** The current hardcoded status bar is in `packages/chrome-extension/src/sidepanel/App.tsx` lines 399-423. Copy the exact styling.\n\n**Target file:** `src/app/Chrome/Status/StatusBar.tsx`\n\n**Implementation:**\n\n```typescript\nimport { useStatusBarStore } from './statusBarStore';\nimport type { StatusBarItem } from './types';\n\nfunction StatusBarItemView({ item }: { item: StatusBarItem }) {\n  if (item.visible === false) return null;\n\n  const Icon = item.icon;\n  const isClickable = !!item.onClick;\n\n  const content = (\n    <div\n      className={`flex items-center gap-1 ${item.className ?? ''} ${\n        isClickable ? 'cursor-pointer hover:text-mt-fg-bright' : ''\n      }`}\n      onClick={item.onClick}\n      title={item.tooltip}\n    >\n      {Icon && <Icon />}\n      <span className=\"truncate max-w-[150px]\">{item.text}</span>\n    </div>\n  );\n\n  return content;\n}\n\nexport function StatusBar() {\n  const items = useStatusBarStore((s) => s.items);\n  const leftItems = items.filter((i) => i.alignment === 'left');\n  const rightItems = items.filter((i) => i.alignment === 'right');\n\n  return (\n    <div className=\"flex items-center h-[22px] px-2 border-t border-mt-border text-[10px] text-mt-fg-muted shrink-0 bg-mt-bg-contrast\">\n      {/* Left-aligned items */}\n      <div className=\"flex items-center gap-2\">\n        {leftItems.map((item) => (\n          <StatusBarItemView key={item.id} item={item} />\n        ))}\n      </div>\n\n      {/* Spacer */}\n      <div className=\"flex-1\" />\n\n      {/* Right-aligned items */}\n      <div className=\"flex items-center gap-2\">\n        {rightItems.map((item) => (\n          <StatusBarItemView key={item.id} item={item} />\n        ))}\n      </div>\n    </div>\n  );\n}\n```\n\n**Key requirements:**\n- Height: 22px matching existing status bar exactly (App.tsx line 399)\n- CSS classes EXACTLY match: `h-[22px] px-2 border-t border-mt-border text-[10px] text-mt-fg-muted shrink-0 bg-mt-bg-contrast`\n- Left items on the left, right items on the right, flex-1 spacer in between\n- Items sorted by order within each alignment group (already sorted by store)\n- Items with `visible: false` are not rendered\n- Clickable items (those with onClick) show pointer cursor and hover highlight\n- Text truncated at 150px max width\n- Icon components rendered at their natural size (should be 12x12 or similar)\n\nUpdate barrel export in `src/app/Chrome/Status/index.ts` to include `StatusBar`."
+acceptance_criteria[9]: File src/app/Chrome/Status/StatusBar.tsx exists,Height is 22px matching existing status bar exactly,CSS classes match existing App.tsx status bar div,"Left-aligned items on left, right-aligned items on right",Items with visible=false are hidden,Clickable items show pointer cursor and hover effect,Tooltip shown on hover via title attribute,Custom className applied to items,Barrel export updated
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OCR-16
+epic: OCR-3
+project: oap-chrome
+projectKey: OCR
+projectKey: OCR
+path: .projects/oap-chrome/OCR-3/OCR-16/OCR-51.toon

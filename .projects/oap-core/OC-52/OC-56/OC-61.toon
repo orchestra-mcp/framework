@@ -1,0 +1,11 @@
+id: OC-61
+type: task
+parent: OC-56
+title: Create AccountIntegrationService base structure
+status: done
+created: 2026-02-09
+description: "Implement the core AccountIntegrationService class with types and interfaces from PRD Section 8 (lines 456-783). Full 300+ line implementation including:\n- ServiceAccount, ServiceIntegration, IntegrationField, OAuthConfig interfaces\n- Account storage with encryption\n- Integration registration system\n- CRUD operations for accounts\n- OAuth client credential management from .env"
+acceptance_criteria[5]: All interfaces defined,Service class implements all methods,Encryption integration works,Account persistence implemented,TypeScript compiles
+estimate_minutes: 45
+estimate_tokens: 20000
+assignee: null

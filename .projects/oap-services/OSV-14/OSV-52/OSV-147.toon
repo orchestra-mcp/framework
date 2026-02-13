@@ -1,0 +1,20 @@
+id: OSV-147
+type: task
+parent: OSV-52
+title: "Implement table sorting, CSV export, and Mermaid diagrams"
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Add interactive table features and Mermaid diagram rendering.\n\n**Target files to create:**\n- `src/app/Components/MarkdownTable.tsx` — interactive table component\n- `src/app/Components/MermaidRenderer.tsx` — Mermaid diagram renderer\n- `src/app/Components/rehypePlugins.ts` — custom rehype plugins\n\n**MarkdownTable:**\n1. Wrap rendered HTML tables with interactive component\n2. Column sorting: click header to sort asc/desc\n3. CSV export button: convert table data to CSV, copy to clipboard\n4. Copy table button: copy as tab-separated for pasting into spreadsheets\n\n**MermaidRenderer:**\n1. Detect ```mermaid code blocks\n2. Render using mermaid.js library\n3. Use custom rehype plugin to replace mermaid code blocks with rendered SVG\n4. Theme-aware: mermaid theme matches IDE theme\n\n**rehypePlugins.ts:** Custom plugins for table wrapping and mermaid detection."
+acceptance_criteria[6]: MarkdownTable component with column sorting,CSV export from table data,Copy table as tab-separated,Mermaid diagrams rendered as SVG,Mermaid theme follows IDE theme,Custom rehype plugins integrate into pipeline
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-52
+epic: OSV-14
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-14/OSV-52/OSV-147.toon

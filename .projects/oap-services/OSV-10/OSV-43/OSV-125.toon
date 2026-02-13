@@ -1,0 +1,20 @@
+id: OSV-125
+type: task
+parent: OSV-43
+title: Implement AiChatBoxService with provider registry and session management
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["OSV-124"]
+description: "Create the AiChatBoxService implementation.\n\n**Source reference:** Read `packages/desktop/src/main/services/claudeCliService.ts` for existing Claude integration.\n\n**Target file:** `src/app/AI/AiChatBoxService.ts`\n\n**Implementation:**\n1. Provider registry: `Map<string, ModelProvider>`\n2. Skill registry: `Map<string, SkillDefinition>`\n3. Agent registry: `Map<string, AgentDefinition>`\n4. Session management: `Map<string, ChatSession>`, activeSessionId\n5. `registerModelProvider(provider)`: store, return Disposable\n6. `sendMessage(message, options)`:\n   - Resolve provider: options.providerId or active provider from settings\n   - If message starts with `/`, check skill registry, route to skill handler\n   - If options.agentId, prepend agent systemPrompt\n   - Add context (filePath, workspace) to system message if provided\n   - Call provider.sendMessage() — collect streaming chunks\n   - Create ChatMessage, add to active session\n   - Fire onMessage\n   - Return ChatResponse\n7. Session CRUD: create, list, switch, delete\n8. Active provider configurable via ISettingsService key `ai.activeProviderId`"
+acceptance_criteria[7]: AiChatBoxService in src/app/AI/AiChatBoxService.ts,Provider registry with register/unregister,Skill routing for / commands,Agent system prompt injection,"Session management: create, list, switch, delete",Active provider from settings,onMessage fires for each assistant response
+
+**Dependencies:**
+This task requires the following tasks to be completed first: OSV-124
+story: OSV-43
+epic: OSV-10
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-10/OSV-43/OSV-125.toon

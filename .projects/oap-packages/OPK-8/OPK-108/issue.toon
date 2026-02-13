@@ -1,0 +1,9 @@
+id: OPK-108
+type: story
+parent: OPK-8
+title: Migrate Log Viewer main services
+status: done
+created: 2026-02-09
+user_story: "As a developer, I want the log scanning, tailing, parsing services migrated from extensions/dev-logs/ into the Log Viewer package."
+points: 5
+acceptance_criteria[5]: "LogScannerService.ts, LogTailService.ts, GenericLogParser.ts, LogParserRegistry.ts migrated",All 4 framework parsers migrated to Parsers/,tools.ts and types.ts migrated,All imports updated,TypeScript compiles

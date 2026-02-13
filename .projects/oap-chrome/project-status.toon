@@ -1,0 +1,80 @@
+project: OAP Chrome UI Architecture
+slug: oap-chrome
+key: OCR
+status: active
+created: 2026-02-09
+updated: 2026-02-09
+nextId: 73
+issues[72]{id,type,parent,title,status,assignee,priority}:
+  OCR-1,epic,"-",Dynamic Sidebar Icon Rail & Content Registration,in_progress,"-",high
+  OCR-2,epic,"-",Dynamic Tabs System,backlog,"-",high
+  OCR-3,epic,"-","Top Bar, Status Bar & Header",backlog,"-",medium
+  OCR-4,epic,"-",Zustand Store Migration,backlog,"-",high
+  OCR-5,epic,"-",Chrome Extension Entry Point Refactor,backlog,"-",high
+  OCR-6,story,OCR-1,Define IChromeSidebarService interfaces and registration types,in_progress,"-",high
+  OCR-7,story,OCR-1,Build SidebarService and SidebarStore for dynamic registration,backlog,"-",high
+  OCR-8,story,OCR-1,Build SidebarIconRail and SidebarContent React components,backlog,"-",high
+  OCR-9,story,OCR-1,Migrate existing 8 sidebar panels to use registration API,backlog,"-",high
+  OCR-10,story,OCR-2,Define Tab system interfaces and TabStore,backlog,"-",high
+  OCR-11,story,OCR-2,Build TabBar component with drag-and-drop and overflow,backlog,"-",high
+  OCR-12,story,OCR-2,Build SplitView container for horizontal/vertical tab splitting,backlog,"-",medium
+  OCR-13,story,OCR-2,Integrate TabService with existing editor and terminal tabs,backlog,"-",high
+  OCR-14,story,OCR-3,"Define TopBar, StatusBar, and Header registration interfaces",backlog,"-",high
+  OCR-15,story,OCR-3,Build TopBar component with breadcrumbs and global actions,backlog,"-",medium
+  OCR-16,story,OCR-3,Build StatusBar component with real-time extension updates,backlog,"-",medium
+  OCR-17,story,OCR-3,Build SidebarHeader component with per-panel action buttons,backlog,"-",medium
+  OCR-18,story,OCR-4,Migrate core infrastructure stores to src/app/ and src/resources/,backlog,"-",high
+  OCR-19,story,OCR-4,Migrate version-control and editor stores to extension packages,backlog,"-",high
+  OCR-20,story,OCR-4,"Migrate task, timer, pomodoro, alarm, and calendar stores to extension packages",backlog,"-",high
+  OCR-21,story,OCR-4,"Migrate terminal, database, services, devLogs, ssh, and notes stores to extension packages",backlog,"-",high
+  OCR-22,story,OCR-5,Move transport layer to shared infrastructure location,backlog,"-",high
+  OCR-23,story,OCR-5,Refactor App.tsx to thin registration-driven shell,backlog,"-",high
+  OCR-24,story,OCR-5,Refactor index.tsx bootstrap to use extension registration system,backlog,"-",high
+  OCR-25,task,OCR-6,Create SidebarEntry and ContentRegistration TypeScript interfaces,in_progress,"-",high
+  OCR-26,task,OCR-6,Create unit tests for sidebar type contracts,backlog,"-",medium
+  OCR-27,task,OCR-7,Create sidebarRegistryStore Zustand store for dynamic sidebar state,backlog,"-",high
+  OCR-28,task,OCR-7,Create SidebarService class implementing IChromeSidebarService,backlog,"-",high
+  OCR-29,task,OCR-7,Create unit tests for SidebarService and sidebarRegistryStore,backlog,"-",high
+  OCR-30,task,OCR-8,Build SidebarIconRail React component,backlog,"-",high
+  OCR-31,task,OCR-8,Build SidebarContent React component with lazy loading,backlog,"-",high
+  OCR-32,task,OCR-9,Extract 8 SVG icon components to shared icon files,backlog,"-",high
+  OCR-33,task,OCR-9,"Create registerChromeContributions() for explorer, editor, tasks, and git extensions",backlog,"-",high
+  OCR-34,task,OCR-9,"Create registerChromeContributions() for terminal, database, services, and logs extensions",backlog,"-",high
+  OCR-35,task,OCR-9,Create master extension loader that calls all registerChromeContributions(),backlog,"-",high
+  OCR-36,task,OCR-10,Create Tab system TypeScript interfaces and types,backlog,"-",high
+  OCR-37,task,OCR-10,Create tabStore Zustand store for tab state management,backlog,"-",high
+  OCR-38,task,OCR-10,Create TabService class implementing ITabService,backlog,"-",high
+  OCR-39,task,OCR-11,"Build TabBar React component with click, close, and active state",backlog,"-",high
+  OCR-40,task,OCR-11,Add drag-and-drop tab reordering to TabBar,backlog,"-",high
+  OCR-41,task,OCR-11,"Add tab context menu with Close, Close Others, Close All, Split actions",backlog,"-",high
+  OCR-42,task,OCR-12,Build SplitView container component with draggable divider,backlog,"-",medium
+  OCR-43,task,OCR-12,Build TabContent component that renders active tab's registered component,backlog,"-",high
+  OCR-44,task,OCR-13,Register editor tab type and migrate file-open to tabService.openTab(),backlog,"-",high
+  OCR-45,task,OCR-13,Register terminal tab type and migrate sessions to tabService.openTab(),backlog,"-",high
+  OCR-46,task,OCR-13,"Register diff, query-result, and log-viewer tab types",backlog,"-",medium
+  OCR-47,task,OCR-14,Create TopBar and Header TypeScript interfaces and stores,backlog,"-",high
+  OCR-48,task,OCR-14,Create StatusBar TypeScript interfaces and statusBarStore,backlog,"-",high
+  OCR-49,task,OCR-15,Build TopBar React component rendering registered items by position,backlog,"-",medium
+  OCR-50,task,OCR-15,Create Breadcrumb top bar component for workspace/panel navigation,backlog,"-",medium
+  OCR-51,task,OCR-16,Build StatusBar React component rendering registered items by alignment,backlog,"-",medium
+  OCR-52,task,OCR-16,"Register core status bar items (connection, LSP, timer, active file)",backlog,"-",medium
+  OCR-53,task,OCR-17,Build SidebarHeader React component with panel label and action buttons,backlog,"-",medium
+  OCR-54,task,OCR-17,Register header actions for explorer and git sidebar panels,backlog,"-",low
+  OCR-55,task,OCR-18,Move sidebarStore and connectionStore to core locations,backlog,"-",high
+  OCR-56,task,OCR-18,"Move settingsStore, settingsSync, and notificationStore to core locations",backlog,"-",high
+  OCR-57,task,OCR-18,"Move widgetStore, marketplaceStore, and workspaceSync to core locations",backlog,"-",high
+  OCR-58,task,OCR-19,"Move gitStore, remoteStore, and multiRepoStore to version-control package",backlog,"-",high
+  OCR-59,task,OCR-19,"Move editorStore, lspStatusStore, and fileExplorerStore to extension packages",backlog,"-",high
+  OCR-60,task,OCR-20,"Move tasksStore, timerStore, and timeReportStore to extension packages",backlog,"-",high
+  OCR-61,task,OCR-20,"Move pomodoroStore, alarmStore, and calendarStore to extension packages",backlog,"-",high
+  OCR-62,task,OCR-21,Move terminalStore and databaseStore to extension packages,backlog,"-",high
+  OCR-63,task,OCR-21,Move servicesStore and devLogsStore to extension packages,backlog,"-",high
+  OCR-64,task,OCR-21,Move sshStore and notesStore to extension packages,backlog,"-",high
+  OCR-65,task,OCR-21,Verify all 26 stores migrated and delete old stores directory,backlog,"-",high
+  OCR-66,task,OCR-22,Move orchestraClient.ts to shared transport location,backlog,"-",high
+  OCR-67,task,OCR-22,Remove deprecated re-export stub and verify no old transport imports remain,backlog,"-",medium
+  OCR-68,task,OCR-23,Rewrite App.tsx as thin registration-driven shell,backlog,"-",high
+  OCR-69,task,OCR-23,Move event subscription useEffect hooks into extension contributions,backlog,"-",high
+  OCR-70,task,OCR-24,Rewrite index.tsx to use loadExtensions() bootstrap,backlog,"-",high
+  OCR-71,task,OCR-24,"End-to-end verification: build Chrome extension and verify all panels work",backlog,"-",high
+  OCR-72,epic,"-",File Explorer + Code Editor (Sidebar IDE),backlog,"-",high

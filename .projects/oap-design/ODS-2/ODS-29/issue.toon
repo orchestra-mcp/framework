@@ -1,0 +1,9 @@
+id: ODS-29
+type: story
+parent: ODS-2
+title: "Badge components (Badge, Chip, Tag, Label)"
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want badge and label components so that I can display status indicators, tags, and metadata consistently."
+points: 3
+acceptance_criteria[6]: Badge component for status indicators,Chip component with dismiss action,Tag component for categorization,Label component for form labels,Color variants for semantic meaning,Size variants and icons support

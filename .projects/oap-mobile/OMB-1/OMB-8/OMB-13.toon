@@ -1,0 +1,23 @@
+id: OMB-13
+type: task
+parent: OMB-8
+title: Install and configure NativeWind 4 with Tailwind CSS
+status: done
+created: 2026-02-09
+assignee: Claude
+estimate_minutes: 40
+estimate_tokens: null
+actual_minutes: 15
+actual_tokens: 3000
+completed: 2026-02-10
+blockers: []
+description: "Install NativeWind 4 and configure Tailwind CSS for React Native.\n\n1. Install NativeWind and Tailwind CSS:\n   ```bash\n   cd src/mobile\n   npm install nativewind@^4.0.0 tailwindcss@^3.4.0\n   npm install -D @csstools/postcss-cascade-layers postcss\n   ```\n\n2. Create `src/mobile/tailwind.config.js`:\n   ```js\n   /** @type {import('tailwindcss').Config} */\n   module.exports = {\n     content: [\n       './src/**/*.{ts,tsx}',\n       './App.tsx',\n     ],\n     presets: [require('nativewind/preset')],\n     theme: {\n       extend: {\n         colors: {\n           primary: {\n             50: '#eff6ff',\n             100: '#dbeafe',\n             200: '#bfdbfe',\n             300: '#93c5fd',\n             400: '#60a5fa',\n             500: '#3b82f6',\n             600: '#2563eb',\n             700: '#1d4ed8',\n             800: '#1e40af',\n             900: '#1e3a8a',\n           },\n           surface: {\n             DEFAULT: '#ffffff',\n             secondary: '#f8fafc',\n             tertiary: '#f1f5f9',\n           },\n           border: {\n             DEFAULT: '#e2e8f0',\n             light: '#f1f5f9',\n           },\n         },\n         fontFamily: {\n           sans: ['Inter', 'System'],\n           mono: ['JetBrainsMono', 'Courier'],\n         },\n       },\n     },\n     plugins: [],\n   };\n   ```\n\n3. Create `src/mobile/global.css`:\n   ```css\n   @tailwind base;\n   @tailwind components;\n   @tailwind utilities;\n   ```\n\n4. Update `src/mobile/metro.config.js` to include NativeWind:\n   ```js\n   const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');\n   const { withNativeWind } = require('nativewind/metro');\n\n   const config = mergeConfig(getDefaultConfig(__dirname), {});\n\n   module.exports = withNativeWind(config, { input: './global.css' });\n   ```\n\n5. Update `src/mobile/babel.config.js` to add NativeWind preset:\n   ```js\n   module.exports = {\n     presets: [\n       'module:@react-native/babel-preset',\n       'nativewind/babel',\n     ],\n     plugins: [\n       ['module-resolver', { /* existing aliases */ }],\n     ],\n   };\n   ```\n\n6. Import the global CSS in `src/mobile/src/App.tsx`:\n   ```typescript\n   import '../global.css';\n   ```\n\n7. Create a test component at `src/mobile/src/components/common/TestNativeWind.tsx`:\n   ```typescript\n   import { View, Text } from 'react-native';\n\n   export const TestNativeWind: React.FC = () => (\n     <View className=\"flex-1 items-center justify-center bg-primary-500 p-4\">\n       <Text className=\"text-white text-2xl font-bold\">NativeWind Works!</Text>\n       <Text className=\"text-white/80 mt-2\">Tailwind CSS in React Native</Text>\n     </View>\n   );\n   ```\n\n8. Create the NativeWind type declarations at `src/mobile/nativewind-env.d.ts`:\n   ```typescript\n   /// <reference types=\"nativewind/types\" />\n   ```\n\n9. Verify: Run the app and confirm the TestNativeWind component renders with correct Tailwind styles (blue background, white centered text)."
+acceptance_criteria[8]: nativewind@^4.0.0 and tailwindcss@^3.4.0 are in package.json dependencies,tailwind.config.js exists with custom Orchestra color palette,global.css exists with @tailwind directives,metro.config.js uses withNativeWind wrapper,babel.config.js includes nativewind/babel preset,TestNativeWind component renders with correct Tailwind-based styling,className prop works on React Native View and Text components,nativewind-env.d.ts provides proper TypeScript types for className
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OMB-8
+epic: OMB-1
+project: oap-mobile
+projectKey: OMB
+path: .projects/oap-mobile/OMB-1/OMB-8/OMB-13.toon

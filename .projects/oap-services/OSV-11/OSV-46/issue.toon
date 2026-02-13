@@ -1,0 +1,9 @@
+id: OSV-46
+type: story
+parent: OSV-11
+title: Marketplace VSIX Support & License Validation
+status: done
+created: 2026-02-09
+user_story: "As a developer, I want VSIX compatibility and license key validation so that VSCode extensions can be installed and paid extensions are properly gated."
+points: 5
+acceptance_criteria[5]: VSIX file extraction and manifest parsing,VSCode extension compatibility check on install,License key validation for paid extensions,"Deep link support: marketplace://install?id=extension-id","IPC handlers: marketplace:install, marketplace:uninstall, marketplace:search, marketplace:list"

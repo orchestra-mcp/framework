@@ -1,0 +1,9 @@
+id: OPK-59
+type: story
+parent: OPK-4
+title: Migrate Version Control Chrome UI
+status: done
+created: 2026-02-09
+user_story: "As a developer, I want all git UI components migrated from chrome-extension/sidepanel/git/ into the Version Control package."
+points: 8
+acceptance_criteria[4]: All 18 git UI components migrated to resources/chrome/,"gitStore.ts, remoteStore.ts, multiRepoStore.ts migrated to resources/chrome/stores/",All imports updated,Components render correctly

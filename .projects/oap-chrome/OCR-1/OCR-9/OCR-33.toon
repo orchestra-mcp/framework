@@ -1,0 +1,21 @@
+id: OCR-33
+type: task
+parent: OCR-9
+title: "Create registerChromeContributions() for explorer, editor, tasks, and git extensions"
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 40
+estimate_tokens: null
+blockers: ["\"OCR-32\"","OCR-32"]
+description: "Create a `registerChromeContributions()` function for the first 4 sidebar panels (explorer, editor, tasks, git) that registers their sidebar entry, content panel, and badge bindings through the SidebarService API.\n\n**Target files:**\n\n1. `src/packages/explorer/resources/chrome/contributions.ts`\n2. `src/packages/editor/resources/chrome/contributions.ts`\n3. `src/packages/tasks-manager/resources/chrome/contributions.ts`\n4. `src/packages/version-control/resources/chrome/contributions.ts`\n\n**Example for explorer:**\n```typescript\n// src/packages/explorer/resources/chrome/contributions.ts\nimport { sidebarService } from '../../../../app/Chrome/Sidebar';\nimport { ExplorerIcon } from './icons';\nimport { FileExplorer } from '../../../../chrome-extension/src/sidepanel/explorer/FileExplorer';\n\nexport function registerChromeContributions(): void {\n  // Register sidebar icon\n  sidebarService.registerSidebarEntry({\n    id: 'explorer',\n    icon: ExplorerIcon,\n    label: 'Explorer',\n    order: 10,\n  });\n\n  // Register content panel\n  sidebarService.registerContent({\n    sidebarId: 'explorer',\n    component: FileExplorer,\n  });\n}\n```\n\n**For editor (order: 20):**\n- Import `EditorIcon` and `EditorPanel` from `packages/chrome-extension/src/sidepanel/editor/EditorPanel`\n- Badge: subscribe to editorStore tab count changes and call `sidebarService.updateBadge('editor', tabCount)`\n- The badge subscription should use `useEditorStore.subscribe()` to react to tab count changes:\n```typescript\nimport { useEditorStore } from './stores/editorStore'; // after migration\n// In registerChromeContributions:\nuseEditorStore.subscribe(\n  (state) => state.tabs.length,\n  (tabCount) => sidebarService.updateBadge('editor', tabCount || undefined),\n);\n```\n\n**For tasks (order: 30):**\n- Import `TasksIcon` and `TasksPanel` from `packages/chrome-extension/src/sidepanel/tasks/TasksPanel`\n- No badge initially\n\n**For git (order: 40):**\n- Import `GitBranchIcon` and `GitPanel` from `packages/chrome-extension/src/sidepanel/git/GitPanel`\n- Badge: subscribe to gitStore status changes, compute `staged.length + unstaged.length + untracked.length + conflicted.length`\n- Use `useGitStore.subscribe()` for reactive badge updates\n\n**IMPORTANT:** The import paths will need to be adjusted based on where stores land after the store migration (Epic 4). For now, use relative paths to the current store locations. Add a `// TODO: update import path after store migration` comment.\n\nEach file should also be re-exported from an index:\n```typescript\n// src/packages/explorer/resources/chrome/index.ts\nexport { registerChromeContributions } from './contributions';\n```"
+acceptance_criteria[8]: "4 contribution files created for explorer, editor, tasks, git",Each file exports registerChromeContributions() function,"Explorer registers with order=10, Editor with order=20, Tasks with order=30, Git with order=40",Editor contribution subscribes to editorStore for tab count badge,Git contribution subscribes to gitStore for change count badge,Each contribution registers both sidebar entry and content panel,TODO comments added for import paths that will change after store migration,Each package has resources/chrome/index.ts barrel export
+
+**Dependencies:**
+This task requires the following tasks to be completed first: OCR-32
+story: OCR-9
+epic: OCR-1
+project: oap-chrome
+projectKey: OCR
+projectKey: OCR
+path: .projects/oap-chrome/OCR-1/OCR-9/OCR-33.toon

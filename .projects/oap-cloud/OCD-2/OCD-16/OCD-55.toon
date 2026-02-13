@@ -1,0 +1,24 @@
+id: OCD-55
+type: task
+parent: OCD-16
+title: Build notification preferences UI with toggle controls
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 15
+estimate_tokens: null
+blockers: ["\"ODS-1\"","\"ODS-2\"","\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"\\\"\\\\\\\"ODS-1\\\\\\\"\\\"\"","\"\\\"\\\\\\\"ODS-2\\\\\\\"\\\"\"","\"\\\"\\\\\\\"\\\\\\\\\\\\\\\"OCD-54\\\\\\\\\\\\\\\"\\\\\\\"\\\"\"","OCD-54"]
+description: "Add notification preference toggles to the settings page with proper UI for email, in-app, push, and agent alert notifications.\n\n**Steps:**\n\n1. Create `src/platform/resources/js/Components/ToggleSwitch.tsx`:\n```tsx\ninterface Props {\n    label: string;\n    description?: string;\n    checked: boolean;\n    onChange: (checked: boolean) => void;\n}\n\nexport default function ToggleSwitch({ label, description, checked, onChange }: Props) {\n    return (\n        <div className=\"flex items-center justify-between py-3\">\n            <div>\n                <p className=\"text-sm font-medium text-gray-900\">{label}</p>\n                {description && <p className=\"text-xs text-gray-500\">{description}</p>}\n            </div>\n            <button type=\"button\" role=\"switch\" aria-checked={checked}\n                onClick={() => onChange(!checked)}\n                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${\n                    checked ? 'bg-indigo-600' : 'bg-gray-200'\n                }`}>\n                <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${\n                    checked ? 'translate-x-6' : 'translate-x-1'\n                }`} />\n            </button>\n        </div>\n    );\n}\n```\n\n2. Create `src/platform/resources/js/Components/NotificationPreferences.tsx`:\n```tsx\nimport ToggleSwitch from '@/Components/ToggleSwitch';\n\ninterface Props {\n    notifyEmail: boolean;\n    notifyInApp: boolean;\n    notifyPush: boolean;\n    notifyAgentAlerts: boolean;\n    onChange: (key: string, value: boolean) => void;\n}\n\nexport default function NotificationPreferences({ notifyEmail, notifyInApp, notifyPush, notifyAgentAlerts, onChange }: Props) {\n    return (\n        <div className=\"space-y-1\">\n            <h3 className=\"text-lg font-medium text-gray-900 mb-4\">Notification Preferences</h3>\n            <div className=\"divide-y divide-gray-100\">\n                <ToggleSwitch label=\"Email Notifications\"\n                    description=\"Receive notifications via email\"\n                    checked={notifyEmail} onChange={v => onChange('notify_email', v)} />\n                <ToggleSwitch label=\"In-App Notifications\"\n                    description=\"Show notifications in the web dashboard\"\n                    checked={notifyInApp} onChange={v => onChange('notify_in_app', v)} />\n                <ToggleSwitch label=\"Push Notifications\"\n                    description=\"Receive browser push notifications\"\n                    checked={notifyPush} onChange={v => onChange('notify_push', v)} />\n                <ToggleSwitch label=\"AI Agent Alerts\"\n                    description=\"Get notified when your AI agent needs attention\"\n                    checked={notifyAgentAlerts} onChange={v => onChange('notify_agent_alerts', v)} />\n            </div>\n        </div>\n    );\n}\n```\n\n3. Update `src/platform/resources/js/Pages/Settings/Index.tsx` to use the NotificationPreferences component:\n- Import NotificationPreferences\n- Add it inside the form, passing the relevant data fields and an onChange handler that calls setData\n\n**File paths:**\n- `src/platform/resources/js/Components/ToggleSwitch.tsx`\n- `src/platform/resources/js/Components/NotificationPreferences.tsx`\n- `src/platform/resources/js/Pages/Settings/Index.tsx` (updated)"
+acceptance_criteria[7]: ToggleSwitch component renders accessible toggle with label and description,ToggleSwitch uses aria-checked attribute for accessibility,"NotificationPreferences shows 4 toggles: email, in-app, push, agent alerts",Each toggle has label and description text,Toggles update form state via onChange callback,Settings/Index.tsx integrates NotificationPreferences component,Toggle state persists when form is submitted
+
+**Dependencies:**
+This task requires the following tasks to be completed first: OCD-54
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OCD-16
+epic: OCD-2
+project: oap-cloud
+projectKey: OCD
+projectKey: OCD
+path: .projects/oap-cloud/OCD-2/OCD-16/OCD-55.toon

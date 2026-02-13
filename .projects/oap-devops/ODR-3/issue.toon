@@ -1,0 +1,7 @@
+id: ODR-3
+type: epic
+title: Chrome Extension Build & Distribution
+status: done
+created: 2026-02-09
+description: Build and publish Chrome extension to Web Store
+priority: high

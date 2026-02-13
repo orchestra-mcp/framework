@@ -1,0 +1,9 @@
+id: OC-30
+type: story
+parent: OC-3
+title: Create JSON Schema for package.json manifest
+status: done
+created: 2026-02-09
+user_story: "As an extension developer, I want a JSON Schema file that describes the full Orchestra extension manifest format, so that my IDE provides autocompletion and validation when I edit package.json for my extension."
+points: 3
+acceptance_criteria[8]: JSON Schema file exists at src/schemas/orchestra-extension.schema.json,"Schema covers all manifest fields: name, version, main, displayName, description",Schema covers activationEvents with enum of supported event prefixes,Schema covers extensionDependencies as array of strings,Schema covers the full contributes object with all contribution types,"Schema covers marketplace metadata (category, paid)",Schema is valid JSON Schema draft-07 or later,package.json can reference the schema for IDE autocompletion

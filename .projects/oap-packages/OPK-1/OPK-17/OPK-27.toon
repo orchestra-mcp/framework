@@ -1,0 +1,21 @@
+id: OPK-27
+type: task
+parent: OPK-17
+title: Implement ExplorerServiceProvider with all registrations
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 30
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Implement the full ExplorerServiceProvider that registers all Explorer contributions with the core service registry.\n\nTARGET: src/packages/explorer/src/ExplorerServiceProvider.ts\n\nThe ExplorerServiceProvider class must:\n\n1. Import ExplorerService from './Services/ExplorerService'\n2. Import explorerMcpTools from './Services/mcpTools'\n3. Implement boot() method that:\n   a. Instantiates ExplorerService\n   b. Registers sidebar entry: { id: 'explorer', title: 'Explorer', icon: 'folder', component: 'FileExplorer', order: 1 }\n   c. Registers MCP tools by calling mcpToolRegistry.registerTools(explorerMcpTools)\n   d. Registers search provider: { id: 'file-search', name: 'Files', search: (query) => explorerService.searchFiles(query) }\n   e. Registers settings defaults: { 'explorer.excludePatterns': ['node_modules', '.git'], 'explorer.showHiddenFiles': false }\n   f. Registers tray menu item: { label: 'Open Workspace', command: 'explorer.openWorkspace', order: 10 }\n4. Implement shutdown() method that cleans up any file watchers or resources\n5. Export the class as default export\n\nReference the ServiceProvider pattern from src/packages/example/src/ExampleServiceProvider.ts for the base class/interface to extend."
+acceptance_criteria[9]: ExplorerServiceProvider.ts is fully implemented at src/packages/explorer/src/ExplorerServiceProvider.ts,boot() method registers sidebar entry with folder icon,boot() method registers 3 MCP tools,boot() method registers file search provider,"boot() method registers 2 settings (excludePatterns, showHiddenFiles)",boot() method registers tray menu item Open Workspace,shutdown() method cleans up resources,Class is exported as default export,TypeScript compiles without errors
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OPK-17
+epic: OPK-1
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-1/OPK-17/OPK-27.toon

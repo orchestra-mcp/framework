@@ -1,0 +1,7 @@
+id: OSV-7
+type: epic
+title: Fast WebSocket Server
+status: done
+created: 2026-02-09
+description: "Extract WebSocket bridge from packages/desktop/src/main/services/websocketBridgeService.ts into src/app/Socket/. Provides IWebSocketService with registerHandler/publish/subscribe API. Channel-based pub/sub, token-based auth, binary message support, reconnection with exponential backoff, offline message queue, and extension handler registration."
+priority: high

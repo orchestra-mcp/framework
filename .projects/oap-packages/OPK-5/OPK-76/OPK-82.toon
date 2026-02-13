@@ -1,0 +1,21 @@
+id: OPK-82
+type: task
+parent: OPK-76
+title: Implement TerminalManagerServiceProvider with all registrations
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 30
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Implement the full TerminalManagerServiceProvider.\n\nTARGET: src/packages/terminal-manager/src/TerminalManagerServiceProvider.ts\n\nThe class must:\n1. Import TerminalService, SSHService from './Services/'\n2. Implement boot() that:\n   a. Instantiates TerminalService, SSHService\n   b. Registers tab type: { id: 'terminal', title: 'Terminal', component: 'TerminalPane', closable: true, multiple: true }\n   c. Registers sidebar entry: { id: 'terminal', title: 'Terminal', icon: 'terminal', component: 'TerminalSidebar', order: 5 }\n   d. Registers settings: terminal.shell ('/bin/zsh'), terminal.fontSize (13), terminal.fontFamily ('JetBrains Mono'), terminal.cursorStyle ('block')\n   e. Registers tray menu: { label: 'New Terminal', command: 'terminal.new', order: 15 }\n   f. Registers commands:\n      - { id: 'terminal.new', handler: () => terminalService.createTerminal() }\n      - { id: 'terminal.split', handler: () => terminalService.splitTerminal() }\n3. Implement shutdown() that kills all terminal processes\n4. Export as default"
+acceptance_criteria[8]: TerminalManagerServiceProvider fully implemented,"boot() registers terminal tab type (closable, multiple)",boot() registers sidebar with terminal icon,boot() registers 4 settings,boot() registers tray menu New Terminal,boot() registers 2 commands,shutdown() kills terminal processes,TypeScript compiles
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OPK-76
+epic: OPK-5
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-5/OPK-76/OPK-82.toon

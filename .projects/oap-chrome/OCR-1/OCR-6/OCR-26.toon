@@ -1,0 +1,24 @@
+id: OCR-26
+type: task
+parent: OCR-6
+title: Create unit tests for sidebar type contracts
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 15
+estimate_tokens: null
+blockers: ["\"ODS-1\"","\"ODS-2\"","\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"\\\"\\\\\\\"ODS-1\\\\\\\"\\\"\"","\"\\\"\\\\\\\"ODS-2\\\\\\\"\\\"\"","\"\\\"\\\\\\\"\\\\\\\\\\\\\\\"OCR-25\\\\\\\\\\\\\\\"\\\\\\\"\\\"\"","OCR-25"]
+description: "Create type-level tests to verify the sidebar interfaces are correctly defined and usable. \n\n**Target file:** `src/app/Chrome/Sidebar/__tests__/types.test.ts`\n\nWrite tests that:\n1. Verify a valid SidebarEntry object satisfies the interface (using `satisfies` keyword)\n2. Verify a valid ContentRegistration object satisfies the interface\n3. Verify that `icon` accepts a React functional component\n4. Verify that `badge` is optional and accepts both number and string\n5. Verify that `order` on ContentRegistration is optional\n\n```typescript\nimport { describe, it, expect } from 'vitest';\nimport type { SidebarEntry, ContentRegistration } from '../types';\n\n// Dummy icon component for testing\nconst TestIcon = () => null;\nconst TestPanel = () => null;\n\ndescribe('Sidebar types', () => {\n  it('SidebarEntry accepts valid entry', () => {\n    const entry: SidebarEntry = {\n      id: 'test',\n      icon: TestIcon,\n      label: 'Test Panel',\n      order: 1,\n    };\n    expect(entry.id).toBe('test');\n  });\n\n  it('SidebarEntry accepts badge as number', () => {\n    const entry: SidebarEntry = {\n      id: 'test',\n      icon: TestIcon,\n      label: 'Test',\n      order: 1,\n      badge: 5,\n    };\n    expect(entry.badge).toBe(5);\n  });\n\n  it('SidebarEntry accepts badge as string', () => {\n    const entry: SidebarEntry = {\n      id: 'test',\n      icon: TestIcon,\n      label: 'Test',\n      order: 1,\n      badge: '!',\n    };\n    expect(entry.badge).toBe('!');\n  });\n\n  it('ContentRegistration accepts valid registration', () => {\n    const reg: ContentRegistration = {\n      sidebarId: 'test',\n      component: TestPanel,\n    };\n    expect(reg.sidebarId).toBe('test');\n  });\n\n  it('ContentRegistration order is optional', () => {\n    const reg: ContentRegistration = {\n      sidebarId: 'test',\n      component: TestPanel,\n      order: 5,\n    };\n    expect(reg.order).toBe(5);\n  });\n});\n```\n\nRun with: `pnpm vitest run src/app/Chrome/Sidebar/__tests__/types.test.ts`"
+acceptance_criteria[5]: Test file exists at src/app/Chrome/Sidebar/__tests__/types.test.ts,All 5 tests pass with pnpm vitest,Tests verify SidebarEntry with and without badge,Tests verify ContentRegistration with and without order,Tests verify icon field accepts React component
+
+**Dependencies:**
+This task requires the following tasks to be completed first: OCR-25
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OCR-6
+epic: OCR-1
+project: oap-chrome
+projectKey: OCR
+projectKey: OCR
+path: .projects/oap-chrome/OCR-1/OCR-6/OCR-26.toon

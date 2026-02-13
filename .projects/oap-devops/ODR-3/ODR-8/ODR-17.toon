@@ -1,0 +1,12 @@
+id: ODR-17
+type: task
+parent: ODR-8
+title: Implement automated Chrome Web Store publishing
+status: done
+created: 2026-02-09
+description: "Use Chrome Web Store API to publish extension. Create scripts/publish-chrome-extension.mjs that handles OAuth token refresh, uploads ZIP, and publishes to store. Complete implementation with 150+ lines in DevOps PRD."
+acceptance_criteria[4]: Script uploads ZIP to Web Store,Publishes extension automatically,Handles OAuth token refresh,Logs publish status and errors
+estimate_minutes: 75
+estimate_tokens: 30000
+assignee: null
+actual_minutes: 22

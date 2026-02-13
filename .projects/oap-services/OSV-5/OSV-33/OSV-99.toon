@@ -1,0 +1,21 @@
+id: OSV-99
+type: task
+parent: OSV-33
+title: Register notification settings group and preferences
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Register notification preferences in the Settings Service so users can control notification behavior.\n\n**Target file:** `src/app/Notifications/settingsRegistration.ts`\n\n**Settings to register using ISettingsService:**\n```typescript\nexport function registerNotificationSettings(settings: ISettingsService): Disposable[] {\n  const disposables: Disposable[] = [];\n  \n  disposables.push(settings.registerGroup({\n    id: 'notifications', title: 'Notifications',\n    description: 'Control notification behavior', icon: 'bell', order: 50\n  }));\n  \n  disposables.push(settings.registerSetting({\n    key: 'notifications.desktop.enabled', type: 'boolean', default: true,\n    label: 'Desktop Notifications', group: 'notifications', order: 1\n  }));\n  disposables.push(settings.registerSetting({\n    key: 'notifications.browser.enabled', type: 'boolean', default: true,\n    label: 'Browser Notifications', group: 'notifications', order: 2\n  }));\n  disposables.push(settings.registerSetting({\n    key: 'notifications.sound.enabled', type: 'boolean', default: true,\n    label: 'Notification Sounds', group: 'notifications', order: 3\n  }));\n  disposables.push(settings.registerSetting({\n    key: 'notifications.sound.volume', type: 'number', default: 80,\n    label: 'Sound Volume', description: '0-100', group: 'notifications', order: 4,\n    validation: (v) => v >= 0 && v <= 100\n  }));\n  disposables.push(settings.registerSetting({\n    key: 'notifications.dnd', type: 'boolean', default: false,\n    label: 'Do Not Disturb', description: 'Suppress all notifications', group: 'notifications', order: 5\n  }));\n  disposables.push(settings.registerSetting({\n    key: 'notifications.history.maxSize', type: 'number', default: 500,\n    label: 'History Size', description: 'Maximum notifications to keep in history', group: 'notifications', order: 6\n  }));\n  \n  return disposables;\n}\n```\n\n**Integration:** NotificationService reads DND setting before sending. If DND is true, notifications are stored in history but not delivered to channels."
+acceptance_criteria[5]: settingsRegistration.ts at src/app/Notifications/settingsRegistration.ts,Notifications settings group registered,"6 settings registered: desktop enabled, browser enabled, sound enabled, volume, DND, history size",DND mode suppresses channel delivery but stores in history,Volume validation rejects values outside 0-100
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-33
+epic: OSV-5
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-5/OSV-33/OSV-99.toon

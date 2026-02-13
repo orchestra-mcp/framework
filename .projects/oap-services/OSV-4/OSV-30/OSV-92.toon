@@ -1,0 +1,21 @@
+id: OSV-92
+type: task
+parent: OSV-30
+title: "Write Themes documentation, barrel exports, and importer tests"
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create documentation, barrel exports, and tests for the VSCode theme importer.\n\n**Target files:**\n- `docs/core-services/themes.md`\n- `src/app/Themes/README.md`\n- `src/app/Themes/index.ts`\n- `src/app/Themes/__tests__/VscodeThemeImporter.test.ts`\n\n**docs/core-services/themes.md sections:**\n1. Overview\n2. API Reference\n3. Types — ThemeDefinition, TokenColor\n4. Built-in Themes — orchestra-dark, orchestra-light\n5. Custom Theme Registration\n6. VSCode Theme Import\n7. CSS Variables Reference (all ~40 variable names)\n8. Theme Propagation (how changes reach panels + Chrome ext)\n\n**Importer tests:**\n1. Parses .tmTheme file correctly\n2. Parses VS Code JSON theme correctly\n3. Maps color keys to Orchestra convention\n4. Returns valid ThemeDefinition\n5. Handles malformed theme files gracefully\n\n**Barrel:**\n```typescript\nexport type { IThemeService } from './IThemeService';\nexport type { ThemeDefinition, TokenColor } from './types';\nexport { ThemeService } from './ThemeService';\nexport { ThemePropagator } from './ThemePropagator';\nexport { VscodeThemeImporter } from './VscodeThemeImporter';\nexport { setupThemeHandlers, cleanupThemeHandlers } from './handlers';\n```"
+acceptance_criteria[5]: docs/core-services/themes.md with all 8 sections,src/app/Themes/index.ts barrel exports all public API,VscodeThemeImporter tests cover both formats,5 importer test cases pass,CSS variables reference lists all ~40 variables
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-30
+epic: OSV-4
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-4/OSV-30/OSV-92.toon

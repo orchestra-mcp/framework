@@ -1,0 +1,16 @@
+id: OC-11
+type: task
+parent: OC-6
+title: Update tsconfig.json path aliases for src/ structure
+status: done
+created: 2026-02-09
+assignee: null
+estimate_minutes: 20
+estimate_tokens: null
+description: "**Files to modify:**\n- `/tsconfig.json` (root)\n- `/packages/desktop/tsconfig.json` (if exists)\n- `/src/packages/example/tsconfig.json` (create if not exists)\n\n**What to do:**\n\n1. **Root tsconfig.json** — Add or update `compilerOptions.paths` to include:\n```json\n{\n  \"compilerOptions\": {\n    \"baseUrl\": \".\",\n    \"paths\": {\n      \"@app/*\": [\"src/app/*\"],\n      \"@packages/*\": [\"src/packages/*\"]\n    }\n  },\n  \"include\": [\"src/**/*.ts\"],\n  \"references\": [\n    { \"path\": \"src/packages/example\" }\n  ]\n}\n```\n\n2. **packages/desktop/tsconfig.json** — If it exists, add the same path aliases so the desktop package can import from `@app/` and `@packages/`:\n```json\n{\n  \"compilerOptions\": {\n    \"paths\": {\n      \"@app/*\": [\"../../src/app/*\"],\n      \"@packages/*\": [\"../../src/packages/*\"]\n    }\n  }\n}\n```\n\n3. **src/packages/example/tsconfig.json** — Create this file if it doesn't exist:\n```json\n{\n  \"extends\": \"../../../tsconfig.json\",\n  \"compilerOptions\": {\n    \"outDir\": \"dist\",\n    \"rootDir\": \"src\"\n  },\n  \"include\": [\"src/**/*.ts\"]\n}\n```\n\n**Verification:** Run `pnpm typecheck` from the root. There should be no errors about unresolved path aliases."
+acceptance_criteria[4]: Root tsconfig.json has paths for @app/* and @packages/*,"TypeScript can resolve imports like import { X } from '@app/Providers/ServiceRegistry'",src/packages/example/tsconfig.json exists and extends root config,pnpm typecheck passes without path resolution errors
+story: OC-6
+epic: OC-1
+project: oap-core
+projectKey: OC
+path: .projects/oap-core/OC-1/OC-6/OC-11.toon

@@ -1,0 +1,17 @@
+id: OPK-50
+type: task
+parent: OPK-45
+title: Create Tasks Manager directory structure and config files
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 20
+estimate_tokens: null
+description: "Create the complete directory tree for the Tasks Manager package.\n\nCreate these directories and files:\n- src/packages/tasks-manager/src/TasksManagerServiceProvider.ts (empty stub)\n- src/packages/tasks-manager/src/Services/\n- src/packages/tasks-manager/src/Http/\n- src/packages/tasks-manager/src/Models/\n- src/packages/tasks-manager/src/Jobs/\n- src/packages/tasks-manager/src/Notifications/\n- src/packages/tasks-manager/src/Panels/\n- src/packages/tasks-manager/src/Widgets/\n- src/packages/tasks-manager/database/\n- src/packages/tasks-manager/routes/web.ts (empty stub)\n- src/packages/tasks-manager/routes/socket.ts (empty stub)\n- src/packages/tasks-manager/resources/chrome/\n- src/packages/tasks-manager/resources/chrome/stores/\n- src/packages/tasks-manager/resources/desktop/\n- src/packages/tasks-manager/resources/web/\n- src/packages/tasks-manager/docs/README.md, docs/api/README.md, docs/guides/README.md, docs/changelog/README.md\n- src/packages/tasks-manager/tests/\n\nCreate src/packages/tasks-manager/package.json:\n{\n  \"name\": \"@orchestra/tasks-manager\",\n  \"version\": \"0.1.0\",\n  \"private\": true,\n  \"main\": \"src/TasksManagerServiceProvider.ts\",\n  \"contributes\": {\n    \"sidebar\": [{ \"id\": \"tasks\", \"title\": \"Tasks\", \"icon\": \"check-square\" }],\n    \"mcpTools\": [\"create_project\", \"create_epic\", \"create_story\", \"create_task\", \"get_next_task\", \"complete_task\", \"search_tasks\"],\n    \"searchProviders\": [\"tasks\"],\n    \"settings\": {\n      \"tasks.syncEnabled\": { \"type\": \"boolean\", \"default\": true },\n      \"tasks.providers\": { \"type\": \"array\", \"default\": [] }\n    },\n    \"trayMenu\": [{ \"label\": \"My Tasks\", \"command\": \"tasks.showMyTasks\" }],\n    \"widgets\": [{ \"id\": \"task-summary\", \"title\": \"Task Summary\" }]\n  }\n}\n\nCreate tsconfig.json (extends root, jsx: react-jsx) and vitest.config.ts."
+acceptance_criteria[3]: All directories and files exist,"package.json has correct contributes manifest with sidebar, mcpTools, searchProviders, settings, trayMenu, widgets",tsconfig.json and vitest.config.ts exist
+story: OPK-45
+epic: OPK-3
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-3/OPK-45/OPK-50.toon

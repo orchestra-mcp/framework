@@ -1,0 +1,17 @@
+id: OSV-74
+type: task
+parent: OSV-23
+title: Migrate timerPanelService and calendarPanelService to PanelManagerService
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+description: "Refactor the timer and calendar panel services to use the unified PanelManagerService.registerPanel() API.\n\n**Source files to read:**\n- `packages/desktop/src/main/services/timerPanelService.ts` — existing timer panel creation\n- `packages/desktop/src/main/services/calendarPanelService.ts` — existing calendar panel creation\n- `packages/desktop/src/widget-renderer/timer-panel.html` — timer panel HTML\n- `packages/desktop/src/widget-renderer/calendar-panel.html` — calendar panel HTML\n- `packages/desktop/src/main/timer-panel-preload.ts` — timer preload\n- `packages/desktop/src/main/calendar-panel-preload.ts` — calendar preload\n\n**Migration pattern for each panel:**\n```typescript\n// In the extension's activate() function:\nconst timerPanel = panelManager.registerPanel({\n  id: 'timer-panel',\n  title: 'Timer',\n  icon: 'clock',\n  htmlPath: path.join(__dirname, '../widget-renderer/timer-panel.html'),\n  preloadPath: path.join(__dirname, '../timer-panel-preload.js'),\n  defaultSize: { width: 300, height: 400 },\n  resizable: true,\n  alwaysOnTop: true,\n  trayMenuEntry: { label: 'Timer', group: 'widgets', order: 10 }\n});\n// timerPanel is a Disposable — store it for cleanup\n```\n\n**What to change:**\n1. Replace all direct BrowserWindow creation in timerPanelService with `panelManager.registerPanel()` + `panelManager.openPanel()`\n2. Replace all direct BrowserWindow creation in calendarPanelService with same pattern\n3. Move any panel-specific IPC handlers to use `PanelIpcBridge.registerHandler()`\n4. Keep extension-specific business logic (timer logic, calendar logic) in the extension"
+acceptance_criteria[6]: timerPanelService uses panelManager.registerPanel() instead of direct BrowserWindow,calendarPanelService uses panelManager.registerPanel() instead of direct BrowserWindow,Timer panel opens/closes/toggles via panelManager API,Calendar panel opens/closes/toggles via panelManager API,Tray menu entries auto-created for both panels,No regressions in timer or calendar panel functionality
+story: OSV-23
+epic: OSV-2
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-2/OSV-23/OSV-74.toon

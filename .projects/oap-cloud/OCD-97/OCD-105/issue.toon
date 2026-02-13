@@ -1,0 +1,9 @@
+id: OCD-105
+type: story
+parent: OCD-97
+title: Database schema for profiles and community
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want database tables for user profiles, posts, comments, likes, and follows so that I can build social features"
+points: 5
+acceptance_criteria[5]: Migration created with all tables from PRD lines 1100-1215,Relationships defined correctly,Indexes on foreign keys,Unique constraints in place,Migration runs successfully

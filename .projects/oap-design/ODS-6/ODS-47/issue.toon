@@ -1,0 +1,9 @@
+id: ODS-47
+type: story
+parent: ODS-6
+title: Migrate Desktop widgets to use design system
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want the Desktop widgets migrated to use the design system so that all widget UI is consistent across the app."
+points: 13
+acceptance_criteria[5]: All widget HTML files use design system components,"Timer panel, calendar panel, break panel migrated",Settings window uses design system,Chat box overlay uses design system,Theme consistency across all widgets

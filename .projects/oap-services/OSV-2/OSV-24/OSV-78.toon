@@ -1,0 +1,17 @@
+id: OSV-78
+type: task
+parent: OSV-24
+title: Write Panel Manager documentation and barrel exports
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+description: "Create documentation and barrel export for the Panel Manager module.\n\n**Target files to create:**\n- `docs/core-services/panel-manager.md`\n- `src/app/Panels/README.md`\n- `src/app/Panels/index.ts`\n\n**docs/core-services/panel-manager.md sections:**\n1. Overview — what the unified panel manager replaces (6 individual services)\n2. API Reference — every method with params, return types, examples\n3. Types — PanelRegistration, PanelState with all fields\n4. Usage Examples: registering a panel, opening/closing, tray integration, theme injection, IPC bridge\n5. IPC Channels table\n6. Migration Guide — from timerPanelService/calendarPanelService/etc to registerPanel()\n7. Architecture diagram\n\n**src/app/Panels/index.ts barrel:**\n```typescript\nexport type { IPanelManagerService } from './IPanelManagerService';\nexport type { PanelRegistration, PanelState } from './types';\nexport { PanelManagerService } from './PanelManagerService';\nexport { PanelThemeInjector } from './PanelThemeInjector';\nexport { PanelIpcBridge, createPanelPreload } from './PanelIpcBridge';\nexport { setupPanelHandlers, cleanupPanelHandlers } from './handlers';\n```"
+acceptance_criteria[5]: docs/core-services/panel-manager.md exists with all 7 sections,src/app/Panels/README.md exists,src/app/Panels/index.ts barrel exports all public API,Migration guide covers all 6 original panel services,At least 5 code examples included
+story: OSV-24
+epic: OSV-2
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-2/OSV-24/OSV-78.toon

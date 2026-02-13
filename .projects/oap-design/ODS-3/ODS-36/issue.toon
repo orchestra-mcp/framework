@@ -1,0 +1,9 @@
+id: ODS-36
+type: story
+parent: ODS-3
+title: "List components (TreeItem, ListItem, MenuItem)"
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want list item components so that I can build consistent lists, menus, and tree views."
+points: 5
+acceptance_criteria[6]: TreeItem component for hierarchical lists,ListItem component for flat lists,MenuItem component for menus,Selection and hover states,Icon and badge support,Keyboard navigation

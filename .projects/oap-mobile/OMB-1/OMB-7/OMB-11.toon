@@ -1,0 +1,23 @@
+id: OMB-11
+type: task
+parent: OMB-7
+title: Configure TypeScript 5.9 strict mode and ESLint
+status: done
+created: 2026-02-09
+assignee: Claude
+estimate_minutes: 30
+estimate_tokens: null
+actual_minutes: 10
+actual_tokens: 3000
+completed: 2026-02-10
+blockers: []
+description: "Configure TypeScript and ESLint for the React Native project.\n\n1. Update `src/mobile/tsconfig.json`:\n   ```json\n   {\n     \"compilerOptions\": {\n       \"target\": \"esnext\",\n       \"module\": \"commonjs\",\n       \"lib\": [\"es2022\"],\n       \"jsx\": \"react-jsx\",\n       \"strict\": true,\n       \"esModuleInterop\": true,\n       \"skipLibCheck\": true,\n       \"forceConsistentCasingInFileNames\": true,\n       \"resolveJsonModule\": true,\n       \"isolatedModules\": true,\n       \"noEmit\": true,\n       \"moduleResolution\": \"bundler\",\n       \"allowImportingTsExtensions\": true,\n       \"baseUrl\": \".\",\n       \"paths\": {\n         \"@/*\": [\"src/*\"],\n         \"@components/*\": [\"src/components/*\"],\n         \"@stores/*\": [\"src/stores/*\"],\n         \"@services/*\": [\"src/services/*\"],\n         \"@navigation/*\": [\"src/navigation/*\"],\n         \"@theme/*\": [\"src/theme/*\"],\n         \"@utils/*\": [\"src/utils/*\"]\n       }\n     },\n     \"include\": [\"src/**/*.ts\", \"src/**/*.tsx\"],\n     \"exclude\": [\"node_modules\", \"android\", \"ios\"]\n   }\n   ```\n\n2. Install dev dependencies: `npm install -D typescript@~5.9.0 @types/react @types/react-native @react-native/eslint-config eslint prettier`\n\n3. Create `src/mobile/.eslintrc.js`:\n   ```js\n   module.exports = {\n     root: true,\n     extends: ['@react-native'],\n     rules: {\n       'react/react-in-jsx-scope': 'off',\n     },\n   };\n   ```\n\n4. Create `src/mobile/.prettierrc.js`:\n   ```js\n   module.exports = {\n     semi: true,\n     singleQuote: true,\n     trailingComma: 'all',\n     printWidth: 100,\n     tabWidth: 2,\n   };\n   ```\n\n5. Update `src/mobile/metro.config.js` to support path aliases using `babel-plugin-module-resolver`.\n\n6. Update `src/mobile/babel.config.js`:\n   ```js\n   module.exports = {\n     presets: ['module:@react-native/babel-preset'],\n     plugins: [\n       ['module-resolver', {\n         root: ['./src'],\n         alias: {\n           '@': './src',\n           '@components': './src/components',\n           '@stores': './src/stores',\n           '@services': './src/services',\n           '@navigation': './src/navigation',\n           '@theme': './src/theme',\n           '@utils': './src/utils',\n         },\n       }],\n     ],\n   };\n   ```\n\n7. Install babel plugin: `npm install -D babel-plugin-module-resolver`\n\n8. Convert the default `App.tsx` to use strict TypeScript (add proper type annotations).\n\n9. Run `npx tsc --noEmit` to verify no type errors."
+acceptance_criteria[6]: "tsconfig.json has strict: true and all specified compiler options","Path aliases (@/*, @components/*, etc.) resolve correctly in imports",ESLint runs without errors on existing files,npx tsc --noEmit passes with zero errors,babel.config.js includes module-resolver plugin with correct aliases,TypeScript version is 5.9.x
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OMB-7
+epic: OMB-1
+project: oap-mobile
+projectKey: OMB
+path: .projects/oap-mobile/OMB-1/OMB-7/OMB-11.toon

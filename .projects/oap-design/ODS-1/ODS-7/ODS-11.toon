@@ -1,0 +1,12 @@
+id: ODS-11
+type: task
+parent: ODS-7
+title: Analyze arts/ folder and extract brand color values
+status: done
+created: 2026-02-09
+description: "Examine the arts/ folder to identify all Orchestra brand colors and document them.\n\n**Files to read:**\n- `/Users/fadymondy/Sites/orchestra-app/arts/` (all image/design files)\n- Look for primary purple (#a900ff) and other brand colors\n\n**Tasks:**\n1. List all files in arts/ folder\n2. Identify color palette from design assets\n3. Document primary, secondary, and accent colors\n4. Create initial color inventory in markdown\n\n**Output:**\nCreate `/Users/fadymondy/Sites/orchestra-app/packages/design-system/tokens/docs/brand-colors.md` with discovered colors."
+acceptance_criteria[3]: All brand colors from arts/ folder documented,Primary purple (#a900ff) confirmed,Color inventory markdown file created
+estimate_minutes: 20
+estimate_tokens: null
+assignee: null
+actual_minutes: 10

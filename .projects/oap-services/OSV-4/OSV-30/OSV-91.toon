@@ -1,0 +1,21 @@
+id: OSV-91
+type: task
+parent: OSV-30
+title: Implement VSCode theme importer
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create the VSCode theme import functionality.\n\n**Source reference:** Read `packages/desktop/src/main/platform/vscodeExtensionService.ts` and `packages/desktop/src/main/platform/textmateService.ts` for existing theme parsing patterns.\n\n**Target file to create:** `src/app/Themes/VscodeThemeImporter.ts`\n\n**Implementation:**\n1. `importVSCodeTheme(vsixPath: string): Promise<ThemeDefinition>`\n2. Steps:\n   a. Extract VSIX (ZIP) to temp directory\n   b. Read `package.json` -> `contributes.themes` array\n   c. For each theme entry, read the theme file:\n      - `.tmTheme` (XML plist format): parse with `plist` library, extract colors and tokenColors\n      - VS Code JSON format: parse JSON directly, map `colors` and `tokenColors`\n   d. Convert to ThemeDefinition: map VSCode color keys to Orchestra CSS variable names\n   e. Auto-register the imported theme via `themeService.registerTheme()`\n   f. Clean up temp directory\n3. Color key mapping example:\n   - `editor.background` -> `bg-editor`\n   - `editor.foreground` -> `text-editor`\n   - `sideBar.background` -> `bg-sidebar`\n   - Create a `VSCODE_COLOR_MAP: Record<string, string>` constant for mapping"
+acceptance_criteria[6]: VscodeThemeImporter in src/app/Themes/VscodeThemeImporter.ts,Parses .tmTheme XML plist format,Parses VS Code JSON theme format,Maps VSCode color keys to Orchestra CSS variable names,Auto-registers imported theme,Temp files cleaned up after import
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-30
+epic: OSV-4
+project: oap-services
+projectKey: OSV
+projectKey: OSV
+path: .projects/oap-services/OSV-4/OSV-30/OSV-91.toon

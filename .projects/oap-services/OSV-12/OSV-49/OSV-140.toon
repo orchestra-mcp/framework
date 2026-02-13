@@ -1,0 +1,20 @@
+id: OSV-140
+type: task
+parent: OSV-49
+title: Write Widget Control documentation and barrel exports
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create documentation and barrel exports.\n\n**Target files:**\n- `docs/core-services/widget-control.md`\n- `src/app/Widgets/README.md`\n- `src/app/Widgets/index.ts`\n\n**Docs sections:** Overview, API Reference, Types, Widget Registration, Multi-View Support, State Persistence, Theme Integration, Tray Menu, Context Menu, Examples\n\n**Barrel:**\n```typescript\nexport type { IWidgetControlService } from './IWidgetControlService';\nexport type { WidgetRegistration, WidgetView, WidgetState, WidgetInfo } from './types';\nexport { WidgetControlService } from './WidgetControlService';\nexport { WidgetContextMenu } from './WidgetContextMenu';\n```"
+acceptance_criteria[3]: docs/core-services/widget-control.md with all sections,src/app/Widgets/index.ts barrel exports all public API,Multi-view example in docs
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-49
+epic: OSV-12
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-12/OSV-49/OSV-140.toon

@@ -1,0 +1,17 @@
+id: OPK-78
+type: task
+parent: OPK-73
+title: Create Terminal Manager directory structure and config files
+status: done
+created: 2026-02-09
+assignee: null
+estimate_minutes: 20
+estimate_tokens: null
+description: "Create the complete directory tree for the Terminal Manager package.\n\nCreate all standard directories:\n- src/packages/terminal-manager/src/TerminalManagerServiceProvider.ts (stub)\n- src/packages/terminal-manager/src/Services/, Http/, Models/, Jobs/, Notifications/, Panels/, Widgets/\n- src/packages/terminal-manager/database/, routes/web.ts, routes/socket.ts\n- src/packages/terminal-manager/resources/chrome/, resources/chrome/stores/, resources/desktop/, resources/web/\n- src/packages/terminal-manager/docs/README.md, docs/api/README.md, docs/guides/README.md, docs/changelog/README.md\n- src/packages/terminal-manager/tests/\n\nCreate package.json:\n{\n  \"name\": \"@orchestra/terminal-manager\",\n  \"version\": \"0.1.0\",\n  \"private\": true,\n  \"main\": \"src/TerminalManagerServiceProvider.ts\",\n  \"contributes\": {\n    \"tabs\": [{ \"id\": \"terminal\", \"title\": \"Terminal\", \"closable\": true, \"multiple\": true }],\n    \"sidebar\": [{ \"id\": \"terminal\", \"title\": \"Terminal\", \"icon\": \"terminal\" }],\n    \"settings\": {\n      \"terminal.shell\": { \"type\": \"string\", \"default\": \"/bin/zsh\" },\n      \"terminal.fontSize\": { \"type\": \"number\", \"default\": 13 },\n      \"terminal.fontFamily\": { \"type\": \"string\", \"default\": \"JetBrains Mono, monospace\" },\n      \"terminal.cursorStyle\": { \"type\": \"string\", \"default\": \"block\", \"enum\": [\"block\", \"underline\", \"bar\"] }\n    },\n    \"trayMenu\": [{ \"label\": \"New Terminal\", \"command\": \"terminal.new\" }],\n    \"commands\": [\n      { \"id\": \"terminal.new\", \"title\": \"New Terminal\" },\n      { \"id\": \"terminal.split\", \"title\": \"Split Terminal\" }\n    ]\n  }\n}\n\nCreate tsconfig.json (extends root, jsx: react-jsx) and vitest.config.ts."
+acceptance_criteria[3]: All directories exist,"package.json has tabs, sidebar, settings, trayMenu, commands in contributes",tsconfig.json and vitest.config.ts exist
+story: OPK-73
+epic: OPK-5
+project: oap-packages
+projectKey: OPK
+path: .projects/oap-packages/OPK-5/OPK-73/OPK-78.toon
+actual_minutes: 5

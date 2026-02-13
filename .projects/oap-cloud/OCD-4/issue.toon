@@ -1,0 +1,7 @@
+id: OCD-4
+type: epic
+title: Documentation System
+status: backlog
+created: 2026-02-09
+description: Auto-read documentation from docs/ and src/packages/*/docs/ directories. Render with the same universal markdown parser. Generate sidebar navigation from folder structure (README.md = index). Full-text search within docs.
+priority: medium

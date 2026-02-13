@@ -1,0 +1,9 @@
+id: ODS-39
+type: story
+parent: ODS-4
+title: "Modal system (Modal, Dialog, Drawer, Sheet)"
+status: backlog
+created: 2026-02-09
+user_story: "As a developer, I want modal and overlay components so that I can display content on top of the main UI with proper focus management."
+points: 8
+acceptance_criteria[7]: Modal component with backdrop,Dialog component for confirmations,Drawer component that slides from edge,Sheet component for bottom sheets,Focus trap and ESC to close,Portal rendering and z-index stacking,Accessibility with ARIA attributes

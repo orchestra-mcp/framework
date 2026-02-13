@@ -1,0 +1,20 @@
+id: OSV-141
+type: task
+parent: OSV-50
+title: Define IAccountCenterService interface and auth types
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "Create the TypeScript interface and types for the Account Center Service.\n\n**Source reference:** Read these files:\n- `packages/extensions/credentials/` directory\n- `packages/extensions/calendar/src/OAuthService.ts`\n\n**Target files to create:**\n- `src/app/AccountCenter/IAccountCenterService.ts`\n- `src/app/AccountCenter/types.ts`\n\n**Exact interfaces:**\n```typescript\n// src/app/AccountCenter/types.ts\nexport type AuthType = 'oauth2' | 'oauth2-pkce' | 'api-key' | 'token';\n\nexport interface IntegrationDefinition {\n  id: string;\n  name: string;\n  icon: string;\n  authType: AuthType;\n  oauth?: {\n    authUrl: string;\n    tokenUrl: string;\n    clientId: string;\n    clientSecret?: string;  // not needed for PKCE\n    scopes: string[];\n    callbackPath: string;  // local HTTP callback path\n    usePKCE?: boolean;\n  };\n  apiKey?: {\n    headerName: string;  // e.g. 'Authorization', 'X-API-Key'\n    prefix?: string;     // e.g. 'Bearer ', 'Token '\n  };\n}\n\nexport interface AuthResult {\n  accessToken: string;\n  refreshToken?: string;\n  expiresAt?: number;\n  scope?: string;\n}\n\nexport interface IntegrationStatus {\n  integrationId: string;\n  connected: boolean;\n  expiresAt?: number;\n  lastRefresh?: number;\n}\n\n// src/app/AccountCenter/IAccountCenterService.ts\nexport interface IAccountCenterService {\n  registerIntegration(integration: IntegrationDefinition): Disposable;\n  connect(integrationId: string): Promise<AuthResult>;\n  disconnect(integrationId: string): Promise<void>;\n  getConnectedIntegrations(): IntegrationStatus[];\n  getAccessToken(integrationId: string): Promise<string>;\n  isConnected(integrationId: string): boolean;\n  onConnectionChange: Event<IntegrationStatus>;\n}\n```"
+acceptance_criteria[5]: src/app/AccountCenter/IAccountCenterService.ts with full interface,src/app/AccountCenter/types.ts with all types,"AuthType supports oauth2, oauth2-pkce, api-key, token",OAuth config includes PKCE option,registerIntegration returns Disposable
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+story: OSV-50
+epic: OSV-13
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-13/OSV-50/OSV-141.toon

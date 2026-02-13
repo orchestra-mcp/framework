@@ -1,0 +1,25 @@
+id: OC-21
+type: task
+parent: OC-16
+title: Create ExtensionScanner.ts for package discovery
+status: done
+created: 2026-02-09
+assignee: null
+estimate_minutes: 30
+estimate_tokens: null
+blockers: ["\"\\\"ODS-1\\\"\"","\"\\\"ODS-2\\\"\"","\"ODS-1\"","\"ODS-2\"","ODS-1","ODS-2"]
+description: "**File to create:** `src/app/Providers/ExtensionScanner.ts`\n\n**Reference file to copy from:** `packages/desktop/src/main/platform/extensionScanner.ts`\n**Reference types:** `packages/desktop/src/main/platform/types/extension.ts`\n\n**What to do:**\n1. Create `src/app/Providers/ExtensionScanner.ts`\n2. Copy the reference `extensionScanner.ts` into the new file with these changes:\n\n**a) Import types locally instead of from the old path.** Copy the relevant types at the top of the file or import from a shared types file you create:\n```typescript\n// Types needed (copy from packages/desktop/src/main/platform/types/extension.ts):\n// - ExtensionManifest\n// - ActivationEvent\n// These should be defined in src/app/Providers/types.ts (create this file too)\n```\n\n**b) Create `src/app/Providers/types.ts`** containing all the shared types. Copy from `packages/desktop/src/main/platform/types/extension.ts`:\n- `ActivationEvent` type\n- `ExtensionManifest` interface\n- `ExtensionContributes` interface\n- `ExtensionState` type\n- `Extension<T>` interface\n- `ExtensionContext` interface\n- `ExtensionModule` interface\n- `Disposable` interface\n- `ServiceAccessor` type\n- `ExtensionMode` enum\n- `Memento` interface\n- All contribution types (CommandContribution, MenuItem, SettingContribution, etc.)\n\n**c) Keep the scanner functions exactly as-is from reference:**\n- `validateManifest(data: unknown)` — validates a parsed package.json\n- `readManifest(extensionPath: string)` — reads and validates a single manifest\n- `scanExtensions(basePath: string)` — scans a directory for extension directories\n- `ScanResult` interface\n- `ValidationError` interface\n\n**d) Add Orchestra-specific manifest fields** to the validation. After the existing checks in `validateManifest`, add validation for:\n```typescript\n// Validate contributes (must be object if present)\nif (obj.contributes !== undefined && (typeof obj.contributes !== 'object' || obj.contributes === null)) {\n  errors.push({ field: 'contributes', message: 'contributes must be an object' });\n}\n\n// Validate marketplace (optional)\nif (obj.marketplace !== undefined && (typeof obj.marketplace !== 'object' || obj.marketplace === null)) {\n  errors.push({ field: 'marketplace', message: 'marketplace must be an object' });\n}\n```\n\n**e) Export from index.ts:**\nAdd to `src/app/Providers/index.ts`:\n```typescript\nexport { scanExtensions, readManifest, validateManifest } from './ExtensionScanner';\nexport type { ScanResult, ValidationError } from './ExtensionScanner';\n```\n\n**Verification:** `pnpm typecheck` passes. The scanner can find `src/packages/example/package.json`."
+acceptance_criteria[7]: "src/app/Providers/ExtensionScanner.ts exists with scanExtensions, readManifest, validateManifest",src/app/Providers/types.ts exists with all shared extension types,"validateManifest validates name, version, main, activationEvents, extensionDependencies, contributes","scanExtensions reads directories and returns ScanResult[] with manifest or error","Orchestra-specific fields (contributes, marketplace) are validated",All types are re-exported from src/app/Providers/index.ts,File passes pnpm typecheck
+
+**IMPORTANT:** Before starting, use the Read tool to read `packages/desktop/src/main/platform/extensionScanner.ts` to understand the structure and implementation patterns.
+
+**⚠️ Design System Dependency:**
+This task requires the Orchestra Design System foundation to be completed first (ODS-1, ODS-2). Use design tokens and core components from `packages/design-system/` instead of creating custom styles.
+
+**IMPORTANT:** Before starting, use the Read tool to read `packages/desktop/src/main/platform/extensionScanner.ts` to understand the structure and implementation patterns.
+story: OC-16
+epic: OC-2
+project: oap-core
+projectKey: OC
+projectKey: OC
+path: .projects/oap-core/OC-2/OC-16/OC-21.toon

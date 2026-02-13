@@ -1,0 +1,21 @@
+id: OCR-34
+type: task
+parent: OCR-9
+title: "Create registerChromeContributions() for terminal, database, services, and logs extensions"
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 45
+estimate_tokens: null
+blockers: ["\"OCR-32\"","OCR-32"]
+description: "Create a `registerChromeContributions()` function for the remaining 4 sidebar panels (terminal, database, services, logs) that registers their sidebar entry, content panel, and badge bindings.\n\n**Target files:**\n\n1. `src/packages/terminal-manager/resources/chrome/contributions.ts`\n2. `src/packages/database-manager/resources/chrome/contributions.ts`\n3. `src/packages/os-services-manager/resources/chrome/contributions.ts`\n4. `src/packages/log-viewer/resources/chrome/contributions.ts`\n\n**For terminal (order: 50):**\n```typescript\n// src/packages/terminal-manager/resources/chrome/contributions.ts\nimport { sidebarService } from '../../../../app/Chrome/Sidebar';\nimport { TerminalIcon } from './icons';\n// TODO: update import path after store migration\nimport { useTerminalStore } from '../../../../chrome-extension/src/stores/terminalStore';\n\n// The terminal panel is the TerminalLayout component from App.tsx lines 134-220.\n// It needs to be extracted into its own file first.\n// For now, import from the current location or create a wrapper.\nimport { TerminalPanel } from './components/TerminalPanel'; // see note below\n\nexport function registerChromeContributions(): void {\n  sidebarService.registerSidebarEntry({\n    id: 'terminal',\n    icon: TerminalIcon,\n    label: 'Terminal',\n    order: 50,\n  });\n\n  sidebarService.registerContent({\n    sidebarId: 'terminal',\n    component: TerminalPanel,\n  });\n\n  // Badge: session count\n  useTerminalStore.subscribe(\n    (state) => state.sessions.length,\n    (count) => sidebarService.updateBadge('terminal', count || undefined),\n  );\n}\n```\n\n**IMPORTANT for terminal:** The `TerminalLayout` component is currently defined INLINE in App.tsx (lines 134-220). It must be extracted to `src/packages/terminal-manager/resources/chrome/components/TerminalPanel.tsx`. Copy the entire `TerminalLayout` function from App.tsx lines 134-220, rename it to `TerminalPanel`, and adjust imports:\n- `TerminalSidebar` from `packages/chrome-extension/src/terminal/TerminalSidebar`\n- `TerminalPane` from `packages/chrome-extension/src/terminal/TerminalPane`\n- `useTerminalStore` from the terminal store\n\nThe `TerminalPanel` component should internally use `useTerminalStore` to get `sessions` and `activeSessionId` (instead of receiving them as props like the current `TerminalLayout`).\n\n**For database (order: 60):**\n- Import `DatabaseIcon` and `DatabasePanel` from `packages/chrome-extension/src/sidepanel/database/DatabasePanel`\n- Badge: subscribe to databaseStore connections, count where `status === 'connected'`\n\n**For services (order: 70):**\n- Import `ServicesIcon` and `ServicesPanel` from `packages/chrome-extension/src/sidepanel/services/ServicesPanel`\n- Badge: subscribe to servicesStore services, count where `status === 'running'`\n\n**For logs (order: 80):**\n- Import `LogsIcon` and `DevLogsPanel` from `packages/chrome-extension/src/sidepanel/dev-logs/DevLogsPanel`\n- No badge initially\n\nEach file should also be re-exported from an `index.ts` barrel."
+acceptance_criteria[8]: "4 contribution files created for terminal, database, services, logs",Each file exports registerChromeContributions() function,"Terminal registers with order=50, Database with order=60, Services with order=70, Logs with order=80",TerminalLayout extracted from App.tsx into TerminalPanel component at src/packages/terminal-manager/resources/chrome/components/TerminalPanel.tsx,TerminalPanel reads sessions and activeSessionId from useTerminalStore internally (not props),Database contribution subscribes to databaseStore for connected count badge,Services contribution subscribes to servicesStore for running count badge,Each package has resources/chrome/index.ts barrel export
+
+**Dependencies:**
+This task requires the following tasks to be completed first: OCR-32
+story: OCR-9
+epic: OCR-1
+project: oap-chrome
+projectKey: OCR
+projectKey: OCR
+path: .projects/oap-chrome/OCR-1/OCR-9/OCR-34.toon

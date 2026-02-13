@@ -1,0 +1,9 @@
+id: OSV-27
+type: story
+parent: OSV-3
+title: Settings Search & Documentation
+status: done
+created: 2026-02-09
+user_story: "As a developer, I want settings to be searchable and well-documented so that users can find settings quickly and developers know how to register new settings."
+points: 3
+acceptance_criteria[4]: "searchSettings(query) method returns matching SettingDefinition[]","Search matches against key, label, description, and group title",docs/core-services/settings.md with API reference and examples,Cloud sync interface stubs defined (not implemented)

@@ -1,0 +1,16 @@
+id: OSV-126
+type: task
+parent: OSV-43
+title: Write unit tests for AiChatBoxService
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: null
+estimate_tokens: null
+description: "Create tests for AiChatBoxService.\n\n**Target file:** `src/app/AI/__tests__/AiChatBoxService.test.ts`\n\n**Test cases:**\n1. registerModelProvider stores provider, Disposable removes it\n2. registerSkill stores skill, Disposable removes it\n3. registerAgent stores agent\n4. sendMessage routes to active provider\n5. sendMessage with /skill triggers skill handler\n6. sendMessage with agentId prepends system prompt\n7. sendMessage adds context to message\n8. sendMessage adds message to active session\n9. onMessage fires on assistant response\n10. createSession creates new session\n11. switchSession changes active session\n12. deleteSession removes session\n13. listSessions returns all sessions"
+acceptance_criteria[4]: Test file at specified path,All 13 test cases pass,Mock ModelProvider with AsyncIterable,Coverage >90%
+story: OSV-43
+epic: OSV-10
+project: oap-services
+projectKey: OSV
+path: .projects/oap-services/OSV-10/OSV-43/OSV-126.toon

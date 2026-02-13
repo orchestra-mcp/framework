@@ -1,0 +1,17 @@
+id: OPK-79
+type: task
+parent: OPK-74
+title: Migrate terminal service files
+status: backlog
+created: 2026-02-09
+assignee: null
+estimate_minutes: 30
+estimate_tokens: null
+description: "Copy and adapt all terminal service files from the terminal extension.\n\nFILE MAPPING (source -> target):\n1. packages/extensions/terminal/src/TerminalService.ts -> src/packages/terminal-manager/src/Services/TerminalService.ts\n2. packages/extensions/terminal/src/SSHService.ts -> src/packages/terminal-manager/src/Services/SSHService.ts\n3. packages/extensions/terminal/src/CredentialService.ts -> src/packages/terminal-manager/src/Services/CredentialService.ts\n4. packages/extensions/terminal/src/ElectronKeyProvider.ts -> src/packages/terminal-manager/src/Services/ElectronKeyProvider.ts\n5. packages/extensions/terminal/src/SettingsService.ts -> src/packages/terminal-manager/src/Services/SettingsService.ts\n6. packages/extensions/terminal/src/terminalHandlers.ts -> src/packages/terminal-manager/src/Services/terminalHandlers.ts\n7. packages/extensions/terminal/src/sshHandlers.ts -> src/packages/terminal-manager/src/Services/sshHandlers.ts\n8. packages/extensions/terminal/src/credentialHandlers.ts -> src/packages/terminal-manager/src/Services/credentialHandlers.ts\n9. packages/extensions/terminal/src/settingsHandlers.ts -> src/packages/terminal-manager/src/Services/settingsHandlers.ts\n10. packages/extensions/terminal/src/types.ts -> src/packages/terminal-manager/src/Services/types.ts\n\nFor each: copy, update all imports to local paths, preserve all function/class signatures."
+acceptance_criteria[4]: All 10 files exist in src/packages/terminal-manager/src/Services/,No imports reference packages/extensions/terminal/,All class/function signatures preserved,TypeScript compiles
+story: OPK-74
+epic: OPK-5
+project: oap-packages
+projectKey: OPK
+projectKey: OPK
+path: .projects/oap-packages/OPK-5/OPK-74/OPK-79.toon

@@ -48,11 +48,7 @@ tmp/
 /old-ref
 
 # =============================================================================
-# Plugins — each plugin is a standalone repo, pulled in via git submodule
-# or go workspace. Ignore the plugins/ directory so plugins can be independently
-# managed, then whitelist specific plugins that ship with the monorepo.
+# Plugins — each plugin is a standalone repo (e.g. orchestra-mcp/mcp).
+# Ignore the entire plugins/ directory; plugins are cloned separately.
 # =============================================================================
-plugins/*/
-
-# Keep the MCP plugin tracked (ships with the monorepo)
-!plugins/mcp/
+plugins/

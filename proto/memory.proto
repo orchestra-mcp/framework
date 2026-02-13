@@ -1,0 +1,115 @@
+syntax = "proto3";
+
+package orchestra.memory.v1;
+
+option go_package = "github.com/orchestra-mcp/mcp/src/gen/memoryv1;memoryv1";
+
+// MemoryService provides RAG storage and retrieval for project context.
+service MemoryService {
+  // StoreChunk indexes a memory chunk for later retrieval.
+  rpc StoreChunk(StoreChunkRequest) returns (StoreChunkResponse);
+
+  // SearchMemory performs hybrid keyword + vector search.
+  rpc SearchMemory(SearchRequest) returns (SearchResponse);
+
+  // GetContext returns relevant chunks for the current work context.
+  rpc GetContext(ContextRequest) returns (ContextResponse);
+
+  // StoreSession saves a session log for a project.
+  rpc StoreSession(StoreSessionRequest) returns (StoreSessionResponse);
+
+  // ListSessions returns recent sessions for a project.
+  rpc ListSessions(ListSessionsRequest) returns (ListSessionsResponse);
+
+  // GetSession retrieves a full session transcript.
+  rpc GetSession(GetSessionRequest) returns (GetSessionResponse);
+}
+
+message MemoryChunk {
+  string id = 1;
+  string project = 2;
+  string source = 3;       // task, prd, session, user
+  string source_id = 4;
+  string summary = 5;
+  string content = 6;
+  repeated string tags = 7;
+  string created_at = 8;
+  float score = 9;         // relevance score (search results only)
+}
+
+message StoreChunkRequest {
+  string project = 1;
+  string source = 2;
+  string source_id = 3;
+  string summary = 4;
+  string content = 5;
+  repeated string tags = 6;
+}
+
+message StoreChunkResponse {
+  MemoryChunk chunk = 1;
+}
+
+message SearchRequest {
+  string project = 1;
+  string query = 2;
+  int32 limit = 3;
+}
+
+message SearchResponse {
+  repeated MemoryChunk results = 1;
+}
+
+message ContextRequest {
+  string project = 1;
+  string query = 2;
+  int32 limit = 3;
+}
+
+message ContextResponse {
+  repeated MemoryChunk chunks = 1;
+}
+
+message SessionEvent {
+  string type = 1;
+  string summary = 2;
+  string timestamp = 3;
+}
+
+message SessionLog {
+  string session_id = 1;
+  string project = 2;
+  string summary = 3;
+  repeated SessionEvent events = 4;
+  string started_at = 5;
+  string ended_at = 6;
+}
+
+message StoreSessionRequest {
+  string project = 1;
+  string session_id = 2;
+  string summary = 3;
+  repeated SessionEvent events = 4;
+}
+
+message StoreSessionResponse {
+  SessionLog session = 1;
+}
+
+message ListSessionsRequest {
+  string project = 1;
+  int32 limit = 2;
+}
+
+message ListSessionsResponse {
+  repeated SessionLog sessions = 1;
+}
+
+message GetSessionRequest {
+  string project = 1;
+  string session_id = 2;
+}
+
+message GetSessionResponse {
+  SessionLog session = 1;
+}

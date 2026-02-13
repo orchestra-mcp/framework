@@ -93,6 +93,38 @@ type HasWebViews interface {
 	WebViewsPath() string
 }
 
+// HasTransitionListener indicates a plugin that receives workflow transition events.
+type HasTransitionListener interface {
+	OnWorkflowTransition(event WorkflowTransitionEvent)
+}
+
+// HasHookListener indicates a plugin that receives Claude Code hook events.
+type HasHookListener interface {
+	OnClaudeHookEvent(event ClaudeHookEvent)
+}
+
+// WorkflowTransitionEvent is emitted when an issue changes workflow state.
+type WorkflowTransitionEvent struct {
+	Project string `json:"project"`
+	EpicID  string `json:"epic_id,omitempty"`
+	StoryID string `json:"story_id,omitempty"`
+	TaskID  string `json:"task_id,omitempty"`
+	Type    string `json:"type"`
+	From    string `json:"from"`
+	To      string `json:"to"`
+	Time    string `json:"time"`
+}
+
+// ClaudeHookEvent is emitted when Claude Code fires a hook.
+type ClaudeHookEvent struct {
+	EventType string         `json:"event_type"`
+	SessionID string         `json:"session_id"`
+	ToolName  string         `json:"tool_name,omitempty"`
+	AgentType string         `json:"agent_type,omitempty"`
+	Data      map[string]any `json:"data,omitempty"`
+	Timestamp string         `json:"timestamp"`
+}
+
 // Command represents a CLI command provided by a plugin.
 type Command struct {
 	Name        string

@@ -65,7 +65,7 @@ orchestra-mcp/
 ├── config/                   # Go configuration
 │   └── plugins.go            # Plugin registry config
 ├── plugins/                  # ALL PLUGINS (each is standalone)
-│   └── mcp/                  # MCP Plugin — first plugin (40 tools)
+│   └── mcp/                  # MCP Plugin — first plugin (57 tools)
 │       ├── go.mod            # Standalone module
 │       ├── config/mcp.go     # McpConfig
 │       ├── providers/        # Plugin registration (bridges to app/plugins)
@@ -76,7 +76,7 @@ orchestra-mcp/
 │       │   ├── workflow/     # State machine transitions
 │       │   ├── helpers/      # Shared utilities (5 files)
 │       │   ├── transport/    # MCP stdio JSON-RPC server
-│       │   ├── tools/        # All 40 MCP tools (10 files)
+│       │   ├── tools/        # All 57 MCP tools (12 files)
 │       │   └── bootstrap/    # Workspace init command
 │       └── resources/        # Bundled skills + agents
 ├── cmd/server/main.go        # Go HTTP server entry point
@@ -110,14 +110,15 @@ Everything is a plugin. The plugin runtime at `app/plugins/` provides:
 
 Each plugin is a standalone Go module with its own `go.mod`, pushable as a separate GitHub repo. Plugin folder convention: `config/`, `providers/`, `src/`, `resources/`, `README.md`.
 
-### MCP Plugin (Pure Go, 40 tools)
+### MCP Plugin (Pure Go, 57 tools)
 
 The first plugin at `plugins/mcp/`. Provides project management tools via MCP protocol:
 - **Build**: `cd plugins/mcp && go build -o orchestra-mcp ./src/cmd/`
 - **Run**: `orchestra-mcp --workspace .` (stdio JSON-RPC)
-- **Init**: `orchestra-mcp init --workspace .` (creates .mcp.json + .projects/)
-- **Packages**: `types/`, `toon/`, `workflow/`, `helpers/`, `transport/`, `tools/`, `bootstrap/`
-- **Workflow**: backlog -> todo -> in-progress -> review -> done (with validation)
+- **Init**: `orchestra-mcp init --workspace .` (creates .mcp.json, .projects/, .claude/, CLAUDE.md, AGENTS.md, CONTEXT.md)
+- **Packages**: `types/`, `toon/`, `workflow/`, `helpers/`, `transport/`, `tools/`, `engine/`, `bootstrap/`
+- **Workflow**: 13-state lifecycle (backlog → todo → in-progress → ready-for-testing → in-testing → ready-for-docs → in-docs → documented → in-review → done)
+- **Engine**: Optional Rust gRPC engine for vector search memory (auto-starts/stops, TOON fallback)
 - **Extensible**: Other plugins push tools via `RegisterExternalTools()` — appears in stdio + REST
 
 ### Three-Layer Database

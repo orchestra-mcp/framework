@@ -3,7 +3,7 @@ GOLANGCI_LINT := $(GOBIN)/golangci-lint
 GOFUMPT := $(GOBIN)/gofumpt
 
 # Version injection for MCP binary
-MCP_VERSION ?= 0.1.0
+MCP_VERSION ?= 1.0.0
 MCP_COMMIT  := $(shell git rev-parse --short HEAD 2>/dev/null || echo "none")
 MCP_DATE    := $(shell date -u +%Y-%m-%dT%H:%M:%SZ)
 MCP_LDFLAGS := -s -w \
@@ -39,7 +39,7 @@ dev-frontend:
 
 build:
 	@echo "Building Orchestra MCP..."
-	@make build-go build-rust build-mcp build-frontend
+	@make build-go build-engine build-mcp build-frontend
 	@echo "Build complete"
 
 build-go:
@@ -49,6 +49,11 @@ build-go:
 build-rust:
 	@echo "[rust] Building engine..."
 	cd engine && cargo build --release
+
+build-engine: build-rust
+	@echo "[engine] Copying engine binary..."
+	@mkdir -p bin
+	cp engine/target/release/orchestra-engine bin/
 
 build-mcp:
 	@echo "[mcp] Building MCP server..."
@@ -123,3 +128,17 @@ mcp-init:
 mcp-start:
 	@echo "Starting MCP server..."
 	bin/orchestra-mcp --workspace .
+
+# ============================================================================
+# Proto generation (for maintainers only, requires protoc)
+# ============================================================================
+
+proto-mcp:
+	@echo "[proto] Generating Go client code for MCP plugin..."
+	PATH="$$PATH:$$(go env GOPATH)/bin" protoc \
+		--go_out=plugins/mcp/src/gen --go_opt=paths=source_relative \
+		--go-grpc_out=plugins/mcp/src/gen --go-grpc_opt=paths=source_relative \
+		-I proto proto/memory.proto
+	@mv plugins/mcp/src/gen/memory.pb.go plugins/mcp/src/gen/memoryv1/ 2>/dev/null || true
+	@mv plugins/mcp/src/gen/memory_grpc.pb.go plugins/mcp/src/gen/memoryv1/ 2>/dev/null || true
+	@echo "Generated. Commit files in plugins/mcp/src/gen/memoryv1/"

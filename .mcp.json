@@ -1,11 +1,11 @@
 {
   "mcpServers": {
     "orchestra-mcp": {
-      "command": "/Users/fadymondy/Sites/orchestra-mcp/bin/orchestra-mcp",
       "args": [
         "--workspace",
         "/Users/fadymondy/Sites/orchestra-mcp"
-      ]
+      ],
+      "command": "orchestra-mcp"
     }
   }
 }

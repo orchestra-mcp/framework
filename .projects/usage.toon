@@ -1,7 +1,17 @@
-session_start: "2026-02-06T01:38:10.148Z"
-session_tokens: 12993308
-session_cost: 30274.492904100003
-weekly_tokens: 12998308
-weekly_cost: 30274.642904100005
-weekly_limit: 10000000
-updated: "2026-02-06T01:42:58.463Z"
+sessions:
+    - provider: anthropic
+      model: claude-opus-4-6
+      started_at: "2026-02-13T16:42:32Z"
+      ended_at: "2026-02-13T16:42:40Z"
+      requests:
+        - timestamp: "2026-02-13T16:42:32Z"
+          input_tokens: 1000
+          output_tokens: 500
+          cost: 0.05
+      total_input: 1000
+      total_output: 500
+      total_cost: 0.05
+totals:
+    total_input: 1000
+    total_output: 500
+    total_cost: 0.05

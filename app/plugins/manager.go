@@ -301,6 +301,38 @@ func (pm *PluginManager) CollectMiddleware() []any {
 	return middleware
 }
 
+// NotifyTransition broadcasts a workflow transition event to all active plugins
+// that implement HasTransitionListener.
+func (pm *PluginManager) NotifyTransition(event WorkflowTransitionEvent) {
+	pm.mu.RLock()
+	defer pm.mu.RUnlock()
+
+	for id, p := range pm.plugins {
+		if !pm.active[id] {
+			continue
+		}
+		if tl, ok := p.(HasTransitionListener); ok {
+			tl.OnWorkflowTransition(event)
+		}
+	}
+}
+
+// NotifyHookEvent broadcasts a Claude Code hook event to all active plugins
+// that implement HasHookListener.
+func (pm *PluginManager) NotifyHookEvent(event ClaudeHookEvent) {
+	pm.mu.RLock()
+	defer pm.mu.RUnlock()
+
+	for id, p := range pm.plugins {
+		if !pm.active[id] {
+			continue
+		}
+		if hl, ok := p.(HasHookListener); ok {
+			hl.OnClaudeHookEvent(event)
+		}
+	}
+}
+
 // activatePlugin performs the actual activation of a plugin. Must be called
 // while holding pm.mu.
 func (pm *PluginManager) activatePlugin(id string) error {

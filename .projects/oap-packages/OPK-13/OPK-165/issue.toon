@@ -1,9 +1,0 @@
-id: OPK-165
-type: story
-parent: OPK-13
-title: Build Break Tracker ServiceProvider
-status: backlog
-created: 2026-02-09
-user_story: "As a developer, I want the BreakTrackerServiceProvider to register all contributions with core services."
-points: 3
-acceptance_criteria[4]: Registers widget for break panel,Registers tray menu Break Tracker,Registers notifications for break reminders,Registers settings for break interval and reminder frequency

@@ -1,0 +1,26 @@
+package tests
+
+import (
+	"context"
+	"testing"
+
+	"github.com/orchestra-mcp/{{.Name}}/src"
+)
+
+func TestNew{{.PascalName}}Service(t *testing.T) {
+	svc := src.New{{.PascalName}}Service()
+	if svc == nil {
+		t.Fatal("expected non-nil service")
+	}
+}
+
+func Test{{.PascalName}}ServiceStatus(t *testing.T) {
+	svc := src.New{{.PascalName}}Service()
+	status, err := svc.Status(context.Background())
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if status != "ok" {
+		t.Fatalf("expected status 'ok', got %q", status)
+	}
+}

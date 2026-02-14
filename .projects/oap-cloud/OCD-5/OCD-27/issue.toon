@@ -1,9 +1,0 @@
-id: OCD-27
-type: story
-parent: OCD-5
-title: Version Control & AI Agent Control
-status: backlog
-created: 2026-02-09
-user_story: "As an employee, I want to view my commit history, PRs, and issues, and control my AI agent remotely so that I can manage development work and AI assistance from the web dashboard."
-points: 8
-acceptance_criteria[10]: Commit history list from tracked repos,"PR list with status (open, merged, closed)",Issue tracking view,"AI agent status display (idle, working, waiting)",Start task on agent button,Approve/deny agent permission requests,Answer agent questions,Send new prompts to agent,Agent output log viewer,All agent interactions via WebSocket

@@ -1,9 +1,0 @@
-id: OPK-109
-type: story
-parent: OPK-8
-title: Migrate Log Viewer Chrome UI
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want the log viewer UI components migrated from chrome-extension/sidepanel/dev-logs/ into the Log Viewer package."
-points: 3
-acceptance_criteria[3]: All 4 log viewer components migrated to resources/chrome/,devLogsStore.ts migrated to resources/chrome/stores/,All imports updated

@@ -1,0 +1,13 @@
+package src
+
+// {{.PascalName}}Request represents an incoming request for the {{.PascalName}} plugin.
+type {{.PascalName}}Request struct {
+	Action string         `json:"action"`
+	Data   map[string]any `json:"data,omitempty"`
+}
+
+// {{.PascalName}}Response represents a response from the {{.PascalName}} plugin.
+type {{.PascalName}}Response struct {
+	Status  string `json:"status"`
+	Message string `json:"message,omitempty"`
+}

@@ -1,9 +1,0 @@
-id: OC-17
-type: story
-parent: OC-2
-title: Build LifecycleService
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want a LifecycleService that manages application phases (Starting, Ready, Stopping, Stopped) and emits lifecycle events, so that extensions and core services can hook into startup and shutdown sequences reliably."
-points: 3
-acceptance_criteria[7]: "LifecycleService tracks phases: Starting -> Ready -> Stopping -> Stopped","Lifecycle events (onWillStartup, onDidStartup, onWillShutdown, onDidShutdown) fire in correct order",when(phase) returns a Promise that resolves when the phase is reached,Phase transitions are one-directional (cannot go backwards),Handler errors are caught and logged without blocking other handlers,ILifecycleService service identifier is created for DI,Unit tests cover all phase transitions and event emissions

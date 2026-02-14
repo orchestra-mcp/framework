@@ -1,9 +1,0 @@
-id: OCD-114
-type: story
-parent: OCD-98
-title: Sitemap generation and scheduling
-status: backlog
-created: 2026-02-09
-user_story: "As a site owner, I want an auto-generated sitemap so that search engines can discover all pages"
-points: 3
-acceptance_criteria[5]: Artisan command from PRD lines 2080-2151,Includes static and dynamic pages,Priority and change frequency set,Scheduled to run daily,robots.txt route added

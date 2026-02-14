@@ -140,6 +140,56 @@ type McpToolDefinition struct {
 	Handler     func(input map[string]any) (any, error)
 }
 
+// HasMcpResources indicates a plugin that provides MCP resources.
+type HasMcpResources interface {
+	McpResources() []McpResourceDefinition
+}
+
+// HasMcpPrompts indicates a plugin that provides MCP prompts.
+type HasMcpPrompts interface {
+	McpPrompts() []McpPromptDefinition
+}
+
+// McpResourceDefinition represents an MCP resource provided by a plugin.
+type McpResourceDefinition struct {
+	URI         string
+	Name        string
+	Title       string
+	Description string
+	MimeType    string
+	Handler     func(uri string) ([]McpResourceContent, error)
+}
+
+// McpResourceContent represents content returned from an MCP resource.
+type McpResourceContent struct {
+	URI      string
+	MimeType string
+	Text     string
+	Blob     string
+}
+
+// McpPromptDefinition represents an MCP prompt provided by a plugin.
+type McpPromptDefinition struct {
+	Name        string
+	Title       string
+	Description string
+	Arguments   []McpPromptArgument
+	Handler     func(args map[string]string) (string, []McpPromptMessage, error)
+}
+
+// McpPromptArgument represents an argument for an MCP prompt.
+type McpPromptArgument struct {
+	Name        string
+	Description string
+	Required    bool
+}
+
+// McpPromptMessage represents a message returned from an MCP prompt.
+type McpPromptMessage struct {
+	Role    string
+	Content string
+}
+
 // JobDefinition represents a background job provided by a plugin.
 type JobDefinition struct {
 	Name    string

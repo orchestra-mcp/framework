@@ -1,9 +1,0 @@
-id: ODS-35
-type: story
-parent: ODS-3
-title: "Container components (Card, Panel, Well)"
-status: in_progress
-created: 2026-02-09
-user_story: "As a developer, I want container components so that I can group related content with consistent padding and styling."
-points: 3
-acceptance_criteria[5]: "Card component with header, body, and footer slots",Panel component for sidebar sections,Well component for recessed content,Border and shadow variants,Collapsible panels

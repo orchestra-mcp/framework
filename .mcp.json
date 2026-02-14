@@ -5,7 +5,7 @@
         "--workspace",
         "/Users/fadymondy/Sites/orchestra-mcp"
       ],
-      "command": "orchestra-mcp"
+      "command": "/Users/fadymondy/Sites/orchestra-mcp/plugins/mcp/orchestra-mcp"
     }
   }
 }

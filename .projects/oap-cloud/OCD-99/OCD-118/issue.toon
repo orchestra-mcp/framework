@@ -1,9 +1,0 @@
-id: OCD-118
-type: story
-parent: OCD-99
-title: Manual payment processing for admins
-status: backlog
-created: 2026-02-09
-user_story: "As an admin, I want to manually create subscriptions so that I can handle custom payment arrangements"
-points: 3
-acceptance_criteria[4]: Admin can create subscriptions with custom dates,Payment method and reference tracked,Notes field for admin comments,Transaction records created

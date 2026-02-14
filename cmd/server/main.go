@@ -8,7 +8,7 @@ import (
 	"github.com/gofiber/fiber/v3"
 	"github.com/orchestra-mcp/framework/app/plugins"
 	"github.com/orchestra-mcp/framework/config"
-	mcpproviders "github.com/orchestra-mcp/mcp/providers"
+	"github.com/orchestra-mcp/framework/config/registry"
 	"github.com/rs/zerolog"
 )
 
@@ -20,11 +20,11 @@ func main() {
 	pm := plugins.NewPluginManager(cfg)
 	pm.SetLogger(logger)
 
-	// Register plugins.
-	loader := plugins.NewPluginLoader(cfg.PluginsPath)
-	loader.SetLogger(logger)
-	if err := loader.RegisterAll(pm, mcpproviders.NewMcpPlugin()); err != nil {
-		logger.Fatal().Err(err).Msg("failed to register plugins")
+	// Register all auto-discovered plugins.
+	for _, p := range registry.AllPlugins() {
+		if err := pm.Register(p); err != nil {
+			logger.Fatal().Err(err).Str("plugin", p.ID()).Msg("failed to register plugin")
+		}
 	}
 
 	// Boot all plugins (topological sort + activate).

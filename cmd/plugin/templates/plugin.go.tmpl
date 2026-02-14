@@ -1,0 +1,120 @@
+package providers
+
+import (
+	"github.com/orchestra-mcp/framework/app/plugins"
+{{- if .HasCapability "routes"}}
+	"github.com/gofiber/fiber/v3"
+{{- end}}
+)
+
+// {{.PascalName}}Plugin implements the Orchestra plugin interface.
+type {{.PascalName}}Plugin struct {
+	active bool
+	ctx    *plugins.PluginContext
+}
+
+// New{{.PascalName}}Plugin creates a new {{.PascalName}} plugin instance.
+func New{{.PascalName}}Plugin() *{{.PascalName}}Plugin {
+	return &{{.PascalName}}Plugin{}
+}
+
+func (p *{{.PascalName}}Plugin) ID() string             { return "{{.ID}}" }
+func (p *{{.PascalName}}Plugin) Name() string           { return "{{.PascalName}}" }
+func (p *{{.PascalName}}Plugin) Version() string        { return "0.1.0" }
+func (p *{{.PascalName}}Plugin) Dependencies() []string { return nil }
+func (p *{{.PascalName}}Plugin) IsActive() bool         { return p.active }
+
+func (p *{{.PascalName}}Plugin) Activate(ctx *plugins.PluginContext) error {
+	p.ctx = ctx
+	p.active = true
+	ctx.Logger.Info().Str("plugin", p.ID()).Msg("{{.PascalName}} plugin activated")
+	return nil
+}
+
+func (p *{{.PascalName}}Plugin) Deactivate() error {
+	p.active = false
+	return nil
+}
+{{- if .HasCapability "routes"}}
+
+// RegisterRoutes registers HTTP routes for the {{.PascalName}} plugin.
+func (p *{{.PascalName}}Plugin) RegisterRoutes(router fiber.Router) {
+	group := router.Group("/{{.Name}}")
+	group.Get("/status", func(c fiber.Ctx) error {
+		return c.JSON(fiber.Map{"plugin": p.ID(), "active": p.active})
+	})
+}
+{{- end}}
+{{- if .HasCapability "settings"}}
+
+func (p *{{.PascalName}}Plugin) ConfigKey() string { return "{{.Name}}" }
+
+func (p *{{.PascalName}}Plugin) DefaultConfig() map[string]any {
+	return map[string]any{"enabled": true}
+}
+{{- end}}
+{{- if .HasCapability "mcp"}}
+
+func (p *{{.PascalName}}Plugin) McpTools() []plugins.McpToolDefinition {
+	return nil // TODO: register MCP tools
+}
+{{- end}}
+{{- if .HasCapability "tray"}}
+
+func (p *{{.PascalName}}Plugin) TrayMenuItems() []plugins.TrayMenuItemDef {
+	return nil // TODO: register tray menu items
+}
+{{- end}}
+{{- if .HasCapability "panels"}}
+
+func (p *{{.PascalName}}Plugin) Panels() []plugins.PanelDef {
+	return nil // TODO: register panels
+}
+{{- end}}
+{{- if .HasCapability "widgets"}}
+
+func (p *{{.PascalName}}Plugin) Widgets() []plugins.WidgetDef {
+	return nil // TODO: register widgets
+}
+{{- end}}
+{{- if .HasCapability "notifications"}}
+
+func (p *{{.PascalName}}Plugin) NotificationChannels() []plugins.NotificationChannelDef {
+	return nil // TODO: register notification channels
+}
+{{- end}}
+{{- if .HasCapability "search"}}
+
+func (p *{{.PascalName}}Plugin) SearchProviders() []plugins.SearchProviderDef {
+	return nil // TODO: register search providers
+}
+{{- end}}
+
+// Compile-time interface assertions.
+var (
+	_ plugins.Plugin = (*{{.PascalName}}Plugin)(nil)
+{{- if .HasCapability "routes"}}
+	_ plugins.HasRoutes = (*{{.PascalName}}Plugin)(nil)
+{{- end}}
+{{- if .HasCapability "settings"}}
+	_ plugins.HasConfig = (*{{.PascalName}}Plugin)(nil)
+{{- end}}
+{{- if .HasCapability "mcp"}}
+	_ plugins.HasMcpTools = (*{{.PascalName}}Plugin)(nil)
+{{- end}}
+{{- if .HasCapability "tray"}}
+	_ plugins.HasTrayMenu = (*{{.PascalName}}Plugin)(nil)
+{{- end}}
+{{- if .HasCapability "panels"}}
+	_ plugins.HasPanels = (*{{.PascalName}}Plugin)(nil)
+{{- end}}
+{{- if .HasCapability "widgets"}}
+	_ plugins.HasWidgets = (*{{.PascalName}}Plugin)(nil)
+{{- end}}
+{{- if .HasCapability "notifications"}}
+	_ plugins.HasNotifications = (*{{.PascalName}}Plugin)(nil)
+{{- end}}
+{{- if .HasCapability "search"}}
+	_ plugins.HasSearchProviders = (*{{.PascalName}}Plugin)(nil)
+{{- end}}
+)

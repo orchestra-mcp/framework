@@ -1,7 +1,0 @@
-id: ODR-2
-type: epic
-title: Desktop App Build System
-status: done
-created: 2026-02-09
-description: "Build, sign, and package Desktop app for macOS, Windows, and Linux"
-priority: high

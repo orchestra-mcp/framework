@@ -1,7 +1,0 @@
-id: OCD-5
-type: epic
-title: Employee Dashboard
-status: backlog
-created: 2026-02-09
-description: "Full employee dashboard with progress widgets (tasks, time, commits), synced task hierarchy (project->epic->story->task with markdown), timer/break/pomodoro reports with CSV/PDF export, version control integration (commits, PRs, issues), AI agent control panel (status, permissions, prompts via WebSocket), notifications with agent alerts, and sprint tracking with Jira/Linear/GitHub sync."
-priority: high

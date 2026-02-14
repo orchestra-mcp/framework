@@ -1,7 +1,0 @@
-id: OCD-3
-type: epic
-title: Public Pages
-status: backlog
-created: 2026-02-09
-description: "Build all public-facing pages: landing page with feature showcase, download page with platform detection, support page with FAQ + contact form, email subscription with double opt-in, blog system with markdown rendering, and web marketplace with deep link install to desktop app."
-priority: medium

@@ -1,7 +1,0 @@
-id: OCD-97
-type: epic
-title: User Profile & Community System
-status: backlog
-created: 2026-02-09
-description: "Build public user profiles (/@username) with social features: posts, comments, likes, shares, follows, activity feed, verification system, and badges."
-priority: high

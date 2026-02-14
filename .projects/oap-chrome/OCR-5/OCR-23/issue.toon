@@ -1,9 +1,0 @@
-id: OCR-23
-type: story
-parent: OCR-5
-title: Refactor App.tsx to thin registration-driven shell
-status: backlog
-created: 2026-02-09
-user_story: "As the system architect, I want App.tsx reduced to a thin ~100-line shell that renders only from registered extensions, so that adding new sidebar panels, tabs, or status bar items never requires editing App.tsx."
-points: 8
-acceptance_criteria[7]: App.tsx at packages/chrome-extension/src/sidepanel/App.tsx is under 120 lines,"App.tsx imports ONLY: SidebarIconRail, SidebarContent, SidebarHeader, TopBar, StatusBar, TabBar from src/app/Chrome/","Zero imports of feature components (FileExplorer, EditorPanel, TasksPanel, GitPanel, etc.)","Zero imports of feature stores (gitStore, terminalStore, databaseStore, etc.)","App.tsx renders layout: TopBar + (SidebarIconRail + (SidebarHeader + SidebarContent/TabBar)) + StatusBar",All existing functionality works identically after refactor,"Chrome extension builds successfully with pnpm build:extension"

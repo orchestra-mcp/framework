@@ -1,9 +1,0 @@
-id: OC-78
-type: story
-parent: OC-54
-title: Create PackageControlService for marketplace management
-status: backlog
-created: 2026-02-09
-user_story: "As an admin, I want to publish/unpublish packages from the IDE so that I can control which extensions are available"
-points: 4
-acceptance_criteria[4]: Service syncs with admin panel,Publish/unpublish operations work,Visibility control implemented,Deprecation system functional

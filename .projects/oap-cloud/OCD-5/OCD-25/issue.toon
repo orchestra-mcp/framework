@@ -1,9 +1,0 @@
-id: OCD-25
-type: story
-parent: OCD-5
-title: Synced Tasks (Project/Epic/Story/Task Hierarchy)
-status: backlog
-created: 2026-02-09
-user_story: "As an employee, I want to view and manage my tasks in a project/epic/story/task hierarchy synced from the IDE so that I can track my work in one place."
-points: 8
-acceptance_criteria[7]: "Task hierarchy: Project -> Epic -> Story -> Task",Full markdown rendering for task descriptions,"Status workflow: backlog -> in_progress -> review -> done","Filter by status, project, priority","Sort by priority, due date, status",Search across tasks,Real-time sync from IDE via WebSocket

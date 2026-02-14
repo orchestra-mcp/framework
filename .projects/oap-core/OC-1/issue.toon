@@ -1,7 +1,0 @@
-id: OC-1
-type: epic
-title: Build System Migration
-status: backlog
-created: 2026-02-09
-description: "Migrate pnpm workspace, electron-vite config, and all build scripts to work from src/ instead of packages/. The packages/ folder stays as read-only reference."
-priority: high

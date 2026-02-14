@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package orchestra.search.v1;
+
+option go_package = "github.com/orchestra-mcp/search/gen/searchpb";
+
+// SearchService is implemented by the Rust Tantivy engine.
+service SearchService {
+  // Search performs a full-text search query.
+  rpc Search(SearchRequest) returns (SearchResponse);
+
+  // IndexDocument adds or updates a document in the index.
+  rpc IndexDocument(IndexDocumentRequest) returns (IndexDocumentResponse);
+
+  // RemoveDocument removes a document from the index by ID.
+  rpc RemoveDocument(RemoveDocumentRequest) returns (RemoveDocumentResponse);
+}
+
+message SearchRequest {
+  string query = 1;
+  repeated string terms = 2;
+  map<string, string> filters = 3;
+  int32 limit = 4;
+}
+
+message SearchResponse {
+  repeated SearchHit hits = 1;
+  int32 total = 2;
+}
+
+message SearchHit {
+  string id = 1;
+  string title = 2;
+  string doc_type = 3;
+  double score = 4;
+  map<string, string> metadata = 5;
+}
+
+message IndexDocumentRequest {
+  string id = 1;
+  string doc_type = 2;
+  string title = 3;
+  string content = 4;
+}
+
+message IndexDocumentResponse {
+  bool ok = 1;
+}
+
+message RemoveDocumentRequest {
+  string id = 1;
+}
+
+message RemoveDocumentResponse {
+  bool ok = 1;
+}

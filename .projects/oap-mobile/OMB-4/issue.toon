@@ -1,7 +1,0 @@
-id: OMB-4
-type: epic
-title: Team Owner Features
-status: backlog
-created: 2026-02-09
-description: "Build team owner screens: team activity dashboard showing member list with real-time online/offline status and current activity, team progress widgets, and team management features (invite members, assign roles, view member profiles). These screens are accessible only to users with team_owner role and consume team-specific API endpoints."
-priority: medium

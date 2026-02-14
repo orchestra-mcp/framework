@@ -1,9 +1,0 @@
-id: OCD-18
-type: story
-parent: OCD-3
-title: Landing Page & Download Page
-status: backlog
-created: 2026-02-09
-user_story: "As a visitor, I want to see a compelling landing page and easily download the app for my platform so that I can understand the product and get started quickly."
-points: 5
-acceptance_criteria[6]: "Landing page with hero section, feature grid, testimonials, CTA",Download page with automatic platform detection (macOS/Windows/Linux),Download buttons per platform with version info,System requirements listed,Both pages are responsive,Both pages use guest layout

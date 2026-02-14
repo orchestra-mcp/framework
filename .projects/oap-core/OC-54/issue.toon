@@ -1,7 +1,0 @@
-id: OC-54
-type: epic
-title: Feature Control & Update Manager
-status: backlog
-created: 2026-02-09
-description: "Implement FeatureFlagService, PackageControlService, and UpdateManagerService for admin-controlled feature flags, package visibility, and staged update rollouts."
-priority: high

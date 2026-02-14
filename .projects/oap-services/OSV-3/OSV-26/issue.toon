@@ -1,9 +1,0 @@
-id: OSV-26
-type: story
-parent: OSV-3
-title: Settings IPC Handlers & Cross-Process Sync
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want settings changes to propagate across main process and all renderer processes via IPC so that UI stays in sync when settings change."
-points: 5
-acceptance_criteria[5]: "IPC handlers: settings:get, settings:set, settings:getGroup, settings:getAll, settings:export, settings:import, settings:reset",Settings changes broadcast to all BrowserWindows via webContents.send,setupSettingsHandlers/cleanupSettingsHandlers exported from index.ts,Import/export round-trips without data loss,Reset to defaults works per-group and globally

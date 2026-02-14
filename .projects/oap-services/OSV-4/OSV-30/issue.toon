@@ -1,9 +1,0 @@
-id: OSV-30
-type: story
-parent: OSV-4
-title: VSCode Theme Import & Documentation
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want to import VSCode themes (.tmTheme and VS Code JSON) so that the IDE can leverage the vast VSCode theme ecosystem."
-points: 3
-acceptance_criteria[5]: importVSCodeTheme(vsixPath) parses and converts to ThemeDefinition,Supports .tmTheme XML format,Supports VS Code JSON theme format,Imported theme auto-registered and available in theme list,docs/core-services/themes.md with API reference and import examples

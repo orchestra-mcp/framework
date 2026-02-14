@@ -1,9 +1,0 @@
-id: OPK-111
-type: story
-parent: OPK-8
-title: Write Log Viewer documentation
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want comprehensive documentation for the Log Viewer package."
-points: 2
-acceptance_criteria[4]: docs/README.md exists,docs/api/README.md exists,docs/guides/README.md exists,docs/changelog/README.md exists

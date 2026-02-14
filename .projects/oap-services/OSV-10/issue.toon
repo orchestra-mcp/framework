@@ -1,7 +1,0 @@
-id: OSV-10
-type: epic
-title: Dynamic AI Chat Box
-status: done
-created: 2026-02-09
-description: "Extract AI chat from chatBoxOverlayService.ts + claudeCliService.ts + chatSessionService.ts into src/app/AI/. Provides IAiChatBoxService with registerModelProvider/registerSkill/registerAgent/registerMcpServer/sendMessage API. Multi-provider support (Claude, OpenAI, Ollama), streaming + markdown rendering, code actions, and context-awareness."
-priority: medium

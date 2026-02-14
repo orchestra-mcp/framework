@@ -1,9 +1,0 @@
-id: OCD-107
-type: story
-parent: OCD-97
-title: "Social features: posts, comments, likes, shares"
-status: backlog
-created: 2026-02-09
-user_story: "As a user, I want to create posts, comment, like, and share so that I can engage with the community"
-points: 8
-acceptance_criteria[6]: Post model and controller,Comment model with nested support,Like/Unlike functionality,Share tracking,Activity logging,All CRUD operations work

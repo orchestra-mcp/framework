@@ -1,9 +1,0 @@
-id: OPK-153
-type: story
-parent: OPK-12
-title: Migrate Pomodoro Chrome UI
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want the pomodoro UI components, store, and desktop panel views migrated into the Pomodoro package."
-points: 3
-acceptance_criteria[4]: PomodoroPanel.tsx and PomodoroCycleSetup.tsx migrated to resources/chrome/,pomodoroStore.ts migrated to resources/chrome/stores/,"Desktop panel HTML, renderer, preload migrated to resources/desktop/",All imports updated

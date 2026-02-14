@@ -1,9 +1,0 @@
-id: OSV-33
-type: story
-parent: OSV-5
-title: Notification Settings Integration & Documentation
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want notification preferences exposed in the Settings UI and comprehensive documentation so that users can control notification behavior and developers can integrate notifications."
-points: 3
-acceptance_criteria[5]: Settings group 'Notifications' registered via ISettingsService,Per-channel enable/disable settings,Sound volume and mute settings,Do-not-disturb mode setting,docs/core-services/notifications.md with API reference and examples

@@ -1,9 +1,0 @@
-id: OC-7
-type: story
-parent: OC-1
-title: Verify build pipeline works end-to-end
-status: in_progress
-created: 2026-02-09
-user_story: "As a developer, I want to confirm that all build commands (dev, build, typecheck) work correctly from the new src/ structure, so that I can confidently develop and ship from the migrated codebase."
-points: 2
-acceptance_criteria[4]: "pnpm dev:desktop starts the Electron tray app without errors","pnpm build:desktop produces a working production build in dist/",pnpm typecheck passes with zero errors,pnpm lint runs without path resolution errors

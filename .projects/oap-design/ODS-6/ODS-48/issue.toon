@@ -1,9 +1,0 @@
-id: ODS-48
-type: story
-parent: ODS-6
-title: Migrate Mobile app to use design system
-status: backlog
-created: 2026-02-09
-user_story: "As a developer, I want the Mobile app migrated to use the design system so that mobile UI is consistent with desktop and web."
-points: 13
-acceptance_criteria[5]: React Native adapter integrated,All mobile screens use design system components,Native navigation components themed,Performance optimized for mobile,iOS and Android tested

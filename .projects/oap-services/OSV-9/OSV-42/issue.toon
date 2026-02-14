@@ -1,9 +1,0 @@
-id: OSV-42
-type: story
-parent: OSV-9
-title: Search Query Language & Suggestions
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want a query language parser supporting Jira-like filters and prefix operators so that users can perform advanced searches with type:file, @mentions, #tags, and >commands."
-points: 5
-acceptance_criteria[6]: "Query parser handles key:value filters (type:file, status:modified)","Prefix operators: @mentions, #tags, >commands parsed into structured queries",getSuggestions returns autocomplete options based on registered providers,Free-text search when no operators present,docs/core-services/search.md with query language reference and examples,Unit tests for query parsing edge cases

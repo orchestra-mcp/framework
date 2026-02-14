@@ -1,9 +1,0 @@
-id: OSV-58
-type: story
-parent: OSV-17
-title: VSIX Installer & Theme/Grammar Parsing
-status: backlog
-created: 2026-02-09
-user_story: "As a developer, I want VSIX extraction and parsing of themes and grammars so that VSCode extensions can be installed and their themes/grammars used by the IDE."
-points: 8
-acceptance_criteria[7]: VSIX file extraction (ZIP format) to extensions directory,package.json manifest parsing for contributes field,"Theme parsing: .tmTheme XML and VS Code JSON format","Grammar parsing: .tmLanguage and .tmLanguage.json TextMate grammars",Snippet extraction from VSCode snippet files,"Parsed artifacts registered with ThemeService, LspService respectively",Unit tests for VSIX extraction and all parsing formats

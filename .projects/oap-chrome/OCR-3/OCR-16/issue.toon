@@ -1,9 +1,0 @@
-id: OCR-16
-type: story
-parent: OCR-3
-title: Build StatusBar component with real-time extension updates
-status: in_progress
-created: 2026-02-09
-user_story: "As a user, I want a status bar at the bottom showing real-time indicators (connection state, git branch, LSP status, timer) registered by extensions, so that I always know the current state of my development environment."
-points: 5
-acceptance_criteria[10]: StatusBar component at src/app/Chrome/Status/StatusBar.tsx renders items from statusBarStore,"Items sorted by alignment (left, right) then by order within each group",StatusBarStore at src/app/Chrome/Status/statusBarStore.ts manages registrations and updates,"updateStatusBarItem(id, updates) triggers reactive re-render",Connection status item registered by core (left-aligned),Timer status item registered by time-tracker extension (right-aligned),LSP indexing spinner registered by editor extension (left-aligned),Active file name registered by editor extension (right-aligned),StatusBar height matches existing 22px,Click handlers work for clickable status items

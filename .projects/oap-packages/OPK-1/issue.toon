@@ -1,7 +1,0 @@
-id: OPK-1
-type: epic
-title: Explorer Package
-status: done
-created: 2026-02-09
-description: "Migrate and create the Explorer package at src/packages/explorer/. This is a NEW package extracted from chrome-extension file tree views + desktop fileSystemService.ts. Sources: packages/desktop/src/main/services/fileSystemService.ts, packages/chrome-extension/src/sidepanel/explorer/ (ContextMenu.tsx, FileExplorer.tsx, FileIcon.tsx, FileTree.tsx, FileTreeNode.tsx, InlineInput.tsx, icons.tsx), packages/chrome-extension/src/stores/fileExplorerStore.ts. The ServiceProvider registers: sidebar entry (folder icon), MCP tools (list_files, read_file, write_file), search provider (file search), settings (exclude patterns, show hidden files), tray menu (Open Workspace)."
-priority: high

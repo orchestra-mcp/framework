@@ -1,7 +1,0 @@
-id: OCD-7
-type: epic
-title: Admin Dashboard
-status: backlog
-created: 2026-02-09
-description: "Admin dashboard with full entity CRUD for all database tables, marketplace control (approve/reject extensions, manage categories), feature flags (system-wide and per-plan), push IDE updates with release notes, marketing notification system (targeted, scheduled, templated), and analytics (DAU/WAU/MAU, extension metrics, feature usage)."
-priority: medium

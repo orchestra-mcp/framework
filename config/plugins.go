@@ -1,5 +1,7 @@
 package config
 
+//go:generate go run ../cmd/plugin registry --path ../plugins --out ../config/registry/plugins.go
+
 // PluginsConfig holds the configuration for the plugin system.
 type PluginsConfig struct {
 	// Disabled lists plugin IDs that should not be activated.

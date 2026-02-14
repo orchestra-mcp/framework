@@ -1,9 +1,0 @@
-id: OSV-47
-type: story
-parent: OSV-11
-title: "Marketplace Search, Discovery & Documentation"
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want marketplace search and documentation so that users can discover extensions and developers can publish their own."
-points: 3
-acceptance_criteria[5]: searchExtensions queries remote marketplace API,Local cache of marketplace catalog with TTL refresh,"Search by name, type, category, author","docs/core-services/marketplace.md with API reference, publishing guide",Extension manifest schema documented

@@ -1,9 +1,0 @@
-id: ODS-44
-type: story
-parent: ODS-5
-title: React Native adapter for mobile
-status: backlog
-created: 2026-02-09
-user_story: "As a developer, I want a React Native adapter so that I can use the design system in mobile applications with native styling."
-points: 8
-acceptance_criteria[6]: React Native StyleSheet adapter,Design tokens converted to RN styles,Platform-specific components (iOS/Android),Native gestures and animations,AsyncStorage for theme persistence,Expo compatibility

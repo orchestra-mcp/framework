@@ -1,9 +1,0 @@
-id: OPK-73
-type: story
-parent: OPK-5
-title: Scaffold Terminal Manager package structure
-status: backlog
-created: 2026-02-09
-user_story: "As a developer, I want the Terminal Manager package scaffolded with the standard directory structure so that all subsequent migration work has a consistent foundation."
-points: 2
-acceptance_criteria[4]: src/packages/terminal-manager/ directory exists with all required subdirectories,package.json has contributes manifest,tsconfig.json and vitest.config.ts configured,TerminalManagerServiceProvider.ts stub exists

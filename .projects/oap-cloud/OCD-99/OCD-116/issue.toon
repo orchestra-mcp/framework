@@ -1,9 +1,0 @@
-id: OCD-116
-type: story
-parent: OCD-99
-title: GitHub Sponsors webhook integration
-status: backlog
-created: 2026-02-09
-user_story: "As an admin, I want GitHub sponsorships to automatically create subscriptions so that sponsors get pro features"
-points: 5
-acceptance_criteria[5]: Webhook controller from PRD lines 1717-1813,Signature verification,Tier mapping to plans,"Handles created, cancelled, tier_changed events",Creates/cancels subscriptions automatically

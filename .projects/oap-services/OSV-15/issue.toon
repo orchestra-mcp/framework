@@ -1,7 +1,0 @@
-id: OSV-15
-type: epic
-title: Dynamic LSP Server
-status: backlog
-created: 2026-02-09
-description: "Extract LSP management from platform/lspClient.ts + platform/lspServers/ + lspManagerService.ts into src/app/LSP/. Provides ILspServerService with registerLanguageServer/getActiveServers/restartServer API. Extension-based language server registration, auto binary download, lifecycle management, VSCode language extension compatibility, and multi-root workspace support."
-priority: medium

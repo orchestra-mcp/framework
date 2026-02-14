@@ -1,9 +1,0 @@
-id: OC-6
-type: story
-parent: OC-1
-title: Update electron-vite build configuration
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want the electron-vite build config to resolve all entry points from the new src/ directory structure, so that dev mode and production builds work correctly with the migrated codebase."
-points: 3
-acceptance_criteria[4]: electron.vite.config.ts main entry points resolve from src/ paths,tsconfig.json paths are updated to match new directory structure,TypeScript path aliases resolve correctly for src/app/ and src/packages/,No build warnings about missing paths or unresolved imports

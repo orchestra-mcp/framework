@@ -1,9 +1,0 @@
-id: OCD-115
-type: story
-parent: OCD-98
-title: Firebase Analytics integration for web
-status: backlog
-created: 2026-02-09
-user_story: "As a product manager, I want to track user behavior on the website so that I can make data-driven decisions"
-points: 4
-acceptance_criteria[4]: Firebase setup from PRD lines 2227-2310,"Track page views, downloads, signups, extension installs",Environment variables configured,Events fire on navigation

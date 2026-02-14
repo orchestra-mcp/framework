@@ -1,9 +1,0 @@
-id: OPK-30
-type: story
-parent: OPK-2
-title: Migrate Editor main services
-status: backlog
-created: 2026-02-09
-user_story: "As a developer, I want the editor and Monaco configuration logic migrated into the Editor package so that code editing functionality is self-contained."
-points: 5
-acceptance_criteria[4]: EditorService.ts exists in src/Services/ with open/save/format methods,Monaco configuration is encapsulated in the package,All imports updated to use new package paths,TypeScript compiles without errors

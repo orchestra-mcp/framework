@@ -7,16 +7,61 @@ description: Project management and scrum master patterns. Activates when planni
 
 All project management is driven through **Orchestra MCP tools**. Never manage tasks outside the MCP workflow.
 
-## 13-State Task Lifecycle
+## 13-State Task Lifecycle (Gated)
 
 ```
-backlog → todo → in-progress → ready-for-testing → in-testing
-→ ready-for-docs → in-docs → documented → in-review → done
+backlog → todo → in-progress ──[GATE]──→ ready-for-testing → in-testing
+──[GATE]──→ ready-for-docs → in-docs ──[GATE]──→ documented → in-review ──[GATE]──→ done
 ```
 
 Special: `blocked` (from in-progress), `rejected` (from in-review, auto-creates bug), `cancelled` (terminal).
 
-Use `advance_task` for happy-path progression. Use `reject_task` to reject from review.
+### Gated Transitions (evidence required by `advance_task`)
+
+| Gate | From | Action Required | Evidence Example |
+|------|------|----------------|-----------------|
+| 1 | `in-progress` | Run tests, confirm pass | `"go test ./... — 12/12 passed"` |
+| 2 | `in-testing` | Verify coverage, edge cases | `"Coverage 85%, nil/empty cases covered"` |
+| 3 | `in-docs` | Write/update documentation | `"Added godoc to exports, updated README"` |
+| 4 | `in-review` | Review code quality | `"No race conditions, error handling OK"` |
+
+**NEVER batch-advance through gates.** Each gate requires real work done first.
+
+### Correct Per-Task Flow
+
+```
+1. set_current_task                    → in-progress (build it)
+2. Delegate to qa-go/qa-rust/qa-node   → run tests
+3. advance_task(evidence="...")        → ready-for-testing [GATE 1]
+4. advance_task                        → in-testing
+5. Verify test results
+6. advance_task(evidence="...")        → ready-for-docs [GATE 2]
+7. advance_task                        → in-docs
+8. Write documentation
+9. advance_task(evidence="...")        → documented [GATE 3]
+10. advance_task                       → in-review
+11. Review code quality
+12. advance_task(evidence="...")       → done [GATE 4]
+```
+
+## Sub-Agent Rules (CRITICAL)
+
+Sub-agents (Task tool) do **NOT** have MCP access. They cannot call `advance_task` or any workflow tool.
+
+| Rule | Detail |
+|------|--------|
+| Sub-agents = code only | Only use during `in-progress` for writing code |
+| Main agent owns lifecycle | YOU handle all gates: test, document, review |
+| One task at a time | Complete full lifecycle before picking next task |
+| Summarize to user | Tell user what sub-agent built before advancing |
+| Never batch-advance | Each task goes through all 12 steps individually |
+
+### Anti-Patterns
+
+- Spawning 5 sub-agents, then batch-advancing all tasks to done
+- Skipping gates because "sub-agent already tested it"
+- Starting next task before current one reaches done
+- Not summarizing sub-agent results to the user
 
 ## MCP Session Flow
 
@@ -31,9 +76,8 @@ get_next_task       → Pick highest-priority actionable work
 ### During Work
 ```
 set_current_task    → Mark task in-progress (cascades parents)
-advance_task        → Move through lifecycle stages
+advance_task        → Move through lifecycle (gated transitions need evidence)
 update_task         → Set blocked, change priority, update description
-complete_task       → Finish task (cascades parents to done if all siblings done)
 ```
 
 ### Ending a Session

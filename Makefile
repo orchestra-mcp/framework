@@ -1,4 +1,5 @@
 GOBIN := $(shell go env GOPATH)/bin
+AIR := $(GOBIN)/air
 GOLANGCI_LINT := $(GOBIN)/golangci-lint
 GOFUMPT := $(GOBIN)/gofumpt
 
@@ -23,15 +24,18 @@ dev:
 
 dev-go:
 	@echo "[go] Starting backend with hot-reload..."
-	cd cmd/server && air
+	@test -x $(AIR) || { echo "air not found at $(AIR). Run 'make install' first."; exit 1; }
+	cd cmd/server && $(AIR)
 
 dev-rust:
 	@echo "[rust] Starting engine with cargo watch..."
+	@if [ ! -f engine/Cargo.toml ]; then echo "[rust] No engine/Cargo.toml — skipping"; exit 0; fi
+	@command -v cargo-watch >/dev/null 2>&1 || { echo "cargo-watch not found. Run 'make install' first."; exit 1; }
 	cd engine && cargo watch -x run
 
 dev-frontend:
 	@echo "[frontend] Starting all frontends..."
-	pnpm --filter './resources/*' dev
+	pnpm --filter './resources/*' --if-present dev
 
 # ============================================================================
 # Production build — builds everything sequentially
@@ -71,7 +75,10 @@ install:
 	@echo "Installing all dependencies..."
 	go mod download
 	cd plugins/mcp && go mod download
-	cd engine && cargo fetch
+	@echo "Installing Go dev tools..."
+	go install github.com/air-verse/air@latest
+	@if [ -f engine/Cargo.toml ]; then cd engine && cargo fetch; fi
+	@if command -v cargo >/dev/null 2>&1; then cargo install cargo-watch 2>/dev/null || true; fi
 	pnpm install
 
 clean:
@@ -128,6 +135,27 @@ mcp-init:
 mcp-start:
 	@echo "Starting MCP server..."
 	bin/orchestra-mcp --workspace .
+
+# ============================================================================
+# Discord bot commands
+# ============================================================================
+
+discord-build:
+	@echo "Building Discord bot..."
+	cd plugins/discord && go build -o ../../bin/orchestra-discord ./src/cmd/
+
+discord-start:
+	@echo "Starting Discord bot..."
+	bin/orchestra-discord
+
+discord-bg:
+	@echo "Starting Discord bot in background..."
+	nohup bin/orchestra-discord > logs/discord.log 2>&1 &
+	@echo "Bot running in background. PID: $$(cat logs/discord.pid 2>/dev/null || echo 'check logs/discord.log')"
+
+discord-stop:
+	@echo "Stopping Discord bot..."
+	@pkill -f orchestra-discord 2>/dev/null || echo "No bot process found"
 
 # ============================================================================
 # Proto generation (for maintainers only, requires protoc)

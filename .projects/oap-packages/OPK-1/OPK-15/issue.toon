@@ -1,9 +1,0 @@
-id: OPK-15
-type: story
-parent: OPK-1
-title: Migrate Explorer main services
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want the file system service logic migrated from the desktop package into the Explorer package so that file browsing functionality is self-contained in its own package."
-points: 5
-acceptance_criteria[4]: ExplorerService.ts exists in src/Services/ with all file operations,"MCP tools for list_files, read_file, write_file are defined",All imports updated to use new package paths,TypeScript compiles without errors

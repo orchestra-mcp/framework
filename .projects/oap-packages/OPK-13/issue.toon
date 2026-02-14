@@ -1,7 +1,0 @@
-id: OPK-13
-type: epic
-title: Break Tracker Package
-status: done
-created: 2026-02-09
-description: "Migrate the Break Tracker package at src/packages/break-tracker/. Sources: packages/desktop/src/main/services/breakPanelService.ts, packages/desktop/src/widget-renderer/break-panel.html, packages/desktop/src/widget-renderer/break-panel-renderer.ts, packages/desktop/src/main/break-panel-preload.ts. The ServiceProvider registers: widget (break panel), tray menu (Break Tracker), notifications (break reminders), settings (break interval, reminder frequency)."
-priority: low

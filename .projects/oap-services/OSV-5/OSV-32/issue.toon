@@ -1,9 +1,0 @@
-id: OSV-32
-type: story
-parent: OSV-5
-title: Notification IPC Handlers & Channel Routing
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want IPC handlers and multi-channel routing so that notifications can be sent from any process and delivered to the correct output channel."
-points: 5
-acceptance_criteria[6]: "IPC handlers: notification:send, notification:dismiss, notification:getHistory, notification:clearHistory","Desktop channel: Electron Notification API with action buttons","Browser channel: WebSocket push to Chrome extension","Mobile channel: FCM stub (interface defined, not implemented)",Action button callbacks routed back to sender via IPC,setupNotificationHandlers/cleanupNotificationHandlers exported

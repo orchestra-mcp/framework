@@ -1,7 +1,0 @@
-id: OSV-3
-type: epic
-title: Dynamic Settings Service
-status: done
-created: 2026-02-09
-description: "Extract settings management from packages/desktop/src/main/services/settingsService.ts + settingsWindowService.ts + settings-renderer.ts into src/app/Settings/. Provides ISettingsService with registerGroup/registerSetting/get/set/onDidChange API. Settings UI auto-generated from schema, local JSON storage with atomic writes, import/export, and cross-process propagation via IPC."
-priority: high

@@ -1,9 +1,0 @@
-id: OCD-29
-type: story
-parent: OCD-6
-title: Team Activity Widgets & Community Page
-status: backlog
-created: 2026-02-09
-user_story: "As a team owner, I want to see team-wide activity widgets and a community page showing what each member is working on so that I can monitor team productivity in real time."
-points: 5
-acceptance_criteria[7]: Team members online/offline indicators,Tasks completed by team (today/week) widget,Total time tracked by team widget,Active sprints overview widget,Community page listing all team members,"Real-time activity indicator per member (current task, last commit, timer status)",All updated via WebSocket presence channels

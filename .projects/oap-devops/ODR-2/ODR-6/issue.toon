@@ -1,9 +1,0 @@
-id: ODR-6
-type: story
-parent: ODR-2
-title: Desktop Build Workflow
-status: done
-created: 2026-02-09
-user_story: "As a release manager, I want automated builds for all desktop platforms so that releases are consistent"
-points: null
-acceptance_criteria[4]: Builds for macOS (Intel + Apple Silicon),"Builds for Windows (x64, ARM64)","Builds for Linux (x64, ARM64, AppImage, deb, rpm)",All artifacts uploaded to workflow

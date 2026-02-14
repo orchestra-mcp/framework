@@ -1,7 +1,0 @@
-id: OCD-99
-type: epic
-title: Payment Integration
-status: backlog
-created: 2026-02-09
-description: "Integrate GitHub Sponsors webhook, bank transfer flow with proof upload, and manual payment processing for subscription activation."
-priority: high

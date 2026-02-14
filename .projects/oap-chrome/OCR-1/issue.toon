@@ -1,7 +1,0 @@
-id: OCR-1
-type: epic
-title: Dynamic Sidebar Icon Rail & Content Registration
-status: in_progress
-created: 2026-02-09
-description: "Extract the hardcoded sidebar shell from packages/chrome-extension/src/sidepanel/App.tsx into a dynamic, registration-based system at src/app/Chrome/Sidebar/. Create IChromeSidebarService with registerSidebarEntry() and registerContent() APIs. Extensions will register their sidebar icons and content panels rather than being imported directly. Target directory: src/app/Chrome/Sidebar/"
-priority: high

@@ -1,9 +1,0 @@
-id: OCD-36
-type: story
-parent: OCD-8
-title: "Sanctum API Layer (RESTful, Versioned, Rate Limited)"
-status: backlog
-created: 2026-02-09
-user_story: "As a developer, I want a versioned RESTful API with Sanctum authentication and rate limiting so that mobile apps, the desktop IDE, and the Chrome extension can consume platform data securely."
-points: 8
-acceptance_criteria[8]: API routes under /api/v1/ prefix,Sanctum token-based authentication,Rate limiting configured per endpoint,API resource classes for all models,API controllers separate from web controllers,Consistent JSON response format,Error handling with proper HTTP status codes,API documentation (routes list)

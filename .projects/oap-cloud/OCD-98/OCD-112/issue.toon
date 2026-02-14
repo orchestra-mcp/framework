@@ -1,9 +1,0 @@
-id: OCD-112
-type: story
-parent: OCD-98
-title: SSR setup with Inertia.js
-status: backlog
-created: 2026-02-09
-user_story: "As a developer, I want server-side rendering so that search engines can index our pages"
-points: 4
-acceptance_criteria[4]: Inertia SSR configured from PRD lines 1940-1978,SSR entry point created,SSR server runs on startup,All public pages render server-side

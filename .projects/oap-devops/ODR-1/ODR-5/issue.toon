@@ -1,9 +1,0 @@
-id: ODR-5
-type: story
-parent: ODR-1
-title: Pull Request Quality Gates
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want automated quality checks on every PR so that code quality is maintained"
-points: null
-acceptance_criteria[4]: PR workflow runs on every pull request,"Runs typecheck, lint, tests, and builds",Posts status comment to PR,Workflow completes in under 5 minutes with caching

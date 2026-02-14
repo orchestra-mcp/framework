@@ -1,5 +1,0 @@
-# OPK-6: Database Manager Package
-
-**Type**: Epic | **Status**: backlog | **Priority**: medium
-
-Migrate the Database Manager package at src/packages/database-manager/. Sources: packages/extensions/dev-database/src/ (ConnectionManager.ts, ConnectionDetector.ts, CredentialService.ts, ElectronKeyProvider.ts, SchemaTreeProvider.ts, SqlAutocompleteProvider.ts, TableActionsService.ts, SavedQueryService.ts, DatabaseSettingsService.ts, ExplainService.ts, SSHTunnelService.ts, QueryExecutionService.ts, TableDataService.ts, connectionHandlers.ts, mcpTools.ts, sqlKeywords.ts, types.ts, drivers/ (PostgresDriver.ts, MysqlDriver.ts, SqliteDriver.ts, MongodbDriver.ts, RedisDriver.ts, index.ts)), packages/chrome-extension/src/sidepanel/database/ (DatabasePanel.tsx, ConnectionsList.tsx, ConnectionForm.tsx, SchemaTree.tsx, QueryEditor.tsx, QueryHistory.tsx, QueryResults.tsx, SavedQueries.tsx, TableBrowser.tsx), packages/chrome-extension/src/stores/databaseStore.ts. The ServiceProvider registers: sidebar entry (database icon), tab types (query editor, table browser), search provider (schema search), settings (connections, default driver), MCP tools (query, schema browse).

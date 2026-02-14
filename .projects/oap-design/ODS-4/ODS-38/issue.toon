@@ -1,9 +1,0 @@
-id: ODS-38
-type: story
-parent: ODS-4
-title: "Chrome components (Header, StatusBar, ActivityBar)"
-status: backlog
-created: 2026-02-09
-user_story: "As a developer, I want chrome components so that I can build IDE-style layouts with headers, status bars, and activity bars."
-points: 5
-acceptance_criteria[5]: Header component with title and actions,StatusBar component with left/right sections,ActivityBar component for primary navigation,Fixed positioning and z-index management,Theme-aware styling

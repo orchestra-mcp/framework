@@ -1,0 +1,44 @@
+# {{.PascalName}} Plugin
+
+Orchestra plugin: `{{.ID}}`
+
+## Structure
+
+```
+plugins/{{.Name}}/
+├── go.mod
+├── config/{{.Name}}.go
+├── providers/plugin.go
+├── src/
+│   ├── service.go
+│   └── types.go
+├── tests/
+│   └── service_test.go
+└── README.md
+```
+
+## Capabilities
+{{- if .Capabilities}}
+{{- range .Capabilities}}
+- {{.}}
+{{- end}}
+{{- else}}
+- None (base plugin)
+{{- end}}
+
+## Usage
+
+Register in `cmd/server/main.go`:
+
+```go
+import providers "github.com/orchestra-mcp/{{.Name}}/providers"
+
+loader.RegisterAll(pm, providers.New{{.PascalName}}Plugin())
+```
+
+## Development
+
+```bash
+cd plugins/{{.Name}}
+go test ./...
+```

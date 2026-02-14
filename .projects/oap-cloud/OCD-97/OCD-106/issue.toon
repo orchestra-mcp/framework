@@ -1,9 +1,0 @@
-id: OCD-106
-type: story
-parent: OCD-97
-title: Profile models and relationships
-status: backlog
-created: 2026-02-09
-user_story: "As a developer, I want Eloquent models for profiles and stats so that I can interact with profile data cleanly"
-points: 3
-acceptance_criteria[5]: UserProfile model with all fields,ProfileStats model,Relationships defined,Accessors for computed properties,Methods for verification and badges

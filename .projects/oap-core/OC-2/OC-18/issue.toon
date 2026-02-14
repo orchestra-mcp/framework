@@ -1,9 +1,0 @@
-id: OC-18
-type: story
-parent: OC-2
-title: Build ActivationService
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want an ActivationService that respects activationEvents from extension manifests (onStartup, onCommand, onView, etc.), so that extensions are only loaded when they are actually needed, improving startup performance."
-points: 3
-acceptance_criteria[7]: ActivationService registers extension manifests and their activationEvents,fireEvent() activates all extensions matching a given event string,fireStartupFinished() activates all eager (*) and onStartup extensions,"onCommand:, onLanguage:, onView:, onFileSystem:, onWebviewPanel: events are supported",Extensions are only activated once (duplicate fire is a no-op),markActivated/markDeactivated correctly track state,Unit tests cover all activation event types and edge cases

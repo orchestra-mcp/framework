@@ -301,6 +301,76 @@ func (pm *PluginManager) CollectMiddleware() []any {
 	return middleware
 }
 
+// CollectTrayMenuItems collects tray menu items from all active plugins.
+func (pm *PluginManager) CollectTrayMenuItems() []TrayMenuItemDef {
+	pm.mu.RLock()
+	defer pm.mu.RUnlock()
+
+	var items []TrayMenuItemDef
+	for id, p := range pm.plugins {
+		if !pm.active[id] {
+			continue
+		}
+		if ht, ok := p.(HasTrayMenu); ok {
+			items = append(items, ht.TrayMenuItems()...)
+		}
+	}
+	return items
+}
+
+// CollectPanels collects panel definitions from all active plugins.
+func (pm *PluginManager) CollectPanels() []PanelDef {
+	pm.mu.RLock()
+	defer pm.mu.RUnlock()
+
+	var panels []PanelDef
+	for id, p := range pm.plugins {
+		if !pm.active[id] {
+			continue
+		}
+		if hp, ok := p.(HasPanels); ok {
+			panels = append(panels, hp.Panels()...)
+		}
+	}
+	return panels
+}
+
+// CollectWidgets collects widget definitions from all active plugins.
+func (pm *PluginManager) CollectWidgets() []WidgetDef {
+	pm.mu.RLock()
+	defer pm.mu.RUnlock()
+
+	var widgets []WidgetDef
+	for id, p := range pm.plugins {
+		if !pm.active[id] {
+			continue
+		}
+		if hw, ok := p.(HasWidgets); ok {
+			widgets = append(widgets, hw.Widgets()...)
+		}
+	}
+	return widgets
+}
+
+// CollectSettings collects all settings groups and definitions from active plugins.
+func (pm *PluginManager) CollectSettings() ([]SettingsGroupDef, []SettingsFieldDef) {
+	pm.mu.RLock()
+	defer pm.mu.RUnlock()
+
+	var groups []SettingsGroupDef
+	var fields []SettingsFieldDef
+	for id, p := range pm.plugins {
+		if !pm.active[id] {
+			continue
+		}
+		if hs, ok := p.(HasSettings); ok {
+			groups = append(groups, hs.SettingsGroups()...)
+			fields = append(fields, hs.SettingsDefinitions()...)
+		}
+	}
+	return groups, fields
+}
+
 // NotifyTransition broadcasts a workflow transition event to all active plugins
 // that implement HasTransitionListener.
 func (pm *PluginManager) NotifyTransition(event WorkflowTransitionEvent) {

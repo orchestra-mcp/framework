@@ -1,0 +1,11 @@
+package config
+
+// {{.PascalName}}Config holds configuration for the {{.PascalName}} plugin.
+type {{.PascalName}}Config struct {
+	Enabled bool   `json:"enabled" yaml:"enabled"`
+}
+
+// Default returns the default {{.PascalName}} configuration.
+func Default() {{.PascalName}}Config {
+	return {{.PascalName}}Config{Enabled: true}
+}

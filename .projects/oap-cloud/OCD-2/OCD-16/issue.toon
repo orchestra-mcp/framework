@@ -1,9 +1,0 @@
-id: OCD-16
-type: story
-parent: OCD-2
-title: User Settings & Notification Preferences
-status: backlog
-created: 2026-02-09
-user_story: "As a user, I want to manage my personal settings and notification preferences so that the platform behaves the way I prefer."
-points: 3
-acceptance_criteria[5]: User settings page using Spatie Settings,"Settings include theme preference, timezone, language","Notification preferences (email, in-app, push toggles)",Settings persist and load correctly on page refresh,Settings are scoped per user

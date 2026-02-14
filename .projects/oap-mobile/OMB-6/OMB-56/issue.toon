@@ -1,9 +1,0 @@
-id: OMB-56
-type: story
-parent: OMB-6
-title: Common UI Components Library
-status: backlog
-created: 2026-02-09
-user_story: "As a developer, I want a library of reusable UI components (buttons, inputs, cards, lists, modals, badges, avatars) with consistent Orchestra styling, so that all screens have a unified look and new screens can be built quickly."
-points: 8
-acceptance_criteria[9]: "Button component with variants: primary, secondary, outline, destructive, ghost","TextInput component with label, error, and helper text support","Card component with optional header, body, and footer sections",Badge component with color variants for statuses and priorities,Avatar component with image support and initials fallback,Modal/BottomSheet component for action sheets and pickers,StatusDot component for online/offline/status indicators,All components use NativeWind className and accept className override prop,Components exported from src/mobile/src/components/common/index.ts

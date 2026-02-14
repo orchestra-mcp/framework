@@ -1,9 +1,0 @@
-id: OC-31
-type: story
-parent: OC-3
-title: Complete example extension template
-status: done
-created: 2026-02-09
-user_story: "As an extension developer, I want a complete working example extension at src/packages/example/ with a ServiceProvider, full folder structure, sample contributes, and documentation, so that I can use it as a reference when building my own extension."
-points: 5
-acceptance_criteria[7]: src/packages/example/ has complete folder structure matching PRD spec,ExampleServiceProvider extends ServiceProvider base class,"package.json has sample contributes, activationEvents, and marketplace metadata",Extension can be loaded and activated by ExtensionHost,All subdirectories have placeholder files or index.ts stubs,docs/ subdirectory has README.md with extension documentation template,tests/ has at least one sample test that passes

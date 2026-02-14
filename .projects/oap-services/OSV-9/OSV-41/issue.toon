@@ -1,9 +1,0 @@
-id: OSV-41
-type: story
-parent: OSV-9
-title: ISearchService Interface & Provider Registry
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want a typed ISearchService so that extensions can register search providers and file type definitions, enabling unified search across all data sources."
-points: 5
-acceptance_criteria[6]: ISearchService interface in src/app/Search/ISearchService.ts,SearchService implements registerProvider/registerFileType/search/getSuggestions/getHistory/registerPreviewRenderer,All register methods return Disposable,Search aggregates results from all registered providers,"Search history stored (max 100 entries, configurable)",Unit tests for provider registration and search aggregation

@@ -1,9 +1,0 @@
-id: OSV-44
-type: story
-parent: OSV-10
-title: "AI Chat Streaming, Code Actions & Context"
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want streaming message support, code actions, and context-awareness so that AI responses render progressively and can interact with the current workspace."
-points: 5
-acceptance_criteria[6]: Streaming responses via AsyncIterator or callback pattern,"Code actions: copy code block, apply to file, show diff","Context-aware: current file path, workspace root, selection passed to provider",Claude CLI integration preserved from existing claudeCliService.ts,"IPC handlers for chat:send, chat:getSession, chat:listSessions",docs/core-services/ai-chatbox.md with API reference

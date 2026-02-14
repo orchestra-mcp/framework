@@ -1,9 +1,0 @@
-id: OPK-88
-type: story
-parent: OPK-6
-title: Write Database Manager documentation
-status: backlog
-created: 2026-02-09
-user_story: "As a developer, I want comprehensive documentation for the Database Manager package."
-points: 2
-acceptance_criteria[4]: docs/README.md exists,docs/api/README.md exists,docs/guides/README.md exists,docs/changelog/README.md exists

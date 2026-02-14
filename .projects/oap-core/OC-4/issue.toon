@@ -1,7 +1,0 @@
-id: OC-4
-type: epic
-title: "Event Bus, Disposable Pattern & Directory Scaffold"
-status: done
-created: 2026-02-09
-description: "Build Event/EventEmitter types, Disposable/DisposableStore utilities, scaffold all src/app/ PascalCase folders with index.ts stubs, scaffold docs/ root structure, and complete src/packages/example/ template with docs."
-priority: high

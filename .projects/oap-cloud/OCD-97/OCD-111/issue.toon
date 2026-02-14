@@ -1,9 +1,0 @@
-id: OCD-111
-type: story
-parent: OCD-97
-title: Admin profile management dashboard
-status: backlog
-created: 2026-02-09
-user_story: "As an admin, I want to verify profiles and add badges so that I can recognize contributors"
-points: 3
-acceptance_criteria[4]: Admin controller from PRD lines 1604-1662,Verify/unverify actions,Badge management,Profile list with filters

@@ -1,9 +1,0 @@
-id: OPK-57
-type: story
-parent: OPK-4
-title: Scaffold Version Control package structure
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want the Version Control package scaffolded with the standard directory structure so that all subsequent migration work has a consistent foundation."
-points: 3
-acceptance_criteria[5]: src/packages/version-control/ directory exists with all required subdirectories,"package.json has contributes manifest for sidebar, tabs, mcpTools, searchProviders, settings, statusBar, integrations",tsconfig.json and vitest.config.ts configured,VersionControlServiceProvider.ts stub exists,src/Services/Providers/ directory exists for GitHub/GitLab/Bitbucket

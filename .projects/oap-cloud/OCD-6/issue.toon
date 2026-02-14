@@ -1,7 +1,0 @@
-id: OCD-6
-type: epic
-title: Team Owner Dashboard
-status: backlog
-created: 2026-02-09
-description: "Team owner dashboard with team activity widgets (online/offline, tasks completed, time tracked), community page with real-time member activity indicators, and team management features (invite/remove members, role assignment, task assignments)."
-priority: medium

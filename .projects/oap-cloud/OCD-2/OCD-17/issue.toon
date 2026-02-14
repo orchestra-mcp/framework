@@ -1,9 +1,0 @@
-id: OCD-17
-type: story
-parent: OCD-2
-title: Teams & Roles (Jetstream Teams)
-status: backlog
-created: 2026-02-09
-user_story: "As a team owner, I want to create teams, invite members, and assign roles so that my organization can collaborate on the platform."
-points: 5
-acceptance_criteria[7]: Team creation with name and slug,Invite members by email,"Roles: employee, team-owner, admin with correct permissions",Switch between teams,Team-scoped data isolation,Remove members from team,Team settings page

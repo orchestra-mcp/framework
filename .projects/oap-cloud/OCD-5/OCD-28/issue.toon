@@ -1,9 +1,0 @@
-id: OCD-28
-type: story
-parent: OCD-5
-title: Notifications & Sprint Tracking
-status: backlog
-created: 2026-02-09
-user_story: "As an employee, I want an in-app notification center and sprint tracking with external tool sync so that I stay informed and aligned with my team's sprints."
-points: 5
-acceptance_criteria[7]: In-app notification center with mark read/unread,Filter notifications by type,Agent alerts from MCP displayed,Sprint view synced from Jira/Linear/GitHub,Current active sprint display,My tasks in sprint view,Sprint burndown chart

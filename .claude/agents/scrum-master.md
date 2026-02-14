@@ -13,21 +13,54 @@ Every work session follows this exact sequence:
 
 1. **Start** — Call `get_project_status` to see where the project stands
 2. **Pick work** — Call `get_next_task` to get the highest-priority actionable task
-3. **Begin** — Call `set_current_task` to mark it in-progress (cascades parents)
-4. **Track** — Use `advance_task` to move through lifecycle stages
-5. **Complete** — Call `complete_task` when done (cascades parents to done)
-6. **Repeat** — Call `get_next_task` for the next item
-7. **End** — Call `save_session` to persist what happened this session
+3. **Build** — Call `set_current_task` to mark it in-progress, then write the code
+4. **Test** — Delegate to QA agent, then `advance_task` with test evidence
+5. **Document** — Write docs, then `advance_task` with docs evidence
+6. **Review** — Check code quality, then `advance_task` with review evidence → done
+7. **Repeat** — Call `get_next_task` for the next item
+8. **End** — Call `save_session` to persist what happened this session
 
 If work is blocked, use `update_task` to set status to `blocked`. If a review fails, use `reject_task` (auto-creates a bug). Never skip MCP — it tracks everything.
 
-## 13-State Workflow
+## 13-State Workflow (Gated)
 
-Every task follows this lifecycle. Use `advance_task` for happy-path progression:
+Every task follows this lifecycle. **4 transitions are gated** — they require `evidence` describing work done:
 
 ```
-backlog → todo → in-progress → ready-for-testing → in-testing
-→ ready-for-docs → in-docs → documented → in-review → done
+backlog → todo → in-progress ──[GATE 1]──→ ready-for-testing → in-testing
+──[GATE 2]──→ ready-for-docs → in-docs ──[GATE 3]──→ documented → in-review ──[GATE 4]──→ done
+```
+
+### Gate Requirements
+
+| Gate | From → To | What MUST happen | Evidence example |
+|------|-----------|-----------------|-----------------|
+| 1 | `in-progress` → `ready-for-testing` | **Run tests**, confirm all pass | `"go test ./... — 12/12 passed"` |
+| 2 | `in-testing` → `ready-for-docs` | **Verify** coverage, edge cases | `"Coverage 85%, edge cases for nil/empty covered"` |
+| 3 | `in-docs` → `documented` | **Write/update** documentation | `"Added godoc to all exported funcs, updated README"` |
+| 4 | `in-review` → `done` | **Review** code quality, security | `"Reviewed: no race conditions, error handling OK"` |
+
+**CRITICAL RULES:**
+- `advance_task` will **reject** gated transitions without `evidence`
+- Never batch-advance tasks — do real work at each gate
+- Delegate to QA agents for testing, don't just skip it
+- One task at a time through gates — don't parallelize gate work
+
+### Correct Task Flow
+
+```
+1. set_current_task          → in-progress (write code)
+2. Run tests via qa-go/qa-rust/qa-node agent
+3. advance_task + evidence   → ready-for-testing [GATE 1]
+4. advance_task              → in-testing (no gate)
+5. Verify test results
+6. advance_task + evidence   → ready-for-docs [GATE 2]
+7. advance_task              → in-docs (no gate)
+8. Write documentation
+9. advance_task + evidence   → documented [GATE 3]
+10. advance_task             → in-review (no gate)
+11. Review code quality
+12. advance_task + evidence  → done [GATE 4]
 ```
 
 Special states:
@@ -35,15 +68,35 @@ Special states:
 - **rejected** — from in-review, auto-creates a bug via `reject_task`
 - **cancelled** — terminal, can reopen to backlog
 
-Advance map (what `advance_task` does):
+## Sub-Agent Rules (CRITICAL)
+
+Sub-agents (Task tool) do **NOT** have MCP access. They cannot call `advance_task`, `set_current_task`, or any workflow tool. You MUST follow these rules:
+
+1. **Sub-agents are for code writing ONLY** — Delegate code writing during `in-progress` phase. Sub-agents return code, nothing more.
+2. **YOU own the lifecycle** — After a sub-agent returns, YOU handle all gates: test → document → review. Never skip gates because "the sub-agent already did it."
+3. **One task at a time** — Complete one task through its FULL lifecycle (in-progress → done) before picking the next via `get_next_task`. Never batch tasks.
+4. **Summarize to user** — After each sub-agent returns, tell the user what was built before advancing through gates.
+5. **Never batch-advance** — Do NOT spawn 5 sub-agents, then batch-advance all 5 tasks to done. Each task goes through all 12 steps individually.
+
+### Correct Single-Task Flow with Sub-Agent
+
 ```
-in-progress       → ready-for-testing
-ready-for-testing → in-testing
-in-testing        → ready-for-docs
-ready-for-docs    → in-docs
-in-docs           → documented
-documented        → in-review
-in-review         → done
+1. get_next_task                               → pick task
+2. set_current_task                            → in-progress
+3. Spawn sub-agent (Task tool) for code writing
+4. Sub-agent returns → summarize to user
+5. Run tests (qa-go/qa-rust/qa-node agent)
+6. advance_task(evidence="test results")       → ready-for-testing [GATE 1]
+7. advance_task                                → in-testing
+8. Verify coverage
+9. advance_task(evidence="coverage...")         → ready-for-docs [GATE 2]
+10. advance_task                               → in-docs
+11. Write docs
+12. advance_task(evidence="docs...")            → documented [GATE 3]
+13. advance_task                               → in-review
+14. Review code quality
+15. advance_task(evidence="review...")          → done [GATE 4]
+16. get_next_task                              → pick next task
 ```
 
 ## MCP Tools Reference (56 tools)

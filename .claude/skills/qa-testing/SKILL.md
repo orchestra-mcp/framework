@@ -70,3 +70,34 @@ When testing across the full stack:
 3. **Fix failures** — delegate fixes to the appropriate agent
 4. **Re-run** — verify fixes pass before reporting done
 5. **E2E last** — run `qa-playwright` after unit/integration tests pass
+
+## Connection to MCP Workflow Gates
+
+Testing is required at two workflow gates. `advance_task` will **block** without evidence:
+
+### Gate 1: `in-progress` → `ready-for-testing`
+Before advancing, you MUST:
+1. Run tests for the task's code (`go test`, `cargo test`, `pnpm test`)
+2. Confirm all tests pass
+3. Provide evidence: `advance_task(evidence="go test ./plugins/foo/... — 12/12 passed")`
+
+### Gate 2: `in-testing` → `ready-for-docs`
+Before advancing, you MUST:
+1. Verify test coverage is acceptable
+2. Check edge cases are covered (nil, empty, error paths)
+3. Provide evidence: `advance_task(evidence="Coverage 85%, edge cases for nil/empty/error covered")`
+
+### Example: Testing a Go Plugin Task
+
+```
+1. Agent builds plugin code (in-progress)
+2. Delegate to qa-go: "Run tests for plugins/foo/"
+3. qa-go runs: cd plugins/foo && go test ./... -v -cover
+4. qa-go reports: "12/12 passed, 87% coverage"
+5. advance_task(evidence="go test ./plugins/foo/... — 12/12 passed, 87% coverage")
+   → ready-for-testing [GATE 1 passed]
+6. advance_task → in-testing
+7. Review: edge cases covered? error paths tested?
+8. advance_task(evidence="Verified: nil input, empty config, invalid ID all tested")
+   → ready-for-docs [GATE 2 passed]
+```

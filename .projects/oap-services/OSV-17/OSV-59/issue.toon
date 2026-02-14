@@ -1,9 +1,0 @@
-id: OSV-59
-type: story
-parent: OSV-17
-title: "TextMate Service, Semantic Tokens & Documentation"
-status: backlog
-created: 2026-02-09
-user_story: "As a developer, I want TextMate grammar loading and semantic token registry so that the editor can provide syntax highlighting from VSCode grammars, plus documentation for the compatibility layer."
-points: 5
-acceptance_criteria[5]: TextMate grammar registry loads .tmLanguage grammars,Semantic token types and modifiers registry,Grammar-to-language mapping from VSCode extension manifests,Integration with ThemeService for token color resolution,docs/core-services/vscode-compatibility.md with compatibility matrix and limitations

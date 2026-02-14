@@ -193,6 +193,45 @@ Specialized agents in `.claude/agents/` auto-delegate based on task context. See
 | `qa-node` | Node/React testing (vitest, @testing-library, component/store tests) |
 | `qa-playwright` | E2E browser testing (Playwright, page objects, visual regression) |
 
+## Sub-Agent Orchestration Rules
+
+Sub-agents (launched via the `Task` tool) do **NOT** have access to MCP tools. They cannot call `advance_task`, `set_current_task`, or any workflow tools. The main agent must own the full task lifecycle.
+
+### Rules
+
+1. **Sub-agents are for code writing ONLY** — Use sub-agents only during the `in-progress` phase to write code. They return code results, nothing more.
+2. **Main agent owns the lifecycle** — The main agent (you) must handle ALL gate transitions: test, document, review. Never delegate gate work to a sub-agent that can't call MCP tools.
+3. **One task at a time** — Work one task through its FULL lifecycle (in-progress → done) before starting the next. Never batch multiple tasks in parallel through gates.
+4. **Summarize sub-agent results** — After a sub-agent returns, summarize what it built to the user before advancing. The user must see what happened.
+5. **Never mark done without gates** — After a sub-agent writes code, YOU must: run tests (Gate 1), verify coverage (Gate 2), write docs (Gate 3), review quality (Gate 4). Each gate needs real evidence.
+
+### Correct Pattern
+
+```
+1. set_current_task(task_id)                    → in-progress
+2. Delegate code writing to sub-agent (Task tool)
+3. Sub-agent returns → summarize results to user
+4. Run tests yourself or delegate to qa-* agent
+5. advance_task(evidence="test results...")     → ready-for-testing [GATE 1]
+6. advance_task                                  → in-testing
+7. Verify coverage and edge cases
+8. advance_task(evidence="coverage...")          → ready-for-docs [GATE 2]
+9. advance_task                                  → in-docs
+10. Write documentation yourself
+11. advance_task(evidence="docs...")             → documented [GATE 3]
+12. advance_task                                 → in-review
+13. Review code quality yourself
+14. advance_task(evidence="review...")           → done [GATE 4]
+15. Move to next task
+```
+
+### Anti-Patterns (NEVER DO)
+
+- Spawning 5 sub-agents in parallel, then batch-advancing all 5 tasks to done
+- Letting a sub-agent "handle everything" including testing and docs
+- Advancing through gates without providing real evidence
+- Starting the next task before the current one reaches done
+
 ## Conventions
 
 ### Go

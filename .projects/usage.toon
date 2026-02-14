@@ -11,7 +11,23 @@ sessions:
       total_input: 1000
       total_output: 500
       total_cost: 0.05
+    - provider: anthropic
+      model: claude-opus-4-6
+      started_at: "2026-02-13T18:27:34Z"
+      ended_at: "2026-02-13T18:27:49Z"
+      requests:
+        - timestamp: "2026-02-13T18:27:34Z"
+          input_tokens: 15000
+          output_tokens: 5000
+          cost: 0.45
+        - timestamp: "2026-02-13T18:27:38Z"
+          input_tokens: 8000
+          output_tokens: 3000
+          cost: 0.25
+      total_input: 23000
+      total_output: 8000
+      total_cost: 0.7
 totals:
-    total_input: 1000
-    total_output: 500
-    total_cost: 0.05
+    total_input: 24000
+    total_output: 8500
+    total_cost: 0.75

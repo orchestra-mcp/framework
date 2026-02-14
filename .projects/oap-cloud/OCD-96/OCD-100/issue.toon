@@ -1,9 +1,0 @@
-id: OCD-100
-type: story
-parent: OCD-96
-title: Database Schema & Models for Subscriptions
-status: backlog
-created: 2026-02-09
-user_story: "As a developer, I need to create the database schema and Eloquent models for subscriptions so that the system can store and manage subscription data."
-points: 8
-acceptance_criteria[5]: Migration files created for all 5 tables,All models created with relationships,Factory and seeder created,php artisan migrate runs successfully,Models can query related data

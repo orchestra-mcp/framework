@@ -1,7 +1,0 @@
-id: OCD-96
-type: epic
-title: Subscription & Billing System
-status: backlog
-created: 2026-02-09
-description: "Implement team and individual subscriptions with Laravel Pennant feature flags, multiple payment methods (GitHub Sponsors, Bank Transfer, Manual), and admin management dashboard."
-priority: high

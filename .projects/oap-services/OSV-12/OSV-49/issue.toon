@@ -1,9 +1,0 @@
-id: OSV-49
-type: story
-parent: OSV-12
-title: "Widget Theme Integration, Tray Menu & Documentation"
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want widgets to follow the IDE theme and have tray menu show/hide entries plus full documentation."
-points: 3
-acceptance_criteria[5]: Widget views receive IDE theme CSS variables,Theme changes propagated to open widgets in real-time,Tray menu entry auto-created for each registered widget with show/hide toggle,Context menu support on widgets,docs/core-services/widget-control.md with API reference and examples

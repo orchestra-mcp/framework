@@ -1,9 +1,0 @@
-id: OPK-99
-type: story
-parent: OPK-7
-title: Build OS Services Manager ServiceProvider
-status: backlog
-created: 2026-02-09
-user_story: "As a developer, I want the OSServicesManagerServiceProvider to register all contributions with core services."
-points: 5
-acceptance_criteria[5]: Registers sidebar entry with services icon,Registers dynamic tray menu per service with status colors,Registers settings for service paths and auto-start,Registers MCP tools for start/stop/restart,Registers notifications for status changes

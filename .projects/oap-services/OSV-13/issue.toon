@@ -1,7 +1,0 @@
-id: OSV-13
-type: epic
-title: Account Center &amp; Integration Hub
-status: done
-created: 2026-02-09
-description: "Extract credential and OAuth management from extensions/credentials/ + calendar/OAuthService.ts into src/app/AccountCenter/. Provides IAccountCenterService with registerIntegration/connect/disconnect/getAccessToken API. Supports OAuth2+PKCE, API key, token auth types, OS keychain secure storage, auto token refresh, and integration marketplace view in settings."
-priority: medium

@@ -1,7 +1,0 @@
-id: ODR-1
-type: epic
-title: CI/CD Pipeline Foundation
-status: done
-created: 2026-02-09
-description: "Setup core GitHub Actions workflows for testing, linting, and quality gates"
-priority: high

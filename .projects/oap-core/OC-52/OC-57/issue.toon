@@ -1,9 +1,0 @@
-id: OC-57
-type: story
-parent: OC-52
-title: "Register default integrations (Cloudflare, GitHub, Google)"
-status: backlog
-created: 2026-02-09
-user_story: "As a user, I want pre-configured integrations for popular services so that I can quickly connect my accounts without manual setup"
-points: 5
-acceptance_criteria[6]: Cloudflare integration with API token validation,GitHub OAuth integration with repo and user scopes,Google OAuth integration with email and profile scopes,Each integration includes validation endpoint,Integration fields map to .env variables where needed,Help text and placeholders guide users

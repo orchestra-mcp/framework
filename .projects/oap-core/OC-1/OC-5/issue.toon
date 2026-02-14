@@ -1,9 +1,0 @@
-id: OC-5
-type: story
-parent: OC-1
-title: Update pnpm workspace configuration
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want pnpm workspace to resolve packages from src/packages/* instead of packages/*, so that the new directory structure is recognized by the package manager and all inter-package references work correctly."
-points: 2
-acceptance_criteria[4]: pnpm-workspace.yaml lists 'src/packages/*' instead of 'packages/*',package.json scripts reference the correct workspace package names,pnpm install succeeds without errors from the project root,pnpm ls shows src/packages/example as a recognized workspace package

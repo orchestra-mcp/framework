@@ -1,9 +1,0 @@
-id: OSV-38
-type: story
-parent: OSV-7
-title: "WebSocket Reconnection, Message Queue & Documentation"
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want offline message queuing and reconnection support so that messages are not lost during temporary disconnections, plus documentation for the full API."
-points: 5
-acceptance_criteria[6]: "Client-side reconnection with exponential backoff (1s, 2s, 4s, 8s, max 30s)","Offline message queue: messages buffered when no clients connected, flushed on reconnect",Queue max size configurable (default 1000 messages),Connection/disconnection events include client metadata,docs/core-services/websocket-server.md with API reference and examples,Integration test verifying reconnection and queue flush

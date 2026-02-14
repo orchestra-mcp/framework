@@ -1,9 +1,0 @@
-id: OCD-113
-type: story
-parent: OCD-98
-title: SeoService with meta tags and structured data
-status: backlog
-created: 2026-02-09
-user_story: "As a developer, I want a service to generate SEO meta tags so that all pages have proper Open Graph and Twitter Card metadata"
-points: 5
-acceptance_criteria[4]: SeoService class from PRD lines 1987-2074,"Generates OG tags, Twitter cards, structured data","JSON-LD support for Organization, SoftwareApplication, Article",Helper methods for all schema types

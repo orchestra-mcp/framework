@@ -1,9 +1,0 @@
-id: ODS-46
-type: story
-parent: ODS-6
-title: Migrate Chrome extension to use design system
-status: backlog
-created: 2026-02-09
-user_story: "As a developer, I want the Chrome extension migrated to use the design system so that all UI is consistent and maintainable."
-points: 13
-acceptance_criteria[5]: All sidepanel components use design system,Theme system replaced with new ThemeProvider,All custom styles replaced with design system components,No visual regressions,Performance maintained or improved

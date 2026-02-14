@@ -1,9 +1,0 @@
-id: OSV-54
-type: story
-parent: OSV-15
-title: ILspServerService Interface & Lifecycle Manager
-status: backlog
-created: 2026-02-09
-user_story: "As a developer, I want a typed ILspServerService so that extensions can register language servers with automatic binary download, lifecycle management, and multi-root workspace support."
-points: 8
-acceptance_criteria[7]: ILspServerService interface in src/app/LSP/ILspServerService.ts,LspServerService implements registerLanguageServer/getActiveServers/restartServer,registerLanguageServer returns Disposable,Auto-download language server binaries on first use,"Lifecycle management: start, stop, restart servers","Multi-root workspace support: servers aware of all workspace folders","Unit tests for registration, lifecycle, and restart"

@@ -1,9 +1,0 @@
-id: OPK-98
-type: story
-parent: OPK-7
-title: Migrate OS Services Manager Chrome UI
-status: backlog
-created: 2026-02-09
-user_story: "As a developer, I want the services UI components migrated from chrome-extension/sidepanel/services/."
-points: 3
-acceptance_criteria[3]: All 4 services panel components migrated to resources/chrome/,servicesStore.ts migrated to resources/chrome/stores/,All imports updated

@@ -1,9 +1,0 @@
-id: OSV-45
-type: story
-parent: OSV-11
-title: IMarketplaceService Interface & Extension Management
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want a typed IMarketplaceService so that extensions can be installed, uninstalled, enabled, and disabled at runtime with dependency resolution."
-points: 8
-acceptance_criteria[7]: IMarketplaceService interface in src/app/Marketplace/IMarketplaceService.ts,MarketplaceService implements registerExtensionType/publishExtension/installExtension/uninstallExtension/enableExtension/disableExtension/searchExtensions/getInstalledExtensions,"Extension types: Orchestra, VSCode, AI Tools, Services, Integrations",Install downloads and extracts to extensions directory,"Dependency resolution: install missing deps before extension",Enable/disable toggles extension without uninstalling,"Unit tests for install, uninstall, enable, disable flows"

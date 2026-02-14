@@ -1,7 +1,0 @@
-id: OPK-8
-type: epic
-title: Log Viewer Package
-status: done
-created: 2026-02-09
-description: "Migrate the Log Viewer package at src/packages/log-viewer/. Sources: packages/extensions/dev-logs/src/main/ (LogScannerService.ts, LogTailService.ts, GenericLogParser.ts, LogParserRegistry.ts, tools.ts, index.ts, parsers/ (LaravelParser.ts, DjangoParser.ts, NodejsParser.ts, RailsParser.ts, index.ts)), packages/extensions/dev-logs/src/types.ts, packages/chrome-extension/src/sidepanel/dev-logs/ (DevLogsPanel.tsx, LogEntryDetailView.tsx, LogEntryList.tsx, LogFilterBar.tsx), packages/chrome-extension/src/stores/devLogsStore.ts. The ServiceProvider registers: sidebar entry (log icon), tab type (log viewer tab), search provider (log search), settings (log paths, watch patterns, filter levels)."
-priority: medium

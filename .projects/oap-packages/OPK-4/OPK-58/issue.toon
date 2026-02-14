@@ -1,9 +1,0 @@
-id: OPK-58
-type: story
-parent: OPK-4
-title: Migrate Version Control main services
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want all git, GitHub, GitLab, and Bitbucket service code migrated into the Version Control package so that version control functionality is self-contained."
-points: 13
-acceptance_criteria[6]: All 24 git service files migrated to src/Services/,GitHub provider files migrated to src/Services/Providers/GitHub/,GitLab provider files migrated to src/Services/Providers/GitLab/,Bitbucket provider files migrated to src/Services/Providers/Bitbucket/,All imports updated,TypeScript compiles

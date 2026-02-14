@@ -1,9 +1,0 @@
-id: OPK-163
-type: story
-parent: OPK-13
-title: Migrate Break Tracker main services
-status: backlog
-created: 2026-02-09
-user_story: "As a developer, I want the break panel service migrated from the desktop package into the Break Tracker package."
-points: 3
-acceptance_criteria[5]: BreakService.ts created in src/Services/ extracting logic from breakPanelService.ts,BreakPanelService.ts migrated to src/Panels/,Types defined,All imports updated,TypeScript compiles

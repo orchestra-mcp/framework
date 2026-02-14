@@ -1,9 +1,0 @@
-id: OSV-53
-type: story
-parent: OSV-14
-title: "Markdown Export, Theme Integration & Documentation"
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want markdown export options and theme integration so that rendered content follows the IDE theme and can be copied as HTML or plain text."
-points: 3
-acceptance_criteria[6]: Copy as HTML button on rendered content,Copy as plain text button strips all formatting,Code block copy button,Syntax highlighting follows active IDE theme (Shiki theme derived from ThemeDefinition),Table CSV export button,docs/core-services/markdown-parser.md with component API and usage examples

@@ -1,0 +1,20 @@
+package src
+
+import "context"
+
+// {{.PascalName}}Service defines the service interface for the {{.PascalName}} plugin.
+type {{.PascalName}}Service interface {
+	// Status returns the current status of the service.
+	Status(ctx context.Context) (string, error)
+}
+
+type {{.Name}}Service struct{}
+
+// New{{.PascalName}}Service creates a new {{.PascalName}} service.
+func New{{.PascalName}}Service() {{.PascalName}}Service {
+	return &{{.Name}}Service{}
+}
+
+func (s *{{.Name}}Service) Status(ctx context.Context) (string, error) {
+	return "ok", nil
+}

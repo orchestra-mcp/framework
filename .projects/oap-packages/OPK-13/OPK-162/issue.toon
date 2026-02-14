@@ -1,9 +1,0 @@
-id: OPK-162
-type: story
-parent: OPK-13
-title: Scaffold Break Tracker package structure
-status: backlog
-created: 2026-02-09
-user_story: "As a developer, I want the Break Tracker package scaffolded with the standard directory structure."
-points: 2
-acceptance_criteria[4]: src/packages/break-tracker/ directory exists with all required subdirectories,package.json has contributes manifest,tsconfig.json and vitest.config.ts configured,BreakTrackerServiceProvider.ts stub exists

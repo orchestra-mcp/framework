@@ -1,5 +1,0 @@
-# OPK-9: Time Tracker Package
-
-**Type**: Epic | **Status**: backlog | **Priority**: medium
-
-Migrate the Time Tracker package at src/packages/time-tracker/. Sources: packages/extensions/time-tracker/src/ (TimerService.ts, TimeStorageService.ts, timeTrackerHandlers.ts, trayMenuIntegration.ts, types.ts, index.ts), packages/extensions/time-reports/src/ (ReportService.ts, reportHandlers.ts, types.ts, index.ts), packages/desktop/src/main/services/timerPanelService.ts, packages/desktop/src/widget-renderer/timer-panel.html, packages/desktop/src/widget-renderer/timer-panel-renderer.ts, packages/desktop/src/main/services/timeReportPanelService.ts, packages/desktop/src/widget-renderer/time-report-panel.html, packages/desktop/src/widget-renderer/time-report-panel-renderer.ts, packages/chrome-extension/src/stores/ (timerStore.ts, timeReportStore.ts). The ServiceProvider registers: widget (timer panel), tray menu (Start/Stop Timer), panel (time reports), settings (tracking mode, report format), MCP tools (start/stop timer, get reports).

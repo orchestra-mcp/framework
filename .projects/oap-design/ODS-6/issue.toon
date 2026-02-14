@@ -1,7 +1,0 @@
-id: ODS-6
-type: epic
-title: Migration & Integration
-status: backlog
-created: 2026-02-09
-description: "Migrate all existing platform components (Chrome extension, Desktop widgets, Mobile app) to use the new design system. Update all components to use design tokens."
-priority: low

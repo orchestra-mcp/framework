@@ -1,7 +1,0 @@
-id: OSV-6
-type: epic
-title: Dynamic MCP Server
-status: done
-created: 2026-02-09
-description: "Extract MCP server from extensions/mcp/src/main/ into src/app/MCP/. Provides IMcpServerService with registerTool/registerResource/registerPrompt API. Tool namespacing, schema validation, stdio transport, CLI entry point (orchestr-mcp), dynamic runtime registration/unregistration, and migration of all existing MCP tools as registrations."
-priority: high

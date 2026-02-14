@@ -1,7 +1,0 @@
-id: ODR-22
-type: epic
-title: Auto-Update System
-status: backlog
-created: 2026-02-09
-description: Electron auto-updater for seamless desktop updates
-priority: high

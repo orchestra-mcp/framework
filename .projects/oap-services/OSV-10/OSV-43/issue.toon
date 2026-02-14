@@ -1,9 +1,0 @@
-id: OSV-43
-type: story
-parent: OSV-10
-title: IAiChatBoxService Interface & Provider Registry
-status: done
-created: 2026-02-09
-user_story: "As a developer, I want a typed IAiChatBoxService so that extensions can register model providers, skills, agents, and MCP servers for a unified AI chat experience."
-points: 8
-acceptance_criteria[7]: IAiChatBoxService interface in src/app/AI/IAiChatBoxService.ts,AiChatBoxService implements registerModelProvider/registerSkill/registerAgent/registerMcpServer/sendMessage/getActiveSession/onMessage,All register methods return Disposable,"Multi-provider support: Claude, OpenAI, Ollama provider interfaces defined",Active provider selectable via settings,"Session management: create, switch, delete chat sessions",Unit tests for registration and provider switching

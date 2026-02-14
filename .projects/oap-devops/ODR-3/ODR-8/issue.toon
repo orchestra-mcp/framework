@@ -1,9 +1,0 @@
-id: ODR-8
-type: story
-parent: ODR-3
-title: Extension Build Workflow
-status: done
-created: 2026-02-09
-user_story: "As a Chrome user, I want automated extension builds so that updates are released quickly"
-points: null
-acceptance_criteria[4]: Extension builds on push to main,ZIP file created with correct structure,Manifest V3 validation passes,Automated publishing to Chrome Web Store

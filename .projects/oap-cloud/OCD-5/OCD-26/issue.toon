@@ -1,9 +1,0 @@
-id: OCD-26
-type: story
-parent: OCD-5
-title: "Timer, Break & Pomodoro Reports"
-status: backlog
-created: 2026-02-09
-user_story: "As an employee, I want to view reports of my time tracking, breaks, and pomodoro sessions with export capability so that I can review my work patterns."
-points: 5
-acceptance_criteria[7]: Time tracked per task and per project views,Break log with duration and type,Pomodoro session history,"Charts and summaries (daily, weekly, monthly)",Export as CSV,Export as PDF,Date range filter

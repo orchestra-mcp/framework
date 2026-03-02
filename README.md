@@ -1,5 +1,7 @@
 # Orchestra Framework
 
+![Orchestra Framework](https://raw.githubusercontent.com/orchestra-mcp/framework/master/arts/cover.jpg)
+
 An AI-agentic IDE framework with 290 MCP tools across 36 plugins. Single-process in-process architecture — 4 core plugins bundled, 32 optional plugins installable separately.
 
 ## Install

@@ -1,0 +1,51 @@
+name: Deploy
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'apps/web/**'
+      - 'apps/next/**'
+      - 'scripts/deploy/**'
+      - '.github/workflows/deploy.yml'
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to VPS
+    runs-on: ubuntu-latest
+    environment: production
+    timeout-minutes: 15
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_SSH_PORT }}
+          script_stop: true
+          timeout: 600s
+          command_timeout: 600s
+          script: |
+            export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
+            /opt/orchestra/repo/scripts/deploy/deploy.sh
+
+      - name: Verify deployment
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_SSH_PORT }}
+          script: |
+            echo "--- Health Checks ---"
+            curl -sf http://localhost:8080/health && echo " API: OK" || (echo " API: FAILED" && exit 1)
+            curl -sf http://localhost:3000 > /dev/null && echo " Next.js: OK" || (echo " Next.js: FAILED" && exit 1)
+            echo "--- Service Status ---"
+            sudo systemctl status orchestra-web --no-pager -l | head -5
+            sudo systemctl status orchestra-next --no-pager -l | head -5

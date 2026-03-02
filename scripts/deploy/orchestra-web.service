@@ -1,0 +1,36 @@
+[Unit]
+Description=Orchestra Web API (Go/Fiber)
+Documentation=https://github.com/orchestra-mcp/orchestra-agents
+After=network.target postgresql.service
+Requires=postgresql.service
+
+[Service]
+Type=simple
+User=deploy
+Group=deploy
+WorkingDirectory=/opt/orchestra/repo/apps/web
+ExecStart=/opt/orchestra/repo/apps/web/bin/web --addr :8080
+Restart=always
+RestartSec=5
+StartLimitBurst=5
+StartLimitIntervalSec=60
+EnvironmentFile=/opt/orchestra/shared/.env
+
+# Graceful shutdown (matches Go SIGTERM handler with 10s timeout)
+KillSignal=SIGTERM
+TimeoutStopSec=15
+
+# Security hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/orchestra /var/log/orchestra
+PrivateTmp=true
+
+# Logging to journald
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=orchestra-web
+
+[Install]
+WantedBy=multi-user.target

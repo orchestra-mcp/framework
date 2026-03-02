@@ -1,0 +1,34 @@
+[Unit]
+Description=Orchestra Next.js Frontend (SSR)
+Documentation=https://github.com/orchestra-mcp/orchestra-agents
+After=network.target orchestra-web.service
+
+[Service]
+Type=simple
+User=deploy
+Group=deploy
+WorkingDirectory=/opt/orchestra/repo/apps/next
+ExecStart=/usr/bin/npm start
+Restart=always
+RestartSec=5
+StartLimitBurst=5
+StartLimitIntervalSec=60
+
+# Environment — NEXT_PUBLIC_API_URL empty so client uses same-origin (Caddy proxies /api/*)
+Environment=NODE_ENV=production
+Environment=PORT=3000
+Environment=NEXT_PUBLIC_API_URL=
+
+# Logging to journald
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=orchestra-next
+
+# Security hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/opt/orchestra
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

@@ -40,13 +40,22 @@ if id "$DEPLOY_USER" &>/dev/null; then
     echo "User $DEPLOY_USER already exists, skipping"
 else
     adduser --disabled-password --gecos "" "$DEPLOY_USER"
-    mkdir -p /home/$DEPLOY_USER/.ssh
-    chmod 700 /home/$DEPLOY_USER/.ssh
-    touch /home/$DEPLOY_USER/.ssh/authorized_keys
-    chmod 600 /home/$DEPLOY_USER/.ssh/authorized_keys
-    chown -R $DEPLOY_USER:$DEPLOY_USER /home/$DEPLOY_USER/.ssh
     echo "Created user: $DEPLOY_USER"
 fi
+
+# Always ensure deploy user has the same authorized_keys as root
+mkdir -p /home/$DEPLOY_USER/.ssh
+chmod 700 /home/$DEPLOY_USER/.ssh
+if [ -f /root/.ssh/authorized_keys ] && [ -s /root/.ssh/authorized_keys ]; then
+    cp /root/.ssh/authorized_keys /home/$DEPLOY_USER/.ssh/authorized_keys
+    echo "Copied root authorized_keys to deploy user"
+else
+    touch /home/$DEPLOY_USER/.ssh/authorized_keys
+    echo "WARNING: /root/.ssh/authorized_keys is empty — deploy user has no SSH keys!"
+    echo "         Add your public key to /home/$DEPLOY_USER/.ssh/authorized_keys before logging out."
+fi
+chmod 600 /home/$DEPLOY_USER/.ssh/authorized_keys
+chown -R $DEPLOY_USER:$DEPLOY_USER /home/$DEPLOY_USER/.ssh
 
 # ── 3. Install Go ──
 echo ""
@@ -390,10 +399,14 @@ DEPLOYEOF
 chmod +x $APP_DIR/deploy.sh
 chown $DEPLOY_USER:$DEPLOY_USER $APP_DIR/deploy.sh
 
-# Harden SSH
-sed -i 's/^#*PermitRootLogin.*/PermitRootLogin no/' /etc/ssh/sshd_config
+# Harden SSH — only disable password auth, keep root login as prohibit-password
+# (allows root with key, blocks root with password — safe without locking you out)
 sed -i 's/^#*PasswordAuthentication.*/PasswordAuthentication no/' /etc/ssh/sshd_config
+sed -i 's/^#*PermitRootLogin.*/PermitRootLogin prohibit-password/' /etc/ssh/sshd_config
+# Override any cloud-init drop-in that may re-enable password auth
+echo -e "PasswordAuthentication no\nPermitRootLogin prohibit-password" > /etc/ssh/sshd_config.d/99-orchestra.conf
 systemctl reload sshd
+echo "SSH hardened: password auth disabled, root key login still works"
 
 SERVER_IP=$(curl -4s ifconfig.me 2>/dev/null || echo "YOUR_IP")
 

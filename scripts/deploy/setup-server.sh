@@ -354,7 +354,7 @@ deploy_web() {
     cd "$APP_DIR/web"
     git fetch origin master && git reset --hard origin/master
     mkdir -p bin
-    go build -o bin/web-new ./cmd/
+    go build -buildvcs=false -o bin/web-new ./cmd/
     mv bin/web-new bin/web
     sudo systemctl restart orchestra-web
     for i in $(seq 1 15); do

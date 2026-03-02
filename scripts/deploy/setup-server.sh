@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-# Orchestra Web — One-time Ubuntu VPS setup (two-repo layout)
-# Run as root on a fresh Ubuntu 22.04/24.04 server:
-#   bash setup-server.sh
+# Orchestra Web — One-time server setup (Debian/Ubuntu, two-repo layout)
+# Run as root: bash setup-server.sh
 set -euo pipefail
 
 # ═══════════════════════════════════════════════════════════════
@@ -33,7 +32,7 @@ fi
 echo ""
 echo "--- [1/12] Updating system packages ---"
 apt update && apt upgrade -y
-apt install -y curl wget git build-essential unzip software-properties-common
+apt install -y curl wget git build-essential unzip lsb-release gnupg2 ca-certificates
 
 # ── 2. Create deploy user ──
 echo ""
@@ -94,10 +93,14 @@ echo "--- [5/12] Installing PostgreSQL 16 ---"
 if systemctl is-active --quiet postgresql; then
     echo "PostgreSQL already running, skipping install"
 else
-    sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-    wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+    # Detect codename (works on both Debian and Ubuntu)
+    CODENAME=$(lsb_release -cs 2>/dev/null || grep VERSION_CODENAME /etc/os-release | cut -d= -f2)
+    # Trixie (Debian 13) may not have a pgdg repo yet — fall back to bookworm or use default
+    install -d /usr/share/postgresql-common/pgdg
+    curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc
+    echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt ${CODENAME}-pgdg main" > /etc/apt/sources.list.d/pgdg.list
     apt update
-    apt install -y postgresql-16
+    apt install -y postgresql-16 || apt install -y postgresql
     systemctl enable postgresql
     systemctl start postgresql
     echo "PostgreSQL 16 installed and running"

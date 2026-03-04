@@ -129,7 +129,7 @@ orchestra plugin search "ai"
 
 ## Content Packs
 
-Packs are installable bundles of skills (slash commands), agents (specialized sub-agents), and hooks (shell scripts). 17 official packs:
+Packs are installable bundles of skills (slash commands), agents (specialized sub-agents), and hooks (shell scripts). 24 official packs:
 
 | Pack | Stacks | Contents |
 |------|--------|----------|
@@ -150,6 +150,13 @@ Packs are installable bundles of skills (slash commands), agents (specialized su
 | [`pack-native-kotlin`](https://github.com/orchestra-mcp/pack-native-kotlin) | kotlin | kotlin-plugin agent |
 | [`pack-native-csharp`](https://github.com/orchestra-mcp/pack-native-csharp) | csharp | csharp-plugin agent |
 | [`pack-native-gtk`](https://github.com/orchestra-mcp/pack-native-gtk) | c | gtk-plugin agent |
+| [`pack-powersync`](https://github.com/orchestra-mcp/pack-powersync) | react, rn, ts, flutter | powersync skill, powersync-engineer agent |
+| [`pack-laravel`](https://github.com/orchestra-mcp/pack-laravel) | php | laravel skill, laravel-engineer + qa-laravel agents |
+| [`pack-inertia`](https://github.com/orchestra-mcp/pack-inertia) | php, react, ts | inertia skill, inertia-engineer agent |
+| [`pack-tailwind`](https://github.com/orchestra-mcp/pack-tailwind) | react, ts, php | tailwindcss skill, tailwind-designer agent |
+| [`pack-gcp`](https://github.com/orchestra-mcp/pack-gcp) | docker, go, ts | gcp skill, gcp-architect agent |
+| [`pack-docker`](https://github.com/orchestra-mcp/pack-docker) | docker | docker skill, docker-engineer agent |
+| [`pack-go-adk`](https://github.com/orchestra-mcp/pack-go-adk) | go | go-adk skill, go-adk-engineer agent |
 
 ```bash
 orchestra pack install github.com/orchestra-mcp/pack-go-backend
@@ -202,7 +209,7 @@ framework/
 │   ├── plugin-devtools-*/             #   Optional: 12 devtools plugins
 │   ├── plugin-ai-*/                   #   Optional: 4 AI awareness plugins
 │   └── ... (36 plugins total)
-├── packs/                             # 17 installable content packs
+├── packs/                             # 24 installable content packs
 ├── scripts/
 │   ├── install.sh                     # curl | sh installer (macOS/Linux/Windows)
 │   ├── new-plugin.sh                  # Plugin generator

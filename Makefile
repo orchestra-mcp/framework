@@ -1,4 +1,4 @@
-.PHONY: proto build build-orchestrator build-storage-markdown build-tools-features build-transport-stdio build-cli build-web build-next dev-next storybook-next test test-unit test-e2e test-engine-rag clean install release build-tools-marketplace build-engine-rag build-bridge-claude build-tools-agentops build-tools-sessions build-tools-workspace build-transport-quic-bridge build-bridge-openai build-bridge-gemini build-bridge-ollama build-bridge-firecrawl build-tools-markdown build-tools-docs build-tools-notes build-devtools-git build-agent-orchestrator build-ai-screenshot build-ai-vision build-ai-browser-context build-ai-screen-reader build-services-voice build-services-notifications build-tools-extension-generator build-devtools-file-explorer build-devtools-terminal build-devtools-ssh build-devtools-services build-devtools-docker build-devtools-debugger build-devtools-test-runner build-devtools-log-viewer build-devtools-database build-devtools-devops build-integration-figma build-devtools-components xcodegen-swift build-swift build-swift-ios run-swift test-swift dev-swift clean-swift
+.PHONY: proto build build-orchestrator build-storage-markdown build-storage-sqlite build-tools-features build-transport-stdio build-cli build-web build-next dev-next storybook-next test test-unit test-e2e test-engine-rag clean install release build-tools-marketplace build-engine-rag build-bridge-claude build-tools-agentops build-tools-sessions build-tools-workspace build-transport-quic-bridge build-bridge-openai build-bridge-gemini build-bridge-ollama build-bridge-firecrawl build-tools-markdown build-tools-docs build-tools-notes build-devtools-git build-agent-orchestrator build-ai-screenshot build-ai-vision build-ai-browser-context build-ai-screen-reader build-services-voice build-services-notifications build-tools-extension-generator build-devtools-file-explorer build-devtools-terminal build-devtools-ssh build-devtools-services build-devtools-docker build-devtools-debugger build-devtools-test-runner build-devtools-log-viewer build-devtools-database build-devtools-devops build-integration-figma build-devtools-components build-sync-cloud xcodegen-swift build-swift build-swift-ios run-swift test-swift dev-swift clean-swift
 
 # Directories
 ROOT_DIR := $(shell pwd)
@@ -13,7 +13,7 @@ proto:
 
 # === Build ===
 
-build: build-orchestrator build-storage-markdown build-tools-features build-transport-stdio build-cli build-tools-marketplace build-bridge-claude build-tools-agentops build-tools-sessions build-tools-workspace build-transport-quic-bridge build-bridge-openai build-bridge-gemini build-bridge-ollama build-bridge-firecrawl build-tools-markdown build-tools-docs build-tools-notes build-devtools-git build-agent-orchestrator build-ai-screenshot build-ai-vision build-ai-browser-context build-ai-screen-reader build-services-voice build-services-notifications build-tools-extension-generator build-devtools-file-explorer build-devtools-terminal build-devtools-ssh build-devtools-services build-devtools-docker build-devtools-debugger build-devtools-test-runner build-devtools-log-viewer build-devtools-database build-devtools-devops build-integration-figma build-devtools-components
+build: build-orchestrator build-storage-markdown build-storage-sqlite build-tools-features build-transport-stdio build-cli build-tools-marketplace build-bridge-claude build-tools-agentops build-tools-sessions build-tools-workspace build-transport-quic-bridge build-bridge-openai build-bridge-gemini build-bridge-ollama build-bridge-firecrawl build-tools-markdown build-tools-docs build-tools-notes build-devtools-git build-agent-orchestrator build-ai-screenshot build-ai-vision build-ai-browser-context build-ai-screen-reader build-services-voice build-services-notifications build-tools-extension-generator build-devtools-file-explorer build-devtools-terminal build-devtools-ssh build-devtools-services build-devtools-docker build-devtools-debugger build-devtools-test-runner build-devtools-log-viewer build-devtools-database build-devtools-devops build-integration-figma build-devtools-components build-sync-cloud
 
 build-all: build build-web build-engine-rag
 
@@ -24,6 +24,10 @@ build-orchestrator:
 build-storage-markdown:
 	@mkdir -p $(BIN_DIR)
 	cd libs/plugin-storage-markdown && go build -o $(BIN_DIR)/storage-markdown ./cmd/
+
+build-storage-sqlite:
+	@mkdir -p $(BIN_DIR)
+	cd libs/plugin-storage-sqlite && go build -o $(BIN_DIR)/storage-sqlite ./cmd/
 
 build-tools-features:
 	@mkdir -p $(BIN_DIR)
@@ -60,6 +64,7 @@ test-unit:
 	cd libs/sdk-go && go test ./... -v
 	cd libs/orchestrator && go test ./... -v
 	cd libs/plugin-storage-markdown && go test ./... -v
+	cd libs/plugin-storage-sqlite && go test ./... -v
 	cd libs/plugin-tools-features && go test ./... -v
 	cd libs/plugin-transport-stdio && go test ./... -v
 	cd libs/plugin-devtools-components && go test ./... -v
@@ -133,11 +138,12 @@ release:
 			GOOS=$$goos GOARCH=$$goarch sh -c 'cd libs/cli && go build -ldflags "$(LDFLAGS)" -o $(ROOT_DIR)/$(DIST_DIR)/orchestra .'; \
 			GOOS=$$goos GOARCH=$$goarch sh -c 'cd libs/orchestrator && go build -o $(ROOT_DIR)/$(DIST_DIR)/orchestrator ./cmd/'; \
 			GOOS=$$goos GOARCH=$$goarch sh -c 'cd libs/plugin-storage-markdown && go build -o $(ROOT_DIR)/$(DIST_DIR)/storage-markdown ./cmd/'; \
+			GOOS=$$goos GOARCH=$$goarch sh -c 'cd libs/plugin-storage-sqlite && go build -o $(ROOT_DIR)/$(DIST_DIR)/storage-sqlite ./cmd/'; \
 			GOOS=$$goos GOARCH=$$goarch sh -c 'cd libs/plugin-tools-features && go build -o $(ROOT_DIR)/$(DIST_DIR)/tools-features ./cmd/'; \
 			GOOS=$$goos GOARCH=$$goarch sh -c 'cd libs/plugin-transport-stdio && go build -o $(ROOT_DIR)/$(DIST_DIR)/transport-stdio ./cmd/'; \
 			GOOS=$$goos GOARCH=$$goarch sh -c 'cd libs/plugin-tools-marketplace && go build -o $(ROOT_DIR)/$(DIST_DIR)/tools-marketplace ./cmd/'; \
-			tar -czf $(DIST_DIR)/orchestra-$$goos-$$goarch.tar.gz -C $(DIST_DIR) orchestra orchestrator storage-markdown tools-features transport-stdio tools-marketplace; \
-			rm -f $(DIST_DIR)/orchestra $(DIST_DIR)/orchestrator $(DIST_DIR)/storage-markdown $(DIST_DIR)/tools-features $(DIST_DIR)/transport-stdio $(DIST_DIR)/tools-marketplace; \
+			tar -czf $(DIST_DIR)/orchestra-$$goos-$$goarch.tar.gz -C $(DIST_DIR) orchestra orchestrator storage-markdown storage-sqlite tools-features transport-stdio tools-marketplace; \
+			rm -f $(DIST_DIR)/orchestra $(DIST_DIR)/orchestrator $(DIST_DIR)/storage-markdown $(DIST_DIR)/storage-sqlite $(DIST_DIR)/tools-features $(DIST_DIR)/transport-stdio $(DIST_DIR)/tools-marketplace; \
 		done; \
 	done
 	@for goarch in amd64; do \
@@ -145,11 +151,12 @@ release:
 		GOOS=windows GOARCH=$$goarch sh -c 'cd libs/cli && go build -ldflags "$(LDFLAGS)" -o $(ROOT_DIR)/$(DIST_DIR)/orchestra.exe .'; \
 		GOOS=windows GOARCH=$$goarch sh -c 'cd libs/orchestrator && go build -o $(ROOT_DIR)/$(DIST_DIR)/orchestrator.exe ./cmd/'; \
 		GOOS=windows GOARCH=$$goarch sh -c 'cd libs/plugin-storage-markdown && go build -o $(ROOT_DIR)/$(DIST_DIR)/storage-markdown.exe ./cmd/'; \
+		GOOS=windows GOARCH=$$goarch sh -c 'cd libs/plugin-storage-sqlite && go build -o $(ROOT_DIR)/$(DIST_DIR)/storage-sqlite.exe ./cmd/'; \
 		GOOS=windows GOARCH=$$goarch sh -c 'cd libs/plugin-tools-features && go build -o $(ROOT_DIR)/$(DIST_DIR)/tools-features.exe ./cmd/'; \
 		GOOS=windows GOARCH=$$goarch sh -c 'cd libs/plugin-transport-stdio && go build -o $(ROOT_DIR)/$(DIST_DIR)/transport-stdio.exe ./cmd/'; \
 		GOOS=windows GOARCH=$$goarch sh -c 'cd libs/plugin-tools-marketplace && go build -o $(ROOT_DIR)/$(DIST_DIR)/tools-marketplace.exe ./cmd/'; \
-		tar -czf $(DIST_DIR)/orchestra-windows-$$goarch.tar.gz -C $(DIST_DIR) orchestra.exe orchestrator.exe storage-markdown.exe tools-features.exe transport-stdio.exe tools-marketplace.exe; \
-		rm -f $(DIST_DIR)/orchestra.exe $(DIST_DIR)/orchestrator.exe $(DIST_DIR)/storage-markdown.exe $(DIST_DIR)/tools-features.exe $(DIST_DIR)/transport-stdio.exe $(DIST_DIR)/tools-marketplace.exe; \
+		tar -czf $(DIST_DIR)/orchestra-windows-$$goarch.tar.gz -C $(DIST_DIR) orchestra.exe orchestrator.exe storage-markdown.exe storage-sqlite.exe tools-features.exe transport-stdio.exe tools-marketplace.exe; \
+		rm -f $(DIST_DIR)/orchestra.exe $(DIST_DIR)/orchestrator.exe $(DIST_DIR)/storage-markdown.exe $(DIST_DIR)/storage-sqlite.exe $(DIST_DIR)/tools-features.exe $(DIST_DIR)/transport-stdio.exe $(DIST_DIR)/tools-marketplace.exe; \
 	done
 	@echo "\nRelease tarballs in $(DIST_DIR)/"
 	@ls -lh $(DIST_DIR)/*.tar.gz

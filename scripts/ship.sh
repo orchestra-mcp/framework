@@ -326,10 +326,12 @@ step "5: Sync to Sub-Repos"
 
 # Sync in tiers: core deps first, then downstream
 # Tier 1: proto, gen-go (no internal Go deps)
-# Tier 2: sdk-go (depends on gen-go)
+# Tier 2: sdk-go (depends on gen-go — contains globaldb)
+# Tier 2.5: plugin-storage-sqlite (depends on sdk-go, required by cli)
 # Tier 3: everything else (depends on gen-go + sdk-go)
 TIER1="proto gen-go"
 TIER2="sdk-go"
+TIER2_5="plugin-storage-sqlite"
 
 if $DRY_RUN; then
   SYNC_ARGS=(--message "${COMMIT_MSG}" --dry-run)
@@ -343,12 +345,16 @@ else
   "${ROOT}/scripts/sync-repos.sh" --message "${COMMIT_MSG}" $TIER2
   ok "Tier 2 synced"
 
+  info "Tier 2.5: Core storage (plugin-storage-sqlite)..."
+  "${ROOT}/scripts/sync-repos.sh" --message "${COMMIT_MSG}" $TIER2_5
+  ok "Tier 2.5 synced"
+
   info "Tier 3: Plugins and CLI..."
   # Sync remaining repos (sync-repos.sh will skip ones already synced if no changes)
   TIER3_REPOS=()
   while IFS='|' read -r name _ _; do
     skip=false
-    for t in $TIER1 $TIER2; do
+    for t in $TIER1 $TIER2 $TIER2_5; do
       [[ "$name" == "$t" ]] && skip=true
     done
     $skip || TIER3_REPOS+=("$name")

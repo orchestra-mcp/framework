@@ -31,7 +31,7 @@
             "path": "libs/gen-go",
             "binary": null,
             "require": {
-                "orchestra-mcp/proto": "^0.1.0"
+                "orchestra-mcp/proto": "^1.0.0"
             }
         },
         {
@@ -47,7 +47,7 @@
             "path": "libs/sdk-go",
             "binary": null,
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0"
             }
         },
         {
@@ -63,8 +63,8 @@
             "path": "libs/orchestrator",
             "binary": "orchestrator",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -80,8 +80,25 @@
             "path": "libs/plugin-storage-markdown",
             "binary": "storage-markdown",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
+            }
+        },
+        {
+            "name": "orchestra-mcp/plugin-storage-sqlite",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/orchestra-mcp/plugin-storage-sqlite.git",
+                "reference": "master"
+            },
+            "type": "plugin",
+            "description": "SQLite storage plugin with automatic markdown export and globaldb.",
+            "path": "libs/plugin-storage-sqlite",
+            "binary": "storage-sqlite",
+            "require": {
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -97,8 +114,8 @@
             "path": "libs/plugin-tools-features",
             "binary": "tools-features",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -114,8 +131,8 @@
             "path": "libs/plugin-transport-stdio",
             "binary": "transport-stdio",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -131,8 +148,8 @@
             "path": "libs/plugin-tools-marketplace",
             "binary": "tools-marketplace",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -148,8 +165,8 @@
             "path": "libs/plugin-engine-rag",
             "binary": "engine-rag",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -165,8 +182,8 @@
             "path": "libs/plugin-transport-webtransport",
             "binary": "transport-webtransport",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -182,8 +199,8 @@
             "path": "libs/plugin-bridge-claude",
             "binary": "bridge-claude",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -199,8 +216,8 @@
             "path": "libs/plugin-tools-agentops",
             "binary": "tools-agentops",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -216,8 +233,8 @@
             "path": "libs/plugin-tools-sessions",
             "binary": "tools-sessions",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -233,8 +250,8 @@
             "path": "libs/plugin-transport-quic-bridge",
             "binary": "transport-quic-bridge",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -250,8 +267,8 @@
             "path": "libs/plugin-bridge-openai",
             "binary": "bridge-openai",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -267,8 +284,8 @@
             "path": "libs/plugin-bridge-gemini",
             "binary": "bridge-gemini",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -284,8 +301,8 @@
             "path": "libs/plugin-bridge-ollama",
             "binary": "bridge-ollama",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -301,8 +318,8 @@
             "path": "libs/plugin-bridge-firecrawl",
             "binary": "bridge-firecrawl",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -318,8 +335,8 @@
             "path": "libs/plugin-tools-markdown",
             "binary": "tools-markdown",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -335,8 +352,8 @@
             "path": "libs/plugin-tools-docs",
             "binary": "tools-docs",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -352,8 +369,8 @@
             "path": "libs/plugin-tools-notes",
             "binary": "tools-notes",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -369,8 +386,8 @@
             "path": "libs/plugin-devtools-git",
             "binary": "devtools-git",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -386,8 +403,8 @@
             "path": "libs/plugin-agent-orchestrator",
             "binary": "agent-orchestrator",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -403,8 +420,8 @@
             "path": "libs/plugin-ai-screenshot",
             "binary": "ai-screenshot",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -420,8 +437,8 @@
             "path": "libs/plugin-ai-vision",
             "binary": "ai-vision",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -437,8 +454,8 @@
             "path": "libs/plugin-ai-browser-context",
             "binary": "ai-browser-context",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -454,8 +471,8 @@
             "path": "libs/plugin-ai-screen-reader",
             "binary": "ai-screen-reader",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -471,8 +488,8 @@
             "path": "libs/plugin-services-voice",
             "binary": "services-voice",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -488,8 +505,8 @@
             "path": "libs/plugin-services-notifications",
             "binary": "services-notifications",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -505,8 +522,8 @@
             "path": "libs/plugin-tools-extension-generator",
             "binary": "tools-extension-generator",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -522,8 +539,8 @@
             "path": "libs/plugin-devtools-file-explorer",
             "binary": "devtools-file-explorer",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -539,8 +556,8 @@
             "path": "libs/plugin-devtools-terminal",
             "binary": "devtools-terminal",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -556,8 +573,8 @@
             "path": "libs/plugin-devtools-ssh",
             "binary": "devtools-ssh",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -573,8 +590,8 @@
             "path": "libs/plugin-devtools-services",
             "binary": "devtools-services",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -590,8 +607,8 @@
             "path": "libs/plugin-devtools-docker",
             "binary": "devtools-docker",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -607,8 +624,8 @@
             "path": "libs/plugin-devtools-debugger",
             "binary": "devtools-debugger",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -624,8 +641,8 @@
             "path": "libs/plugin-devtools-test-runner",
             "binary": "devtools-test-runner",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -641,8 +658,8 @@
             "path": "libs/plugin-devtools-log-viewer",
             "binary": "devtools-log-viewer",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -658,8 +675,8 @@
             "path": "libs/plugin-devtools-database",
             "binary": "devtools-database",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -675,8 +692,8 @@
             "path": "libs/plugin-devtools-devops",
             "binary": "devtools-devops",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -692,8 +709,8 @@
             "path": "libs/plugin-integration-figma",
             "binary": "integration-figma",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -709,8 +726,8 @@
             "path": "libs/plugin-devtools-components",
             "binary": "devtools-components",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {
@@ -726,8 +743,25 @@
             "path": "libs/plugin-tools-workspace",
             "binary": "tools-workspace",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
+            }
+        },
+        {
+            "name": "orchestra-mcp/plugin-sync-cloud",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/orchestra-mcp/plugin-sync-cloud.git",
+                "reference": "master"
+            },
+            "type": "tools",
+            "description": "Cloud sync plugin — push projects and features to Orchestra web dashboard.",
+            "path": "libs/plugin-sync-cloud",
+            "binary": "sync-cloud",
+            "require": {
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {

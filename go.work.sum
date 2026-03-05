@@ -41,7 +41,6 @@ github.com/orchestra-mcp/gen-go v0.0.3-beta/go.mod h1:fagdHdSkffW6X8s+wke3E/F1ZJ
 github.com/orchestra-mcp/gen-go v0.1.1/go.mod h1:fagdHdSkffW6X8s+wke3E/F1ZJsMrL19WaQykSs7Vi4=
 github.com/orchestra-mcp/gen-go v0.1.2/go.mod h1:fagdHdSkffW6X8s+wke3E/F1ZJsMrL19WaQykSs7Vi4=
 github.com/orchestra-mcp/gen-go v0.1.3/go.mod h1:fagdHdSkffW6X8s+wke3E/F1ZJsMrL19WaQykSs7Vi4=
-github.com/orchestra-mcp/gen-go v1.0.0/go.mod h1:fagdHdSkffW6X8s+wke3E/F1ZJsMrL19WaQykSs7Vi4=
 github.com/orchestra-mcp/plugin-storage-markdown v0.0.2-beta/go.mod h1:ZVlYmP0nqsfdcAgWT8jWKmYrVo+uQFCSLvYvJrlX3ts=
 github.com/orchestra-mcp/plugin-tools-features v0.0.2-beta/go.mod h1:PJcxx66VjAlMvpvWd3GS7Z+Xjm3Y7wzhk9+nZpx0oVQ=
 github.com/orchestra-mcp/plugin-tools-marketplace v0.0.2-beta/go.mod h1:vyNeQGmA7fTyTjTyeV/rz/vOU+UaY1aL7quy5ZgRx6I=
@@ -52,7 +51,6 @@ github.com/orchestra-mcp/sdk-go v0.0.4-beta/go.mod h1:2JvQjAvV2SYDSm7bzQKS/t0YCh
 github.com/orchestra-mcp/sdk-go v0.1.1/go.mod h1:UqdcRt6YB26TDfGr2TCC6b0hbtQsdTJeiTyS6cv9A4k=
 github.com/orchestra-mcp/sdk-go v0.1.2/go.mod h1:42PbYy6oZxUN+crhbzW8Q8NY3OLxKKPatQQcTHH4224=
 github.com/orchestra-mcp/sdk-go v0.1.3/go.mod h1:42PbYy6oZxUN+crhbzW8Q8NY3OLxKKPatQQcTHH4224=
-github.com/orchestra-mcp/sdk-go v1.0.0/go.mod h1:b9R47zyeToO+ankZViRdzYzM6R0KpmRQrNhqvduCNUY=
 github.com/philhofer/fwd v1.1.2/go.mod h1:qkPdfjR2SIEbspLqpe1tO4n5yICnr2DY7mqEx2tUTP0=
 github.com/philhofer/fwd v1.1.3-0.20240916144458-20a13a1f6b7c/go.mod h1:RqIHx9QI14HlwKwm98g9Re5prTQ6LdeRQn+gXJFxsJM=
 github.com/pkg/browser v0.0.0-20240102092130-5ac0b6a4141c/go.mod h1:7rwL4CYBLnjLxUqIJNnCWiEdr3bn6IUYi15bNlnbCCU=
@@ -164,3 +162,4 @@ google.golang.org/genproto v0.0.0-20240617180043-68d350f18fd4 h1:CUiCqkPw1nNrNQz
 google.golang.org/genproto v0.0.0-20240617180043-68d350f18fd4/go.mod h1:EvuUDCulqGgV80RvP1BHuom+smhX4qtlhnNatHuroGQ=
 google.golang.org/genproto/googleapis/bytestream v0.0.0-20240617180043-68d350f18fd4/go.mod h1:/oe3+SiHAwz6s+M25PyTygWm3lnrhmGqIuIfkoUocqk=
 gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c/go.mod h1:JHkPIbrfpd72SG/EVd6muEfDQjcINNoR0C8j2r3qZ4Q=
+modernc.org/sqlite v1.37.1/go.mod h1:XwdRtsE1MpiBcL54+MbKcaDvcuej+IYSMfLN6gSKV8g=

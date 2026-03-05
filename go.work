@@ -31,6 +31,7 @@ use (
 	./libs/plugin-services-notifications
 	./libs/plugin-services-voice
 	./libs/plugin-storage-markdown
+	./libs/plugin-storage-sqlite
 	./libs/plugin-sync-cloud
 	./libs/plugin-tools-agentops
 	./libs/plugin-tools-docs

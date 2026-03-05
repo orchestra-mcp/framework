@@ -165,7 +165,34 @@
       "mcp__orchestra__set_current_user",
       "mcp__orchestra__get_current_user",
       "mcp__orchestra__get_my_features",
-      "Bash(./scripts/ship.sh v1.0.1 --skip-pr --message \"Release v1.0.1: Git tools, person profiles, current user system, log command\")"
+      "Bash(./scripts/ship.sh v1.0.1 --skip-pr --message \"Release v1.0.1: Git tools, person profiles, current user system, log command\")",
+      "Bash(grep -n \"^type.*Handler\\\\|^type.*Client\\\\|^type.*Sender\\\\|^type.*Storage\" /Users/fadymondy/Sites/orchestra-agents/libs/sdk-go/plugin/*.go)",
+      "Bash(grep -rl \"orchestra-mcp.*v1.0.1\" /Users/fadymondy/Sites/orchestra-agents/libs/*/go.mod)",
+      "Bash(for f in /Users/fadymondy/Sites/orchestra-agents/libs/*/go.mod)",
+      "Bash(do sed -i '' 's|orchestra-mcp/\\\\\\([a-z-]*\\\\\\) v1\\\\.0\\\\.1|orchestra-mcp/\\\\1 v1.0.0|g' \"$f\" done)",
+      "Bash(grep -rl \"v1.0.1\" /Users/fadymondy/Sites/orchestra-agents/libs/*/go.mod)",
+      "Bash(grep -r \"v1.0.1\" /Users/fadymondy/Sites/orchestra-agents/libs/*/go.mod)",
+      "Bash(ls /Users/fadymondy/Sites/orchestra-agents/.projects/bridge/sessions/*.md)",
+      "Bash(go mod tidy -C libs/sdk-go)",
+      "Bash(kill %1)",
+      "Bash(ls ~/.orchestra/db/*.db)",
+      "Bash(sqlite3 ~/.orchestra/db/6072f896930c93c3.db \"SELECT id, status, version FROM features WHERE id=''FEAT-LRD''\")",
+      "Bash(sqlite3 ~/.orchestra/db/6072f896930c93c3.db \"UPDATE features SET version=18 WHERE id=''FEAT-LRD''\")",
+      "Bash(xcodebuild -scheme OrchestraMac -configuration Debug -arch arm64 build)",
+      "Bash(timeout 5 bin/orchestra serve --workspace /tmp/test-update-tools --no-plugins)",
+      "Bash(gtimeout 5 /Users/fadymondy/Sites/orchestra-agents/bin/orchestra serve --workspace /tmp/test-update-tools --no-plugins)",
+      "Bash(pkill -f \"orchestra serve --workspace /tmp/test-update-tools\")",
+      "Bash(gh repo create orchestra-mcp/plugin-sync-cloud --public --description \"Cloud sync plugin for Orchestra MCP — push projects/features/notes to the Orchestra web dashboard\")",
+      "Bash(# Check if there''s a way to write a Swift test for this ls /Users/fadymondy/Sites/orchestra-agents/apps/swift/*Test* /Users/fadymondy/Sites/orchestra-agents/apps/swift/Tests # Check test targets xcodebuild -list)",
+      "Bash(# Kill any running Orchestra pkill -f \"\"Orchestra.app\"\" || true sleep 1 # Build fresh xcodebuild -scheme OrchestraMac -configuration Debug -arch arm64 build 2>&1)",
+      "Bash(timeout 8 head -100)",
+      "Bash(/Users/fadymondy/Sites/orchestra-agents/libs/plugin-storage-sqlite/.github/workflows/ci.yml:*)",
+      "Bash(sqlite3 ~/.orchestra/db/6072f896930c93c3.db \"SELECT id, version, status FROM features WHERE id=''FEAT-XZZ'';\")",
+      "Bash(sqlite3 ~/.orchestra/db/6072f896930c93c3.db \"UPDATE features SET version=1 WHERE id=''FEAT-XZZ'';\")",
+      "Bash(git check-ignore -v libs/plugin-storage-sqlite/internal/db.go libs/sdk-go/globaldb/globaldb.go libs/cli/internal/selfupdate.go libs/plugin-sync-cloud/export.go)",
+      "Bash(git add Makefile orchestra.lock scripts/ship.sh go.work go.work.sum)",
+      "Bash(./scripts/ship.sh v1.0.2 --dry-run --skip-pr)",
+      "Bash(./scripts/ship.sh v1.0.2 --skip-pr)"
     ],
     "additionalDirectories": [
       "/Users/fadymondy/Sites/orchestra-agents/.projects/bridge/sessions",
@@ -174,7 +201,9 @@
       "/Users/fadymondy/.orchestra/plugins/bin",
       "/Users/fadymondy/.orchestra",
       "/Users/fadymondy/.claude",
-      "/Users/fadymondy/Sites/orchestra-agents"
+      "/Users/fadymondy/Sites/orchestra-agents",
+      "/Users/fadymondy/Sites/orchestra-agents/libs/plugin-storage-sqlite",
+      "/Users/fadymondy/Sites/orchestra-agents/libs/plugin-storage-markdown"
     ]
   },
   "hooks": {}

@@ -71,7 +71,7 @@ cleanup() {
   echo ""
   echo "[dev-swift] Stopping..."
   pkill -x Orchestra 2>/dev/null || true
-  pkill -f "orchestra serve" 2>/dev/null || true
+  # Don't kill orchestra serve — it may be owned by Claude Code or another IDE.
   rm -f "$LOCKFILE" "$TRIGGER"
   # Kill the fswatch background process
   [ -n "${FSWATCH_PID:-}" ] && kill "$FSWATCH_PID" 2>/dev/null || true
@@ -91,24 +91,18 @@ rm -f "$LOCKFILE" "$TRIGGER"
 # Kill any existing Orchestra instances first
 kill_app
 
-# Generate xcodeproj once at startup
-echo "[dev-swift] Generating xcodeproj..."
-xcodegen generate --spec "$SWIFT_DIR/project.yml" 2>/dev/null || true
-sleep 2
-
-# Initial build + launch
+# Initial build + launch (skip xcodegen — use existing xcodeproj)
 build_and_launch
 
 echo "[dev-swift] Watching $SWIFT_DIR for .swift changes (Ctrl+C to stop)..."
 
 # Debounce: collect changes for 2 seconds before triggering a build.
-# fswatch writes changed paths to a temp file; a loop checks every 2s.
+# fswatch writes ALL changed paths to a temp file (no regex filter — broken
+# in fswatch 1.18.x). We filter for .swift in the shell loop instead.
 CHANGEFILE="/tmp/dev-swift.changes"
 : > "$CHANGEFILE"
 
-fswatch --event Created --event Updated --event Renamed \
-  -e '.*' -i '\\.swift$' \
-  "$SWIFT_DIR" >> "$CHANGEFILE" &
+fswatch -r "$SWIFT_DIR" >> "$CHANGEFILE" &
 FSWATCH_PID=$!
 
 while true; do
@@ -118,9 +112,13 @@ while true; do
     CHANGES=$(cat "$CHANGEFILE")
     : > "$CHANGEFILE"
 
-    # Filter out noise
+    # Filter: only .swift files, skip build artifacts
     REAL_CHANGES=""
     while IFS= read -r f; do
+      case "$f" in
+        *.swift) ;;
+        *) continue ;;
+      esac
       case "$f" in
         */.build/*|*/DerivedData/*|*/.swiftpm/*|"") continue ;;
         *) REAL_CHANGES="$REAL_CHANGES$f"$'\n' ;;

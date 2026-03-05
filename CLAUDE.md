@@ -380,6 +380,40 @@ These rules are enforced at the MCP tool level — violation attempts will retur
 
 8. **File path evidence** — Gate 1 (Changes), Gate 3 (Location), and Gate 4 (Checklist) sections must contain actual file paths. The MCP rejects evidence that is pure prose without referencing real files.
 
+## Git & Sync (Natural Language Mapping)
+
+The MCP provides 6 git tools that use the current user's person profile for author identity. **Map natural language requests to these tools automatically:**
+
+| User says | Action |
+|-----------|--------|
+| "sync my changes", "push my updates", "sync to cloud", "upload my changes" | `git_quick_commit` (stage all + commit) → `git_push` |
+| "get latest", "pull updates", "sync from cloud", "get project updates" | `git_pull` |
+| "save my work", "commit this", "commit these changes" | `git_quick_commit` |
+| "push", "push to remote" | `git_push` |
+| "create a branch for X", "start working on X" | `git_create_branch` |
+| "merge X", "merge branch X" | `git_merge_branch` |
+| "what's the status", "git status" | `git_status_summary` |
+| "pull and rebase", "rebase on latest" | `git_pull` with `rebase: true` |
+
+### Commit Message Convention
+
+When the user says "sync" or "push" without a specific message, generate a meaningful commit message from the staged changes. If the user provides a message, use it directly.
+
+### Identity
+
+All commits and merges use the current user's person profile (name + github_email from `~/.orchestra/me.json`). No `Co-Authored-By` lines — the person profile IS the author.
+
+## Onboarding (First Interaction)
+
+On the first interaction with a new user or project, check `get_current_user`. If not configured:
+
+1. Use `AskUserQuestion` to collect: name, role, email, github_email, bio, timezone
+2. `create_person` with the collected data
+3. `set_current_user` to link them to the project
+4. Confirm the setup to the user
+
+This only happens once — the profile persists in `~/.orchestra/me.json` across sessions.
+
 ## Conventions
 
 ### Go

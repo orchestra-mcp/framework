@@ -1,76 +1,181 @@
 {
-  "hooks": {
-    "Notification": [
-      {
-        "hooks": [
-          {
-            "async": true,
-            "command": ".claude/hooks/orchestra-mcp-hook.sh",
-            "type": "command"
-          }
-        ],
-        "matcher": ""
-      }
+  "permissions": {
+    "allow": [
+      "Bash(ls -la /Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/\\\\\\(marketing\\\\\\)/)",
+      "Bash(ls -la \"/Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/\\(app\\)/admin/marketplace/\")",
+      "Bash(cat \"/Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/\\(app\\)/admin/marketplace/page.tsx\")",
+      "Bash(find /Users/fadymondy/Sites/orchestra-agents/apps/swift -type f -name \"*.swift\" -exec grep -l \"struct ChatSession\\\\|class ChatSession\" {} ;)",
+      "Bash(find /Users/fadymondy/Sites/orchestra-agents/apps/swift -type f -name \"*.swift\" -exec grep -l \"struct SessionMetadata\\\\|class SessionMetadata\" {} ;)",
+      "Bash(git add internal/database/seeder.go internal/handlers/admin_settings.go)",
+      "Bash(git add 'src/app/\\(marketing\\)/blog/page.tsx' 'src/app/\\(marketing\\)/blog/BlogClient.tsx' 'src/app/\\(marketing\\)/docs/[[...slug]]/page.tsx' 'src/app/\\(marketing\\)/docs/[[...slug]]/DocsClient.tsx' 'src/app/\\(marketing\\)/download/page.tsx' 'src/app/\\(marketing\\)/download/DownloadClient.tsx' 'src/app/\\(marketing\\)/marketplace/page.tsx' 'src/app/\\(marketing\\)/marketplace/MarketplaceClient.tsx' 'src/app/page.tsx' 'src/app/LandingClient.tsx' 'src/components/marketing/blog-preview.tsx' 'src/components/marketing/hero-section.tsx' 'src/components/marketing/pricing-section.tsx')",
+      "Bash(ssh -o StrictHostKeyChecking=no deploy@152.53.136.52 \"sudo -u postgres psql orchestra_web -c \"\"SELECT key, \\(value::text\\)[:80] as value_preview FROM system_settings ORDER BY key;\"\" 2>&1\")",
+      "Bash(ssh -o StrictHostKeyChecking=no deploy@152.53.136.52 \"psql -U orchestra_user -d orchestra_web -c \"\"SELECT key, length\\(value::text\\) as len FROM system_settings ORDER BY key;\"\" 2>&1\")",
+      "Bash(git add public/install.sh)",
+      "Bash(for id in 0cc855d7-* 1aaa6ae3-* 2175feb9-* 4ed19e00-* 60292ee7-* 74a1e44f-* 7f84d43f-* 8058f929-* 934f946f-* 99a77d38-* d4e8e329-* d80fb862-* dd53b794-* e06a1b10-* f0ecf4b2-*)",
+      "Bash(do echo \"skip\")",
+      "Bash(bin/orchestra tools list)",
+      "Bash(/Users/fadymondy/Sites/orchestra-agents/bin/orchestra serve)",
+      "Bash(timeout 30 /Users/fadymondy/Sites/orchestra-agents/bin/tools-sessions)",
+      "Bash(/Users/fadymondy/Sites/orchestra-agents/bin/tools-sessions --help)",
+      "Bash(# Try calling via TCP \\(port 50101 — the in-process TCP server for desktop apps\\) # First check if it''s listening lsof -i :50101 -P)",
+      "Bash(# The TCP server uses length-delimited Protobuf. Let''s try using a small Go program # to call it properly. First let''s look at the TCP server code to understand the protocol. cat /Users/fadymondy/Sites/orchestra-agents/libs/cli/internal/inprocess/tcpserver.go | head -80 || find /Users/fadymondy/Sites/orchestra-agents -name \"\"tcpserver.go\"\")",
+      "Read(//Users/fadymondy/Sites/orchestra-agents/**)",
+      "Bash(GOWORK=off GONOSUMCHECK='*' GONOSUMDB='*' GOFLAGS='-mod=mod' go run .)",
+      "Bash(cat /Users/fadymondy/Sites/orchestra-agents/libs/gen-go/orchestra/plugin/v1/*.go)",
+      "Bash(go run /tmp/orchestra-test-tcp/main.go)",
+      "Bash(unset CLAUDECODE CLAUDE_CODE CLAUDE_CODE_SESSION_ID CLAUDE_CODE_ENTRYPOINT)",
+      "Bash(timeout 15 claude -p \"say hello\" --output-format stream-json --verbose)",
+      "Bash(claude -p \"say hello\" --output-format stream-json --verbose)",
+      "Bash(claude -p \"say hello\")",
+      "Bash(claude -p \"say hello\" --output-format stream-json)",
+      "Bash(claude -p \"say hello\" --output-format json)",
+      "Bash(claude -p \"say hello in one word\" --output-format stream-json --verbose)",
+      "Bash(claude -p \"say hi\" --output-format stream-json --no-interactive)",
+      "Bash(claude -p --output-format json)",
+      "Bash(claude -p \"say hi\" --output-format json)",
+      "Bash(env)",
+      "Bash(make build-mcp)",
+      "Bash(kill 22540)",
+      "Bash(ls -la /tmp/orchestra*.log)",
+      "Bash(perl -e 'alarm 15; exec @ARGV' -- env -i HOME=$HOME PATH=$PATH USER=$USER SHELL=$SHELL TERM=xterm-256color LANG=en_US.UTF-8 /Users/fadymondy/.local/bin/claude -p \"say hi\" --output-format text)",
+      "Bash(perl -e 'alarm 15; exec @ARGV' -- env -i HOME=\"$HOME\" PATH=\"$PATH\" USER=\"$USER\" SHELL=\"$SHELL\" TERM=xterm-256color LANG=en_US.UTF-8 /Users/fadymondy/.local/bin/claude -p \"say hi\" --output-format text)",
+      "Bash(# Check most recent Xcode build log for errors gunzip -c /Users/fadymondy/Library/Developer/Xcode/DerivedData/Orchestra-buyooaznavcbpkfidisjarifrzaf/Logs/Build/8B1863D4-A6DE-4AF3-A232-16588A58EAC6.xcactivitylog | strings)",
+      "Bash(# Check the most recent \\(18:40\\) build log gunzip -c /Users/fadymondy/Library/Developer/Xcode/DerivedData/Orchestra-buyooaznavcbpkfidisjarifrzaf/Logs/Build/45635E53-80A3-46C5-839F-F5476FA996E2.xcactivitylog | strings)",
+      "Bash(log show --predicate 'process == \"\"Orchestra\"\" OR process == \"\"OrchestraMac\"\"' --last 2h)",
+      "Bash(log show --predicate 'process == \"\"Orchestra\"\" OR processImagePath contains \"\"Orchestra\"\"' --last 4h)",
+      "Bash(timeout 5 claude -p \"test\" --output-format json --no-session-persistence)",
+      "Bash(# Look at the orchestra-mcp.log for what''s happening with send_message cat /Users/fadymondy/Sites/orchestra-agents/.orchestra-mcp.log)",
+      "Read(//private/var/tmp/**)",
+      "Bash(# Test what happens when spawn_session is called right now # by examining the bridge-claude plugin logs or running a test # First check what claude reports when spawn tries to run ls /tmp/bridge-claude*.log ; ls /tmp/*claude*.log)",
+      "Bash(grep -n \"func TextResult\\\\|TextResult\\\\|structpb\" /Users/fadymondy/Sites/orchestra-agents/libs/sdk-go/helpers/*.go)",
+      "Bash(ls /tmp/orchestra*.log /tmp/claude*.log)",
+      "Bash(ls /tmp/*.log)",
+      "Bash(ps ewww 83949)",
+      "Bash(# Check if claude has a debug log it writes to ls ~/Library/Logs/Claude* ~/Library/Logs/claude*)",
+      "Bash(head -5 ls /tmp/claude*)",
+      "Bash(# Check the older reference sessions that were deleted \\(from git status they were deleted\\) git show HEAD:.projects/bridge/sessions/)",
+      "Bash(# Check if claude CLI has a config or auth file ls ~/.claude/)",
+      "Bash(# Check if there''s an ANTHROPIC_API_KEY in the environment used by the orchestra process ps ewww 83927)",
+      "Bash(# Check ~/.claude/settings.json for any relevant config python3 -c \"\"import json; d=json.load\\(open\\(''/Users/fadymondy/.claude/settings.json''\\)\\); print\\([k for k in d.keys\\(\\)]\\)\"\")",
+      "Bash(# Check the Claude debug logs - they would show why claude -p fails ls ~/.claude/debug/)",
+      "Bash(# Look at the latest debug file which should correspond to recent claude -p calls ls -lt ~/.claude/debug/)",
+      "Bash(sort -k5 -n)",
+      "Bash(# The key insight: let''s check the stop.json in Claude logs - this might show why claude -p exits immediately cat ~/.claude/logs/stop.json | python3 -c \"\"import json,sys; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d[-3:] if isinstance\\(d, list\\) else d, indent=2\\)\\)\"\")",
+      "Bash(# Check subagent_stop.json - this is what bridge-claude would trigger cat ~/.claude/logs/subagent_stop.json | python3 -c \"\"import json,sys; d=json.load\\(sys.stdin\\); items = d if isinstance\\(d, list\\) else [d]; print\\(json.dumps\\(items[-5:], indent=2\\)\\)\"\")",
+      "Bash(# Check the AGENTS.md for bridge account configuration clues cat /Users/fadymondy/Sites/orchestra-agents/AGENTS.md)",
+      "Bash(# Check the orch-ref directory the user mentioned ls /Users/fadymondy/Sites/orchestra-agents/orch-ref/)",
+      "Bash(# Check when process.go was created/modified vs the binary stat /Users/fadymondy/Sites/orchestra-agents/libs/plugin-bridge-claude/internal/process.go)",
+      "Bash(GOWORK=off GONOSUMCHECK='*' GONOSUMDB='*' go build -o /Users/fadymondy/.orchestra/plugins/bin/plugin-bridge-claude ./cmd/main.go)",
+      "Bash(# Kill current orchestra server kill 83927 ; sleep 1 # Verify it''s dead ps aux)",
+      "Bash(grep -n \"session_id\\\\|SessionID\\\\|claude_session\" /Users/fadymondy/Sites/orchestra-agents/libs/plugin-tools-sessions/internal/storage/*.go)",
+      "Bash(log show --predicate 'processImagePath contains \"\"Orchestra\"\" OR process == \"\"Orchestra\"\"' --last 10m --style compact)",
+      "Bash(log show --predicate 'process CONTAINS \"\"Orchestra\"\"' --last 30m)",
+      "Bash(# Check the Xcode derived data for recent crash logs find /Users/fadymondy/Library/Developer/Xcode/DerivedData/Orchestra-buyooaznavcbpkfidisjarifrzaf -name \"\"*.crash\"\" -newer /tmp/orchestra-app.log)",
+      "Bash(gunzip -c /Users/fadymondy/Library/Developer/Xcode/DerivedData/Orchestra-buyooaznavcbpkfidisjarifrzaf/Logs/Build/B8278047-711E-4368-986C-C77AC262DE9D.xcactivitylog)",
+      "Bash(ls -lt /Users/fadymondy/Sites/orchestra-agents/.projects/bridge/sessions/*.md)",
+      "Read(//Users/fadymondy/Sites/orchestra-agents/.projects/bridge/sessions/281fc3c7-19ca-4de1-9037-2b9453565baa/**)",
+      "Bash(find /Users/fadymondy/Sites/orchestra-agents/apps/swift/Shared/Sources/Shared -name \"*.swift\" -exec grep -l \"struct ChatMessage\\\\|class ChatMessage\" {} ;)",
+      "Bash(find /Users/fadymondy/Sites/orchestra-agents/orch-ref -name \"*.go\" -exec grep -l \"type Parser\\\\|func.*Parser\" {} ;)",
+      "Bash(go build -o bin/bridge-claude ./libs/plugin-bridge-claude/src/cmd/)",
+      "Bash(go build -o /Users/fadymondy/Sites/orchestra-agents/bin/bridge-claude ./cmd/)",
+      "Bash(GOWORK=off GONOSUMCHECK='*' GONOSUMDB='*' go build -o /tmp/bridge-claude-test ./libs/plugin-bridge-claude/cmd/)",
+      "Bash(GOWORK=off GONOSUMCHECK='*' GONOSUMDB='*' go build -o /tmp/bridge-claude-test ./cmd/)",
+      "Bash(ls /Users/fadymondy/Sites/orchestra-agents/apps/swift/*.xcodeproj)",
+      "Bash(ls /Users/fadymondy/Sites/orchestra-agents/apps/swift/*.xcworkspace)",
+      "Bash(gunzip -c /Users/fadymondy/Library/Developer/Xcode/DerivedData/Orchestra-buyooaznavcbpkfidisjarifrzaf/Logs/Build/EEEAD63D-4A84-4116-88EF-9E098A2A99FE.xcactivitylog)",
+      "Bash(gunzip -c /Users/fadymondy/Library/Developer/Xcode/DerivedData/Orchestra-buyooaznavcbpkfidisjarifrzaf/Logs/Build/719F465C-C097-4700-BD40-4D526F25AF7D.xcactivitylog)",
+      "Bash(kill 69244)",
+      "Bash(kill 69241)",
+      "Bash(kill -9 69241)",
+      "WebFetch(domain:docs.powersync.com)",
+      "Bash(GOWORK=off GONOSUMCHECK='*' GONOSUMDB='*' go build -o /Users/fadymondy/.orchestra/plugins/bin/plugin-bridge-claude ./cmd/)",
+      "Bash(GOWORK=off GONOSUMCHECK='*' GONOSUMDB='*' GOFLAGS='-mod=mod' go mod tidy)",
+      "Bash(echo \"ORCHESTRA_BRIDGE_SESSION=$ORCHESTRA_BRIDGE_SESSION\")",
+      "Bash(/Users/fadymondy/Sites/orchestra-agents/.claude/hooks/orchestra-permission-hook.sh)",
+      "Bash(echo \"exit code: $?\")",
+      "Bash(curl -s http://127.0.0.1:55469/permission/pending)",
+      "Bash(kill 84142)",
+      "Bash(kill 84123)",
+      "Bash(kill -9 84123)",
+      "Bash(lsof -i :50101 -P)",
+      "Bash(ls -1 /Users/fadymondy/Sites/orchestra-agents/packs/*/pack.json)",
+      "Bash(git status -u -- packs/)",
+      "Bash(git ls-tree HEAD packs/)",
+      "Bash(git pull --ff-only)",
+      "Bash(git stash -- internal/packs/index.go)",
+      "Bash(git checkout -- .github/workflows/ci.yml cmd/main.go docs/TOOLS_REFERENCE.md go.mod internal/plugin.go)",
+      "Bash(git stash pop)",
+      "Bash(git stash)",
+      "Bash(git add internal/packs/index.go)",
+      "Bash(curl -s -X POST -H \"Content-Type: application/json\" -d '{\"\"id\"\":\"\"perm-1772613439134156000\"\",\"\"decision\"\":\"\"approve\"\"}' \"http://127.0.0.1:63437/permission/respond\")",
+      "Bash(GOWORK=off GONOSUMCHECK='*' GONOSUMDB='*' go build -o /Users/fadymondy/.orchestra/plugins/bin/plugin-tools-sessions ./cmd/)",
+      "Bash(GOWORK=off GONOSUMCHECK='*' GONOSUMDB='*' GOFLAGS='-mod=mod' go build -o /Users/fadymondy/.orchestra/plugins/bin/plugin-bridge-claude ./cmd/)",
+      "Bash(kill 71372)",
+      "Bash(curl -s http://127.0.0.1:50012/permission/pending)",
+      "Bash(GOWORK=off GONOSUMCHECK='*' GONOSUMDB='*' GOFLAGS='-mod=mod' go build ./...)",
+      "Bash(kill 74868)",
+      "Bash(curl -s --max-time 2 http://127.0.0.1:51828/permission/pending)",
+      "Bash(ls -lt /tmp/*bridge* /tmp/*claude* /tmp/*orchestra*)",
+      "Bash(kill 69254 69262 69263 84145 84146 84147 87916 87918 87919 87920 87921)",
+      "Bash(kill -9 87916)",
+      "Bash(bin/orchestra stop --workspace .)",
+      "Bash(bin/orchestra restart --workspace .)",
+      "Bash(GOWORK=off GONOSUMCHECK='*' GONOSUMDB='*' GOFLAGS='-mod=mod' go build -o /Users/fadymondy/.orchestra/plugins/bin/plugin-tools-sessions ./cmd/)",
+      "Bash(/Users/fadymondy/Sites/orchestra-agents/bin/orchestra restart --workspace /Users/fadymondy/Sites/orchestra-agents)",
+      "Bash(/Users/fadymondy/Sites/orchestra-agents/bin/orchestra call tools.sessions create_session '{\"\"name\"\":\"\"test-fix\"\",\"\"model\"\":\"\"claude-sonnet-4-6\"\",\"\"permission_mode\"\":\"\"auto\"\"}')",
+      "Bash(/Users/fadymondy/.local/bin/claude --resume \"nonexistent-session-id\" --output-format stream-json --input-format stream-json --verbose --permission-prompt-tool stdio --model claude-sonnet-4-6)",
+      "Bash(:)",
+      "Bash(find /Users/fadymondy/Sites/orchestra-agents/apps/swift -type f -name \"*.swift\" -exec grep -l \"ChatMessage\\\\|ChatSession\" {} ;)",
+      "Bash(find /Users/fadymondy/Sites/orchestra-agents/apps/swift -name \"*.swift\" -type f -exec grep -l \"struct SuggestedPrompt\" {} ;)",
+      "Bash(find /Users/fadymondy/Sites/orchestra-agents/apps/swift -type f -name \"*.swift\" -exec grep -l \"ToolService\\\\|UserQuestionCardView\\\\|PermissionRequestView\\\\|MarkdownContentView\" {} ;)",
+      "Bash(GOWORK=off go build -o /tmp/bridge-claude-test ./cmd/)",
+      "Bash(GOWORK=off go build -o /tmp/sessions-test ./cmd/)",
+      "Bash(log show --predicate 'process == \"\"Orchestra\"\"' --last 2m --style compact)",
+      "Bash(log show --predicate 'process == \"\"Orchestra\"\" OR \\(process == \"\"ReportCrash\"\" AND eventMessage CONTAINS \"\"Orchestra\"\"\\)' --last 5m --style compact)",
+      "Bash(grep -n \"NewFeatureID\\\\|FormatFeatureMD\" /Users/fadymondy/Sites/orchestra-agents/libs/sdk-go/helpers/*.go)",
+      "Bash(GOWORK=off go build -o bin/orchestra ./libs/cli/)",
+      "Bash(./bin/orchestra restart --workspace .)",
+      "Bash(xcodebuild -project Orchestra.xcodeproj -scheme Orchestra -configuration Debug -destination 'platform=macOS' build)",
+      "Bash(xcodebuild -project Orchestra.xcodeproj -target OrchestraMac -configuration Debug -destination 'platform=macOS' build)",
+      "Bash(xcodebuild -project Orchestra.xcodeproj -scheme OrchestraMac -configuration Debug -destination 'platform=macOS,arch=arm64' build)",
+      "Bash(find ~/Library/Developer/Xcode/DerivedData/Orchestra-*/Build/Products/Debug -maxdepth 1 -name \"Orchestra.app\")",
+      "Bash(ls bin/orchestra*)",
+      "Bash(bin/orchestra --help)",
+      "Bash(kill 48390)",
+      "Bash(pkill -f \"plugin-bridge-claude|plugin-tools-agentops|plugin-tools-notes|plugin-tools-sessions\")",
+      "Bash(brew list coreutils)",
+      "Bash(pkill -f \"bin/orchestra serve\")",
+      "Bash(kill 82078)",
+      "Bash(bin/orchestra serve --workspace .)",
+      "Bash(/Users/fadymondy/Sites/orchestra-agents/bin/orchestra log -f=false -n=20)",
+      "Bash(/Users/fadymondy/Sites/orchestra-agents/bin/orchestra log -f=false -n=30)",
+      "Bash(timeout 5 /Users/fadymondy/Sites/orchestra-agents/bin/orchestra serve --workspace /Users/fadymondy/Sites/orchestra-agents --no-plugins)",
+      "Bash(kill 88936 88947 88955 88956 88957)",
+      "mcp__orchestra__create_person",
+      "mcp__orchestra__create_assignment_rule",
+      "mcp__orchestra__create_test_case",
+      "mcp__orchestra__bulk_create_test_cases",
+      "mcp__orchestra__get_person_workload",
+      "mcp__orchestra__list_persons",
+      "mcp__orchestra__list_assignment_rules",
+      "Bash(grep -n \"GIT_AUTHOR\\\\|GIT_COMMITTER\\\\|git.user\" /Users/fadymondy/Sites/orchestra-agents/libs/plugin-devtools-git/internal/tools/*.go)",
+      "Bash(wc -l /Users/fadymondy/Sites/orchestra-agents/libs/plugin-devtools-git/internal/tools/*.go)",
+      "Bash(xcodebuild -scheme OrchestraMac -configuration Debug -destination 'platform=macOS,arch=arm64' build)",
+      "mcp__orchestra__git_status_summary",
+      "mcp__orchestra__set_current_user",
+      "mcp__orchestra__get_current_user",
+      "mcp__orchestra__get_my_features",
+      "Bash(./scripts/ship.sh v1.0.1 --skip-pr --message \"Release v1.0.1: Git tools, person profiles, current user system, log command\")"
     ],
-    "PostToolUse": [
-      {
-        "hooks": [
-          {
-            "async": true,
-            "command": ".claude/hooks/orchestra-mcp-hook.sh",
-            "type": "command"
-          }
-        ],
-        "matcher": ""
-      }
-    ],
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "async": true,
-            "command": ".claude/hooks/orchestra-mcp-hook.sh",
-            "type": "command"
-          }
-        ],
-        "matcher": ""
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "async": true,
-            "command": ".claude/hooks/orchestra-mcp-hook.sh",
-            "type": "command"
-          }
-        ],
-        "matcher": ""
-      }
-    ],
-    "SubagentStart": [
-      {
-        "hooks": [
-          {
-            "async": true,
-            "command": ".claude/hooks/orchestra-mcp-hook.sh",
-            "type": "command"
-          }
-        ],
-        "matcher": ""
-      }
-    ],
-    "SubagentStop": [
-      {
-        "hooks": [
-          {
-            "async": true,
-            "command": ".claude/hooks/orchestra-mcp-hook.sh",
-            "type": "command"
-          }
-        ],
-        "matcher": ""
-      }
+    "additionalDirectories": [
+      "/Users/fadymondy/Sites/orchestra-agents/.projects/bridge/sessions",
+      "/tmp",
+      "/private/tmp",
+      "/Users/fadymondy/.orchestra/plugins/bin",
+      "/Users/fadymondy/.orchestra",
+      "/Users/fadymondy/.claude",
+      "/Users/fadymondy/Sites/orchestra-agents"
     ]
-  }
+  },
+  "hooks": {}
 }

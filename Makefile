@@ -320,7 +320,7 @@ SWIFT_XCPROJ     := $(SWIFT_DIR)/Orchestra.xcodeproj
 SWIFT_APP = $(shell find ~/Library/Developer/Xcode/DerivedData/Orchestra-*/Build/Products/Debug \
 	-name "Orchestra.app" -not -path "*/Index.noindex/*" 2>/dev/null | head -1)
 
-.PHONY: xcodegen-swift build-swift run-swift test-swift dev-swift clean-swift
+.PHONY: xcodegen-swift build-swift run-swift test-swift dev-swift watch-swift clean-swift
 
 xcodegen-swift: ## Regenerate Orchestra.xcodeproj from project.yml
 	xcodegen generate --spec $(SWIFT_DIR)/project.yml
@@ -355,7 +355,10 @@ run-swift: build-swift ## Build and launch Orchestra.app on macOS
 test-swift: ## Run Swift package unit tests (SPM)
 	cd $(SWIFT_DIR) && swift test
 
-dev-swift: ## Watch Swift sources and auto-rebuild + relaunch on changes
+dev-swift: ## Build, launch, and watch for .swift changes (no xcodegen)
+	@bash scripts/dev-swift.sh
+
+watch-swift: ## Watch Swift sources and auto-rebuild + relaunch on changes
 	@bash scripts/dev-swift.sh
 
 clean-swift: ## Remove Swift DerivedData for Orchestra

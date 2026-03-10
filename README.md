@@ -2,7 +2,7 @@
 
 ![Orchestra Framework](https://raw.githubusercontent.com/orchestra-mcp/framework/master/arts/cover.jpg)
 
-An AI-agentic IDE framework with 290 MCP tools across 36 plugins. Single-process in-process architecture — 4 core plugins bundled, 32 optional plugins installable separately.
+An AI-agentic IDE framework with 300 MCP tools across 38 plugins. Single-process in-process architecture — 4 core plugins bundled, 34 optional plugins installable separately.
 
 ## Install
 
@@ -27,7 +27,7 @@ cd framework && make install
 cd your-project
 orchestra init
 
-# 2. That's it — your AI IDE now has 290 tools + 5 prompts
+# 2. That's it — your AI IDE now has 300 tools + 5 prompts
 ```
 
 `orchestra init` detects your IDE and writes the correct MCP config:
@@ -72,7 +72,9 @@ orchestra serve (single process)
       ├── bridge.gemini       (5 tools — AI provider)
       ├── agent.orchestrator  (20 tools — multi-agent)
       ├── devtools.*          (80+ tools — git, docker, ssh, terminal, etc.)
-      └── 27 more plugins...
+      ├── bridge.discord      (5 tools — Slack bot)
+      ├── bridge.slack        (5 tools — Discord bot)
+      └── 29 more plugins...
 ```
 
 **Single-process** — 4 core plugins run in-process via direct Go function calls. Optional plugins connect over QUIC with mTLS and Protobuf framing.
@@ -95,7 +97,7 @@ orchestra pack search <query>           # Search available packs
 orchestra pack recommend                # Recommend packs for your project
 ```
 
-## Plugins (36 total)
+## Plugins (38 total)
 
 ### Core Plugins (bundled, always available)
 
@@ -111,6 +113,7 @@ orchestra pack recommend                # Recommend packs for your project
 | Category | Plugins | Tools |
 |----------|---------|-------|
 | **AI Bridges** | [bridge.claude](https://github.com/orchestra-mcp/plugin-bridge-claude), [bridge.openai](https://github.com/orchestra-mcp/plugin-bridge-openai), [bridge.gemini](https://github.com/orchestra-mcp/plugin-bridge-gemini), [bridge.ollama](https://github.com/orchestra-mcp/plugin-bridge-ollama), [bridge.firecrawl](https://github.com/orchestra-mcp/plugin-bridge-firecrawl) | 25 |
+| **Chat Bridges** | [bridge.discord](https://github.com/orchestra-mcp/plugin-bridge-discord), [bridge.slack](https://github.com/orchestra-mcp/plugin-bridge-slack) | 10 |
 | **Agent** | [agent.orchestrator](https://github.com/orchestra-mcp/plugin-agent-orchestrator) | 20 |
 | **DevTools** | [devtools.git](https://github.com/orchestra-mcp/plugin-devtools-git), [devtools.docker](https://github.com/orchestra-mcp/plugin-devtools-docker), [devtools.terminal](https://github.com/orchestra-mcp/plugin-devtools-terminal), [devtools.ssh](https://github.com/orchestra-mcp/plugin-devtools-ssh), [devtools.file-explorer](https://github.com/orchestra-mcp/plugin-devtools-file-explorer), [devtools.database](https://github.com/orchestra-mcp/plugin-devtools-database), [devtools.debugger](https://github.com/orchestra-mcp/plugin-devtools-debugger), [devtools.test-runner](https://github.com/orchestra-mcp/plugin-devtools-test-runner), [devtools.log-viewer](https://github.com/orchestra-mcp/plugin-devtools-log-viewer), [devtools.services](https://github.com/orchestra-mcp/plugin-devtools-services), [devtools.devops](https://github.com/orchestra-mcp/plugin-devtools-devops), [devtools.components](https://github.com/orchestra-mcp/plugin-devtools-components) | 110+ |
 | **AI Awareness** | [ai.screenshot](https://github.com/orchestra-mcp/plugin-ai-screenshot), [ai.vision](https://github.com/orchestra-mcp/plugin-ai-vision), [ai.browser-context](https://github.com/orchestra-mcp/plugin-ai-browser-context), [ai.screen-reader](https://github.com/orchestra-mcp/plugin-ai-screen-reader) | 25 |
@@ -208,7 +211,7 @@ framework/
 │   ├── plugin-agent-orchestrator/     #   Optional: Multi-agent orchestration
 │   ├── plugin-devtools-*/             #   Optional: 12 devtools plugins
 │   ├── plugin-ai-*/                   #   Optional: 4 AI awareness plugins
-│   └── ... (36 plugins total)
+│   └── ... (38 plugins total)
 ├── packs/                             # 24 installable content packs
 ├── scripts/
 │   ├── install.sh                     # curl | sh installer (macOS/Linux/Windows)
@@ -320,6 +323,8 @@ All 44 packages are published as independent Go modules under [`github.com/orche
 | [sdk-go](https://github.com/orchestra-mcp/sdk-go) | [plugin-tools-marketplace](https://github.com/orchestra-mcp/plugin-tools-marketplace) | [plugin-bridge-gemini](https://github.com/orchestra-mcp/plugin-bridge-gemini) |
 | [orchestrator](https://github.com/orchestra-mcp/orchestrator) | [plugin-transport-stdio](https://github.com/orchestra-mcp/plugin-transport-stdio) | [plugin-bridge-ollama](https://github.com/orchestra-mcp/plugin-bridge-ollama) |
 | [cli](https://github.com/orchestra-mcp/cli) | | [plugin-bridge-firecrawl](https://github.com/orchestra-mcp/plugin-bridge-firecrawl) |
+| | | [plugin-bridge-discord](https://github.com/orchestra-mcp/plugin-bridge-discord) |
+| | | [plugin-bridge-slack](https://github.com/orchestra-mcp/plugin-bridge-slack) |
 | | | [plugin-agent-orchestrator](https://github.com/orchestra-mcp/plugin-agent-orchestrator) |
 | | | [plugin-tools-agentops](https://github.com/orchestra-mcp/plugin-tools-agentops) |
 | | | [plugin-tools-sessions](https://github.com/orchestra-mcp/plugin-tools-sessions) |

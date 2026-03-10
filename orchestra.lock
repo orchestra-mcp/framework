@@ -7,7 +7,7 @@
     "packages": [
         {
             "name": "orchestra-mcp/proto",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/proto.git",
@@ -20,7 +20,7 @@
         },
         {
             "name": "orchestra-mcp/gen-go",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/gen-go.git",
@@ -36,7 +36,7 @@
         },
         {
             "name": "orchestra-mcp/sdk-go",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/sdk-go.git",
@@ -52,7 +52,7 @@
         },
         {
             "name": "orchestra-mcp/orchestrator",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/orchestrator.git",
@@ -69,7 +69,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-storage-markdown",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-storage-markdown.git",
@@ -86,7 +86,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-storage-sqlite",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-storage-sqlite.git",
@@ -103,7 +103,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-tools-features",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-tools-features.git",
@@ -120,7 +120,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-transport-stdio",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-transport-stdio.git",
@@ -137,7 +137,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-tools-marketplace",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-tools-marketplace.git",
@@ -154,7 +154,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-engine-rag",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-engine-rag.git",
@@ -171,7 +171,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-transport-webtransport",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-transport-webtransport.git",
@@ -188,7 +188,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-bridge-claude",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-bridge-claude.git",
@@ -205,7 +205,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-tools-agentops",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-tools-agentops.git",
@@ -222,7 +222,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-tools-sessions",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-tools-sessions.git",
@@ -239,7 +239,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-transport-quic-bridge",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-transport-quic-bridge.git",
@@ -256,7 +256,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-bridge-openai",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-bridge-openai.git",
@@ -273,7 +273,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-bridge-gemini",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-bridge-gemini.git",
@@ -290,7 +290,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-bridge-ollama",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-bridge-ollama.git",
@@ -307,7 +307,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-bridge-firecrawl",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-bridge-firecrawl.git",
@@ -324,7 +324,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-tools-markdown",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-tools-markdown.git",
@@ -341,7 +341,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-tools-docs",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-tools-docs.git",
@@ -358,7 +358,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-tools-notes",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-tools-notes.git",
@@ -375,7 +375,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-devtools-git",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-devtools-git.git",
@@ -392,7 +392,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-agent-orchestrator",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-agent-orchestrator.git",
@@ -409,7 +409,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-ai-screenshot",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-ai-screenshot.git",
@@ -426,7 +426,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-ai-vision",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-ai-vision.git",
@@ -443,7 +443,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-ai-browser-context",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-ai-browser-context.git",
@@ -460,7 +460,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-ai-screen-reader",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-ai-screen-reader.git",
@@ -477,7 +477,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-services-voice",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-services-voice.git",
@@ -494,7 +494,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-services-notifications",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-services-notifications.git",
@@ -511,7 +511,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-tools-extension-generator",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-tools-extension-generator.git",
@@ -528,7 +528,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-devtools-file-explorer",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-devtools-file-explorer.git",
@@ -545,7 +545,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-devtools-terminal",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-devtools-terminal.git",
@@ -562,7 +562,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-devtools-ssh",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-devtools-ssh.git",
@@ -579,7 +579,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-devtools-services",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-devtools-services.git",
@@ -596,7 +596,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-devtools-docker",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-devtools-docker.git",
@@ -613,7 +613,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-devtools-debugger",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-devtools-debugger.git",
@@ -630,7 +630,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-devtools-test-runner",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-devtools-test-runner.git",
@@ -647,7 +647,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-devtools-log-viewer",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-devtools-log-viewer.git",
@@ -664,7 +664,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-devtools-database",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-devtools-database.git",
@@ -681,7 +681,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-devtools-devops",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-devtools-devops.git",
@@ -698,7 +698,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-integration-figma",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-integration-figma.git",
@@ -715,7 +715,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-devtools-components",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-devtools-components.git",
@@ -732,7 +732,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-tools-workspace",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-tools-workspace.git",
@@ -749,14 +749,14 @@
         },
         {
             "name": "orchestra-mcp/plugin-sync-cloud",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-sync-cloud.git",
                 "reference": "master"
             },
             "type": "tools",
-            "description": "Cloud sync plugin — push projects and features to Orchestra web dashboard.",
+            "description": "Cloud sync plugin \u2014 push projects and features to Orchestra web dashboard.",
             "path": "libs/plugin-sync-cloud",
             "binary": "sync-cloud",
             "require": {
@@ -765,8 +765,25 @@
             }
         },
         {
+            "name": "orchestra-mcp/plugin-bridge-discord",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/orchestra-mcp/plugin-bridge-discord.git",
+                "reference": "master"
+            },
+            "type": "tools",
+            "description": "bridge-discord tools plugin for Orchestra MCP.",
+            "path": "libs/plugin-bridge-discord",
+            "binary": "bridge-discord",
+            "require": {
+                "orchestra-mcp/gen-go": "^0.1.0",
+                "orchestra-mcp/sdk-go": "^0.1.0"
+            }
+        },
+        {
             "name": "orchestra-mcp/cli",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/cli.git",

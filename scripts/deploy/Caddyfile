@@ -45,8 +45,19 @@ yourdomain.com {
 		-Server
 	}
 
-	# WebSocket route — must be before generic /api/* handler
+	# WebSocket routes — must be before generic /api/* handler.
+	# flush_interval -1 disables buffering for real-time streaming.
 	handle /api/ws {
+		reverse_proxy localhost:8080 {
+			flush_interval -1
+		}
+	}
+	handle /api/tunnels/reverse {
+		reverse_proxy localhost:8080 {
+			flush_interval -1
+		}
+	}
+	handle_path /api/tunnels/*/ws {
 		reverse_proxy localhost:8080 {
 			flush_interval -1
 		}

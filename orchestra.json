@@ -57,7 +57,8 @@
         "orchestra-mcp/plugin-devtools-database": "^0.1.0",
         "orchestra-mcp/plugin-devtools-devops": "^0.1.0",
         "orchestra-mcp/plugin-integration-figma": "^0.1.0",
-        "orchestra-mcp/plugin-devtools-components": "^0.1.0"
+        "orchestra-mcp/plugin-devtools-components": "^0.1.0",
+        "orchestra-mcp/plugin-bridge-discord": "^0.1.0"
     },
     "config": {
         "org": "orchestra-mcp",
@@ -109,6 +110,7 @@
             "plugin-devtools-devops",
             "plugin-integration-figma",
             "plugin-devtools-components",
+            "plugin-bridge-discord",
             "cli"
         ]
     }

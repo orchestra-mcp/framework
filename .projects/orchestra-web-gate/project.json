@@ -1,0 +1,9 @@
+---
+created_at: "2026-03-07T06:21:05Z"
+description: Web-first architecture where each machine running Orchestra becomes a remotely accessible tunnel. The web app is the unified control plane connecting to multiple tunnels simultaneously. Desktop/mobile apps become thin Tauri/React Native clients. MCP binary stays as the local agent on each machine.
+id: orchestra-web-gate
+name: Orchestra Web Gate
+slug: orchestra-web-gate
+updated_at: "2026-03-07T06:21:05Z"
+---
+

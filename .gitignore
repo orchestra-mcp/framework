@@ -42,3 +42,4 @@ web/
 mobile/
 packages/
 apps/
+node_modules/

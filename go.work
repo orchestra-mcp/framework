@@ -46,4 +46,6 @@ use (
 	./libs/plugin-transport-stdio
 	./libs/plugin-transport-webtransport
 	./libs/sdk-go
+	./libs/plugin-bridge-discord
+	./libs/plugin-bridge-slack
 )

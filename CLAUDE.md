@@ -117,7 +117,7 @@ The first plugin at `plugins/mcp/`. Provides project management tools via MCP pr
 - **Run**: `orchestra-mcp --workspace .` (stdio JSON-RPC)
 - **Init**: `orchestra-mcp init --workspace .` (creates .mcp.json, .projects/, .claude/, CLAUDE.md, AGENTS.md, CONTEXT.md)
 - **Packages**: `types/`, `toon/`, `workflow/`, `helpers/`, `transport/`, `tools/`, `engine/`, `bootstrap/`
-- **Workflow**: 13-state lifecycle (backlog → todo → in-progress → ready-for-testing → in-testing → ready-for-docs → in-docs → documented → in-review → done)
+- **Workflow**: 7-state lifecycle (todo → in-progress → in-testing → in-docs → in-review → done) with session-scoped locking
 - **Multi-Audience PRD**: 4 audience types (business/product/technical/qa) with conditional follow-up questions, validation, agent briefings, auto-backlog generation, and reusable templates
 - **Sprint Management**: Create/start/end sprints with auto task promotion (backlog→todo), velocity tracking, burndown charts, standup summaries, retrospectives
 - **Parallel Agents**: `get_next_task` supports `epic_id`, `story_id`, `assignee`, `label` filters for scoped agent work
@@ -225,10 +225,10 @@ Specialized agents in `.claude/agents/` auto-delegate based on task context. See
 
 1. `search_features` / `list_features` — check for existing feature
 2. `create_feature` — create one if needed (with `kind`: feature/bug/hotfix/chore)
-3. `set_current_feature` — start work (moves to in-progress)
-4. Do the work
-5. `advance_feature` — pass gates with structured evidence
-6. `request_review` + `AskUserQuestion` — get user approval
+3. `set_current_feature` — start work (moves to in-progress, acquires session lock)
+4. Do the work (each status = ONE activity only, see Strict Phase Rules below)
+5. `advance_feature` — pass gates with structured evidence to move to next phase
+6. At `in-review`: use `AskUserQuestion` to get user approval
 7. `submit_review` — complete
 
 **Never do any work without an active feature.** This includes running tests, writing docs, investigating bugs, and refactoring. The MCP enforces gated transitions — you cannot advance without evidence.
@@ -274,24 +274,35 @@ Use `list_requests` to see the queue and `dismiss_request` to discard irrelevant
 When a completed feature causes a regression or breakage:
 
 1. `create_bug_report` — Creates a feature with kind=bug, links to the original feature via `related_feature` param
-2. The bug follows the same workflow but **Gate 3 (docs) is auto-skipped** for bugs and hotfixes
-3. Work the bug through: backlog → todo → in-progress → testing → review → done
+2. The bug follows the same workflow but **docs gate is auto-skipped** for bugs, hotfixes, and testcases (in-testing → in-review directly)
+3. Work the bug through: todo → in-progress → in-testing → in-review → done
 
-### Enforced Gates (MCP validates evidence)
+### Strict Phase Rules (Each Status = ONE Activity)
 
-The MCP **rejects** `advance_feature` if evidence is missing or malformed at gated transitions. Evidence must be markdown with `## Section` headers, each with at least 10 characters of content. **Sections marked with (files) must contain actual file paths** — not just prose.
+**Status moves BEFORE the work, not after.** Call `advance_feature` to move to the next phase — the evidence proves the PREVIOUS phase is complete.
 
-| Gate | Transition | Required Sections | Tool | Skippable |
-|------|-----------|-------------------|------|-----------|
-| 1 | in-progress → ready-for-testing | `## Summary`, `## Changes` **(files)**, `## Verification` | `advance_feature` | No |
-| 2 | in-testing → ready-for-docs | `## Summary`, `## Results`, `## Coverage` | `advance_feature` | No |
-| 3 | in-docs → documented | `## Summary`, `## Location` **(files)** | `advance_feature` | **Yes** (bug, hotfix) |
-| 4 | documented → in-review | `## Summary`, `## Quality`, `## Checklist` **(files)** | `request_review` | No |
-| 5 | in-review → done | User approval via `AskUserQuestion` | `submit_review` | No |
+| Status | ALLOWED | FORBIDDEN |
+|--------|---------|-----------|
+| `in-progress` | Write/edit source code files ONLY | Running tests, writing docs, asking for review |
+| `in-testing` | Write test files and run tests ONLY | Writing source code, writing docs, asking for review |
+| `in-docs` | Write/edit `.md` files in `/docs` folder ONLY | Writing source code, writing tests, asking for review |
+| `in-review` | Call `AskUserQuestion` for user approval ONLY | Writing code, running tests, writing docs |
+
+### Enforced Gates (3 Gates)
+
+The MCP **rejects** `advance_feature` if evidence is missing or malformed. Evidence must be markdown with a `## Section` header and at least 10 characters of content. **File-type validation** checks that referenced files match expected patterns.
+
+| Gate | Transition | Required Section | File-Type Check | Skippable |
+|------|-----------|-----------------|-----------------|-----------|
+| Code Complete | in-progress → in-testing | `## Changes` **(files)** | Any source files | No |
+| Test Complete | in-testing → in-docs | `## Results` **(files)** | Must match test patterns (`*_test.go`, `*.test.ts`, `*.spec.ts`, etc.) | No |
+| Docs Complete | in-docs → in-review | `## Docs` **(files)** | Must be `.md` files inside `docs/` folder | **Yes** (bug, hotfix, testcase) |
+
+**File-type validation:** If referenced files don't match expected patterns, MCP returns `needs_approval` error. The agent must then ask the user via `AskUserQuestion` — if the user approves, retry with `force: true`.
 
 **Gate evidence format:**
 ```
-evidence: "## Summary\n<what was done>\n\n## Changes\n- libs/foo/bar.go (added validation)\n- libs/baz/qux.go (new file)\n\n## Verification\n<how to test>"
+evidence: "## Changes\n- libs/foo/bar.go (added validation)\n- libs/baz/qux.go (new file)"
 ```
 
 Call `get_gate_requirements` to see what's needed for the next transition.
@@ -299,16 +310,27 @@ Call `get_gate_requirements` to see what's needed for the next transition.
 ### Free Transitions (no gate)
 
 These transitions can be done without evidence:
-- backlog → todo, todo → in-progress, ready-for-testing → in-testing, ready-for-docs → in-docs, needs-edits → in-progress
+- `todo → in-progress` (via `set_current_feature`), `needs-edits → in-progress` (via `set_current_feature`)
 
-### Review Flow (Gate 4-5)
+### Review Flow
 
-1. Call `request_review` with self-review evidence (sections: `## Summary`, `## Quality`, `## Checklist`)
-2. MCP moves feature to `in-review` and instructs you to ask the user
-3. Use `AskUserQuestion` to present the review to the user with options: "Approve" / "Needs Edits"
-4. Call `submit_review` with the user's decision (`status: "approved"` or `status: "needs-edits"`)
+1. Feature reaches `in-review` after passing all gates
+2. Use `AskUserQuestion` to present the work to the user with options: "Approve" / "Needs Edits"
+3. Call `submit_review` with the user's decision (`status: "approved"` or `status: "needs-edits"`)
 
 **Do NOT call `submit_review` without user approval.** `advance_feature` is blocked from `in-review` — you must use `submit_review`.
+
+### Session-Scoped Feature Locking
+
+Features are locked to the calling MCP session when work begins. This prevents concurrent sessions from interfering with each other.
+
+- **`set_current_feature`** acquires a session lock (auto-generated UUID per MCP connection)
+- **`advance_feature`** checks the lock belongs to the current session, refreshes on success
+- **`submit_review`** checks the lock, releases on `done`
+- **Lock expiry**: 30 minutes of inactivity — background reaper cleans stale locks every 5 minutes
+- **Disconnect cleanup**: When a session disconnects (EOF/context cancel), all its locks are released
+- **`unlock_feature`**: Admin recovery tool to force-release a stale lock (no session check)
+- **Backward compatible**: Old clients without session IDs are not affected (lock checks gate on `sessionID != ""`)
 
 ## Sub-Agent Orchestration Rules
 
@@ -325,25 +347,25 @@ Sub-agents (launched via the `Task` tool) do **NOT** have access to MCP tools. T
 ### Correct Pattern
 
 ```
-1. set_current_feature(feature_id)              → in-progress
+1. set_current_feature(feature_id)              → in-progress (lock acquired)
+   ALLOWED: write/edit source code ONLY
 2. Delegate code writing to sub-agent (Task tool)
 3. Sub-agent returns → summarize results to user
-4. Run tests yourself or delegate to qa-* agent
-5. advance_feature(evidence="## Summary\n...\n\n## Changes\n...\n\n## Verification\n...")
-                                                 → ready-for-testing [GATE 1]
-6. advance_feature                               → in-testing (free)
-7. Verify coverage and edge cases
-8. advance_feature(evidence="## Summary\n...\n\n## Results\n...\n\n## Coverage\n...")
-                                                 → ready-for-docs [GATE 2]
-9. advance_feature                               → in-docs (free)
-10. Write documentation yourself
-11. advance_feature(evidence="## Summary\n...\n\n## Location\n...")
-                                                 → documented [GATE 3]
-12. request_review(evidence="## Summary\n...\n\n## Quality\n...\n\n## Checklist\n...")
-                                                 → in-review [GATE 4]
-13. AskUserQuestion → present review to user for approval
-14. submit_review(status="approved")             → done [GATE 5]
-15. Move to next feature
+4. advance_feature(evidence="## Changes\n- path/to/file.go\n- path/to/other.go")
+                                                 → in-testing [CODE COMPLETE gate]
+   ALLOWED: write test files + run tests ONLY
+5. Write tests, run tests
+6. advance_feature(evidence="## Results\n- path/to_test.go\n- test output summary")
+                                                 → in-docs [TEST COMPLETE gate]
+   ALLOWED: write .md files in /docs folder ONLY
+   (bug/hotfix/testcase: auto-skips to in-review)
+7. Write documentation in docs/ folder
+8. advance_feature(evidence="## Docs\n- docs/feature-x.md (new)")
+                                                 → in-review [DOCS COMPLETE gate]
+   ALLOWED: AskUserQuestion ONLY
+9. AskUserQuestion → present review to user for approval
+10. submit_review(status="approved")             → done (lock released)
+11. Move to next feature
 ```
 
 ### Anti-Patterns (NEVER DO)
@@ -354,31 +376,29 @@ Sub-agents (launched via the `Task` tool) do **NOT** have access to MCP tools. T
 - Calling `advance_feature` from `in-review` (must use `submit_review`)
 - Calling `submit_review` without asking the user via `AskUserQuestion` first
 - Starting the next feature before the current one reaches done
-- Advancing through multiple gates in rapid succession without doing real work between them
-- **Using `sleep`, `wait`, or any delay command to bypass gate cooldowns** — the MCP enforces escalating cooldowns that double for each rapid gate passage, and evidence uniqueness checks that reject copy-pasted content
+- Writing source code during `in-testing` phase (ONLY test code allowed)
+- Writing tests during `in-progress` phase (ONLY source code allowed)
+- Writing docs outside the `docs/` folder during `in-docs` phase
 - Writing fake/boilerplate evidence (e.g., "All tests passed" without actually running tests)
-- Copying or templating evidence across gates — each gate requires unique evidence reflecting specific work done at that stage (MCP rejects evidence >60% similar to prior gates)
 - Requesting review for one feature, then immediately starting work on another before the review is resolved
 
 ### Programmatic Guardrails (MCP-Enforced)
 
 These rules are enforced at the MCP tool level — violation attempts will return errors:
 
-1. **One feature at a time per assignee** — `set_current_feature` checks for any active feature (in-progress through in-review) with the same assignee. Different assignees (parallel agents) can each work on their own feature. MCP returns `wip_violation` error if violated.
+1. **Session-scoped locking** — `set_current_feature` acquires a lock tied to the current MCP session (auto-generated UUID). Other sessions cannot advance, submit review, or unlock the feature. MCP returns `session_lock` error if another session holds the lock. Locks auto-expire after 30 minutes of inactivity. Use `unlock_feature` for admin recovery.
 
-2. **Escalating gate cooldown** — Gated transitions require at least 30 seconds since the last status change. If multiple gates are passed within a 5-minute window, the cooldown **doubles for each additional gate** (30s → 60s → 120s → 240s, capped at 10 minutes). This makes `sleep`-based bypass exponentially harder. MCP returns `gate_cooldown` error if violated. **NEVER use `sleep`, `wait`, or any delay command to bypass gate cooldowns.** Do real work between gates instead.
+2. **Evidence with file paths** — All gates require `## Section` headers with file paths. The MCP rejects evidence that is pure prose without referencing real files.
 
-3. **Evidence uniqueness** — New gate evidence is compared against all prior gate evidence in the feature body using Jaccard similarity. If evidence is more than 60% similar to any previous gate's evidence, MCP returns `evidence_duplicate` error. Each gate requires unique, specific evidence reflecting the actual work performed at that stage.
+3. **File-type validation** — The Test Complete gate validates that referenced files match test patterns (`*_test.go`, `*.test.ts`, `*.spec.ts`, etc.). The Docs Complete gate validates that files are `.md` and inside `docs/`. If validation fails, MCP returns `needs_approval` — ask the user, then retry with `force: true`.
 
-4. **Evidence substance requirements** — Gate evidence must meet minimum content thresholds: at least 20 characters per section, at least 100 characters total (Gate 1/2), 80 characters (Gate 3), and 120 characters (Gate 4/review). Sections requiring file paths must contain at least 1 distinct file path. This prevents minimal/boilerplate evidence.
+4. **Docs gate auto-skip** — For `bug`, `hotfix`, and `testcase` kinds, the transition `in-testing → in-review` is allowed directly (skipping `in-docs`).
 
-5. **Timestamped audit trail** — Every transition appends an ISO-8601 timestamp to the feature body. Post-hoc review can detect if gates were passed unrealistically fast.
+5. **Review requires user approval** — `advance_feature` is blocked from `in-review`. Only `submit_review` can move to `done`, and it requires `AskUserQuestion` first.
 
-6. **Review requires user approval** — `advance_feature` is blocked from `in-review`. Only `submit_review` can move to `done`, and it requires `AskUserQuestion` first.
+6. **Model capability check** — `set_current_feature` accepts a `model` parameter. If provided and the feature has an estimate, MCP validates the model can handle that size. Tier 1 (Haiku/Flash/GPT-3.5) → S only. Tier 2 (Sonnet/GPT-4o/Gemini Pro) → S, M. Tier 3 (Opus/GPT-4/Gemini Ultra) → S, M, L, XL. Returns `model_capability` error if the model is too small — break the feature down or use a bigger model.
 
-7. **Model capability check** — `set_current_feature` accepts a `model` parameter. If provided and the feature has an estimate, MCP validates the model can handle that size. Tier 1 (Haiku/Flash/GPT-3.5) → S only. Tier 2 (Sonnet/GPT-4o/Gemini Pro) → S, M. Tier 3 (Opus/GPT-4/Gemini Ultra) → S, M, L, XL. Returns `model_capability` error if the model is too small — break the feature down or use a bigger model.
-
-8. **File path evidence** — Gate 1 (Changes), Gate 3 (Location), and Gate 4 (Checklist) sections must contain actual file paths. The MCP rejects evidence that is pure prose without referencing real files.
+7. **Timestamped audit trail** — Every transition appends an ISO-8601 timestamp to the feature body.
 
 ## Git & Sync (Natural Language Mapping)
 

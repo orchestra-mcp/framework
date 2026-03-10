@@ -38,6 +38,10 @@ cd "$REPO_DIR/apps/web"
 mv bin/web-new bin/web
 echo "Binary swap: OK"
 
+# ── Step 4b: Sync docs to web dir (for wiki scanner) ──
+rsync -a --delete "$REPO_DIR/docs/" /opt/orchestra/web/docs/
+echo "Docs sync: OK"
+
 # ── Step 5: Restart Go backend + health check ──
 echo "--- Restarting orchestra-web ---"
 sudo systemctl restart orchestra-web

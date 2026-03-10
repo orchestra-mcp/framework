@@ -57,7 +57,7 @@ yourdomain.com {
 			flush_interval -1
 		}
 	}
-	handle_path /api/tunnels/*/ws {
+	handle /api/tunnels/*/ws {
 		reverse_proxy localhost:8080 {
 			flush_interval -1
 		}

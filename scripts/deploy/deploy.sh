@@ -30,7 +30,12 @@ echo "Go build: OK"
 echo "--- Building Next.js frontend ---"
 cd "$REPO_DIR/apps/next"
 npm ci --production=false
-NEXT_PUBLIC_API_URL= npm run build
+# Write .env from shared config (populated by GitHub Actions secrets)
+if [ -f "$ENV_FILE" ]; then
+    cp "$ENV_FILE" .env.local
+    echo "Env file: copied from $ENV_FILE"
+fi
+npm run build
 echo "Next.js build: OK"
 
 # ── Step 4: Atomic swap Go binary ──

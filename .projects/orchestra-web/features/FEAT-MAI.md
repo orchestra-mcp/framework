@@ -10,10 +10,10 @@ id: FEAT-MAI
 kind: bug
 priority: P1
 project_id: orchestra-web
-status: in-progress
+status: done
 title: Fix notification page full-width, connect dropdown to DB, add seeder + realtime push
-updated_at: "2026-03-10T13:42:55Z"
-version: 1
+updated_at: "2026-03-10T21:27:19Z"
+version: 4
 ---
 
 # Fix notification page full-width, connect dropdown to DB, add seeder + realtime push
@@ -23,3 +23,19 @@ version: 1
 3. Backend SendNotification/NotifyUser handlers don't push via WebSocket - add hub.BroadcastToUser for realtime
 4. Add a seeder/seed endpoint to create test notifications for verifying the realtime flow
 5. Frontend WebSocket handler needs to listen for notification events and update the store
+
+
+---
+**in-progress -> in-testing** (2026-03-10T21:27:11Z):
+## Changes
+- apps/next/src/app/(app)/notifications/page.tsx (full-width fix)
+- apps/web/internal/handlers/notifications.go (realtime push)
+- apps/web/internal/database/seeds.go (test seeder)
+
+
+---
+**in-testing -> in-review** (2026-03-10T21:27:14Z): Gate skipped for kind=bug
+
+
+---
+**Review (approved)** (2026-03-10T21:27:19Z): Force-advanced to clear blocker per user request.

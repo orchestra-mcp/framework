@@ -777,8 +777,25 @@
             "path": "libs/plugin-bridge-discord",
             "binary": "bridge-discord",
             "require": {
-                "orchestra-mcp/gen-go": "^0.1.0",
-                "orchestra-mcp/sdk-go": "^0.1.0"
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
+            }
+        },
+        {
+            "name": "orchestra-mcp/plugin-bridge-slack",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/orchestra-mcp/plugin-bridge-slack.git",
+                "reference": "master"
+            },
+            "type": "tools",
+            "description": "bridge-slack tools plugin for Orchestra MCP.",
+            "path": "libs/plugin-bridge-slack",
+            "binary": "bridge-slack",
+            "require": {
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
             }
         },
         {

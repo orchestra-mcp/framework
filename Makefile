@@ -185,6 +185,7 @@ test-engine-rag:
 build-bridge-claude:
 	@mkdir -p $(BIN_DIR)
 	cd libs/plugin-bridge-claude && go build -o $(BIN_DIR)/bridge-claude ./cmd/
+	@cp -f $(BIN_DIR)/bridge-claude $(HOME)/.orchestra/plugins/bin/plugin-bridge-claude 2>/dev/null || true
 
 build-tools-agentops:
 	@mkdir -p $(BIN_DIR)
@@ -193,6 +194,7 @@ build-tools-agentops:
 build-tools-sessions:
 	@mkdir -p $(BIN_DIR)
 	cd libs/plugin-tools-sessions && go build -o $(BIN_DIR)/tools-sessions ./cmd/
+	@cp -f $(BIN_DIR)/tools-sessions $(HOME)/.orchestra/plugins/bin/plugin-tools-sessions 2>/dev/null || true
 
 build-tools-workspace:
 	@mkdir -p $(BIN_DIR)

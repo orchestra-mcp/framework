@@ -6,6 +6,7 @@ set -u
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 BIN_DIR="$ROOT_DIR/bin"
 LOG_DIR="$HOME/Library/Logs/Orchestra"
+DESKTOP="${DESKTOP:-0}"
 
 RST="\033[0m"
 B="\033[1m"
@@ -45,20 +46,22 @@ stop_services() {
     echo ""
     echo -e "${YEL}[DEV]${RST} Stopping services..."
     # Kill ports directly — most reliable way to stop everything.
-    for port in 9201 8080 3000 3001; do
+    for port in 9201 8080 3000 3001 9245; do
         local pids
         pids=$(lsof -ti :"$port" 2>/dev/null || true)
         if [ -n "$pids" ]; then
             echo "$pids" | xargs kill 2>/dev/null || true
         fi
     done
+    # Kill desktop tray app by name (doesn't bind a port).
+    pkill -f "$BIN_DIR/installer" 2>/dev/null || true
     # Also kill our tracked pipe PIDs.
     for pid in "${SERVICE_PGIDS[@]}"; do
         kill "$pid" 2>/dev/null || true
     done
     sleep 0.5
     # Force kill anything left.
-    for port in 9201 8080 3000 3001; do
+    for port in 9201 8080 3000 3001 9245; do
         local pids
         pids=$(lsof -ti :"$port" 2>/dev/null || true)
         if [ -n "$pids" ]; then
@@ -116,6 +119,17 @@ do_build() {
 
     echo -e "${CYN}[BUILD]${RST} Compiling ${B}web${RST} → bin/web"
     (cd "$ROOT_DIR/apps/web" && go build -o "$BIN_DIR/web" ./cmd/ 2>&1) | tag "BUILD" "$CYN"
+
+    if [ "$DESKTOP" = "1" ]; then
+        echo -e "${CYN}[BUILD]${RST} Generating Wails bindings"
+        (cd "$ROOT_DIR/apps/wails" && GOWORK=off wails3 generate bindings -f '-buildvcs=false -gcflags=all="-l"' -clean=true -ts 2>&1) | tag "BUILD" "$CYN"
+
+        echo -e "${CYN}[BUILD]${RST} Building Wails frontend"
+        (cd "$ROOT_DIR/apps/wails/frontend" && npm install --silent 2>&1 && npm run build 2>&1) | tag "BUILD" "$CYN"
+
+        echo -e "${CYN}[BUILD]${RST} Compiling ${B}desktop${RST} → bin/installer"
+        (cd "$ROOT_DIR/apps/wails" && GOWORK=off CGO_ENABLED=1 go build -buildvcs=false -gcflags='all=-l' -o "$BIN_DIR/installer" . 2>&1) | tag "BUILD" "$CYN"
+    fi
 }
 
 # ─── Banner ───────────────────────────────────────────────────────────
@@ -154,6 +168,9 @@ start_services() {
     echo -e "  ${GRN}orchestra${RST}  MCP + WebSocket gateway   ${D}:9201${RST}"
     echo -e "  ${BLU}web${RST}        Go API server              ${D}:8080${RST}"
     echo -e "  ${MAG}next${RST}       Next.js frontend            ${D}:3000${RST}"
+    if [ "$DESKTOP" = "1" ]; then
+        echo -e "  ${YEL}desktop${RST}    Wails desktop app          ${D}:9245${RST}"
+    fi
     echo -e "  ${D}log${RST}        $LOG_FILE"
     echo ""
 
@@ -175,6 +192,12 @@ start_services() {
     (cd "$ROOT_DIR/apps/next" && npm run dev 2>&1) | tag "NEXT" "$MAG" &
     SERVICE_PGIDS+=($!)
 
+    # Wails desktop app (optional, via d=1)
+    if [ "$DESKTOP" = "1" ]; then
+        ORCHESTRA_CLOUD_URL="http://localhost:8080" "$BIN_DIR/installer" 2>&1 | tag "DESK" "$YEL" &
+        SERVICE_PGIDS+=($!)
+    fi
+
     echo -e "  ${B}r${RST} rebuild & restart  ${B}q${RST} quit  ${B}Ctrl+C${RST} force quit"
     echo ""
 }
@@ -184,6 +207,7 @@ start_services() {
 kill_stale 9201
 kill_stale 8080
 kill_stale 3000
+[ "$DESKTOP" = "1" ] && kill_stale 9245
 do_build
 show_banner
 start_services

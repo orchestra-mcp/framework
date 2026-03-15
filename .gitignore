@@ -20,6 +20,10 @@ vendor/
 # Certificates (auto-generated)
 ~/.orchestra/
 
+# Environment (secrets)
+.env
+.env.local
+
 # OS
 .DS_Store
 Thumbs.db

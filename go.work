@@ -11,10 +11,12 @@ use (
 	./libs/plugin-ai-screenshot
 	./libs/plugin-ai-vision
 	./libs/plugin-bridge-claude
+	./libs/plugin-bridge-discord
 	./libs/plugin-bridge-firecrawl
 	./libs/plugin-bridge-gemini
 	./libs/plugin-bridge-ollama
 	./libs/plugin-bridge-openai
+	./libs/plugin-bridge-slack
 	./libs/plugin-devtools-components
 	./libs/plugin-devtools-database
 	./libs/plugin-devtools-debugger
@@ -46,6 +48,4 @@ use (
 	./libs/plugin-transport-stdio
 	./libs/plugin-transport-webtransport
 	./libs/sdk-go
-	./libs/plugin-bridge-discord
-	./libs/plugin-bridge-slack
 )

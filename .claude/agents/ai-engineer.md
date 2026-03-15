@@ -1,4 +1,5 @@
----
+# ai-engineer
+
 name: ai-engineer
 description: AI/ML engineer specializing in LLM integration, agent orchestration, RAG pipelines, vector search, embeddings, and AI-powered IDE features. Delegates when building AI chat, code generation, intelligent autocomplete, agentic workflows, or any AI/LLM feature.
 ---

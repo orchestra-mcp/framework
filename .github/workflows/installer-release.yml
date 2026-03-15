@@ -1,0 +1,135 @@
+name: Installer Release
+
+on:
+  push:
+    tags:
+      - 'installer-v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Version tag (e.g. installer-v1.0.0)'
+        required: false
+        default: ''
+
+jobs:
+  build:
+    name: Build (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: apps/installer/package-lock.json
+
+      - name: Install dependencies
+        working-directory: apps/installer
+        run: npm ci
+
+      # ── macOS build ─────────────────────────────────────────────────────────
+      - name: Build (macOS)
+        if: matrix.os == 'macos-latest'
+        working-directory: apps/installer
+        env:
+          # Disable code signing in CI — use your own cert for production releases
+          CSC_IDENTITY_AUTO_DISCOVERY: false
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run build:mac
+
+      # ── Linux build ─────────────────────────────────────────────────────────
+      - name: Install Linux dependencies
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            libx11-dev libxkbfile-dev libsecret-1-dev libnss3 \
+            libatk1.0-0 libatk-bridge2.0-0 libgtk-3-0
+
+      - name: Build (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        working-directory: apps/installer
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run build:linux
+
+      # ── Windows build ────────────────────────────────────────────────────────
+      - name: Build (Windows)
+        if: matrix.os == 'windows-latest'
+        working-directory: apps/installer
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run build:win
+
+      # ── Upload dist artifacts ─────────────────────────────────────────────
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: installer-${{ matrix.os }}
+          path: apps/installer/dist/
+          if-no-files-found: error
+          retention-days: 7
+
+  # ── Create GitHub Release ────────────────────────────────────────────────────
+  release:
+    name: Create Release
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts/
+
+      - name: List artifacts
+        run: find artifacts/ -type f | sort
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Orchestra Installer ${{ github.ref_name }}
+          body: |
+            ## Orchestra Installer ${{ github.ref_name }}
+
+            Cross-platform system tray app for managing Orchestra MCP.
+
+            ### Downloads
+
+            | Platform | File |
+            |----------|------|
+            | macOS (Intel + Apple Silicon) | `.dmg` |
+            | Linux | `.deb`, `.AppImage` |
+            | Windows | `.exe` (NSIS installer) |
+
+            ### What's included
+
+            - System tray icon with service management (Start/Restart/Stop)
+            - One-click orchestra binary installer
+            - Tunnel to orchestra-mcp.dev
+            - Sync controls with last-sync timestamp
+            - Workspace switcher
+            - IDE configuration (Claude Code, Cursor, VS Code)
+            - Log viewer
+            - Launch at Login toggle
+            - Auto-updates via electron-updater
+          files: |
+            artifacts/**/*.dmg
+            artifacts/**/*.deb
+            artifacts/**/*.AppImage
+            artifacts/**/*.exe
+            artifacts/**/*.yml
+          draft: false
+          prerelease: ${{ contains(github.ref_name, 'alpha') || contains(github.ref_name, 'beta') || contains(github.ref_name, 'rc') }}
+          generate_release_notes: false

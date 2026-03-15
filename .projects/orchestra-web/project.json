@@ -1,9 +1,10 @@
 ---
-created_at: "2026-02-28T03:01:23Z"
-description: 'Full web platform for Orchestra MCP — HTTP/2 JSON-RPC gateway plugin (Go, libs/plugin-transport-webtransport/) + React dashboard (apps/web/) that reuses existing @orchestra-mcp/* packages. Browser access to all 90+ MCP tools at https://localhost:4433. Single binary deployment: gateway embeds compiled React app via go:embed. Uses existing packages/@orchestra-mcp/ui, tasks, theme, icons, editor, explorer, widgets components.'
-id: orchestra-web
+created_at: "2026-03-05 07:33:38"
+description: ""
+id: ""
+mode: outcome
 name: orchestra-web
 slug: orchestra-web
-updated_at: "2026-02-28T03:01:23Z"
+updated_at: "2026-03-14T18:22:14Z"
 ---
 

@@ -17,8 +17,10 @@ build: build-orchestrator build-storage-markdown build-storage-sqlite build-tool
 
 build-all: build build-web build-engine-rag
 
-dev: ## Start all dev servers (orchestra + web API + Next.js)
-	@bash scripts/dev.sh
+d ?= 0
+
+dev: ## Start all dev servers (orchestra + web API + Next.js). Use d=1 for desktop.
+	@DESKTOP=$(d) bash scripts/dev.sh
 
 build-orchestrator:
 	@mkdir -p $(BIN_DIR)

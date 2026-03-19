@@ -29,13 +29,17 @@ echo "Go build: OK"
 # ── Step 3: Build Next.js frontend (BEFORE restarting anything) ──
 echo "--- Building Next.js frontend ---"
 cd "$REPO_DIR/apps/next"
-npm ci --production=false
+if command -v pnpm &> /dev/null; then
+    pnpm install --no-frozen-lockfile
+else
+    npm ci --production=false
+fi
 # Write .env from shared config (populated by GitHub Actions secrets)
 if [ -f "$ENV_FILE" ]; then
     cp "$ENV_FILE" .env.local
     echo "Env file: copied from $ENV_FILE"
 fi
-npm run build
+npx next build
 echo "Next.js build: OK"
 
 # ── Step 4: Atomic swap Go binary ──

@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
         with:
-          go-version: '1.24'
+          go-version: '1.25'
 
       - name: Clone dependencies
         shell: bash
@@ -53,7 +53,7 @@ jobs:
           lock = json.load(open("orchestra.lock"))
           paths = [p["path"] for p in lock["packages"] if p["type"] != "proto" and "engine-rag" not in p.get("path","")]
           with open("go.work", "w") as f:
-              f.write("go 1.24.0\n\nuse (\n")
+              f.write("go 1.25.0\n\nuse (\n")
               for p in paths:
                   f.write(f"\t./{p}\n")
               f.write(")\n")
@@ -72,7 +72,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
         with:
-          go-version: '1.24'
+          go-version: '1.25'
 
       - name: Clone dependencies
         shell: bash
@@ -108,7 +108,7 @@ jobs:
           lock = json.load(open("orchestra.lock"))
           paths = [p["path"] for p in lock["packages"] if p["type"] != "proto" and "engine-rag" not in p.get("path","")]
           with open("go.work", "w") as f:
-              f.write("go 1.24.0\n\nuse (\n")
+              f.write("go 1.25.0\n\nuse (\n")
               for p in paths:
                   f.write(f"\t./{p}\n")
               f.write(")\n")

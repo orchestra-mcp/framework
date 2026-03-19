@@ -970,7 +970,7 @@
       "Bash(# Check the ai background task output first cat /private/tmp/claude-501/-Users-fadymondy-Sites-orchestra-agents/tasks/bdf141d.output)",
       "Bash(gh secret set NPM_TOKEN --repo \"orchestra-mcp/$name\")",
       "Bash(printf \"%-10s secret set\\\\n\" \"$name\")",
-      "Bash(NPM_TOKEN=\"NPM_TOKEN_REDACTED\" npm whoami --registry https://registry.npmjs.org)",
+      "Bash(NPM_TOKEN=\"$NPM_TOKEN\" npm whoami --registry https://registry.npmjs.org)",
       "Bash(ls -la \"/Users/fadymondy/Sites/orchestra-agents/apps/react-native/app/\\(tabs\\)/projects/[id]/\")",
       "Bash(pnpm --filter @orchestra/mobile exec tsc --noEmit)",
       "Bash(printf \"%-10s done\\\\n\" \"$name\")",

@@ -49,12 +49,41 @@ jobs:
         run: |
           go env -w GONOSUMDB="*"
 
-      - name: Scrub stale go.sum entries
+      - name: Fix go.sum hashes
         shell: bash
         run: |
-          find . -name "go.sum" -not -path "*/.git/*" | while read f; do
-            grep -v "github.com/orchestra-mcp/" "$f" > "$f.tmp" && mv "$f.tmp" "$f" || true
-          done
+          python3 << 'PYEOF'
+          import json, glob
+
+          lock = json.load(open("orchestra.lock"))
+          # Collect all orchestra-mcp module paths that are in the workspace
+          workspace_mods = set()
+          for pkg in lock["packages"]:
+              if pkg["type"] == "proto":
+                  continue
+              name = pkg["source"]["url"].replace("https://github.com/", "github.com/")
+              workspace_mods.add(name)
+
+          # Remove go.sum entries for workspace modules only.
+          # Workspace modules are resolved locally — no proxy download needed.
+          # This prevents stale hashes from blocking the build.
+          for sumfile in glob.glob("**/go.sum", recursive=True):
+              if "/.git/" in sumfile:
+                  continue
+              lines = open(sumfile).readlines()
+              kept = []
+              for l in lines:
+                  skip = False
+                  for m in workspace_mods:
+                      if l.startswith(m + " ") or l.startswith(m + "/"):
+                          skip = True
+                          break
+                  if not skip:
+                      kept.append(l)
+              if len(kept) != len(lines):
+                  open(sumfile, "w").writelines(kept)
+                  print(f"  Scrubbed {len(lines)-len(kept)} workspace entries from {sumfile}")
+          PYEOF
 
       - name: Generate go.work
         shell: bash
@@ -115,12 +144,37 @@ jobs:
         run: |
           go env -w GONOSUMDB="*"
 
-      - name: Scrub stale go.sum entries
+      - name: Fix go.sum hashes
         shell: bash
         run: |
-          find . -name "go.sum" -not -path "*/.git/*" | while read f; do
-            grep -v "github.com/orchestra-mcp/" "$f" > "$f.tmp" && mv "$f.tmp" "$f" || true
-          done
+          python3 << 'PYEOF'
+          import json, glob
+
+          lock = json.load(open("orchestra.lock"))
+          workspace_mods = set()
+          for pkg in lock["packages"]:
+              if pkg["type"] == "proto":
+                  continue
+              name = pkg["source"]["url"].replace("https://github.com/", "github.com/")
+              workspace_mods.add(name)
+
+          for sumfile in glob.glob("**/go.sum", recursive=True):
+              if "/.git/" in sumfile:
+                  continue
+              lines = open(sumfile).readlines()
+              kept = []
+              for l in lines:
+                  skip = False
+                  for m in workspace_mods:
+                      if l.startswith(m + " ") or l.startswith(m + "/"):
+                          skip = True
+                          break
+                  if not skip:
+                      kept.append(l)
+              if len(kept) != len(lines):
+                  open(sumfile, "w").writelines(kept)
+                  print(f"  Scrubbed {len(lines)-len(kept)} workspace entries from {sumfile}")
+          PYEOF
 
       - name: Generate go.work
         shell: bash

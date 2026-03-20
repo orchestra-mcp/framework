@@ -7,6 +7,9 @@ An AI-agentic IDE framework with 300 MCP tools across 38 plugins. Single-process
 ## Install
 
 ```bash
+# npm (recommended)
+npm install -g @orchestra-mcp/cli
+
 # macOS / Linux
 curl -fsSL https://raw.githubusercontent.com/orchestra-mcp/framework/master/scripts/install.sh | sh
 
@@ -167,6 +170,33 @@ orchestra pack recommend    # Auto-detect stacks and suggest packs
 orchestra pack search "react"
 ```
 
+## FLOW Methodology
+
+Orchestra includes 17 built-in FLOW skills for methodology-driven development:
+
+| Skill | Purpose |
+|-------|---------|
+| `/flow` | Intelligent methodology router |
+| `/flow-init` | Bootstrap FLOW in a project |
+| `/flow-intake` | Classify and route incoming work |
+| `/flow-brief` | Write a hypothesis to test (Discovery Brief) |
+| `/flow-spec` | One-page plan for what to build (SPEC-Lite) |
+| `/flow-contract` | Product-engineering agreement (Build Contract) |
+| `/flow-experiment` | Design the cheapest valid test |
+| `/flow-expert` | Domain expert agent blueprint |
+| `/flow-review` | Discovery and outcome ritual facilitator |
+| `/flow-gate` | Quality checkpoint |
+| `/flow-kill` | Evidence-based cycle kill/merge decision |
+| `/flow-archive` | Capture what was learned |
+| `/flow-coach` | Learn FLOW interactively |
+| `/flow-config` | Team operating agreement |
+| `/flow-health` | Are we actually doing FLOW? |
+| `/flow-status` | Active cycles dashboard |
+| `/flow-tempo` | Discover your team's rhythm |
+| `/flow-wip` | Work-in-progress limits |
+
+FLOW operates in two modes: **Discovery** (learning — produces evidence) and **Outcome** (shipping — produces working product). Every cycle traces the Decision Spine: Vision → Strategy → Bet → Cycle.
+
 ## Feature Workflow (34 Tools)
 
 The tools.features plugin implements an 11-state feature lifecycle:
@@ -190,6 +220,30 @@ backlog → todo → in-progress → ready-for-testing → in-testing →
 | **WIP Limits** | 3 | `set_wip_limits`, `get_wip_limits`, `check_wip_limit` |
 | **Reporting** | 3 | `get_progress`, `get_review_queue`, `get_blocked_features` |
 | **Metadata** | 8 | `add_labels`, `remove_labels`, `assign_feature`, `unassign_feature`, `set_estimate`, `save_note`, `list_notes` |
+
+## Server Deployment
+
+`setup-server.sh` provisions an Ubuntu 24.04 server with:
+
+- **Go** backend (Fiber v3 + GORM) via systemd
+- **Next.js** frontend (SSR) via systemd + pnpm
+- **PowerSync** (self-hosted, Docker) for offline-first mobile sync
+- **PostgreSQL 16** with WAL logical replication
+- **Caddy** reverse proxy with Cloudflare DNS-01 TLS
+- **UFW** firewall, **swap**, **SSH hardening**, **daily backups**
+
+```bash
+# First-time setup (run as root)
+bash scripts/deploy/setup-server.sh
+
+# Deploy updates (run as deploy user)
+/opt/orchestra/deploy.sh all        # Deploy everything
+/opt/orchestra/deploy.sh web        # Go backend only
+/opt/orchestra/deploy.sh next       # Next.js frontend only
+/opt/orchestra/deploy.sh powersync  # PowerSync only
+```
+
+The script is idempotent — safe to re-run on existing servers (preserves credentials).
 
 ## Project Structure
 
@@ -215,6 +269,9 @@ framework/
 ├── packs/                             # 24 installable content packs
 ├── scripts/
 │   ├── install.sh                     # curl | sh installer (macOS/Linux/Windows)
+│   ├── npm-postinstall.js             # npm postinstall binary downloader
+│   ├── deploy/setup-server.sh         # Ubuntu 24.04 server provisioning
+│   ├── deploy/deploy.sh               # Deploy script (web/next/powersync)
 │   ├── new-plugin.sh                  # Plugin generator
 │   ├── sync-repos.sh                  # Push libs/ to individual GitHub repos
 │   ├── release.sh                     # Tag + create GitHub releases
@@ -222,9 +279,11 @@ framework/
 │   └── test-e2e.sh                    # End-to-end integration test
 ├── .github/workflows/
 │   ├── ci.yml                         # CI: build + test + vet on push/PR
-│   └── release.yml                    # Release: 5-platform cross-compile on tag push
+│   ├── release.yml                    # Release: 5-platform cross-compile on tag push
+│   └── publish.yml                    # Publish @orchestra-mcp/cli to npm after release
+├── package.json                       # npm package (@orchestra-mcp/cli)
 ├── orchestra.json                     # Package manifest
-├── orchestra.lock                     # Pinned versions (44 packages)
+├── orchestra.lock                     # Pinned versions (48 packages)
 ├── go.work                            # Go workspace
 └── Makefile                           # Build, test, install, release
 ```
@@ -291,11 +350,11 @@ func main() {
 ./scripts/ship.sh v1.0.0 --dry-run
 
 # Sync local libs/ to individual GitHub repos
-./scripts/sync-repos.sh                     # Sync all 44 packages
+./scripts/sync-repos.sh                     # Sync all 48 packages
 ./scripts/sync-repos.sh sdk-go cli          # Sync specific packages
 
 # Release all packages
-./scripts/release.sh v1.0.0                 # Tag + release all 44 repos
+./scripts/release.sh v1.0.0                 # Tag + release all 48 repos
 ./scripts/release.sh v1.0.0 --force         # Re-tag existing version
 ```
 
@@ -314,7 +373,7 @@ All inter-plugin communication uses length-delimited Protobuf over QUIC with mTL
 
 ## Module Paths
 
-All 44 packages are published as independent Go modules under [`github.com/orchestra-mcp/`](https://github.com/orchestra-mcp):
+All 48 packages are published as independent Go modules under [`github.com/orchestra-mcp/`](https://github.com/orchestra-mcp):
 
 | Core | Plugins (Core) | Plugins (Optional) |
 |------|----------------|-------------------|
@@ -354,6 +413,7 @@ All 44 packages are published as independent Go modules under [`github.com/orche
 | | | [plugin-integration-figma](https://github.com/orchestra-mcp/plugin-integration-figma) |
 | | | [plugin-transport-quic-bridge](https://github.com/orchestra-mcp/plugin-transport-quic-bridge) |
 | | | [plugin-transport-webtransport](https://github.com/orchestra-mcp/plugin-transport-webtransport) |
+| | | [plugin-sync-cloud](https://github.com/orchestra-mcp/plugin-sync-cloud) |
 | | | [plugin-engine-rag](https://github.com/orchestra-mcp/plugin-engine-rag) |
 
 ## Contributing

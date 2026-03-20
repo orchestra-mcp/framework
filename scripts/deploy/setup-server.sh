@@ -349,10 +349,15 @@ APP_ENV=production
 CF_API_TOKEN=$CF_API_TOKEN
 POWERSYNC_URL=http://localhost:8585
 POWERSYNC_API_TOKEN=$PS_API_TOKEN
+UPLOAD_DIR=$APP_DIR/uploads
 ENVEOF
 
 chmod 600 $APP_DIR/shared/.env
 chown $DEPLOY_USER:$DEPLOY_USER $APP_DIR/shared/.env
+
+# Ensure uploads directory exists with correct permissions.
+mkdir -p $APP_DIR/uploads/avatars $APP_DIR/uploads/covers
+chown -R $DEPLOY_USER:$DEPLOY_USER $APP_DIR/uploads
 
 # ── 12. Install systemd services + Caddyfile ──
 echo ""

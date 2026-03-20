@@ -72,6 +72,11 @@ yourdomain.com {
 		}
 	}
 
+	# User uploads (avatars, covers) → Go backend static file server
+	handle /uploads/* {
+		reverse_proxy localhost:8080
+	}
+
 	# Health check → Go backend (not under /api)
 	handle /health {
 		reverse_proxy localhost:8080

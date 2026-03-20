@@ -7,8 +7,11 @@ on:
     branches: [master, main]
 
 env:
-  GONOSUMCHECK: github.com/orchestra-mcp/*
-  GONOSUMDB: github.com/orchestra-mcp/*
+  GONOSUMDB: "*"
+  GONOSUMCHECK: "*"
+  GONOSUMDB_EXTRA: "*"
+  GOFLAGS: "-mod=mod"
+  GOPROXY: "https://proxy.golang.org,direct"
 
 jobs:
   test:
@@ -44,6 +47,12 @@ jobs:
                       sys.exit(1)
               print(f"  Cloned {path}")
           PYEOF
+
+      - name: Configure Go env
+        run: |
+          go env -w GONOSUMDB="*"
+          go env -w GONOSUMCHECK="*"
+          go env -w GOFLAGS="-mod=mod"
 
       - name: Generate go.work
         shell: bash
@@ -99,6 +108,12 @@ jobs:
                       sys.exit(1)
               print(f"  Cloned {path}")
           PYEOF
+
+      - name: Configure Go env
+        run: |
+          go env -w GONOSUMDB="*"
+          go env -w GONOSUMCHECK="*"
+          go env -w GOFLAGS="-mod=mod"
 
       - name: Generate go.work
         shell: bash

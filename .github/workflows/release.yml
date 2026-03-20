@@ -8,8 +8,11 @@ permissions:
   contents: write
 
 env:
-  GONOSUMCHECK: github.com/orchestra-mcp/*
-  GONOSUMDB: github.com/orchestra-mcp/*
+  GONOSUMDB: "*"
+  GONOSUMCHECK: "*"
+  GONOSUMDB_EXTRA: "*"
+  GOFLAGS: "-mod=mod"
+  GOPROXY: "https://proxy.golang.org,direct"
 
 jobs:
   build:
@@ -38,6 +41,12 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: '1.25'
+
+      - name: Configure Go env
+        run: |
+          go env -w GONOSUMDB="*"
+          go env -w GONOSUMCHECK="*"
+          go env -w GOFLAGS="-mod=mod"
 
       - name: Clone dependencies
         shell: bash
@@ -167,6 +176,12 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: '1.25'
+
+      - name: Configure Go env
+        run: |
+          go env -w GONOSUMDB="*"
+          go env -w GONOSUMCHECK="*"
+          go env -w GOFLAGS="-mod=mod"
 
       - name: Clone dependencies
         shell: bash

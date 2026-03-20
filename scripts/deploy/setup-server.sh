@@ -9,6 +9,7 @@ set -euo pipefail
 DEPLOY_USER="deploy"
 WEB_REPO_URL="https://github.com/orchestra-mcp/web.git"
 NEXT_REPO_URL="https://github.com/orchestra-mcp/next.git"
+CLOUD_MCP_REPO_URL="https://github.com/orchestra-mcp/cloud-mcp.git"
 REPO_BRANCH="master"
 APP_DIR="/opt/orchestra"
 DB_NAME="orchestra_web"
@@ -232,7 +233,7 @@ echo "Firewall: OK"
 # ── 9. Create application directories ──
 echo ""
 echo "--- [9/14] Creating application directories ---"
-mkdir -p $APP_DIR/web $APP_DIR/next $APP_DIR/powersync $APP_DIR/shared $APP_DIR/backups /var/log/orchestra
+mkdir -p $APP_DIR/web $APP_DIR/next $APP_DIR/cloud-mcp/bin $APP_DIR/powersync $APP_DIR/shared $APP_DIR/backups /var/log/orchestra
 chown -R $DEPLOY_USER:$DEPLOY_USER $APP_DIR /var/log/orchestra
 
 # ── 10. Clone repositories + set up PowerSync ──
@@ -250,6 +251,13 @@ if [ -d "$APP_DIR/next/.git" ]; then
     su - $DEPLOY_USER -c "cd $APP_DIR/next && git pull origin $REPO_BRANCH"
 else
     su - $DEPLOY_USER -c "git clone --branch $REPO_BRANCH $NEXT_REPO_URL $APP_DIR/next"
+fi
+
+if [ -d "$APP_DIR/cloud-mcp/.git" ]; then
+    echo "Cloud MCP repo already cloned, pulling latest"
+    su - $DEPLOY_USER -c "cd $APP_DIR/cloud-mcp && git pull origin $REPO_BRANCH"
+else
+    su - $DEPLOY_USER -c "git clone --branch $REPO_BRANCH $CLOUD_MCP_REPO_URL $APP_DIR/cloud-mcp"
 fi
 
 # PowerSync config — uses host networking (127.0.0.1), port 8585
@@ -400,6 +408,33 @@ NoNewPrivileges=true
 WantedBy=multi-user.target
 EOF
 
+cat > /etc/systemd/system/orchestra-cloud-mcp.service << 'EOF'
+[Unit]
+Description=Orchestra Cloud MCP (Hosted MCP Server)
+After=network.target postgresql.service
+Requires=postgresql.service
+
+[Service]
+Type=simple
+User=deploy
+Group=deploy
+WorkingDirectory=/opt/orchestra/cloud-mcp
+ExecStart=/opt/orchestra/cloud-mcp/bin/orchestra-cloud-mcp
+Restart=always
+RestartSec=5
+EnvironmentFile=/opt/orchestra/shared/.env
+Environment=PORT=8091
+KillSignal=SIGTERM
+TimeoutStopSec=15
+NoNewPrivileges=true
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=orchestra-cloud-mcp
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
 # Only write Caddyfile on fresh install — never overwrite existing domain config
 if [ "$EXISTING_INSTALL" = true ] && [ -f /etc/caddy/Caddyfile ] && ! grep -q "yourdomain.com" /etc/caddy/Caddyfile; then
     echo "Caddyfile already configured with a real domain — adding PowerSync route if missing"
@@ -410,6 +445,44 @@ if [ "$EXISTING_INSTALL" = true ] && [ -f /etc/caddy/Caddyfile ] && ! grep -q "y
     fi
 else
 cat > /etc/caddy/Caddyfile << 'EOF'
+# Orchestra Cloud MCP — mcp.yourdomain.com
+mcp.yourdomain.com {
+	tls {
+		dns cloudflare {env.CF_API_TOKEN}
+	}
+
+	encode gzip zstd
+
+	header {
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+
+	# SSE stream — disable buffering
+	handle /mcp {
+		reverse_proxy localhost:8091 {
+			flush_interval -1
+		}
+	}
+
+	handle /health {
+		reverse_proxy localhost:8091
+	}
+
+	handle {
+		reverse_proxy localhost:8091
+	}
+
+	log {
+		output file /var/log/caddy/orchestra-mcp-access.log {
+			roll_size 100mb
+			roll_keep 5
+		}
+	}
+}
+
 yourdomain.com {
 	tls {
 		dns cloudflare {env.CF_API_TOKEN}
@@ -483,7 +556,7 @@ EOF
 fi
 
 systemctl daemon-reload
-systemctl enable orchestra-web orchestra-next caddy
+systemctl enable orchestra-web orchestra-next orchestra-cloud-mcp caddy
 
 # Start PowerSync container
 echo "Starting PowerSync container..."
@@ -508,20 +581,27 @@ fi
 cat > /etc/sudoers.d/orchestra << 'EOF'
 deploy ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart orchestra-web
 deploy ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart orchestra-next
+deploy ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart orchestra-cloud-mcp
 deploy ALL=(ALL) NOPASSWD: /usr/bin/systemctl reload caddy
 deploy ALL=(ALL) NOPASSWD: /usr/bin/systemctl status orchestra-web *
 deploy ALL=(ALL) NOPASSWD: /usr/bin/systemctl status orchestra-next *
+deploy ALL=(ALL) NOPASSWD: /usr/bin/systemctl status orchestra-cloud-mcp *
 deploy ALL=(ALL) NOPASSWD: /usr/bin/systemctl status orchestra-web
 deploy ALL=(ALL) NOPASSWD: /usr/bin/systemctl status orchestra-next
+deploy ALL=(ALL) NOPASSWD: /usr/bin/systemctl status orchestra-cloud-mcp
 deploy ALL=(ALL) NOPASSWD: /bin/systemctl restart orchestra-web
 deploy ALL=(ALL) NOPASSWD: /bin/systemctl restart orchestra-next
+deploy ALL=(ALL) NOPASSWD: /bin/systemctl restart orchestra-cloud-mcp
 deploy ALL=(ALL) NOPASSWD: /bin/systemctl reload caddy
 deploy ALL=(ALL) NOPASSWD: /bin/systemctl status orchestra-web *
 deploy ALL=(ALL) NOPASSWD: /bin/systemctl status orchestra-next *
+deploy ALL=(ALL) NOPASSWD: /bin/systemctl status orchestra-cloud-mcp *
 deploy ALL=(ALL) NOPASSWD: /bin/systemctl status orchestra-web
 deploy ALL=(ALL) NOPASSWD: /bin/systemctl status orchestra-next
+deploy ALL=(ALL) NOPASSWD: /bin/systemctl status orchestra-cloud-mcp
 deploy ALL=(ALL) NOPASSWD: /usr/bin/journalctl -u orchestra-web *
 deploy ALL=(ALL) NOPASSWD: /usr/bin/journalctl -u orchestra-next *
+deploy ALL=(ALL) NOPASSWD: /usr/bin/journalctl -u orchestra-cloud-mcp *
 deploy ALL=(ALL) NOPASSWD: /usr/bin/journalctl -u orchestra-powersync *
 EOF
 chmod 440 /etc/sudoers.d/orchestra
@@ -576,6 +656,21 @@ deploy_next() {
     done
 }
 
+deploy_cloud_mcp() {
+    echo "--- Cloud MCP ---"
+    cd "$APP_DIR/cloud-mcp"
+    git fetch origin master && git reset --hard origin/master
+    mkdir -p bin
+    go build -buildvcs=false -ldflags="-s -w" -o bin/orchestra-cloud-mcp-new ./cmd/
+    mv bin/orchestra-cloud-mcp-new bin/orchestra-cloud-mcp
+    sudo systemctl restart orchestra-cloud-mcp
+    for i in $(seq 1 15); do
+        curl -sf http://localhost:8091/health > /dev/null 2>&1 && echo "Cloud MCP: healthy" && return 0
+        [ "$i" -eq 15 ] && echo "FATAL: Cloud MCP health check failed" && sudo journalctl -u orchestra-cloud-mcp --no-pager -n 30 && exit 1
+        sleep 2
+    done
+}
+
 deploy_powersync() {
     echo "--- PowerSync ---"
     cd "$APP_DIR/powersync"
@@ -599,11 +694,12 @@ deploy_powersync() {
 }
 
 case "$COMPONENT" in
-    web)       deploy_web ;;
-    next)      deploy_next ;;
-    powersync) deploy_powersync ;;
-    all)       deploy_web; deploy_next; deploy_powersync ;;
-    *)         echo "Usage: $0 [web|next|powersync|all]"; exit 1 ;;
+    web)        deploy_web ;;
+    next)       deploy_next ;;
+    cloud-mcp)  deploy_cloud_mcp ;;
+    powersync)  deploy_powersync ;;
+    all)        deploy_web; deploy_next; deploy_cloud_mcp; deploy_powersync ;;
+    *)          echo "Usage: $0 [web|next|cloud-mcp|powersync|all]"; exit 1 ;;
 esac
 
 echo "=== Done ==="
@@ -656,7 +752,7 @@ echo ""
 echo "  5. Start Caddy:"
 echo "     systemctl start caddy"
 echo ""
-echo "  6. GitHub secrets (add to BOTH web + next repos):"
+echo "  6. GitHub secrets (add to ALL repos: web + next + cloud-mcp):"
 echo "     VPS_HOST=$SERVER_IP"
 echo "     VPS_USER=deploy"
 echo "     VPS_SSH_KEY=<generate with: ssh-keygen -t ed25519>"
@@ -665,6 +761,7 @@ echo ""
 echo "  Services:"
 echo "     Go API:     systemctl status orchestra-web"
 echo "     Next.js:    systemctl status orchestra-next"
+echo "     Cloud MCP:  systemctl status orchestra-cloud-mcp"
 echo "     PowerSync:  docker logs orchestra-powersync"
 echo "     Caddy:      systemctl status caddy"
 echo ""

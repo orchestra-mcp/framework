@@ -1,6 +1,7 @@
 go 1.25.0
 
 use (
+	./apps/cloud-mcp
 	./apps/web
 	./libs/cli
 	./libs/gen-go
@@ -54,3 +55,5 @@ use (
 	./libs/plugin-transport-webtransport
 	./libs/sdk-go
 )
+
+replace github.com/orchestra-mcp/plugin-devtools-api v1.0.5 => ./libs/plugin-devtools-api

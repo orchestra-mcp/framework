@@ -70,7 +70,7 @@ mkdir -p "$APP_DIR/env"
 cat > "$APP_DIR/env/cloud-mcp.env" << ENVEOF
 DATABASE_URL=$DB_URL
 JWT_SECRET=$JWT_SECRET
-WEB_API_BASE_URL=https://orchestra-mcp.com/api
+WEB_API_BASE_URL=https://orchestra-mcp.dev/api
 PORT=$PORT
 ENVEOF
 chmod 600 "$APP_DIR/env/cloud-mcp.env"
@@ -181,7 +181,7 @@ echo ""
 echo "  Service:   systemctl status $SERVICE_NAME"
 echo "  Logs:      journalctl -u $SERVICE_NAME -f"
 echo "  Health:    curl http://localhost:$PORT/health"
-echo "  MCP:       https://orchestra-mcp.com/mcp"
+echo "  MCP:       https://orchestra-mcp.dev/mcp"
 echo ""
 echo "  NEXT STEPS:"
 echo "  1. Add GitHub secrets to orchestra-mcp/cloud-mcp repo:"

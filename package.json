@@ -1,0 +1,44 @@
+{
+  "name": "@orchestra-mcp/cli",
+  "version": "1.0.4",
+  "description": "Orchestra MCP — AI-agentic IDE with project management, workflow engine, and multi-platform support",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/orchestra-mcp/framework.git"
+  },
+  "homepage": "https://orchestra-mcp.dev",
+  "keywords": [
+    "orchestra",
+    "mcp",
+    "ai",
+    "ide",
+    "cli",
+    "project-management",
+    "workflow"
+  ],
+  "bin": {
+    "orchestra": "bin/orchestra"
+  },
+  "scripts": {
+    "postinstall": "node scripts/npm-postinstall.js"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "bin/",
+    "scripts/npm-postinstall.js",
+    "README.md",
+    "LICENSE"
+  ]
+}

@@ -1,28 +1,52 @@
 name: Publish to npm
+
 on:
-  push:
-    tags: ['v*']
+  # Run after the Release workflow completes (so tarballs are uploaded)
+  workflow_run:
+    workflows: [Release]
+    types: [completed]
+
 jobs:
   publish:
     runs-on: ubuntu-latest
-    # Only run if package.json exists AND has a "name" field (real npm package)
-    if: false
+    # Only run if release succeeded and was triggered by a version tag
+    if: >
+      github.event.workflow_run.conclusion == 'success' &&
+      startsWith(github.event.workflow_run.head_branch, 'v')
     permissions:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
         with:
-          version: 9
+          ref: ${{ github.event.workflow_run.head_branch }}
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           registry-url: 'https://registry.npmjs.org'
-      - run: pnpm install --no-frozen-lockfile
-      - run: pnpm build || true
-      - name: Publish to npm
+
+      - name: Sync version from tag
         run: |
-          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > .npmrc
-          npm publish --access public --ignore-scripts || echo "Already published or failed"
+          TAG="${{ github.event.workflow_run.head_branch }}"
+          VERSION="${TAG#v}"
+          echo "Publishing @orchestra-mcp/cli@${VERSION}"
+          node -e "
+            const pkg = require('./package.json');
+            pkg.version = '${VERSION}';
+            require('fs').writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+          "
+
+      - name: Create bin stub
+        run: |
+          mkdir -p bin
+          cat > bin/orchestra << 'STUB'
+          #!/bin/sh
+          echo "Run 'npx @orchestra-mcp/cli' or reinstall to download the binary." >&2
+          exit 1
+          STUB
+          chmod +x bin/orchestra
+
+      - name: Publish to npm
+        run: npm publish --access public --ignore-scripts
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

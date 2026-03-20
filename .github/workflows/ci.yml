@@ -51,6 +51,13 @@ jobs:
           go env -w GONOSUMDB="*"
           go env -w GONOPROXY="*"
 
+      - name: Scrub stale go.sum entries
+        shell: bash
+        run: |
+          find . -name "go.sum" -not -path "*/.git/*" | while read f; do
+            grep -v "github.com/orchestra-mcp/" "$f" > "$f.tmp" && mv "$f.tmp" "$f" || true
+          done
+
       - name: Generate go.work
         shell: bash
         run: |
@@ -110,6 +117,13 @@ jobs:
         run: |
           go env -w GONOSUMDB="*"
           go env -w GONOPROXY="*"
+
+      - name: Scrub stale go.sum entries
+        shell: bash
+        run: |
+          find . -name "go.sum" -not -path "*/.git/*" | while read f; do
+            grep -v "github.com/orchestra-mcp/" "$f" > "$f.tmp" && mv "$f.tmp" "$f" || true
+          done
 
       - name: Generate go.work
         shell: bash

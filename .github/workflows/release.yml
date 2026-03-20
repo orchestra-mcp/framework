@@ -71,6 +71,13 @@ jobs:
               print(f"  Cloned {path}")
           PYEOF
 
+      - name: Scrub stale go.sum entries
+        shell: bash
+        run: |
+          find . -name "go.sum" -not -path "*/.git/*" | while read f; do
+            grep -v "github.com/orchestra-mcp/" "$f" > "$f.tmp" && mv "$f.tmp" "$f" || true
+          done
+
       - name: Generate go.work
         shell: bash
         run: |
@@ -204,6 +211,13 @@ jobs:
                       sys.exit(1)
               print(f"  Cloned {path}")
           PYEOF
+
+      - name: Scrub stale go.sum entries
+        shell: bash
+        run: |
+          find . -name "go.sum" -not -path "*/.git/*" | while read f; do
+            grep -v "github.com/orchestra-mcp/" "$f" > "$f.tmp" && mv "$f.tmp" "$f" || true
+          done
 
       - name: Generate go.work
         shell: bash

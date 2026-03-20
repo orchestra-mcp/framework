@@ -49,12 +49,15 @@ ok "Credentials loaded"
 
 # ── 2. Clone or update repo ──
 info "Cloning cloud-mcp repo..."
+# Remove any partial directory that has no .git (failed previous run)
+if [ -d "$APP_DIR/cloud-mcp" ] && [ ! -d "$APP_DIR/cloud-mcp/.git" ]; then
+    rm -rf "$APP_DIR/cloud-mcp"
+fi
+
 if [ -d "$APP_DIR/cloud-mcp/.git" ]; then
     su - $DEPLOY_USER -c "cd $APP_DIR/cloud-mcp && git fetch origin master && git reset --hard origin/master"
     ok "Repo updated"
 else
-    # Remove any partial/empty directory before cloning
-    rm -rf "$APP_DIR/cloud-mcp"
     su - $DEPLOY_USER -c "git clone $CLOUD_MCP_REPO $APP_DIR/cloud-mcp"
     ok "Repo cloned"
 fi

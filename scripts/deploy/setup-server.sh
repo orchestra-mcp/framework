@@ -252,14 +252,14 @@ else
     su - $DEPLOY_USER -c "git clone --branch $REPO_BRANCH $NEXT_REPO_URL $APP_DIR/next"
 fi
 
-# PowerSync config
+# PowerSync config — uses host networking (127.0.0.1), port 8585
 cat > $APP_DIR/powersync/powersync.yaml << PSEOF
 _type: self-hosted
 
 replication:
   connections:
     - type: postgresql
-      hostname: 172.17.0.1
+      hostname: 127.0.0.1
       port: 5432
       database: $DB_NAME
       username: $DB_USER
@@ -268,7 +268,7 @@ replication:
 
 storage:
   type: postgresql
-  hostname: 172.17.0.1
+  hostname: 127.0.0.1
   port: 5432
   database: powersync_storage
   username: $DB_USER
@@ -276,10 +276,10 @@ storage:
   sslmode: disable
 
 client_auth:
-  jwks_uri: http://172.17.0.1:8080/api/powersync/keys
+  jwks_uri: http://127.0.0.1:8080/api/powersync/keys
   audience: ["powersync"]
 
-port: 8080
+port: 8585
 
 sync_config:
   path: /config/sync-rules.yaml
@@ -307,37 +307,29 @@ fi
 cat > $APP_DIR/powersync/docker-compose.yml << 'DCEOF'
 # PowerSync Self-Hosted — Orchestra
 # Managed by setup-server.sh. Do not edit manually.
+# Uses host networking so PowerSync connects to PostgreSQL via 127.0.0.1.
 
 services:
   powersync:
     image: journeyapps/powersync-service:latest
     container_name: orchestra-powersync
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:8585:8080"
+    network_mode: host
     volumes:
       - ./powersync.yaml:/config/powersync.yaml:ro
       - ./sync-rules.yaml:/config/sync-rules.yaml:ro
     command: ["start", "-c", "/config/powersync.yaml"]
-    networks:
-      - orchestra
-
-networks:
-  orchestra:
-    driver: bridge
 DCEOF
 
 chown -R $DEPLOY_USER:$DEPLOY_USER $APP_DIR/powersync
 
-# Allow PostgreSQL connections from Docker bridge (172.17.0.0/16)
-PG_HBA=$(su - postgres -c "psql -tc \"SHOW hba_file\"" | xargs)
-if grep -q "172.17.0.0/16" "$PG_HBA" 2>/dev/null; then
-    echo "PostgreSQL already allows Docker bridge connections"
-else
-    echo "host    all    $DB_USER    172.17.0.0/16    md5" >> "$PG_HBA"
-    systemctl reload postgresql
-    echo "PostgreSQL: allowed Docker bridge connections"
-fi
+# Grant superuser to orchestra user (required for PowerSync migrations)
+su - postgres -c "psql -c \"ALTER USER $DB_USER WITH SUPERUSER\""
+echo "PostgreSQL: granted superuser to $DB_USER (required for PowerSync)"
+
+# Create publication for PowerSync WAL replication
+su - postgres -c "psql -d $DB_NAME -c \"SELECT 1 FROM pg_publication WHERE pubname='powersync'\" | grep -q 1 || psql -d $DB_NAME -c \"CREATE PUBLICATION powersync FOR ALL TABLES\""
+echo "PostgreSQL: publication 'powersync' ready"
 
 # ── 11. Create environment file ──
 echo ""

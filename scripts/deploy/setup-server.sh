@@ -13,10 +13,28 @@ REPO_BRANCH="master"
 APP_DIR="/opt/orchestra"
 DB_NAME="orchestra_web"
 DB_USER="orchestra"
-DB_PASS="$(openssl rand -hex 16)"
-JWT_SECRET="$(openssl rand -hex 32)"
 GO_VERSION="1.24.4"
 NODE_MAJOR="22"
+
+# Detect existing install — preserve credentials
+if [ -f "$APP_DIR/shared/.env" ]; then
+    echo "Existing install detected — preserving credentials from $APP_DIR/shared/.env"
+    EXISTING_INSTALL=true
+    DB_PASS=$(grep -oP 'DATABASE_URL=.*:\/\/[^:]+:\K[^@]+' "$APP_DIR/shared/.env" || echo "")
+    JWT_SECRET=$(grep -oP 'JWT_SECRET=\K.*' "$APP_DIR/shared/.env" || echo "")
+    PS_API_TOKEN=$(grep -oP 'POWERSYNC_API_TOKEN=\K.*' "$APP_DIR/shared/.env" || echo "")
+    CF_API_TOKEN=$(grep -oP 'CF_API_TOKEN=\K.*' "$APP_DIR/shared/.env" || echo "CHANGEME")
+    # Fall back to new values if extraction failed
+    [ -z "$DB_PASS" ] && DB_PASS="$(openssl rand -hex 16)"
+    [ -z "$JWT_SECRET" ] && JWT_SECRET="$(openssl rand -hex 32)"
+    [ -z "$PS_API_TOKEN" ] && PS_API_TOKEN="$(openssl rand -hex 16)"
+else
+    EXISTING_INSTALL=false
+    DB_PASS="$(openssl rand -hex 16)"
+    JWT_SECRET="$(openssl rand -hex 32)"
+    PS_API_TOKEN="$(openssl rand -hex 16)"
+    CF_API_TOKEN="CHANGEME"
+fi
 
 echo "═══════════════════════════════════════════════════"
 echo "  Orchestra Web — Server Setup (Ubuntu 24.04)"
@@ -29,13 +47,13 @@ fi
 
 # ── 1. System update ──
 echo ""
-echo "--- [1/12] Updating system packages ---"
+echo "--- [1/14] Updating system packages ---"
 apt-get update && apt-get upgrade -y
 apt-get install -y curl wget git build-essential unzip software-properties-common ca-certificates gnupg
 
 # ── 2. Create deploy user ──
 echo ""
-echo "--- [2/12] Creating deploy user ---"
+echo "--- [2/14] Creating deploy user ---"
 if id "$DEPLOY_USER" &>/dev/null; then
     echo "User $DEPLOY_USER already exists, skipping"
 else
@@ -59,7 +77,7 @@ chown -R $DEPLOY_USER:$DEPLOY_USER /home/$DEPLOY_USER/.ssh
 
 # ── 3. Install Go ──
 echo ""
-echo "--- [3/12] Installing Go $GO_VERSION ---"
+echo "--- [3/14] Installing Go $GO_VERSION ---"
 if command -v go &>/dev/null && go version | grep -q "go${GO_VERSION}"; then
     echo "Go $GO_VERSION already installed, skipping"
 else
@@ -79,9 +97,9 @@ GOEOF
     echo "Installed: $(/usr/local/go/bin/go version)"
 fi
 
-# ── 4. Install Node.js ──
+# ── 4. Install Node.js + pnpm ──
 echo ""
-echo "--- [4/12] Installing Node.js $NODE_MAJOR LTS ---"
+echo "--- [4/14] Installing Node.js $NODE_MAJOR LTS + pnpm ---"
 if command -v node &>/dev/null && node -v | grep -q "v${NODE_MAJOR}"; then
     echo "Node.js $NODE_MAJOR already installed, skipping"
 else
@@ -90,9 +108,17 @@ else
     echo "Installed: $(node -v), npm $(npm -v)"
 fi
 
+# Install pnpm globally (needed for Next.js workspace:* deps)
+if command -v pnpm &>/dev/null; then
+    echo "pnpm already installed: $(pnpm -v)"
+else
+    npm install -g pnpm
+    echo "Installed: pnpm $(pnpm -v)"
+fi
+
 # ── 5. Install PostgreSQL 16 ──
 echo ""
-echo "--- [5/12] Installing PostgreSQL 16 ---"
+echo "--- [5/14] Installing PostgreSQL 16 ---"
 if systemctl is-active --quiet postgresql; then
     echo "PostgreSQL already running, skipping install"
 else
@@ -106,14 +132,47 @@ else
     echo "PostgreSQL 16 installed and running"
 fi
 
-echo "Creating database: $DB_NAME, user: $DB_USER"
+echo "Creating databases: $DB_NAME + powersync_storage, user: $DB_USER"
 su - postgres -c "psql -tc \"SELECT 1 FROM pg_roles WHERE rolname='$DB_USER'\" | grep -q 1 || psql -c \"CREATE USER $DB_USER WITH PASSWORD '$DB_PASS'\""
 su - postgres -c "psql -tc \"SELECT 1 FROM pg_database WHERE datname='$DB_NAME'\" | grep -q 1 || psql -c \"CREATE DATABASE $DB_NAME OWNER $DB_USER\""
 su - postgres -c "psql -c \"GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER\""
+su - postgres -c "psql -tc \"SELECT 1 FROM pg_database WHERE datname='powersync_storage'\" | grep -q 1 || psql -c \"CREATE DATABASE powersync_storage OWNER $DB_USER\""
+su - postgres -c "psql -c \"GRANT ALL PRIVILEGES ON DATABASE powersync_storage TO $DB_USER\""
 
-# ── 6. Install Caddy with Cloudflare DNS plugin ──
+# Enable WAL-level logical replication (required by PowerSync)
+PG_CONF=$(su - postgres -c "psql -tc \"SHOW config_file\"" | xargs)
+if grep -q "^wal_level = logical" "$PG_CONF" 2>/dev/null; then
+    echo "WAL logical replication already enabled"
+else
+    echo "wal_level = logical" >> "$PG_CONF"
+    systemctl restart postgresql
+    echo "WAL logical replication enabled (postgresql restarted)"
+fi
+
+# ── 6. Install Docker ──
 echo ""
-echo "--- [6/12] Installing Caddy with Cloudflare DNS plugin ---"
+echo "--- [6/14] Installing Docker ---"
+if command -v docker &>/dev/null; then
+    echo "Docker already installed: $(docker --version)"
+else
+    curl -fsSL https://get.docker.com | bash
+    systemctl enable docker
+    systemctl start docker
+    usermod -aG docker $DEPLOY_USER
+    echo "Docker installed: $(docker --version)"
+fi
+
+# Install docker compose plugin if missing
+if docker compose version &>/dev/null; then
+    echo "Docker Compose already available"
+else
+    apt-get install -y docker-compose-plugin
+    echo "Docker Compose installed"
+fi
+
+# ── 7. Install Caddy with Cloudflare DNS plugin ──
+echo ""
+echo "--- [7/14] Installing Caddy with Cloudflare DNS plugin ---"
 if command -v caddy &>/dev/null; then
     echo "Caddy already installed, skipping"
 else
@@ -157,9 +216,9 @@ EOF
     echo "Caddy installed: $(caddy version)"
 fi
 
-# ── 7. Configure UFW firewall ──
+# ── 8. Configure UFW firewall ──
 echo ""
-echo "--- [7/12] Configuring firewall ---"
+echo "--- [8/14] Configuring firewall ---"
 apt-get install -y ufw
 ufw default deny incoming
 ufw default allow outgoing
@@ -170,15 +229,15 @@ ufw allow 443/udp comment 'HTTP3 QUIC'
 echo "y" | ufw enable
 echo "Firewall: OK"
 
-# ── 8. Create application directories ──
+# ── 9. Create application directories ──
 echo ""
-echo "--- [8/12] Creating application directories ---"
-mkdir -p $APP_DIR/web $APP_DIR/next $APP_DIR/shared $APP_DIR/backups /var/log/orchestra
+echo "--- [9/14] Creating application directories ---"
+mkdir -p $APP_DIR/web $APP_DIR/next $APP_DIR/powersync $APP_DIR/shared $APP_DIR/backups /var/log/orchestra
 chown -R $DEPLOY_USER:$DEPLOY_USER $APP_DIR /var/log/orchestra
 
-# ── 9. Clone repositories ──
+# ── 10. Clone repositories + set up PowerSync ──
 echo ""
-echo "--- [9/12] Cloning repositories ---"
+echo "--- [10/14] Cloning repositories + configuring PowerSync ---"
 if [ -d "$APP_DIR/web/.git" ]; then
     echo "Web repo already cloned, pulling latest"
     su - $DEPLOY_USER -c "cd $APP_DIR/web && git pull origin $REPO_BRANCH"
@@ -193,22 +252,110 @@ else
     su - $DEPLOY_USER -c "git clone --branch $REPO_BRANCH $NEXT_REPO_URL $APP_DIR/next"
 fi
 
-# ── 10. Create environment file ──
+# PowerSync config
+cat > $APP_DIR/powersync/powersync.yaml << PSEOF
+_type: self-hosted
+
+replication:
+  connections:
+    - type: postgresql
+      hostname: 172.17.0.1
+      port: 5432
+      database: $DB_NAME
+      username: $DB_USER
+      password: $DB_PASS
+      sslmode: disable
+
+storage:
+  type: postgresql
+  hostname: 172.17.0.1
+  port: 5432
+  database: powersync_storage
+  username: $DB_USER
+  password: $DB_PASS
+  sslmode: disable
+
+client_auth:
+  jwks_uri: http://172.17.0.1:8080/api/powersync/keys
+  audience: ["powersync"]
+
+port: 8080
+
+sync_config:
+  path: /config/sync-rules.yaml
+
+api:
+  tokens:
+    - $PS_API_TOKEN
+PSEOF
+
+# Copy sync-rules.yaml from the repo if it exists, otherwise create a minimal one
+if [ -f "$APP_DIR/web/scripts/deploy/powersync/sync-rules.yaml" ]; then
+    cp "$APP_DIR/web/scripts/deploy/powersync/sync-rules.yaml" $APP_DIR/powersync/sync-rules.yaml
+    echo "Copied sync-rules.yaml from web repo"
+else
+    cat > $APP_DIR/powersync/sync-rules.yaml << 'SREOF'
+bucket_definitions:
+  user_data:
+    parameters: SELECT request.user_id() as user_id
+    data:
+      - SELECT id, user_id, created_at, updated_at FROM notes WHERE user_id = bucket.user_id AND deleted_at IS NULL
+SREOF
+    echo "Created minimal sync-rules.yaml (update from repo later)"
+fi
+
+cat > $APP_DIR/powersync/docker-compose.yml << 'DCEOF'
+# PowerSync Self-Hosted — Orchestra
+# Managed by setup-server.sh. Do not edit manually.
+
+services:
+  powersync:
+    image: journeyapps/powersync-service:latest
+    container_name: orchestra-powersync
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8585:8080"
+    volumes:
+      - ./powersync.yaml:/config/powersync.yaml:ro
+      - ./sync-rules.yaml:/config/sync-rules.yaml:ro
+    networks:
+      - orchestra
+
+networks:
+  orchestra:
+    driver: bridge
+DCEOF
+
+chown -R $DEPLOY_USER:$DEPLOY_USER $APP_DIR/powersync
+
+# Allow PostgreSQL connections from Docker bridge (172.17.0.0/16)
+PG_HBA=$(su - postgres -c "psql -tc \"SHOW hba_file\"" | xargs)
+if grep -q "172.17.0.0/16" "$PG_HBA" 2>/dev/null; then
+    echo "PostgreSQL already allows Docker bridge connections"
+else
+    echo "host    all    $DB_USER    172.17.0.0/16    md5" >> "$PG_HBA"
+    systemctl reload postgresql
+    echo "PostgreSQL: allowed Docker bridge connections"
+fi
+
+# ── 11. Create environment file ──
 echo ""
-echo "--- [10/12] Creating environment file ---"
+echo "--- [11/14] Creating environment file ---"
 cat > $APP_DIR/shared/.env << ENVEOF
 DATABASE_URL=postgres://$DB_USER:$DB_PASS@localhost:5432/$DB_NAME?sslmode=disable
 JWT_SECRET=$JWT_SECRET
 APP_ENV=production
-CF_API_TOKEN=CHANGEME
+CF_API_TOKEN=$CF_API_TOKEN
+POWERSYNC_URL=http://localhost:8585
+POWERSYNC_API_TOKEN=$PS_API_TOKEN
 ENVEOF
 
 chmod 600 $APP_DIR/shared/.env
 chown $DEPLOY_USER:$DEPLOY_USER $APP_DIR/shared/.env
 
-# ── 11. Install systemd services + Caddyfile ──
+# ── 12. Install systemd services + Caddyfile ──
 echo ""
-echo "--- [11/12] Installing service files ---"
+echo "--- [12/14] Installing service files ---"
 
 cat > /etc/systemd/system/orchestra-web.service << 'EOF'
 [Unit]
@@ -246,11 +393,10 @@ Type=simple
 User=deploy
 Group=deploy
 WorkingDirectory=/opt/orchestra/next
-ExecStart=/usr/bin/npm start
+ExecStart=/usr/bin/npx next start -p 3000
 Restart=always
 RestartSec=5
 Environment=NODE_ENV=production
-Environment=PORT=3000
 Environment=NEXT_PUBLIC_API_URL=
 StandardOutput=journal
 StandardError=journal
@@ -261,6 +407,15 @@ NoNewPrivileges=true
 WantedBy=multi-user.target
 EOF
 
+# Only write Caddyfile on fresh install — never overwrite existing domain config
+if [ "$EXISTING_INSTALL" = true ] && [ -f /etc/caddy/Caddyfile ] && ! grep -q "yourdomain.com" /etc/caddy/Caddyfile; then
+    echo "Caddyfile already configured with a real domain — adding PowerSync route if missing"
+    if ! grep -q "powersync" /etc/caddy/Caddyfile; then
+        # Insert PowerSync route before the generic /api/* handler
+        sed -i '/handle \/api\/\*/ i\\thandle /api/powersync/* {\n\t\turi strip_prefix /api/powersync\n\t\treverse_proxy localhost:8585\n\t}' /etc/caddy/Caddyfile
+        echo "Added PowerSync route to existing Caddyfile"
+    fi
+else
 cat > /etc/caddy/Caddyfile << 'EOF'
 yourdomain.com {
 	tls {
@@ -276,25 +431,50 @@ yourdomain.com {
 		-Server
 	}
 
+	# WebSocket routes
 	handle /api/ws {
 		reverse_proxy localhost:8080 {
 			flush_interval -1
 		}
 	}
-
-	handle /api/* {
-		reverse_proxy localhost:8080
+	handle /api/tunnels/reverse {
+		reverse_proxy localhost:8080 {
+			flush_interval -1
+		}
+	}
+	handle /api/tunnels/*/ws {
+		reverse_proxy localhost:8080 {
+			flush_interval -1
+		}
 	}
 
+	# PowerSync → Docker container on :8585
+	handle /api/powersync/* {
+		uri strip_prefix /api/powersync
+		reverse_proxy localhost:8585
+	}
+
+	# API routes → Go backend
+	handle /api/* {
+		reverse_proxy localhost:8080 {
+			header_up X-Real-IP {remote_host}
+			header_up X-Forwarded-For {remote_host}
+			header_up X-Forwarded-Proto {scheme}
+		}
+	}
+
+	# Health check → Go backend
 	handle /health {
 		reverse_proxy localhost:8080
 	}
 
+	# Next.js static assets — immutable cache
 	handle /_next/static/* {
 		header Cache-Control "public, max-age=31536000, immutable"
 		reverse_proxy localhost:3000
 	}
 
+	# Everything else → Next.js SSR
 	handle {
 		reverse_proxy localhost:3000
 	}
@@ -307,13 +487,19 @@ yourdomain.com {
 	}
 }
 EOF
+fi
 
 systemctl daemon-reload
 systemctl enable orchestra-web orchestra-next caddy
 
-# ── 12. Final setup ──
+# Start PowerSync container
+echo "Starting PowerSync container..."
+su - $DEPLOY_USER -c "cd $APP_DIR/powersync && docker compose pull && docker compose up -d"
+echo "PowerSync: running on :8585"
+
+# ── 13. Final setup ──
 echo ""
-echo "--- [12/12] Final setup (swap, sudoers, backups, deploy script) ---"
+echo "--- [13/14] Final setup (swap, sudoers, backups, deploy script) ---"
 
 # 2GB swap
 if [ ! -f /swapfile ]; then
@@ -325,15 +511,25 @@ if [ ! -f /swapfile ]; then
     echo "Swap: 2GB created"
 fi
 
-# Sudoers
+# Sudoers — use /usr/bin paths (Ubuntu 24.04) and wildcards for args
 cat > /etc/sudoers.d/orchestra << 'EOF'
+deploy ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart orchestra-web
+deploy ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart orchestra-next
+deploy ALL=(ALL) NOPASSWD: /usr/bin/systemctl reload caddy
+deploy ALL=(ALL) NOPASSWD: /usr/bin/systemctl status orchestra-web *
+deploy ALL=(ALL) NOPASSWD: /usr/bin/systemctl status orchestra-next *
+deploy ALL=(ALL) NOPASSWD: /usr/bin/systemctl status orchestra-web
+deploy ALL=(ALL) NOPASSWD: /usr/bin/systemctl status orchestra-next
 deploy ALL=(ALL) NOPASSWD: /bin/systemctl restart orchestra-web
 deploy ALL=(ALL) NOPASSWD: /bin/systemctl restart orchestra-next
 deploy ALL=(ALL) NOPASSWD: /bin/systemctl reload caddy
+deploy ALL=(ALL) NOPASSWD: /bin/systemctl status orchestra-web *
+deploy ALL=(ALL) NOPASSWD: /bin/systemctl status orchestra-next *
 deploy ALL=(ALL) NOPASSWD: /bin/systemctl status orchestra-web
 deploy ALL=(ALL) NOPASSWD: /bin/systemctl status orchestra-next
 deploy ALL=(ALL) NOPASSWD: /usr/bin/journalctl -u orchestra-web *
 deploy ALL=(ALL) NOPASSWD: /usr/bin/journalctl -u orchestra-next *
+deploy ALL=(ALL) NOPASSWD: /usr/bin/journalctl -u orchestra-powersync *
 EOF
 chmod 440 /etc/sudoers.d/orchestra
 
@@ -377,8 +573,8 @@ deploy_next() {
     echo "--- Next.js ---"
     cd "$APP_DIR/next"
     git fetch origin master && git reset --hard origin/master
-    npm ci --production=false
-    NEXT_PUBLIC_API_URL= npm run build
+    pnpm install --no-frozen-lockfile
+    NEXT_PUBLIC_API_URL= npx next build
     sudo systemctl restart orchestra-next
     for i in $(seq 1 15); do
         curl -sf http://localhost:3000 > /dev/null 2>&1 && echo "Next.js: healthy" && return 0
@@ -387,11 +583,34 @@ deploy_next() {
     done
 }
 
+deploy_powersync() {
+    echo "--- PowerSync ---"
+    cd "$APP_DIR/powersync"
+
+    # Update sync-rules from web repo if available
+    if [ -f "$APP_DIR/web/scripts/deploy/powersync/sync-rules.yaml" ]; then
+        cp "$APP_DIR/web/scripts/deploy/powersync/sync-rules.yaml" ./sync-rules.yaml
+        echo "Updated sync-rules.yaml from web repo"
+    fi
+
+    docker compose pull
+    docker compose up -d --force-recreate
+    sleep 3
+    if docker inspect --format='{{.State.Running}}' orchestra-powersync 2>/dev/null | grep -q true; then
+        echo "PowerSync: healthy"
+    else
+        echo "FATAL: PowerSync container not running"
+        docker logs orchestra-powersync --tail 30
+        exit 1
+    fi
+}
+
 case "$COMPONENT" in
-    web)  deploy_web ;;
-    next) deploy_next ;;
-    all)  deploy_web; deploy_next ;;
-    *)    echo "Usage: $0 [web|next|all]"; exit 1 ;;
+    web)       deploy_web ;;
+    next)      deploy_next ;;
+    powersync) deploy_powersync ;;
+    all)       deploy_web; deploy_next; deploy_powersync ;;
+    *)         echo "Usage: $0 [web|next|powersync|all]"; exit 1 ;;
 esac
 
 echo "=== Done ==="
@@ -399,11 +618,11 @@ DEPLOYEOF
 chmod +x $APP_DIR/deploy.sh
 chown $DEPLOY_USER:$DEPLOY_USER $APP_DIR/deploy.sh
 
-# Harden SSH — only disable password auth, keep root login as prohibit-password
-# (allows root with key, blocks root with password — safe without locking you out)
+# ── 14. SSH hardening ──
+echo ""
+echo "--- [14/14] Hardening SSH ---"
 sed -i 's/^#*PasswordAuthentication.*/PasswordAuthentication no/' /etc/ssh/sshd_config
 sed -i 's/^#*PermitRootLogin.*/PermitRootLogin prohibit-password/' /etc/ssh/sshd_config
-# Override any cloud-init drop-in that may re-enable password auth
 echo -e "PasswordAuthentication no\nPermitRootLogin prohibit-password" > /etc/ssh/sshd_config.d/99-orchestra.conf
 systemctl reload sshd
 echo "SSH hardened: password auth disabled, root key login still works"
@@ -415,9 +634,10 @@ echo "════════════════════════�
 echo "  SETUP COMPLETE"
 echo "═══════════════════════════════════════════════════"
 echo ""
-echo "  DB Password: $DB_PASS"
-echo "  JWT Secret:  $JWT_SECRET"
-echo "  Env file:    $APP_DIR/shared/.env"
+echo "  DB Password:       $DB_PASS"
+echo "  JWT Secret:        $JWT_SECRET"
+echo "  PowerSync Token:   $PS_API_TOKEN"
+echo "  Env file:          $APP_DIR/shared/.env"
 echo ""
 echo "  SAVE THESE NOW — they won't be shown again!"
 echo ""
@@ -448,4 +668,10 @@ echo "     VPS_HOST=$SERVER_IP"
 echo "     VPS_USER=deploy"
 echo "     VPS_SSH_KEY=<generate with: ssh-keygen -t ed25519>"
 echo "     VPS_SSH_PORT=22"
+echo ""
+echo "  Services:"
+echo "     Go API:     systemctl status orchestra-web"
+echo "     Next.js:    systemctl status orchestra-next"
+echo "     PowerSync:  docker logs orchestra-powersync"
+echo "     Caddy:      systemctl status caddy"
 echo ""

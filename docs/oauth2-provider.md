@@ -60,3 +60,25 @@ The security settings tab includes a "Connected Apps" section at the bottom:
 - Shows app name, scopes, and authorization date
 - "Revoke" button per app calls `DELETE /api/settings/connected-apps/:app_id`
 - Empty state with icon when no apps are connected
+
+## Implementation (2026-03-20)
+
+### Database Tables
+- `oauth_clients` — client_id (32 hex), client_secret (64 hex), redirect_uris, scopes, soft delete
+- `oauth_authorization_codes` — code (32 hex), 10 min expiry, single-use flag
+- `oauth_access_tokens` — token (64 hex), 1 hour expiry, revocation flag
+
+### API Endpoints
+| Method | Path | Auth | Description |
+|--------|------|------|-------------|
+| POST | `/api/oauth/clients` | Yes | Create OAuth client |
+| GET | `/api/oauth/clients` | Yes | List user's clients |
+| DELETE | `/api/oauth/clients/:id` | Yes | Delete client (owner) |
+| GET | `/oauth/authorize` | Yes | Consent page data |
+| POST | `/oauth/authorize` | Yes | Generate auth code |
+| POST | `/oauth/token` | No | Exchange code for token |
+| POST | `/oauth/revoke` | No | Revoke access token |
+
+### Files
+- `orch-ref/database/migrations/20260320005000_create_oauth_tables.sql`
+- `orch-ref/app/handlers/oauth_provider_handler.go`

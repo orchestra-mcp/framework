@@ -12,10 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **npm package**: `@orchestra-mcp/cli` published to npm — `npm install -g @orchestra-mcp/cli`
   - Postinstall script downloads the correct platform binary from GitHub Releases
   - Supports macOS (amd64/arm64), Linux (amd64/arm64), Windows (amd64)
-- **FLOW methodology skills** (17 skills): `/flow`, `/flow-init`, `/flow-intake`, `/flow-brief`, `/flow-spec`, `/flow-contract`, `/flow-experiment`, `/flow-expert`, `/flow-review`, `/flow-gate`, `/flow-kill`, `/flow-archive`, `/flow-coach`, `/flow-config`, `/flow-health`, `/flow-status`, `/flow-tempo`, `/flow-wip`
+- **FLOW methodology pack** ([`pack-flow`](https://github.com/orchestra-mcp/pack-flow)): 18 skills + telemetry hook — Discovery & Outcome cycles, Decision Spine, gates, experiments, team rituals. Install: `orchestra pack install github.com/orchestra-mcp/pack-flow`
 - **Flutter platform agents** (8): `flutter-android`, `flutter-ios`, `flutter-linux`, `flutter-macos`, `flutter-web`, `flutter-windows`, `flutter-ui-ux`, `orchestra`
 - **Prompts manager skill**: Manage startup prompts and quick actions via MCP tools
-- **Flow telemetry hook**: Ambient telemetry for FLOW methodology tracking
 - **PowerSync deployment**: Docker-based self-hosted PowerSync in `setup-server.sh`
   - PostgreSQL WAL logical replication enabled
   - Docker + compose installed and configured

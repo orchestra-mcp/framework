@@ -135,7 +135,7 @@ orchestra plugin search "ai"
 
 ## Content Packs
 
-Packs are installable bundles of skills (slash commands), agents (specialized sub-agents), and hooks (shell scripts). 24 official packs:
+Packs are installable bundles of skills (slash commands), agents (specialized sub-agents), and hooks (shell scripts). 25 official packs:
 
 | Pack | Stacks | Contents |
 |------|--------|----------|
@@ -163,39 +163,13 @@ Packs are installable bundles of skills (slash commands), agents (specialized su
 | [`pack-gcp`](https://github.com/orchestra-mcp/pack-gcp) | docker, go, ts | gcp skill, gcp-architect agent |
 | [`pack-docker`](https://github.com/orchestra-mcp/pack-docker) | docker | docker skill, docker-engineer agent |
 | [`pack-go-adk`](https://github.com/orchestra-mcp/pack-go-adk) | go | go-adk skill, go-adk-engineer agent |
+| [`pack-flow`](https://github.com/orchestra-mcp/pack-flow) | all | 18 FLOW methodology skills + telemetry hook |
 
 ```bash
 orchestra pack install github.com/orchestra-mcp/pack-go-backend
 orchestra pack recommend    # Auto-detect stacks and suggest packs
 orchestra pack search "react"
 ```
-
-## FLOW Methodology
-
-Orchestra includes 17 built-in FLOW skills for methodology-driven development:
-
-| Skill | Purpose |
-|-------|---------|
-| `/flow` | Intelligent methodology router |
-| `/flow-init` | Bootstrap FLOW in a project |
-| `/flow-intake` | Classify and route incoming work |
-| `/flow-brief` | Write a hypothesis to test (Discovery Brief) |
-| `/flow-spec` | One-page plan for what to build (SPEC-Lite) |
-| `/flow-contract` | Product-engineering agreement (Build Contract) |
-| `/flow-experiment` | Design the cheapest valid test |
-| `/flow-expert` | Domain expert agent blueprint |
-| `/flow-review` | Discovery and outcome ritual facilitator |
-| `/flow-gate` | Quality checkpoint |
-| `/flow-kill` | Evidence-based cycle kill/merge decision |
-| `/flow-archive` | Capture what was learned |
-| `/flow-coach` | Learn FLOW interactively |
-| `/flow-config` | Team operating agreement |
-| `/flow-health` | Are we actually doing FLOW? |
-| `/flow-status` | Active cycles dashboard |
-| `/flow-tempo` | Discover your team's rhythm |
-| `/flow-wip` | Work-in-progress limits |
-
-FLOW operates in two modes: **Discovery** (learning — produces evidence) and **Outcome** (shipping — produces working product). Every cycle traces the Decision Spine: Vision → Strategy → Bet → Cycle.
 
 ## Feature Workflow (34 Tools)
 

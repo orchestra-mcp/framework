@@ -73,9 +73,16 @@ jobs:
         shell: bash
         run: |
           python3 << 'PYEOF'
-          import glob
+          import json, glob
 
-          PREFIX = "github.com/orchestra-mcp/"
+          lock = json.load(open("orchestra.lock"))
+          workspace_mods = set()
+          for pkg in lock["packages"]:
+              if pkg["type"] == "proto":
+                  continue
+              name = pkg["source"]["url"].replace("https://github.com/", "github.com/").replace(".git", "")
+              workspace_mods.add(name)
+
           sumfiles = list(glob.glob("**/go.sum", recursive=True)) + ["go.work.sum"]
           for sumfile in sumfiles:
               try:
@@ -84,10 +91,10 @@ jobs:
                   continue
               if "/.git/" in sumfile:
                   continue
-              kept = [l for l in lines if not l.startswith(PREFIX)]
+              kept = [l for l in lines if not any(l.startswith(m + " ") or l.startswith(m + "/") for m in workspace_mods)]
               if len(kept) != len(lines):
                   open(sumfile, "w").writelines(kept)
-                  print(f"  Scrubbed {len(lines)-len(kept)} orchestra-mcp entries from {sumfile}")
+                  print(f"  Scrubbed {len(lines)-len(kept)} workspace entries from {sumfile}")
           PYEOF
 
       - name: Generate go.work
@@ -227,9 +234,16 @@ jobs:
         shell: bash
         run: |
           python3 << 'PYEOF'
-          import glob
+          import json, glob
 
-          PREFIX = "github.com/orchestra-mcp/"
+          lock = json.load(open("orchestra.lock"))
+          workspace_mods = set()
+          for pkg in lock["packages"]:
+              if pkg["type"] == "proto":
+                  continue
+              name = pkg["source"]["url"].replace("https://github.com/", "github.com/").replace(".git", "")
+              workspace_mods.add(name)
+
           sumfiles = list(glob.glob("**/go.sum", recursive=True)) + ["go.work.sum"]
           for sumfile in sumfiles:
               try:
@@ -238,10 +252,10 @@ jobs:
                   continue
               if "/.git/" in sumfile:
                   continue
-              kept = [l for l in lines if not l.startswith(PREFIX)]
+              kept = [l for l in lines if not any(l.startswith(m + " ") or l.startswith(m + "/") for m in workspace_mods)]
               if len(kept) != len(lines):
                   open(sumfile, "w").writelines(kept)
-                  print(f"  Scrubbed {len(lines)-len(kept)} orchestra-mcp entries from {sumfile}")
+                  print(f"  Scrubbed {len(lines)-len(kept)} workspace entries from {sumfile}")
           PYEOF
 
       - name: Generate go.work

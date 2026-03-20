@@ -6,7 +6,7 @@ set -e
 INPUT=$(cat)
 
 # Build the MCP messages: initialize handshake + tool call
-INIT='{"jsonrpc":"2.0","id":0,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"orchestra-hook","version":"1.0.0"}}}'
+INIT='{"jsonrpc":"2.0","id":0,"method":"initialize","params":{"protocolVersion":"2025-11-25","capabilities":{},"clientInfo":{"name":"orchestra-hook","version":"1.0.0"}}}'
 INITIALIZED='{"jsonrpc":"2.0","method":"notifications/initialized","params":{}}'
 
 TOOL_CALL=$(echo "$INPUT" | jq -c '{

@@ -90,3 +90,36 @@ Each row displays:
 | < 1 hour | "{minutes}m ago" |
 | < 24 hours | "{hours}h ago" |
 | >= 24 hours | "{days}d ago" |
+
+## Next.js Sync Status Panel Enhancement
+
+The Next.js sidebar panel (`components/layout/sync-status-panel.tsx`) was enhanced with:
+
+### PowerSync Connection State
+Three-column card grid showing:
+- **PowerSync state** — connected/connecting/disconnected/uploading/downloading with color-coded icon
+- **Pending writes** — numeric counter badge, amber border when > 0
+- **Last sync** — formatted timestamp from `lastSyncAt`
+
+### Auto-Refresh Toggle
+Toggle switch controlling `autoRefresh` store state. Green when enabled, dim when off.
+
+### Conflict Log Viewer
+- Shows up to 20 most recent conflicts
+- Each row: entity icon, entity ID, detail text, resolution badge (pending/local_wins/remote_wins/merged), timestamp
+- Red badge showing count of unresolved (pending) conflicts
+- "Clear" button to dismiss all conflicts
+- Only renders when conflicts exist
+
+### Sync Store Additions (`store/sync.ts`)
+- `SyncConflict` interface (id, entity_type, entity_id, versions, resolution, timestamp, detail)
+- `powerSyncState` — 5 states (connected, connecting, disconnected, uploading, downloading)
+- `pendingWrites` — number of unsynced local writes
+- `conflicts` — array of SyncConflict (max 50, newest first)
+- `autoRefresh` — boolean toggle (default: true)
+- Actions: `setPowerSyncState`, `setPendingWrites`, `addConflict`, `resolveConflict`, `clearConflicts`, `setAutoRefresh`
+
+### Files
+- `apps/next/src/store/sync.ts`
+- `apps/next/src/components/layout/sync-status-panel.tsx`
+- `apps/next/src/store/sync.test.ts` (13 tests)

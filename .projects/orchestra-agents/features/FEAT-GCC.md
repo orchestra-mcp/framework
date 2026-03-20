@@ -1,5 +1,5 @@
 ---
-estimate: L
+estimate: M
 id: FEAT-GCC
 kind: feature
 priority: P0

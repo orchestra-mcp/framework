@@ -1,5 +1,5 @@
 ---
-estimate: L
+estimate: M
 id: FEAT-OBA
 kind: feature
 priority: P0

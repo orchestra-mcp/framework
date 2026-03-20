@@ -211,6 +211,7 @@ No packs installed. Run `orchestra pack recommend` to get suggestions.
 | `/macos-integration` | .claude/skills/macos-integration/ |
 | `/native-extensions` | .claude/skills/native-extensions/ |
 | `/native-widgets` | .claude/skills/native-widgets/ |
+| `/orchestra` | .claude/skills/orchestra/ |
 | `/plugin-generator` | .claude/skills/plugin-generator/ |
 | `/project-manager` | .claude/skills/project-manager/ |
 | `/prompts-manager` | .claude/skills/prompts-manager/ |

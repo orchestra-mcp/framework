@@ -6,7 +6,7 @@ The dashboard uses a customizable widget system built on a 12-column CSS Grid. U
 
 ## Types
 
-- **WidgetType** — `'stats' | 'recent_projects' | 'recent_notes' | 'quick_actions'`
+- **WidgetType** — `'stats' | 'recent_projects' | 'recent_notes' | 'quick_actions' | ... | 'api_collections' | 'presentations' | 'docs'`
 - **WidgetLayout** — `{ id, type, colSpan, order, hidden, locked }`
 - **WidgetDefinition** — `{ type, label, icon, defaultColSpan, minColSpan, maxColSpan }`
 
@@ -50,6 +50,9 @@ All widgets at `apps/next/src/components/dashboard/widgets/`. Mapped via `WIDGET
 | `RecentProjectsWidget` | `projects: Project[]` | Project list (max 5) with links, empty state |
 | `RecentNotesWidget` | `notes: Note[]` | Note list with dates, empty state |
 | `QuickActionsWidget` | *(none)* | Action buttons: New Project, New Note, Settings |
+| `ApiCollectionsWidget` | `collections: ApiCollectionItem[]` | Recent API collections with endpoint count, auth type dot |
+| `PresentationsWidget` | `presentations: PresentationItem[]` | Recent presentations with slide count, visibility icon |
+| `DocsWidget` | `docs: DocItem[]` | Recent docs with word count, published status dot |
 
 ## DashboardGrid
 
@@ -77,3 +80,16 @@ All widgets at `apps/next/src/components/dashboard/widgets/`. Mapped via `WIDGET
 | Recent Projects | 6 | 1 |
 | Recent Notes | 6 | 2 |
 | Quick Actions | 12 | 3 |
+| API Collections | 6 | 12 |
+| Presentations | 6 | 13 |
+| Docs | 6 | 14 |
+
+## Go API — Dashboard Data
+
+`GET /api/dashboard` returns:
+- `collections` — 5 most recent API collections with endpoint counts (team-scoped)
+- `presentations` — 5 most recent presentations with slide counts (team-scoped)
+- `docs` — 5 most recent docs with word counts from `strings.Fields(body)` (team-scoped)
+- `stats.collection_count`, `stats.presentation_count`, `stats.doc_count`
+
+LAYOUT_VERSION bumped from 3 to 4.

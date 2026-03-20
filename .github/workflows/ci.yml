@@ -8,8 +8,8 @@ on:
 
 env:
   GONOSUMDB: "*"
-  GONOSUMCHECK: "*"
-  GONOSUMDB_EXTRA: "*"
+  GONOPROXY: "*"
+  GONOSUMCHECK: "off"
   GOFLAGS: "-mod=mod"
   GOPROXY: "https://proxy.golang.org,direct"
 
@@ -51,7 +51,7 @@ jobs:
       - name: Configure Go env
         run: |
           go env -w GONOSUMDB="*"
-          go env -w GONOSUMCHECK="*"
+          go env -w GONOPROXY="*"
           go env -w GOFLAGS="-mod=mod"
 
       - name: Generate go.work
@@ -112,7 +112,7 @@ jobs:
       - name: Configure Go env
         run: |
           go env -w GONOSUMDB="*"
-          go env -w GONOSUMCHECK="*"
+          go env -w GONOPROXY="*"
           go env -w GOFLAGS="-mod=mod"
 
       - name: Generate go.work

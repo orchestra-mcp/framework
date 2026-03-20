@@ -318,6 +318,7 @@ services:
     volumes:
       - ./powersync.yaml:/config/powersync.yaml:ro
       - ./sync-rules.yaml:/config/sync-rules.yaml:ro
+    command: ["start", "-c", "/config/powersync.yaml"]
     networks:
       - orchestra
 

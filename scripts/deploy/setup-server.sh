@@ -445,44 +445,6 @@ if [ "$EXISTING_INSTALL" = true ] && [ -f /etc/caddy/Caddyfile ] && ! grep -q "y
     fi
 else
 cat > /etc/caddy/Caddyfile << 'EOF'
-# Orchestra Cloud MCP — mcp.yourdomain.com
-mcp.yourdomain.com {
-	tls {
-		dns cloudflare {env.CF_API_TOKEN}
-	}
-
-	encode gzip zstd
-
-	header {
-		X-Content-Type-Options "nosniff"
-		X-Frame-Options "DENY"
-		Referrer-Policy "strict-origin-when-cross-origin"
-		-Server
-	}
-
-	# SSE stream — disable buffering
-	handle /mcp {
-		reverse_proxy localhost:8091 {
-			flush_interval -1
-		}
-	}
-
-	handle /health {
-		reverse_proxy localhost:8091
-	}
-
-	handle {
-		reverse_proxy localhost:8091
-	}
-
-	log {
-		output file /var/log/caddy/orchestra-mcp-access.log {
-			roll_size 100mb
-			roll_keep 5
-		}
-	}
-}
-
 yourdomain.com {
 	tls {
 		dns cloudflare {env.CF_API_TOKEN}
@@ -495,6 +457,13 @@ yourdomain.com {
 		X-Frame-Options "SAMEORIGIN"
 		Referrer-Policy "strict-origin-when-cross-origin"
 		-Server
+	}
+
+	# Cloud MCP — SSE stream (disable buffering)
+	handle /mcp {
+		reverse_proxy localhost:8091 {
+			flush_interval -1
+		}
 	}
 
 	# WebSocket routes

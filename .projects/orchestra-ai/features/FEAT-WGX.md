@@ -1,20 +1,11 @@
 ---
-blocks:
-    - FEAT-VZV
-created_at: "2026-02-28T02:21:24Z"
-depends_on:
-    - FEAT-JGM
-description: 'Phase 2.4+2.5: Workflow YAML definition (id, type: sequential|parallel|loop, agents with refs and overrides). 4 MCP tools: define_workflow, get_workflow, list_workflows, delete_workflow. Supports nested parallel/sequential composition.'
 id: FEAT-WGX
-labels:
-    - phase-2
-    - adk
+kind: feature
 priority: P1
-project_id: orchestra-ai
+project_slug: orchestra-ai
 status: done
 title: Workflow YAML format + CRUD tools (4)
-updated_at: "2026-02-28T02:55:13Z"
-version: 0
+type: feature
 ---
 
 # Workflow YAML format + CRUD tools (4)

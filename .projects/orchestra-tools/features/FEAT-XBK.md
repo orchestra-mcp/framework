@@ -1,18 +1,11 @@
 ---
-created_at: "2026-02-28T02:12:11Z"
-depends_on:
-    - FEAT-NZM
-description: 'Tools: ssh_connect, ssh_exec, ssh_disconnect, ssh_list_sessions, ssh_upload (SFTP), ssh_download (SFTP), ssh_list_remote. Uses golang.org/x/crypto/ssh. Streaming for interactive sessions.'
 id: FEAT-XBK
-labels:
-    - phase-6
-    - devtools
+kind: feature
 priority: P2
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: SSH session manager (devtools.ssh)
-updated_at: "2026-02-28T05:37:46Z"
-version: 0
+type: feature
 ---
 
 # SSH session manager (devtools.ssh)

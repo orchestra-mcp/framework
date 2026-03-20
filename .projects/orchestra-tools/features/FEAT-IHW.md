@@ -1,16 +1,11 @@
 ---
-created_at: "2026-02-28T02:12:01Z"
-description: 'Tools: db_connect, db_disconnect, db_query, db_list_tables, db_describe_table, db_list_connections, db_export (CSV/JSON), db_import. Uses database/sql with drivers: lib/pq (Postgres), go-sql-driver/mysql, mattn/go-sqlite3.'
 id: FEAT-IHW
-labels:
-    - phase-6
-    - devtools
+kind: feature
 priority: P1
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Database manager (devtools.database)
-updated_at: "2026-02-28T04:19:04Z"
-version: 0
+type: feature
 ---
 
 # Database manager (devtools.database)

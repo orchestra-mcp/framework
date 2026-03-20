@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:07:17Z"
-description: 'OrchestraContent root composable using Material 3 window size classes. COMPACT width → NavigationBar (bottom, 80dp). MEDIUM/EXPANDED width → NavigationRail (80dp left). Width ≥840dp → ListDetailPaneScaffold two-pane (280dp list + detail). Foldable: isTableTop posture → top/bottom chat split; isBook → left/right list+detail. TopAppBar with ConnectionIndicator (green/amber/red dot) and model badge. Plugin-driven nav items from PluginRegistry.sidebarPlugins. SavedStateHandle restores selected plugin on rotation/resize.'
 id: FEAT-IAX
+kind: feature
 priority: P0
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Adaptive layout (NavigationRail + NavigationBar + two-pane)
-updated_at: "2026-02-28T03:51:59Z"
-version: 0
+type: feature
 ---
 
 # Adaptive layout (NavigationRail + NavigationBar + two-pane)

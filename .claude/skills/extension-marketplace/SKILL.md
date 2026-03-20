@@ -1,8 +1,3 @@
----
-name: extension-marketplace
-description: Extension marketplace and publishing system. Activates when building the extension store, publishing extensions, managing reviews/ratings, handling extension updates, versioning, or the extension CLI.
----
-
 # Extension Marketplace — Publishing & Distribution
 
 Orchestra's extension marketplace allows developers to publish, discover, and install extensions (native, Raycast-compat, and VS Code-compat).

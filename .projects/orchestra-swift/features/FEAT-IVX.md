@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T02:35:56Z"
-description: 'Shell script at apps/swift/scripts/new-swift-plugin.sh. Usage: ./new-swift-plugin.sh my-feature sidebar. Generates: Shared/Sources/Shared/Plugins/MyFeaturePlugin/MyFeaturePlugin.swift (plugin registration) + MyFeatureView.swift (main view). Prints registration line to add to app entry point. Same pattern as scripts/new-plugin.sh for Go plugins.'
 id: FEAT-IVX
+kind: feature
 priority: P2
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Plugin creator script (new-swift-plugin.sh)
-updated_at: "2026-02-28T05:15:00Z"
-version: 0
+type: feature
 ---
 
 # Plugin creator script (new-swift-plugin.sh)

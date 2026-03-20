@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-01T11:40:40Z"
-description: When Claude Code sends an AskUserQuestion tool call, render it as an interactive card in the chat with the question text and clickable answer buttons. When user clicks an answer, send it back through the Claude Code hooks/stdin to continue the session.
 estimate: L
 id: FEAT-ROW
 kind: feature
-labels:
-    - plan:PLAN-JMG
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: AskUserQuestion tool UI with answer buttons
-updated_at: "2026-03-01T12:56:25Z"
-version: 0
+type: feature
 ---
 
 # AskUserQuestion tool UI with answer buttons

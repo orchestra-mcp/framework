@@ -1,14 +1,11 @@
 ---
-created_at: "2026-03-04T15:44:47Z"
-description: '## Problem\nWhen changing a session''s name, color, icon, or pin status in the session manager, the changes are not reflected in real-time in the UI. The user has to toggle/switch away and back to see the updated values. This breaks the user experience.\n\n## Requirements\n1. When renaming a session, the sidebar/session list updates the title immediately\n2. When changing session color, the color badge updates immediately in the list\n3. When changing session icon, the icon updates immediately in the list\n4. When pinning/unpinning a session, it moves to/from the pinned section immediately\n5. All changes must use `@Published` properties or `ObservableObject` pattern so SwiftUI re-renders automatically\n6. No need to toggle, close/reopen, or switch sessions to see changes\n7. Ensure the session list is bound to the same data source that the edit UI modifies\n8. If using `didSet` persistence pattern, the UI binding must trigger re-render before or at the same time as persistence\n9. Pin/unpin should animate the row moving between sections (pinned/unpinned)\n\n## Affected Files\n- `apps/swift/Shared/Sources/Shared/Plugins/ChatPlugin/ChatPlugin.swift` (session list, session model)\n- Session model/storage (wherever `ChatSession` properties are persisted)'
 id: FEAT-LRD
 kind: bug
 priority: P0
-project_id: orchestra-swift-enhancement
+project_slug: orchestra-swift-enhancement
 status: in-testing
 title: Session Manager — Real-Time Updates for Name/Color/Icon/Pin Changes
-updated_at: "2026-03-05T08:11:09Z"
-version: 19
+type: feature
 ---
 
 # Session Manager — Real-Time Updates for Name/Color/Icon/Pin Changes

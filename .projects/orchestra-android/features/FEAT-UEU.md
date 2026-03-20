@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:12:12Z"
-description: 'AI chat plugin supporting Claude, OpenAI, Gemini, Ollama via bridge plugins. Session list (drawer on phone, fixed 280dp on tablet/ChromeOS). Streaming with animated sweep gradient border glow. Event cards: BashCard, ReadCard, EditCard, TaskCard, ProjectStatusCard, QuestionCard. Provider+model picker tray. MCP tools: create_session, send_message, list_sessions, get_session, delete_session, pause_session, ai_prompt, spawn_session, session_status, kill_session.'
 id: FEAT-UEU
+kind: feature
 priority: P0
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Chat plugin — multi-LLM, streaming, event cards
-updated_at: "2026-02-28T04:06:22Z"
-version: 0
+type: feature
 ---
 
 # Chat plugin — multi-LLM, streaming, event cards

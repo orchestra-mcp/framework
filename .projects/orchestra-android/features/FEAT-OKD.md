@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:15:52Z"
-description: 'First-run onboarding and runtime permissions flow. OnboardingScreen: 4-step pager (Welcome → Connect Orchestrator → AI Provider → Permissions). ConnectStep: host/port input with test connection button, auto-detects Crostini on ChromeOS. ProviderStep: pick default AI provider, enter API key, verify with test prompt. PermissionsStep: request POST_NOTIFICATIONS (Android 13+), RECORD_AUDIO (voice), optional CAMERA (vision). PermissionsHelper.kt: rationale dialog for each permission, graceful degradation if denied (voice button hidden, screenshot hidden). Onboarding state in DataStore (onboardingComplete flag). Deep link orchestra://onboarding to restart from settings. PermissionCard component in settings showing current status + request button for each permission.'
 id: FEAT-OKD
+kind: feature
 priority: P1
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Runtime permissions flow + onboarding
-updated_at: "2026-02-28T05:43:39Z"
-version: 0
+type: feature
 ---
 
 # Runtime permissions flow + onboarding

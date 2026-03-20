@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:15:32Z"
-description: 'Marketplace screen in Settings plugin. Uses tools.marketplace (15 tools): search_packs, recommend_packs, install_pack, remove_pack, update_pack, list_packs, get_pack, list_skills, list_agents, list_hooks, detect_stacks, get_project_stacks, set_project_stacks, list_installed_packs. PacksScreen: search bar, recommended packs carousel, installed packs list with update badges. PackCard: pack name, description, author, version, skill/agent/hook counts, Install/Remove/Update button. Stack detection on first launch via detect_stacks → show relevant recommended packs. Skills list showing all available /commands. Agents list showing specialized agents. Filter by stack (go, rust, react, typescript, python etc).'
 id: FEAT-EBA
+kind: feature
 priority: P2
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Pack marketplace UI (tools.marketplace)
-updated_at: "2026-02-28T07:16:24Z"
-version: 0
+type: feature
 ---
 
 # Pack marketplace UI (tools.marketplace)

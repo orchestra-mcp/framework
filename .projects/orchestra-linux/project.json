@@ -1,9 +1,1 @@
----
-created_at: "2026-02-28T02:48:36Z"
-description: 'Native Linux desktop app for Orchestra MCP — GTK4/libadwaita + Vala. AI-agentic IDE supporting GNOME, KDE Plasma, XFCE, Sway/Hyprland. Plugin-based architecture mirroring the Swift universal app. Connects to 270+ MCP tools via QUIC + mTLS + Protobuf. Features: AI chat (multi-LLM), project management, notes/docs, developer tools (VTE terminal, GtkSourceView editor, systemd, Docker), AI awareness (screenshots, AT-SPI2 accessibility, vision), voice (PipeWire/GStreamer + Piper/Vosk), notifications (D-Bus), and full desktop integration (libsecret, xdg-desktop-portal, GSettings, StatusNotifierItem). Packaged as Flatpak, Snap, deb, rpm, AppImage, AUR.'
-id: orchestra-linux
-name: orchestra-linux
-slug: orchestra-linux
-updated_at: "2026-02-28T02:48:36Z"
----
-
+{"slug":"orchestra-linux","name":"orchestra-linux"}

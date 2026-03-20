@@ -1,18 +1,11 @@
 ---
-created_at: "2026-03-05T11:31:28Z"
-depends_on:
-    - FEAT-LVN
-description: 'Update OrchestraApp.swift boot(), delete SmartInputWindowManager.swift (1633 lines), SmartInputState.swift (182 lines), SmartFloatingContent.swift (108 lines). Add polish animations: bubble hover glow, send pulse, tab underline slide, content icon flip, mini panel spring entry.'
 id: FEAT-XGA
 kind: feature
-labels:
-    - plan:PLAN-ADU
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Boot Integration + Cleanup + Polish
-updated_at: "2026-03-05T13:45:47Z"
-version: 10
+type: feature
 ---
 
 # Boot Integration + Cleanup + Polish

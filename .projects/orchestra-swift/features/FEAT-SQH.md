@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-01T11:40:40Z"
-description: Add a model selector dropdown (Claude Opus 4.6, Sonnet 4.6, Haiku 4.5, etc.) and a mode selector (Auto, Plan, Manual) to the chat input area. Model selection is passed to bridge-claude. Mode selection controls the --mode flag for Claude Code sessions.
 estimate: M
 id: FEAT-SQH
 kind: feature
-labels:
-    - plan:PLAN-JMG
 priority: P0
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Model & mode selector in chat UI
-updated_at: "2026-03-01T11:51:24Z"
-version: 0
+type: feature
 ---
 
 # Model & mode selector in chat UI

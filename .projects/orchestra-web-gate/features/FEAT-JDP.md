@@ -1,16 +1,11 @@
 ---
-created_at: "2026-03-07T11:25:01Z"
-description: 'When the web gate receives a tool call for an external plugin (e.g. `list_accounts` from `tools.agentops`), it fails with "open stream: context canceled". Core in-process plugins work fine. The QUIC stream to external plugins cannot be opened from the web gate''s router.'
 id: FEAT-JDP
 kind: bug
-labels:
-    - reported-against:FEAT-QVI
 priority: P0
-project_id: orchestra-web-gate
+project_slug: orchestra-web-gate
 status: done
 title: 'Web gate fails to route tool calls to external QUIC plugins (open stream: context canceled)'
-updated_at: "2026-03-09T02:15:45Z"
-version: 12
+type: feature
 ---
 
 # Web gate fails to route tool calls to external QUIC plugins (open stream: context canceled)

@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-07T06:54:44Z"
-description: Team pages (overview, new, members, settings) responsive. Settings page tabs stack/scroll on mobile. Subscription page responsive. Auth pages (login, register, forgot-password, etc.) already partially responsive — verify and fix any issues. Modals full-width on mobile.
 estimate: M
 id: FEAT-BDV
 kind: feature
-labels:
-    - plan:PLAN-RKU
 priority: P1
-project_id: orchestra-web-gate
+project_slug: orchestra-web-gate
 status: done
 title: Mobile-responsive team + settings + subscription + auth pages
-updated_at: "2026-03-07T08:32:50Z"
-version: 8
+type: feature
 ---
 
 # Mobile-responsive team + settings + subscription + auth pages

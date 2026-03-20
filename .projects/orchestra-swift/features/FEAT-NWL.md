@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-05T13:59:26Z"
-description: 'Wire TriggerService.search() into the trigger overlay for all 3 trigger kinds: @ calls list_directory/file_search via ToolService (debounced 200ms), / returns cached agent/skill list, ! returns hardcoded quick actions with auto-send on selection. TriggerService already exists — just connect it to the new FloatingUI views.'
 estimate: M
 id: FEAT-NWL
 kind: feature
-labels:
-    - plan:PLAN-SRI
 priority: P0
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: '@ File Explorer + / Slash Commands + ! Quick Actions Triggers'
-updated_at: "2026-03-05T14:59:02Z"
-version: 8
+type: feature
 ---
 
 # @ File Explorer + / Slash Commands + ! Quick Actions Triggers

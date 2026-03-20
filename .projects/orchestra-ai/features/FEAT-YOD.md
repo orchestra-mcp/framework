@@ -1,16 +1,11 @@
 ---
-created_at: "2026-02-28T02:21:29Z"
-description: 'Phase 2.5: MCP tool that queries all registered bridge plugins and returns available models per provider. Shows which providers are active, their models, and pricing info.'
 id: FEAT-YOD
-labels:
-    - phase-2
-    - adk
+kind: feature
 priority: P2
-project_id: orchestra-ai
+project_slug: orchestra-ai
 status: done
 title: 'Discovery: list_available_models tool'
-updated_at: "2026-02-28T02:55:14Z"
-version: 0
+type: feature
 ---
 
 # Discovery: list_available_models tool

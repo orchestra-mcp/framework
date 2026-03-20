@@ -1,19 +1,12 @@
 ---
-created_at: "2026-03-07T08:56:17Z"
-depends_on:
-    - FEAT-QRF
-description: Move marketing and auth routes under [locale] segment, extract ~250 strings from marketing/auth pages, add LanguageSwitcher to nav, translate all to Arabic
 estimate: L
 id: FEAT-XBG
 kind: feature
-labels:
-    - plan:PLAN-RRW
 priority: P1
-project_id: orchestra-web-gate
+project_slug: orchestra-web-gate
 status: in-review
 title: Marketing & Auth Routes i18n
-updated_at: "2026-03-07T10:22:04Z"
-version: 6
+type: feature
 ---
 
 # Marketing & Auth Routes i18n

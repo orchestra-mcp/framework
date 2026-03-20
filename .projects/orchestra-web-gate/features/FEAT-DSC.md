@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-07T06:25:18Z"
-description: 'Replace the current apps/next/ projects page (which reads from PostgreSQL via REST) with an MCP-powered version. Use the MCP client to call: list_features, get_feature, create_feature, update_feature, advance_feature, set_current_feature, get_progress, get_workflow_status. Build a Kanban board view (backlog → todo → in-progress → testing → docs → review → done) and a list view. Feature cards show title, priority, assignee, labels, status. Clicking a feature shows full detail with body, dependencies, and gate evidence. Actions: create, edit, advance, assign. All calls go through the active tunnel.'
 estimate: L
 id: FEAT-DSC
 kind: feature
-labels:
-    - plan:PLAN-PMK
 priority: P1
-project_id: orchestra-web-gate
+project_slug: orchestra-web-gate
 status: done
 title: Project management UI powered by MCP tools
-updated_at: "2026-03-07T09:25:18Z"
-version: 7
+type: feature
 ---
 
 # Project management UI powered by MCP tools

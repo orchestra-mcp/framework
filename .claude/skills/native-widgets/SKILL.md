@@ -1,8 +1,3 @@
----
-name: native-widgets
-description: Cross-platform native widget system for macOS (WidgetKit/Swift), Windows (Adaptive Cards/C#), and Linux (GNOME/KDE). Activates when working on the widget bridge, platform-specific widget code, widget data contracts, or build tags for darwin/windows/linux.
----
-
 # Native Widgets — Cross-Platform Widget Bridge
 
 Orchestra has native OS widgets on all desktop platforms. The Go app writes JSON data via a platform-agnostic bridge interface, and tiny native widget layers render it.

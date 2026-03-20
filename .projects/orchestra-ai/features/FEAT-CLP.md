@@ -1,18 +1,11 @@
 ---
-blocks:
-    - FEAT-JGM
-created_at: "2026-02-28T02:19:40Z"
-description: 'Phase 1.5: Add string provider=5 to ToolRequest proto, add aiRoutes map to orchestrator router, RegisterPlugin populates aiRoutes from provides_ai manifest, RouteAIToolCall dispatches by provider. DONE.'
 id: FEAT-CLP
-labels:
-    - phase-1
-    - core
+kind: feature
 priority: P0
-project_id: orchestra-ai
+project_slug: orchestra-ai
 status: done
 title: Proto provider field + orchestrator AI routing
-updated_at: "2026-02-28T02:22:15Z"
-version: 0
+type: feature
 ---
 
 # Proto provider field + orchestrator AI routing

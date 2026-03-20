@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:07:27Z"
-description: 'Material 3 dark color scheme with Orchestra palette. OrchestraColors: Background #0A0D14, Surface #111520, Accent #A900FF, Border #1E2436, TextPrimary #E8ECF4, TextMuted #8892A8, Success #22C55E, Error #EF4444. OrchestraTheme composable: themeId param, dynamicColor toggle (Material You on API 31+). 25 themes including orchestra, dracula, github-dark, github-light, one-dark, monokai-pro, synthwave-84. OrchestraTypography (bodyMedium 14sp, labelLarge 14sp SemiBold). OrchestraShapes (sm=8dp, md=12dp, lg=16dp). CodeFont = JetBrains Mono. Theme persisted in DataStore Proto.'
 id: FEAT-CAA
+kind: feature
 priority: P0
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Design system (OrchestraTheme + 25 color themes)
-updated_at: "2026-02-28T03:57:53Z"
-version: 0
+type: feature
 ---
 
 # Design system (OrchestraTheme + 25 color themes)

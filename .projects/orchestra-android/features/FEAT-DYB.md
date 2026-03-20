@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:12:42Z"
-description: 'Notes plugin for Phone, Tablet, ChromeOS. NotesScreen: sidebar list (full screen on phone, 280dp on tablet/ChromeOS) with Pinned and Other sections, search bar, New Note FAB. NoteEditor: TopAppBar (back, pin toggle, save, delete), borderless title TextField (large), FlowRow tags bar (add/remove chips), monospace markdown content editor. Markdown preview via Markwon library (syntax highlight, tables, task lists, strikethrough, LaTeX). MCP tools: create_note, get_note, update_note, delete_note, list_notes, search_notes, pin_note, tag_note. Docs wiki uses tools.docs: doc_create, doc_get, doc_update, doc_list, doc_search, doc_generate, doc_index, doc_tree, doc_export.'
 id: FEAT-DYB
+kind: feature
 priority: P1
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Notes plugin — list, editor, pin/tag, markdown preview
-updated_at: "2026-02-28T04:30:52Z"
-version: 0
+type: feature
 ---
 
 # Notes plugin — list, editor, pin/tag, markdown preview

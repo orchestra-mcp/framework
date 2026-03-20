@@ -1,19 +1,11 @@
 ---
-blocks:
-    - FEAT-MNR
-created_at: "2026-02-28T02:11:17Z"
-description: Add Subscribe, Unsubscribe, Publish, EventDelivery to proto. Add event routing + fan-out to orchestrator router.go/handler.go/loader.go. Parse provides_events/needs_events from manifest for auto-subscriptions.
 id: FEAT-GXT
-labels:
-    - phase-1
-    - infrastructure
-    - proto
+kind: feature
 priority: P0
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Add event system to proto + orchestrator
-updated_at: "2026-02-28T02:28:40Z"
-version: 0
+type: feature
 ---
 
 # Add event system to proto + orchestrator

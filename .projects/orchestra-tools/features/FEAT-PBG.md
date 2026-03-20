@@ -1,18 +1,11 @@
 ---
-created_at: "2026-02-28T02:11:48Z"
-depends_on:
-    - FEAT-NZM
-description: 'Tools: tts_speak, tts_speak_provider, tts_list_voices, tts_stop, stt_listen (streaming), stt_transcribe_file, stt_list_models, voice_config. OS TTS: macOS say/NSSpeechSynthesizer, Linux espeak. OS STT: macOS SFSpeechRecognizer, Linux Vosk. Providers: ElevenLabs, OpenAI Whisper, Google Cloud Speech. Depends on INFRA-STREAM.'
 id: FEAT-PBG
-labels:
-    - phase-4
-    - system-services
+kind: feature
 priority: P1
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: TTS / STT voice service (services.voice)
-updated_at: "2026-02-28T04:44:53Z"
-version: 0
+type: feature
 ---
 
 # TTS / STT voice service (services.voice)

@@ -1,16 +1,11 @@
 ---
-created_at: "2026-02-28T02:21:02Z"
-description: 'New bridge plugin for Qwen/DashScope API. OpenAI-compatible API (uses OPENAI_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1). Models: qwen-max, qwen-plus, qwen-turbo. Same 5-tool pattern. provides_ai: ["qwen"].'
 id: FEAT-UBB
-labels:
-    - phase-1
-    - bridge
+kind: feature
 priority: P1
-project_id: orchestra-ai
+project_slug: orchestra-ai
 status: done
 title: 'Bridge: Qwen (Alibaba Cloud)'
-updated_at: "2026-02-28T02:34:59Z"
-version: 0
+type: feature
 ---
 
 # Bridge: Qwen (Alibaba Cloud)

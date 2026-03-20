@@ -1,14 +1,11 @@
 ---
-created_at: "2026-03-09T06:39:56Z"
-description: Add backend POST /api/team/avatar endpoint and wire frontend to persist team avatar.
 id: FEAT-KEW
 kind: feature
 priority: P1
-project_id: orchestra-web
+project_slug: orchestra-web
 status: done
 title: Team Avatar Upload
-updated_at: "2026-03-09T06:49:55Z"
-version: 15
+type: feature
 ---
 
 # Team Avatar Upload

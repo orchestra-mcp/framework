@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:14:54Z"
-description: 'Android TV module using Compose for TV (androidx.tv:tv-material). TvActivity + TvApp with TvTabNavigation. DashboardScreen: TvLazyColumn with TvLazyRow of ProjectDashboardCards (320dp wide, focusable, D-pad navigable). Each card shows: project name, completion % ring, active task count, status breakdown chips. SprintBurndownChart: Canvas-drawn line chart (ideal vs actual), 300dp height, full width. MetricsScreen: real-time stats (tasks completed today, active sessions, AI calls). All UI elements focusable via D-pad with FocusRequester. OverscanSafePadding (48dp horizontal, 27dp vertical). MCP tools: list_projects, get_project_status, get_progress, list_features. Auto-refreshes every 60s via LaunchedEffect.'
 id: FEAT-RCB
+kind: feature
 priority: P2
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Android TV — Leanback dashboard, sprint burndown, metrics
-updated_at: "2026-02-28T07:10:48Z"
-version: 0
+type: feature
 ---
 
 # Android TV — Leanback dashboard, sprint burndown, metrics

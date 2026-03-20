@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-27T12:36:05Z"
-description: Implement length-delimited Protobuf framing over QUIC with mTLS in Rust using quinn. Port the Go plugin server pattern (framing.go, server.go) to Rust. This becomes the foundation for all future Rust plugins.
 id: FEAT-KBO
+kind: feature
 priority: P0
-project_id: orchestra-rag
+project_slug: orchestra-rag
 status: done
 title: QUIC + Protobuf plugin protocol (Rust SDK)
-updated_at: "2026-02-27T13:09:11Z"
-version: 0
+type: feature
 ---
 
 # QUIC + Protobuf plugin protocol (Rust SDK)

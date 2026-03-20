@@ -1,16 +1,11 @@
 ---
-created_at: "2026-02-28T02:19:43Z"
-description: 'Phase 1.3: bridge-openai plugin with 5 tools (ai_prompt, spawn_session, kill_session, session_status, list_active). Uses openai-go/v3 SDK. Supports OPENAI_BASE_URL for compatible APIs. provides_ai: ["openai"]. DONE.'
 id: FEAT-QWS
-labels:
-    - phase-1
-    - bridge
+kind: feature
 priority: P0
-project_id: orchestra-ai
+project_slug: orchestra-ai
 status: done
 title: 'Bridge: OpenAI (GPT-4o, o1, o3)'
-updated_at: "2026-02-28T02:22:16Z"
-version: 0
+type: feature
 ---
 
 # Bridge: OpenAI (GPT-4o, o1, o3)

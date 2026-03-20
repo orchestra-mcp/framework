@@ -1,18 +1,11 @@
 ---
-created_at: "2026-02-28T02:11:53Z"
-depends_on:
-    - FEAT-NZM
-description: 'Tools: create_terminal, send_input, get_output, resize_terminal, list_terminals, close_terminal. Uses github.com/creack/pty. Streaming for real-time output via RegisterStreamingTool. Depends on INFRA-STREAM.'
 id: FEAT-KNK
-labels:
-    - phase-6
-    - devtools
+kind: feature
 priority: P1
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Terminal / PTY manager (devtools.terminal)
-updated_at: "2026-02-28T04:26:49Z"
-version: 0
+type: feature
 ---
 
 # Terminal / PTY manager (devtools.terminal)

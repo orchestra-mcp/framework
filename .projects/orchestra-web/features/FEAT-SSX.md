@@ -6,8 +6,6 @@ project_slug: orchestra-web
 status: done
 title: Replace native selects with searchable dropdown
 type: feature
-labels:
-  - request:REQ-RUM
 ---
 
 # Replace native selects with searchable dropdown

@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-07T06:25:18Z"
-description: 'Add a WebSocket proxy endpoint in the Go web backend: GET /api/tunnels/:id/ws. When a browser connects, the backend opens a WebSocket connection to the tunnel''s gate address, authenticates with the stored connection token, and relays messages bidirectionally. This allows the browser to call MCP tools on any registered tunnel without knowing the tunnel''s address directly. The proxy handles reconnection, timeout, and error forwarding. Alternative: the browser connects directly to the tunnel gate (requires CORS + the tunnel being network-reachable).'
 estimate: L
 id: FEAT-RXB
 kind: feature
-labels:
-    - plan:PLAN-PMK
 priority: P0
-project_id: orchestra-web-gate
+project_slug: orchestra-web-gate
 status: done
 title: WebSocket proxy in web backend — browser to tunnel relay
-updated_at: "2026-03-07T07:25:14Z"
-version: 8
+type: feature
 ---
 
 # WebSocket proxy in web backend — browser to tunnel relay

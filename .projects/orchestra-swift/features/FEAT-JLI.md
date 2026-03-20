@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-05T11:31:19Z"
-description: Build FloatingContentRouter.swift (SwiftUI content router), FloatingBubble.swift (64x64 circle with logo animation), FloatingInputCard.swift (text field + send + logo), ControlKeysBar.swift (model/mode/thinking/vision/browser switcher pills). Implements requirements 1, 2, 3, 7, 8.
 estimate: L
 id: FEAT-JLI
 kind: feature
-labels:
-    - plan:PLAN-ADU
 priority: P0
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Bubble + Input Card + Control Keys
-updated_at: "2026-03-05T12:14:43Z"
-version: 8
+type: feature
 ---
 
 # Bubble + Input Card + Control Keys

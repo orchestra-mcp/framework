@@ -1,22 +1,11 @@
 ---
-blocks:
-    - FEAT-MIT
-    - FEAT-WGX
-created_at: "2026-02-28T02:21:20Z"
-depends_on:
-    - FEAT-GFO
-    - FEAT-CLP
-description: 'Phase 2.1-2.2: Scaffold libs/plugin-agent-orchestrator/ with Google ADK Go. Engine components: engine.go (build ADK agents from YAML, execute workflows), models.go (provider/model/accountID factory), tools_adapter.go (wrap Orchestra MCP tools as ADK tools), state_bridge.go (Orchestra storage ↔ ADK session.state). Depends on storage.markdown + agentops.'
 id: FEAT-JGM
-labels:
-    - phase-2
-    - adk
+kind: feature
 priority: P1
-project_id: orchestra-ai
+project_slug: orchestra-ai
 status: done
 title: 'ADK Agent Orchestrator: scaffold plugin + engine'
-updated_at: "2026-02-28T02:55:12Z"
-version: 0
+type: feature
 ---
 
 # ADK Agent Orchestrator: scaffold plugin + engine

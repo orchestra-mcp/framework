@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-27T12:36:07Z"
-description: 'Code parsing for 14 languages via Tree-sitter. Tools: parse_file (AST extraction), get_symbols (function/class/variable extraction). Port from orch-ref/engine/src/parser/.'
 id: FEAT-LKV
+kind: feature
 priority: P1
-project_id: orchestra-rag
+project_slug: orchestra-rag
 status: done
 title: Parse service (Tree-sitter)
-updated_at: "2026-02-27T13:10:12Z"
-version: 0
+type: feature
 ---
 
 # Parse service (Tree-sitter)

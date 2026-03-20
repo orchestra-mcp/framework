@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:15:05Z"
-description: 'Android Auto module using Car App Library (androidx.car.app:app). OrchestraCarService extends CarAppService with ALLOW_ALL_HOSTS_VALIDATOR. OrchestraSession extends Session, creates VoiceChatScreen on launch. VoiceChatScreen extends Screen: ListTemplate with voice input action (CarIcon.ALERT), shows last 3 AI responses as rows. ProjectStatusScreen: PaneTemplate showing active project name, completion %, next task. Voice flow: SpeechRecognizer → ai_prompt → TTS read-aloud response via CarText. Navigation: VoiceChatScreen ↔ ProjectStatusScreen via ScreenManager.push(). Complies with Android Auto driver distraction guidelines (max 6 list items, large touch targets). CarAppService declared in AndroidManifest with category androidx.car.app.category.PRODUCTIVITY.'
 id: FEAT-TJU
+kind: feature
 priority: P2
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Android Auto — voice-first AI chat + project status
-updated_at: "2026-02-28T07:47:04Z"
-version: 0
+type: feature
 ---
 
 # Android Auto — voice-first AI chat + project status

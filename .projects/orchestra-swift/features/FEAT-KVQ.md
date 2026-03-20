@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-05T11:31:19Z"
-description: Build FloatingMiniPanel.swift, MiniPanelTabBar.swift, MiniPanelContentArea.swift, MiniSessionListView.swift (fixes reactivity with direct @ObservedObject), MiniSessionRow.swift, MiniChatDetailView.swift, MiniTerminalView.swift, MiniSearchView.swift, MiniNotesView.swift. Implements requirements 4, 5, 6.
 estimate: XL
 id: FEAT-KVQ
 kind: feature
-labels:
-    - plan:PLAN-ADU
 priority: P0
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Mini Panel + Multi-Content + List/Detail
-updated_at: "2026-03-05T12:29:51Z"
-version: 9
+type: feature
 ---
 
 # Mini Panel + Multi-Content + List/Detail

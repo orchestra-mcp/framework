@@ -1,12 +1,9 @@
 ---
-created_at: "2026-03-15T12:00:00Z"
-description: 'Three gaps against the original team-scoped architecture vision: (1) CONTEXT.md generation — the third workflow file alongside CLAUDE.md and AGENTS.md, (2) Public Notes sharing — add scope/publicURL to match skills/agents/hooks pattern, (3) Local SQLite sync + RAG rebuild — sync PostgreSQL to local SQLite on login and rebuild RAG index.'
 id: PLAN-UGE
-project_id: orchestra-agents
+project_slug: orchestra-agents
 status: approved
-title: "Fill architecture gaps: CONTEXT.md, public notes, local SQLite sync + RAG"
-updated_at: "2026-03-15T12:00:00Z"
-version: 0
+title: Fill architecture gaps: CONTEXT.md, public notes, local SQLite sync + RAG
+type: plan
 ---
 
 # Fill architecture gaps: CONTEXT.md, public notes, local SQLite sync + RAG

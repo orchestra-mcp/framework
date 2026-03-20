@@ -1,13 +1,11 @@
 ---
-created_at: "2026-03-01T04:40:02Z"
-description: 'The CLAUDE.md mandatory workflow rule says "when the user asks you to build, fix, or change anything" — but this is too narrow. Agents bypass it for non-code tasks like "test the workflow" or "run the tests". The rule must cover ANY task the user requests, not just code changes. Update all 3 sources: root CLAUDE.md, workspace.go generated CLAUDE.md, and bundled.go SKILL.md.'
 id: FEAT-WDO
+kind: feature
 priority: P1
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Broaden mandatory workflow rule to cover ALL user requests
-updated_at: "2026-03-01T04:42:31Z"
-version: 0
+type: feature
 ---
 
 # Broaden mandatory workflow rule to cover ALL user requests

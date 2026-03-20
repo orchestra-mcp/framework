@@ -1,8 +1,3 @@
----
-name: typescript-react
-description: React and TypeScript patterns with Zustand state management. Activates when writing React components, hooks, stores, API clients, shared types, or any TypeScript frontend code.
----
-
 # TypeScript & React — Components + Zustand + Shared Types
 
 All five frontends (Desktop, Chrome Extension, Mobile, Web Dashboard, Admin Panel) share a common React + TypeScript foundation with Zustand for state management.

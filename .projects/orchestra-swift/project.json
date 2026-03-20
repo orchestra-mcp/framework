@@ -1,9 +1,1 @@
----
-created_at: "2026-02-28T02:34:53Z"
-description: Universal Apple app for Orchestra MCP — supports macOS, iOS, iPadOS, watchOS, tvOS, visionOS, and CarPlay. Plugin-based architecture mirroring the Go framework. Connects to orchestrator via QUIC + mTLS + Protobuf.
-id: orchestra-swift
-name: orchestra-swift
-slug: orchestra-swift
-updated_at: "2026-02-28T02:34:53Z"
----
-
+{"slug":"orchestra-swift","name":"orchestra-swift"}

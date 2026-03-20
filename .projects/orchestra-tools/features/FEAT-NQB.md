@@ -1,18 +1,11 @@
 ---
-created_at: "2026-02-28T02:12:18Z"
-depends_on:
-    - FEAT-NZM
-description: 'Tools: devops_list_pipelines, devops_trigger_pipeline, devops_pipeline_status, devops_pipeline_logs (streaming), devops_list_deployments, devops_deploy, devops_rollback, devops_env_vars. Uses google/go-github for GitHub Actions. Extensible to GitLab CI.'
 id: FEAT-NQB
-labels:
-    - phase-6
-    - devtools
+kind: feature
 priority: P2
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: DevOps connector (devtools.devops)
-updated_at: "2026-02-28T05:11:24Z"
-version: 0
+type: feature
 ---
 
 # DevOps connector (devtools.devops)

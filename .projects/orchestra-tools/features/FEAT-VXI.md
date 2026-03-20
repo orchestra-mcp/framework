@@ -1,18 +1,11 @@
 ---
-created_at: "2026-02-28T02:11:42Z"
-depends_on:
-    - FEAT-QYY
-description: 'Tools: analyze_image, extract_text (OCR), find_elements (UI detection with bounding boxes), compare_images (visual diff), describe_screen, extract_data (tables/forms/charts). Uses Anthropic SDK Claude Vision API. Depends on AI-SCREENSHOT.'
 id: FEAT-VXI
-labels:
-    - phase-3
-    - ai-awareness
+kind: feature
 priority: P1
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Image analysis via Claude Vision (ai.vision)
-updated_at: "2026-02-28T05:04:34Z"
-version: 0
+type: feature
 ---
 
 # Image analysis via Claude Vision (ai.vision)

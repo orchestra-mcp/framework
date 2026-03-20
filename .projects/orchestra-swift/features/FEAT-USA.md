@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T02:35:06Z"
-description: 'Create the Swift Package Manager Package.swift with OrchestraKit library target, OrchestraShared target, swift-protobuf dependency. Multi-platform support: macOS 14+, iOS 17+, watchOS 10+, tvOS 17+, visionOS 1.0+. Create directory structure for all platform targets.'
 id: FEAT-USA
+kind: feature
 priority: P0
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: SPM Package.swift + project scaffold
-updated_at: "2026-02-28T02:46:04Z"
-version: 0
+type: feature
 ---
 
 # SPM Package.swift + project scaffold

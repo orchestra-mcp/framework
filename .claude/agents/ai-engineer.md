@@ -69,15 +69,53 @@ resources/shared/
 └── api/ai.ts           # AI API client
 ```
 
+## Mandatory: Use MCP Tools for Secrets & API Testing
+
+### Secrets & API Keys — `secret_*` tools
+**NEVER** read API keys from `.env` files directly or hardcode them. Always use secrets MCP tools.
+
+| Task | Tool |
+|------|------|
+| Store an API key/secret | `create_secret` |
+| Retrieve a secret | `get_secret` |
+| Update a secret | `update_secret` |
+| List secrets | `list_secrets` |
+| Get env vars for a provider account | `get_account_env` |
+| Import from .env file | `import_env` |
+
+### API Testing — `api_*` tools
+**NEVER** use `curl` to test AI endpoints. Use the API MCP tools.
+
+| Task | Tool |
+|------|------|
+| Make an API request | `api_request` |
+| List saved collections | `api_list_collections` |
+| Save a request for reuse | `api_save_request` |
+| Import OpenAPI spec | `api_import_openapi` |
+| Search endpoints | `api_search_endpoints` |
+| View request history | `api_history` |
+| Open WebSocket (for streaming) | `api_ws_connect` → `api_ws_send` → `api_ws_close` |
+
+### Prompts & Quick Actions — `prompt_*` tools
+Store reusable system prompts and templates through the prompts MCP tools, not as hardcoded strings.
+
+| Task | Tool |
+|------|------|
+| Save a system prompt | `create_prompt` |
+| List saved prompts | `list_prompts` |
+| Get a prompt | `get_prompt` |
+| Update a prompt | `update_prompt` |
+| Delete a prompt | `delete_prompt` |
+
 ## Rules
 
 - All LLM calls go through the Provider interface — never call SDKs directly from handlers
-- Default model: `claude-sonnet-4-5-20250929` (Claude), configurable per user/workspace
+- Default model: `claude-sonnet-4-6` (Claude), configurable per user/workspace
 - Always stream long AI responses — never block for 30+ seconds
 - Track token usage per conversation — needed for billing and rate limiting
 - Agent iterations capped at 10 by default (configurable)
 - Embed code in ~500 token chunks for optimal RAG retrieval
 - Local vector store (chromem-go) enables offline AI features on desktop
-- API keys stored in GCP Secret Manager (production) or .env (development)
+- API keys stored via `create_secret` (production) — never in `.env` committed to git
 - Rate limit AI endpoints: 60 requests/min for free tier, 300 for pro
 - AI conversation messages stored as JSONB (append-only within conversation)

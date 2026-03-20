@@ -1,8 +1,3 @@
----
-name: native-extensions
-description: Orchestra's native extension API for building first-class extensions with full platform access. Activates when designing the extension runtime, extension API surface, commands, UI components, AI API, permissions, or building native extensions.
----
-
 # Native Extensions — Orchestra Extension API
 
 Orchestra has a three-tier extension system: native extensions (full API), Raycast-compatible extensions (quick actions), and VS Code-compatible extensions (editor features). This skill covers the native tier — the most powerful.

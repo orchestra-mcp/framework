@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-10T13:13:04Z"
-description: 'Add Discord admin settings tab in apps/next/ settings page: (1) New admin-discord tab with fields for bot_token, client_id, client_secret, application_id, guild_id, channel_id, command_prefix, webhook_url, enabled toggle, (2) Allowed users management — admin can add/remove Discord user IDs or roles that are permitted to use the bot, (3) Go backend admin API endpoints for reading/writing discord settings, (4) Bot auto-starts when web server starts if enabled in settings.'
 estimate: M
 id: FEAT-SCS
 kind: feature
-labels:
-    - plan:PLAN-QKM
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Admin Discord Bot Settings + User Management UI
-updated_at: "2026-03-10T14:11:44Z"
-version: 5
+type: feature
 ---
 
 # Admin Discord Bot Settings + User Management UI

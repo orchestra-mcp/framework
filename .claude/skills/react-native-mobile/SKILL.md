@@ -1,8 +1,3 @@
----
-name: react-native-mobile
-description: React Native mobile app patterns with WatermelonDB. Activates when working on the mobile app, WatermelonDB models, offline sync, React Navigation, or any iOS/Android code.
----
-
 # React Native Mobile — WatermelonDB + Offline Sync
 
 The mobile app (iOS + Android) is built with React Native, using WatermelonDB for local SQLite with automatic sync to the Go backend.

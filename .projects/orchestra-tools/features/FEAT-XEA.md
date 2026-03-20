@@ -1,18 +1,11 @@
 ---
-blocks:
-    - FEAT-ETS
-created_at: "2026-02-28T02:12:20Z"
-description: 'Tools: figma_get_file, figma_get_components, figma_get_styles, figma_export_node (PNG/SVG), figma_get_node, figma_sync_tokens. Uses Figma REST API with personal access token.'
 id: FEAT-XEA
-labels:
-    - phase-7
-    - integration
+kind: feature
 priority: P2
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Figma integration (integration.figma)
-updated_at: "2026-02-28T05:41:07Z"
-version: 0
+type: feature
 ---
 
 # Figma integration (integration.figma)

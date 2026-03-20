@@ -1,8 +1,3 @@
----
-name: plugin-generator
-description: Generate new Orchestra plugins from templates. Activates when creating new plugins, scaffolding plugin code, or adding tools/storage/transport plugins to the framework.
----
-
 # Plugin Generator — Scaffold New Plugins
 
 Generate new Orchestra MCP plugins using `scripts/new-plugin.sh`. This skill guides plugin creation and customization.

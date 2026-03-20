@@ -1,21 +1,11 @@
 ---
-blocks:
-    - FEAT-KNF
-created_at: "2026-02-28T02:21:27Z"
-depends_on:
-    - FEAT-MIT
-    - FEAT-WGX
-description: 'Phase 2.5: 5 MCP tools for execution: run_agent (single agent), run_workflow (full pipeline), get_run_status, list_runs, cancel_run. Tracks run state, token usage, cost per step. Async execution with polling.'
 id: FEAT-VZV
-labels:
-    - phase-2
-    - adk
+kind: feature
 priority: P1
-project_id: orchestra-ai
+project_slug: orchestra-ai
 status: done
 title: 'Execution tools: run_agent, run_workflow, status, cancel (5)'
-updated_at: "2026-02-28T02:55:13Z"
-version: 0
+type: feature
 ---
 
 # Execution tools: run_agent, run_workflow, status, cancel (5)

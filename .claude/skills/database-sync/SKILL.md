@@ -1,8 +1,3 @@
----
-name: database-sync
-description: Database design and sync system patterns. Activates when working with PostgreSQL schemas, SQLite local storage, sync protocol, Redis pub/sub, migrations, conflict resolution, or any data layer code.
----
-
 # Database & Sync System
 
 Orchestra MCP uses a three-layer database strategy: PostgreSQL (cloud source of truth), SQLite (local offline), Redis (real-time pub/sub and cache).

@@ -1,16 +1,11 @@
 ---
-created_at: "2026-02-28T02:12:25Z"
-description: 'Add all 22 new plugin entries to plugins.yaml. Update orchestra.json require + install-order. Remove old save_note/list_notes from tools-features. Final integration testing: orchestra serve with all plugins, verify ~290 tools in tools/list.'
 id: FEAT-TBQ
-labels:
-    - phase-8
-    - wiring
+kind: feature
 priority: P0
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: 'Wiring: plugins.yaml + orchestra.json + cleanup'
-updated_at: "2026-02-28T05:25:00Z"
-version: 0
+type: feature
 ---
 
 # Wiring: plugins.yaml + orchestra.json + cleanup

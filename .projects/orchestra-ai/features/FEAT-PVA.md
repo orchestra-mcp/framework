@@ -1,16 +1,11 @@
 ---
-created_at: "2026-02-28T02:21:04Z"
-description: 'New bridge plugin for Kimi/Moonshot API. OpenAI-compatible API (uses OPENAI_BASE_URL=https://api.moonshot.cn/v1). Models: moonshot-v1-8k, moonshot-v1-32k, moonshot-v1-128k. Same 5-tool pattern. provides_ai: ["kimi"].'
 id: FEAT-PVA
-labels:
-    - phase-1
-    - bridge
+kind: feature
 priority: P1
-project_id: orchestra-ai
+project_slug: orchestra-ai
 status: done
 title: 'Bridge: Kimi (Moonshot AI)'
-updated_at: "2026-02-28T02:34:59Z"
-version: 0
+type: feature
 ---
 
 # Bridge: Kimi (Moonshot AI)

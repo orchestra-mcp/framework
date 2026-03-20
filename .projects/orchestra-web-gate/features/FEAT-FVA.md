@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-07T06:25:18Z"
-description: 'Add Tunnel model to apps/web/: ID (uuid), UserID, TeamID (optional), Name, Hostname, OS, Architecture, GateAddress (host:port), ConnectionToken (encrypted), Status (online/offline/connecting), LastSeenAt, Labels (JSONB), Meta (JSONB), Version. Add TunnelHandler with CRUD endpoints: GET/POST/PUT/DELETE /api/tunnels, GET /api/tunnels/:id/status (live health check), POST /api/tunnels/:id/connect (WebSocket proxy initiation). Add tunnel heartbeat tracking — each tunnel pings the web backend periodically.'
 estimate: M
 id: FEAT-FVA
 kind: feature
-labels:
-    - plan:PLAN-PMK
 priority: P0
-project_id: orchestra-web-gate
+project_slug: orchestra-web-gate
 status: done
 title: Tunnel model & CRUD in web backend
-updated_at: "2026-03-07T07:17:46Z"
-version: 8
+type: feature
 ---
 
 # Tunnel model & CRUD in web backend

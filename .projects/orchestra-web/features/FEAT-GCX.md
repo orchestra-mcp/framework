@@ -1,14 +1,11 @@
 ---
-created_at: "2026-03-10T21:26:27Z"
-description: 'GitHub repo management system: clone repos via OAuth, run Claude prompts in workspaces, auto-sync to GitHub, route Slack/Discord bot chat through web API. Includes CallTool wiring for bridge plugins, workspace manager service, REST handlers, and frontend repos page.'
 id: FEAT-GCX
 kind: feature
 priority: P1
-project_id: orchestra-web
+project_slug: orchestra-web
 status: done
 title: Remote Repo Workspaces + Bot Chat Integration
-updated_at: "2026-03-10T21:32:47Z"
-version: 5
+type: feature
 ---
 
 # Remote Repo Workspaces + Bot Chat Integration

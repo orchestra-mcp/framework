@@ -1,16 +1,11 @@
 ---
-created_at: "2026-03-14T18:43:11Z"
-description: 'Add defer recover() wrapper in the in-process router''s tool dispatch path so that a single tool panic returns an error response instead of crashing the entire orchestrator and all 395 tools. Files: libs/cli/internal/inprocess/router.go callTool() method.'
 id: FEAT-YTD
 kind: bug
-labels:
-    - plan:PLAN-MPF
 priority: P0
-project_id: orchestra-pro
+project_slug: orchestra-pro
 status: done
 title: Add Panic Recovery to Tool Dispatch
-updated_at: "2026-03-14T18:53:48Z"
-version: 4
+type: feature
 ---
 
 # Add Panic Recovery to Tool Dispatch

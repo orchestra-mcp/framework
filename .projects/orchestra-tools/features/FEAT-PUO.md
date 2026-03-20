@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-01T12:32:31Z"
-description: Add Enabled, ProvidesAI, NeedsTools, Description, Author, Platform fields to PluginEntry (registry.go), pluginManifest (install.go), and SDK printManifestAndExit (plugin.go). Update RunInstall to populate new fields.
 estimate: S
 id: FEAT-PUO
 kind: feature
-labels:
-    - plan:PLAN-YPA
 priority: P1
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Extend PluginEntry and manifest structs
-updated_at: "2026-03-01T12:36:22Z"
-version: 0
+type: feature
 ---
 
 # Extend PluginEntry and manifest structs

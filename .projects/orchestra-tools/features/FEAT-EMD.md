@@ -1,18 +1,11 @@
 ---
-created_at: "2026-02-28T02:11:59Z"
-depends_on:
-    - FEAT-NZM
-description: 'Tools: log_watch (streaming), log_search (regex), log_list_sources (files/Docker/systemd), log_tail, log_parse (JSON/syslog). Uses RegisterStreamingTool for real-time tailing. Depends on INFRA-STREAM.'
 id: FEAT-EMD
-labels:
-    - phase-6
-    - devtools
+kind: feature
 priority: P1
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Log streaming + search (devtools.log-viewer)
-updated_at: "2026-02-28T04:12:54Z"
-version: 0
+type: feature
 ---
 
 # Log streaming + search (devtools.log-viewer)

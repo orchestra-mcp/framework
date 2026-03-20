@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:14:42Z"
-description: 'Wear OS module using Compose for Wear (androidx.wear.compose:compose-material3) + Horologist. WearActivity + WearApp with SwipeDismissableNavHost. Screens: ProjectStatusGlance (home, shows active project name + completion % ring), QuickReplyChat (voice input → send_message → read response aloud via TTS). ProjectStatusTileService extends TileService: shows project name, task count, progress bar, last updated. TaskCountComplicationService extends SuspendingComplicationDataSourceService: ShortTextComplicationData with active task count + monochromatic icon. WorkManager syncs data to Wear every 15 min via ChannelClient (Wearable Data Layer API). MCP tools used via phone-side relay: list_projects, get_project_status, send_message, get_next_feature.'
 id: FEAT-BAU
+kind: feature
 priority: P2
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Wear OS — tiles, complications, quick reply chat
-updated_at: "2026-02-28T07:02:25Z"
-version: 0
+type: feature
 ---
 
 # Wear OS — tiles, complications, quick reply chat

@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:13:25Z"
-description: 'ChromeOS-specific module at apps/kotlin/chromeos/. ChromeOSCompat.kt: detect ARC via org.chromium.arc system feature, detect Samsung DeX via SEM_DESKTOP_MODE_ENABLED. configureForChromeOS(): set window to 75%x85% of display, min size 800x600dp, sustainedPerformanceMode. AndroidManifest additions: resizeableActivity=true, supportsPictureInPicture=true, configChanges for resize without recreation, layout element (defaultHeight=85%, defaultWidth=75%, minHeight=600dp, minWidth=800dp), WindowManagerPreference:FreeformWindowSize=desktop + FreeformWindowOrientation=landscape. CrostiniBridge.kt: LifecycleObserver that auto-connects QUIC to localhost:50100 when Crostini is available (/mnt/chromeos/LinuxFiles exists or org.chromium.arc.crostini feature present). ChromeOSFileAccess.kt: file picker intent for MyFiles/Drive/Linux files, linuxHomePath() returning /mnt/chromeos/LinuxFiles.'
 id: FEAT-FHM
+kind: feature
 priority: P1
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: ChromeOS module — ARC detection, freeform windows, taskbar, Crostini bridge
-updated_at: "2026-02-28T05:34:27Z"
-version: 0
+type: feature
 ---
 
 # ChromeOS module — ARC detection, freeform windows, taskbar, Crostini bridge

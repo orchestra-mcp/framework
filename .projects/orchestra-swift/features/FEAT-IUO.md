@@ -1,14 +1,11 @@
 ---
-created_at: "2026-03-02T11:20:25Z"
-description: 'Four mini panel UX improvements: (1) Instant show mini panel with user message + loading indicator when sending, (2) ChatGPT-style typewriter/streaming effect for AI responses, (3) Status bar on mini panel showing model/tokens/duration/cost from agent ops, (4) Toggle button in toolbar to quickly show/hide mini panel. Changes span SmartInputWindowManager.swift (SiriResponseWindowManager, MiniChatCard, TypewriterState, MiniTypingIndicator, MiniStatusBar) and InputBarContent.swift (toggle button + instant display on send).'
 id: FEAT-IUO
 kind: feature
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Mini panel UX — instant display, typewriter effect, status bar, toggle button
-updated_at: "2026-03-02T11:39:45Z"
-version: 0
+type: feature
 ---
 
 # Mini panel UX — instant display, typewriter effect, status bar, toggle button

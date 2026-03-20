@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-09T05:35:53Z"
-description: Create WidgetType, WidgetLayout, WidgetDefinition types, WIDGET_REGISTRY, DEFAULT_LAYOUT, and useDashboardStore with persist + server sync
 estimate: M
 id: FEAT-OIP
 kind: feature
-labels:
-    - plan:PLAN-BLV
 priority: P1
-project_id: orchestra-web
+project_slug: orchestra-web
 status: done
 title: Dashboard types and Zustand store
-updated_at: "2026-03-09T05:38:51Z"
-version: 5
+type: feature
 ---
 
 # Dashboard types and Zustand store

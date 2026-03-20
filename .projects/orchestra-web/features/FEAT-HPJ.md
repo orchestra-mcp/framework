@@ -1,42 +1,11 @@
 ---
-blocks:
-    - FEAT-UTD
-created_at: "2026-02-28T03:13:53Z"
-depends_on:
-    - FEAT-MSY
-description: |-
-    JSON-RPC 2.0 dispatch that mirrors transport-stdio handler exactly. Routes all MCP protocol methods through the orchestrator via QUIC+Protobuf.
-
-    Files:
-    - `libs/plugin-transport-webtransport/internal/handler.go`
-    - `libs/plugin-transport-webtransport/internal/translator.go`
-
-    handler.go — dispatch method on Gateway struct, routes by req.Method:
-    - "initialize" → return protocol version "2024-11-05", capabilities {tools: {}, prompts: {}}, serverInfo {name: "orchestra", version: "1.0.0"}
-    - "ping" → return empty object {}
-    - "tools/list" → g.sender.Send(ctx, PluginRequest{Type: ListTools}), convert response via ToolDefinitionToMCP, return {tools: [...]}
-    - "tools/call" → validate params.name present, g.sender.Send(ctx, PluginRequest{Type: ToolCall, ToolName: name, Arguments: struct}), convert via ToolResponseToMCP, return content blocks
-    - "prompts/list" → g.sender.Send(ctx, PluginRequest{Type: ListPrompts}), convert, return {prompts: [...]}
-    - "prompts/get" → validate params.name, send, convert, return {messages: [...]}
-    - "notifications/*" → return nil (no JSON-RPC response for notifications)
-    - default → return MethodNotFound error: {code: -32601, message: "method not found"}
-
-    CallerPlugin: "transport.webtransport"
-    Request ID prefix: "web-"
-
-    translator.go — same conversion functions as libs/plugin-transport-stdio/internal/translator.go:
-    ToolDefinitionToMCP, ToolResponseToMCP, StructToMap, MapToStruct, PromptDefinitionToMCP, PromptGetResponseToMCP, valueToInterface
-
-    Reference: libs/plugin-transport-stdio/internal/handler.go (primary pattern), libs/plugin-transport-stdio/internal/translator.go
-
-    Acceptance: all 6 MCP methods dispatch correctly to orchestrator, tool results return text content blocks, errors use correct JSON-RPC error codes
 id: FEAT-HPJ
+kind: feature
 priority: P0
-project_id: orchestra-web
+project_slug: orchestra-web
 status: done
 title: MCP JSON-RPC Handler + Translator
-updated_at: "2026-02-28T03:58:27Z"
-version: 0
+type: feature
 ---
 
 # MCP JSON-RPC Handler + Translator

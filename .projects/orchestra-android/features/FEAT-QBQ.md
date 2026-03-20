@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:12:49Z"
-description: 'Room DB with entities: ProjectEntity, FeatureEntity, NoteEntity, SessionEntity, MessageEntity. DAOs with Flow-returning queries for reactive UI. Repository pattern: ProjectRepository, NoteRepository, SessionRepository — each loads from Room cache immediately, refreshes from MCP tools when Connected. Upsert on remote fetch, optimistic local writes. DataStore Proto for user settings. Hilt provides DB, DAOs, repositories as singletons. Works fully offline (read-only from cache); writes queue when disconnected and flush on reconnect.'
 id: FEAT-QBQ
+kind: feature
 priority: P1
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Offline-first data layer (Room DB + Repository pattern)
-updated_at: "2026-02-28T04:47:39Z"
-version: 0
+type: feature
 ---
 
 # Offline-first data layer (Room DB + Repository pattern)

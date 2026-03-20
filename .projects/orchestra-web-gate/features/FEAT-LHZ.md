@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-07T06:25:18Z"
-description: 'Create a new standalone binary `web-gate` (separate from the QUIC bridge plugin) that runs as an HTTP server with WebSocket upgrade. It connects to the local orchestrator via in-process router or QUIC, and exposes a WebSocket endpoint for remote browser clients. Flags: --listen-addr :9201, --orchestrator-addr localhost:9100, --certs-dir, --api-key, --cors-origins. This is what each machine runs alongside `orchestra serve` to become a tunnel. Can optionally be integrated into `orchestra serve` itself as a flag (--web-gate).'
 estimate: M
 id: FEAT-LHZ
 kind: feature
-labels:
-    - plan:PLAN-PMK
 priority: P0
-project_id: orchestra-web-gate
+project_slug: orchestra-web-gate
 status: done
 title: Web Gate binary — standalone WebSocket-to-orchestrator gateway
-updated_at: "2026-03-07T06:53:56Z"
-version: 9
+type: feature
 ---
 
 # Web Gate binary — standalone WebSocket-to-orchestrator gateway

@@ -1,20 +1,11 @@
 ---
-blocks:
-    - FEAT-VXI
-created_at: "2026-02-28T02:11:40Z"
-depends_on:
-    - FEAT-NZM
-description: 'Tools: capture_screen, capture_region, capture_window, capture_interactive, annotate_screenshot, list_captures. macOS: screencapture/ScreenCaptureKit. Linux: gnome-screenshot/grim. Returns base64 PNG. Depends on INFRA-STREAM.'
 id: FEAT-QYY
-labels:
-    - phase-3
-    - ai-awareness
+kind: feature
 priority: P1
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Screen capture plugin (ai.screenshot)
-updated_at: "2026-02-28T04:47:22Z"
-version: 0
+type: feature
 ---
 
 # Screen capture plugin (ai.screenshot)

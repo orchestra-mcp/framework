@@ -1,14 +1,11 @@
 ---
-created_at: "2026-03-01T15:45:35Z"
-description: Remove the main 3-column WindowGroup, make the app tray-only (LSUIElement), add system tray menu with workspace/settings/show-hide, auto-show floating bubble on launch, add global Cmd+K hotkey.
 id: FEAT-KYP
 kind: feature
 priority: P0
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Convert macOS app to floating window + tray menu only
-updated_at: "2026-03-01T16:09:41Z"
-version: 0
+type: feature
 ---
 
 # Convert macOS app to floating window + tray menu only

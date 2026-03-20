@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-01T11:40:40Z"
-description: Fix Cmd+A behavior in sidebar session list and other lists so it selects all list items (enters selection mode) rather than selecting text in the focused text field. Selection mode should work properly with single item selection too.
 estimate: S
 id: FEAT-VCV
 kind: bug
-labels:
-    - plan:PLAN-JMG
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: List selection fix — Cmd+A works on list items not text
-updated_at: "2026-03-01T12:22:07Z"
-version: 0
+type: feature
 ---
 
 # List selection fix — Cmd+A works on list items not text

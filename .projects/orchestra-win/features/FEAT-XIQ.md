@@ -1,12 +1,14 @@
 ---
-created_at: "2026-02-28T02:56:37Z"
-description: |-
-    Implement `Orchestra.Desktop/Plugins/SettingsPlugin/` — app configuration UI persisted to `%LOCALAPPDATA%\Orchestra\settings.json`.
+id: FEAT-XIQ
+kind: feature
+priority: P2
+project_slug: orchestra-win
+status: backlog
+title: FEAT-XIQ
+type: feature
+---
 
-    **`SettingsPage.xaml`** — `NavigationView` secondary pane with sub-sections:
-
-    | Section | Controls |
-    |---------|----------|
+------|----------|
     | General | `ComboBox` timezone, language, `ToggleSwitch` launch at startup, `ToggleSwitch` start minimized |
     | Appearance | `GridView` theme picker (25 themes with preview swatch), `RadioButtons` component variant (Default/Compact/Modern), `ToggleSwitch` Mica/Acrylic |
     | Notifications | Permission status `InfoBar`, `ToggleSwitch` per channel (build/test/deploy/ai/reminder/system/git), Focus Assist info |

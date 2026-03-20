@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-10T13:13:04Z"
-description: 'Implement Discord OAuth2 login flow: (1) Go backend OAuth initiation endpoint + callback handler using golang.org/x/oauth2 + Discord provider, (2) Create/link OAuthAccount records with provider=discord, (3) Add Discord to login/register page social buttons with onClick redirect, (4) Add Discord to connected accounts in user settings (connect/disconnect), (5) Admin settings for Discord OAuth client_id/client_secret under admin-integrations tab.'
 estimate: M
 id: FEAT-MWZ
 kind: feature
-labels:
-    - plan:PLAN-QKM
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Discord OAuth Login + Connected Account
-updated_at: "2026-03-10T14:06:44Z"
-version: 5
+type: feature
 ---
 
 # Discord OAuth Login + Connected Account

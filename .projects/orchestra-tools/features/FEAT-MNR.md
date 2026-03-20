@@ -1,18 +1,11 @@
 ---
-created_at: "2026-02-28T02:11:51Z"
-depends_on:
-    - FEAT-GXT
-description: 'Tools: notify_send, notify_schedule, notify_cancel, notify_list_pending, notify_badge, notify_config, notify_history, notify_create_channel. macOS: UNUserNotificationCenter (CGo). Linux: D-Bus org.freedesktop.Notifications. Channels: build, test, deploy, ai, reminder, system, git. Actions route to MCP tools. Depends on INFRA-EVENTS.'
 id: FEAT-MNR
-labels:
-    - phase-4
-    - system-services
+kind: feature
 priority: P1
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: OS notification system (services.notifications)
-updated_at: "2026-02-28T04:40:21Z"
-version: 0
+type: feature
 ---
 
 # OS notification system (services.notifications)

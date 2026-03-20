@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-01T12:32:31Z"
-description: Verify make build-cli compiles, test core-only mode, test plugin install/enable/disable cycle, update go.work to remove unused modules from CLI, run make test.
 estimate: S
 id: FEAT-PLK
 kind: chore
-labels:
-    - plan:PLAN-YPA
 priority: P2
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Build verification and cleanup
-updated_at: "2026-03-01T12:56:36Z"
-version: 0
+type: feature
 ---
 
 # Build verification and cleanup

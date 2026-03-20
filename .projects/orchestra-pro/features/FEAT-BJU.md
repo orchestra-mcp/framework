@@ -1,16 +1,11 @@
 ---
-created_at: "2026-03-14T18:43:11Z"
-description: 'Replace all log.Printf/log.Fatalf calls with Go stdlib log/slog. Add request IDs to tool dispatch, structured fields (plugin, tool, duration, error), log levels (debug/info/warn/error). Fix unsafe concurrent logging in StdioTransport. Files: all core plugins (10-15 files across storage-markdown, transport-stdio, cli/inprocess, tools-features, tools-marketplace, tools-notes, tools-docs).'
 id: FEAT-BJU
 kind: feature
-labels:
-    - plan:PLAN-MPF
 priority: P1
-project_id: orchestra-pro
+project_slug: orchestra-pro
 status: done
 title: Replace log.Printf with Structured Logging (slog)
-updated_at: "2026-03-14T19:09:19Z"
-version: 5
+type: feature
 ---
 
 # Replace log.Printf with Structured Logging (slog)

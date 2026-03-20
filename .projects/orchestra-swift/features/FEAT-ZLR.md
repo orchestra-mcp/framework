@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-10T13:13:04Z"
-description: 'Create libs/plugin-bridge-discord/ with full Discord bot: gateway (WebSocket), REST client, router, embed helpers, types, and all command handlers (chat, stop, watch, mcp, tools, status, ping, permission, prompts). Bot reads config from admin settings (bot_token, client_id, client_secret, application_id, guild_id, channel_id, command_prefix, webhook_url). Runs Claude Code on the server via bridge cross-plugin calls. Only whitelisted users can interact. Workflow notifications as TransitionListener. Plugin starts with the web server.'
 estimate: L
 id: FEAT-ZLR
 kind: feature
-labels:
-    - plan:PLAN-QKM
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Discord Bridge Plugin — Core + Gateway + Handlers
-updated_at: "2026-03-10T13:46:57Z"
-version: 5
+type: feature
 ---
 
 # Discord Bridge Plugin — Core + Gateway + Handlers

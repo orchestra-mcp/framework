@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-01T11:40:40Z"
-description: When sending a message in an existing chat session, reuse the same bridge-claude session ID instead of creating a new one each time. Track the bridge session ID on ChatSession and pass it to spawn_session/ai_prompt so conversation context is maintained.
 estimate: S
 id: FEAT-IBD
 kind: bug
-labels:
-    - plan:PLAN-JMG
 priority: P0
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Persistent chat sessions — continue messages on same session
-updated_at: "2026-03-01T11:51:22Z"
-version: 0
+type: feature
 ---
 
 # Persistent chat sessions — continue messages on same session

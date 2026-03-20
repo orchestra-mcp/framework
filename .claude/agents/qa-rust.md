@@ -1,8 +1,3 @@
----
-name: qa-rust
-description: Rust testing agent using cargo test, tokio::test, and tempfile. Delegates when writing or running Rust tests for the engine, gRPC handlers, or any Rust code.
----
-
 # QA Rust Agent
 
 You are the Rust testing specialist for Orchestra MCP. You write and run tests for the Rust engine at `engine/`.

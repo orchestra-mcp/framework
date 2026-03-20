@@ -1,14 +1,11 @@
 ---
-created_at: "2026-03-09T06:48:50Z"
-description: Extend global search (CMD+K spotlight) and the Go backend search API to include Plans and Wiki docs alongside the existing Projects, Features, and Notes results.
 id: FEAT-RMN
 kind: feature
 priority: P1
-project_id: orchestra-web
+project_slug: orchestra-web
 status: done
 title: Add Plans and Wiki to global search (spotlight + backend)
-updated_at: "2026-03-09T07:09:10Z"
-version: 10
+type: feature
 ---
 
 # Add Plans and Wiki to global search (spotlight + backend)

@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-07T06:54:44Z"
-description: Make dashboard stat grid 2-col on mobile (was 4-col). Projects grid 1-col on mobile (was 3-col). Notes page responsive. Quick actions wrap. All padding reduced on mobile. Two-column layouts stack vertically.
 estimate: L
 id: FEAT-KAZ
 kind: feature
-labels:
-    - plan:PLAN-RKU
 priority: P0
-project_id: orchestra-web-gate
+project_slug: orchestra-web-gate
 status: done
 title: Mobile-responsive dashboard + projects + notes pages
-updated_at: "2026-03-07T08:13:42Z"
-version: 8
+type: feature
 ---
 
 # Mobile-responsive dashboard + projects + notes pages

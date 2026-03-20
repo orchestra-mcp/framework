@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:07:00Z"
-description: 'Core transport layer in orchestra-kit/transport/. QUICConnection.kt: Netty QUIC bootstrap, connect/disconnect, coroutine receive loop, exponential backoff reconnect (1s→30s). StreamFramer.kt: 4-byte big-endian uint32 length prefix + Protobuf read/write, max 16MB. MTLSConfig.kt: load CA cert + plugin cert/key from ~/.orchestra/certs/ (ChromeOS) or context.filesDir/orchestra/certs/ (Android). ConnectionState sealed class: Disconnected/Connecting/Connected/Error. OrchestraClient.kt: sendToolCall(), subscribe(), streaming event dispatch. ALPN: orchestra-plugin. NioEventLoopGroup(1) for battery efficiency.'
 id: FEAT-GWU
+kind: feature
 priority: P0
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: QUIC transport + mTLS (orchestra-kit)
-updated_at: "2026-02-28T03:40:17Z"
-version: 0
+type: feature
 ---
 
 # QUIC transport + mTLS (orchestra-kit)

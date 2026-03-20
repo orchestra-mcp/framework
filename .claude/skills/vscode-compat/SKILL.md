@@ -1,8 +1,3 @@
----
-name: vscode-compat
-description: VS Code extension compatibility layer for running VS Code extensions in Orchestra. Activates when implementing VS Code API shimming, LSP/DAP protocol support, theme migration, or building VS Code-compatible extensions.
----
-
 # VS Code Compatibility — Editor Extensions
 
 Orchestra provides a compatibility layer for VS Code extensions, focusing on the most impactful categories: language support (LSP), debugging (DAP), themes, and editor enhancements.

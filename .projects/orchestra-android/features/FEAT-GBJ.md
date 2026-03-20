@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:06:41Z"
-description: 'Scaffold apps/kotlin/ with 7 modules: orchestra-kit (QUIC SDK + plugin system), shared (Compose UI + all plugin screens), app (Phone+Tablet entry), chromeos (ARC detection + Crostini bridge), wear (Wear OS entry), tv (Android TV entry), auto (Android Auto entry). Version catalog libs.versions.toml with Kotlin 2.1, Compose BOM 2025.02, AGP 8.7, Hilt 2.53, Room 2.7, Netty QUIC 0.0.68, BouncyCastle 1.78.1, protobuf-kotlin 4.29. Hilt DI wiring, Room DB, DataStore Proto, scripts/new-kotlin-plugin.sh scaffolding script.'
 id: FEAT-GBJ
+kind: feature
 priority: P0
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Gradle multi-module project setup
-updated_at: "2026-02-28T03:34:02Z"
-version: 0
+type: feature
 ---
 
 # Gradle multi-module project setup

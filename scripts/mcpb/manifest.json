@@ -1,16 +1,30 @@
 {
   "manifest_version": "0.3",
-  "name": "orchestra",
+  "name": "orchestra-mcp",
   "display_name": "Orchestra MCP",
   "version": "1.0.5",
-  "description": "AI-powered project management with 290+ tools — features, workflows, notes, docs, AI agents, and marketplace.",
-  "author": "Orchestra MCP",
-  "homepage": "https://github.com/orchestra-mcp/framework",
+  "description": "AI-powered project management with 290+ tools and 5 prompts. Feature-driven workflow, notes, docs, marketplace, multi-agent orchestration, and 25 content packs. MCP protocol 2025-06-18 with resources, logging, and dynamic tool updates.",
+  "author": {
+    "name": "Orchestra MCP",
+    "url": "https://orchestra-mcp.dev"
+  },
+  "homepage": "https://orchestra-mcp.dev",
   "repository": "https://github.com/orchestra-mcp/framework",
   "license": "MIT",
   "icon": "icon.png",
+  "keywords": [
+    "project-management",
+    "workflow",
+    "ai-agents",
+    "multi-agent",
+    "marketplace",
+    "notes",
+    "docs",
+    "devtools"
+  ],
   "server": {
     "type": "binary",
+    "protocol_version": "2025-06-18",
     "entry_point": {
       "darwin-arm64": "bin/orchestra-darwin-arm64",
       "darwin-x64": "bin/orchestra-darwin-amd64",
@@ -26,7 +40,8 @@
   "user_config": {
     "workspace": {
       "type": "directory",
-      "description": "Project workspace directory",
+      "title": "Workspace Directory",
+      "description": "Select the project directory where Orchestra will manage features, notes, docs, and workflow. Each workspace gets its own .projects/ data store.",
       "required": true
     }
   },

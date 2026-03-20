@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:19:44Z"
-description: 'Docs plugin for Phone, Tablet, ChromeOS. Separate from Notes — structured wiki/documentation management. DocsScreen: category sidebar (api-reference, guide, architecture, tutorial, changelog, decision-record) + doc list + DocEditor. DocEditor: title, category picker, tags, rich markdown editor with live preview toggle, export button. Uses tools.docs (10 tools): doc_create, doc_get, doc_update, doc_delete, doc_list, doc_search, doc_generate (AI-assisted doc generation from code/context), doc_index, doc_tree (hierarchical view), doc_export (markdown/HTML). AI generation flow: select file or paste code → doc_generate → review + edit → save. DocTreeView: expandable tree navigation for large wikis.'
 id: FEAT-DAC
+kind: feature
 priority: P2
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Docs / Wiki plugin (tools.docs)
-updated_at: "2026-02-28T04:38:55Z"
-version: 0
+type: feature
 ---
 
 # Docs / Wiki plugin (tools.docs)

@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:15:23Z"
-description: 'UI for agent-orchestrator plugin (20 tools). AgentsScreen in DevTools section (Tablet/ChromeOS). Agent CRUD: define_agent form (name, provider, model, instruction, tools), list_agents, get_agent, delete_agent. Workflow builder: define_workflow (sequential/parallel/loop), list_workflows, get_workflow, delete_workflow. Run execution: run_agent, run_workflow with progress indicator, get_run_status polling, cancel_run button. Run history: list_runs with status badges (running=amber, completed=green, failed=red). Testing kit: create_test_suite, add_test_case, run_test_suite with pass/fail results, evaluate_response inline. Provider comparison: compare_providers side-by-side result view. list_available_models for provider/model picker dropdowns.'
 id: FEAT-QUP
+kind: feature
 priority: P2
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Multi-agent orchestration UI (agent-orchestrator)
-updated_at: "2026-02-28T07:24:51Z"
-version: 0
+type: feature
 ---
 
 # Multi-agent orchestration UI (agent-orchestrator)

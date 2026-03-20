@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:12:29Z"
-description: 'Projects plugin for Phone, Tablet, ChromeOS, TV. ProjectsScreen: sidebar list (full screen on phone, 280dp fixed on tablet/ChromeOS) showing project icon, name, task count, completion %, Active badge. ProjectDetail: header (icon, name, description), status card (Total/Completed/% with animated LinearProgressIndicator in accent purple), status breakdown chips, BacklogTree (expandable LazyColumn: epics > stories > features). 13-state WorkflowState enum with colors (Backlog=gray, Todo=blue, InProgress=accent, Done=green, Blocked=red etc). MCP tools: list_projects, get_project_status, create_project, get_progress, list_features, create_feature, advance_feature, get_next_feature, set_current_feature, search_features, get_blocked_features, get_dependency_graph.'
 id: FEAT-RWH
+kind: feature
 priority: P0
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Projects plugin — list, detail, backlog tree, workflow states
-updated_at: "2026-02-28T04:22:40Z"
-version: 0
+type: feature
 ---
 
 # Projects plugin — list, detail, backlog tree, workflow states

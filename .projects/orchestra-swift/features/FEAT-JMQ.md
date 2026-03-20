@@ -1,16 +1,11 @@
 ---
-created_at: "2026-03-05T14:34:30Z"
-description: When expanding from input card to mini panel, the panel should grow upward from the bottom edge (keeping the bottom edge anchored), not expand from the center.
 id: FEAT-JMQ
 kind: bug
-labels:
-    - request:REQ-FVC
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Mini panel expands upward (to top) instead of from center
-updated_at: "2026-03-05T14:45:42Z"
-version: 8
+type: feature
 ---
 
 # Mini panel expands upward (to top) instead of from center

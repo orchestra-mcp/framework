@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-01T11:40:40Z"
-description: Extract session metadata (model name, token count, duration) from the end of Claude Code markdown responses. Display this in a compact status bar below the chat input instead of rendering it inline with the message content. Strip the metadata from the rendered message.
 estimate: M
 id: FEAT-TDF
 kind: feature
-labels:
-    - plan:PLAN-JMG
 priority: P0
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Session metadata status bar — model/tokens/duration under input
-updated_at: "2026-03-01T11:51:23Z"
-version: 0
+type: feature
 ---
 
 # Session metadata status bar — model/tokens/duration under input

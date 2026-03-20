@@ -1,15 +1,14 @@
 ---
-created_at: "2026-03-04T15:34:25Z"
-description: |-
-    ## Problem
-    Markdown tables are not rendered at all. Table syntax appears as raw text.
+id: FEAT-LEK
+kind: feature
+priority: P2
+project_slug: orchestra-swift-enhancement
+status: backlog
+title: FEAT-LEK
+type: feature
+---
 
-    ## Current State
-    - `apps/swift/Shared/Sources/Shared/Components/MarkdownContentView.swift` (385 lines) — supports paragraphs, headings, code blocks, blockquotes, lists, horizontal rules but has NO table parsing or rendering
-    - Uses custom regex-based markdown parser, not a library
-
-    ## Requirements
-    1. Parse GFM (GitHub Flavored Markdown) table syntax: `| col1 | col2 |` with `|---|---|` separator
+|---|` separator
     2. Render as a native SwiftUI table/grid with proper column alignment
     3. Support left/center/right alignment via `:---`, `:---:`, `---:` syntax
     4. Header row styled differently (bold, background color)

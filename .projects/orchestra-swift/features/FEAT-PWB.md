@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-10T14:18:25Z"
-description: Add slack to validKeys in admin_settings.go with defaults (enabled, bot_token, signing_secret, app_id, channel_id, allowed_users, webhook_url). Add admin-slack tab to settings page with full configuration UI. Add sidebar nav item. Mirror Discord admin settings implementation.
 estimate: M
 id: FEAT-PWB
 kind: feature
-labels:
-    - plan:PLAN-IDD
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Admin Slack Bot Settings
-updated_at: "2026-03-10T15:05:15Z"
-version: 5
+type: feature
 ---
 
 # Admin Slack Bot Settings

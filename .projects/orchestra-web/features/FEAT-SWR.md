@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-09T05:35:53Z"
-description: Extract StatsWidget, RecentProjectsWidget, RecentNotesWidget, QuickActionsWidget from current dashboard page
 estimate: M
 id: FEAT-SWR
 kind: feature
-labels:
-    - plan:PLAN-BLV
 priority: P1
-project_id: orchestra-web
+project_slug: orchestra-web
 status: done
 title: Individual widget components
-updated_at: "2026-03-09T06:32:42Z"
-version: 5
+type: feature
 ---
 
 # Individual widget components

@@ -1,14 +1,11 @@
 ---
-created_at: "2026-03-02T11:13:40Z"
-description: 'The Swift desktop app launches its own `orchestra serve --tcp-addr localhost:50101` process. If Claude Code (or another IDE) already started `orchestra serve` via stdio for the same workspace, both run simultaneously — duplicate plugins, file conflicts on .projects/ data. The `isPortInUse()` check races when both start at the same time. Fix: check the `.orchestra.pid` file first, add retry logic for TCP connection, and never launch if another instance owns the workspace.'
 id: FEAT-XNR
 kind: bug
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Fix Swift app launching duplicate orchestra serve — use PID file check
-updated_at: "2026-03-02T11:19:21Z"
-version: 0
+type: feature
 ---
 
 # Fix Swift app launching duplicate orchestra serve — use PID file check

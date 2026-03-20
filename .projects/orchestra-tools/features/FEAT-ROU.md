@@ -1,16 +1,11 @@
 ---
-created_at: "2026-02-28T02:12:10Z"
-description: 'Orchestrates Chrome extension development for Orchestra ecosystem. Tools: ext_scaffold, ext_add_feature, ext_connect_orchestra, ext_add_content_script, ext_build, ext_validate, ext_list_projects, ext_publish. Templates: Manifest V3, Orchestra SDK connector, content script patterns.'
 id: FEAT-ROU
-labels:
-    - phase-4
-    - system-services
+kind: feature
 priority: P2
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Chrome extension generator (tools.extension-generator)
-updated_at: "2026-02-28T05:22:21Z"
-version: 0
+type: feature
 ---
 
 # Chrome extension generator (tools.extension-generator)

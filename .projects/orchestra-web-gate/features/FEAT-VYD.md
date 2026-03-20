@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-07T06:54:44Z"
-description: 'Verify and fix marketing pages: landing hero, feature sections, pricing, blog listing/detail, docs viewer, marketplace, download, contact, solutions, privacy, terms, report. Most have partial responsive support in globals.css — fill gaps and test.'
 estimate: M
 id: FEAT-VYD
 kind: feature
-labels:
-    - plan:PLAN-RKU
 priority: P2
-project_id: orchestra-web-gate
+project_slug: orchestra-web-gate
 status: done
 title: Mobile-responsive marketing pages (landing, blog, docs, marketplace, download)
-updated_at: "2026-03-07T08:40:01Z"
-version: 8
+type: feature
 ---
 
 # Mobile-responsive marketing pages (landing, blog, docs, marketplace, download)

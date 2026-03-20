@@ -1,8 +1,3 @@
----
-name: ui-design
-description: UI/UX design patterns with shadcn/ui and Tailwind CSS v4. Activates when styling components, designing layouts, working with themes, responsive design, accessibility, or any visual/UI work.
----
-
 # UI Design — shadcn/ui + Tailwind CSS v4
 
 Orchestra's design system lives in `resources/ui/` and is shared across all five platforms via `@orchestra/ui` package.

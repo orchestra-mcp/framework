@@ -1,8 +1,3 @@
----
-name: wails-desktop
-description: Wails v3 desktop application patterns. Activates when working on the desktop app, Go-React bindings, system tray, window management, or native desktop features.
----
-
 # Wails Desktop — Go + React Desktop App
 
 The desktop app is built with Wails v3, combining a Go backend with a React frontend rendered in a native webview.

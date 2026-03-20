@@ -1,21 +1,11 @@
 ---
-created_at: "2026-03-05T10:00:14Z"
-description: |-
-    Two issues in the chat session list sidebar:
-
-    1. **Status sync broken**: `isSending` is a plugin-level flag, not per-session. The session list has no visual indicator of which session is actively sending, idle, or errored. When switching between sessions, the status doesn't reflect the real state.
-
-    2. **List styling is plain**: The current row is a basic icon circle + title + provider + count badge. Needs a more creative, modern design with status indicators, relative timestamps, last message preview, and better visual hierarchy.
 id: FEAT-XBH
 kind: bug
-labels:
-    - reported-against:FEAT-XFG
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: 'Chat session list: status not synced + list styling needs rebuild'
-updated_at: "2026-03-05T11:31:54Z"
-version: 8
+type: feature
 ---
 
 # Chat session list: status not synced + list styling needs rebuild

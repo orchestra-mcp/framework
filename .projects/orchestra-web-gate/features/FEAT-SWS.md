@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-07T06:25:18Z"
-description: 'Build a tunnel overview page showing all registered machines: hostname, OS, uptime, connection status, tool count, last activity. Live status indicators (online/offline with ping). Quick actions: connect, disconnect, remove, rename. Machine detail view: installed packs, available tools (list_tools), active sessions, workspace info.'
 estimate: M
 id: FEAT-SWS
 kind: feature
-labels:
-    - plan:PLAN-PMK
 priority: P1
-project_id: orchestra-web-gate
+project_slug: orchestra-web-gate
 status: done
 title: Tunnel dashboard — machine monitoring & overview
-updated_at: "2026-03-07T08:56:29Z"
-version: 16
+type: feature
 ---
 
 # Tunnel dashboard — machine monitoring & overview

@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:12:57Z"
-description: 'DevTools plugin container for Tablet and ChromeOS only. File Explorer with full IDE backend via engine.rag: list_directory, read_file, write_file, move_file, delete_file, file_info, file_search. Code intelligence via LSP: code_symbols, code_goto_definition, code_find_references, code_hover, code_complete, code_diagnostics, code_actions, code_workspace_symbols, code_imports. On ChromeOS: integrates with Crostini file system at /mnt/chromeos/LinuxFiles for direct project file access. Two-pane layout: file tree (240dp) + code viewer/editor with JetBrains Mono font, syntax highlighting, line numbers.'
 id: FEAT-DSP
+kind: feature
 priority: P1
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: DevTools plugin — File Explorer + code intelligence (Tablet + ChromeOS)
-updated_at: "2026-02-28T05:18:38Z"
-version: 0
+type: feature
 ---
 
 # DevTools plugin — File Explorer + code intelligence (Tablet + ChromeOS)

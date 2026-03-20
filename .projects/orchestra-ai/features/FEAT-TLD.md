@@ -1,18 +1,11 @@
 ---
-created_at: "2026-02-28T02:21:34Z"
-depends_on:
-    - FEAT-KNF
-description: 'Phase 3.2: 6 MCP tools — create_test_suite, run_test_suite (dry_run param), get_test_results (pass/fail + metrics), add_test_case, evaluate_response (run assertions), compare_providers (same prompt across providers side-by-side).'
 id: FEAT-TLD
-labels:
-    - phase-3
-    - testing
+kind: feature
 priority: P2
-project_id: orchestra-ai
+project_slug: orchestra-ai
 status: done
 title: 'Testing tools (6): create/run/results/add/evaluate/compare'
-updated_at: "2026-02-28T03:01:55Z"
-version: 0
+type: feature
 ---
 
 # Testing tools (6): create/run/results/add/evaluate/compare

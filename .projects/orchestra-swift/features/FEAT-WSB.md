@@ -1,16 +1,11 @@
 ---
-created_at: "2026-03-05T15:07:56Z"
-description: '4 fixes for the trigger autocomplete system:\n1. CMD+A selects all sessions even when not in selection mode — guard added\n2. @ trigger should show recently modified files by default, search files/folders/hidden when typing\n3. # trigger should support both adding to memory (Save to Memory option) and searching existing memories\n4. Trigger overlay in input card mode doesn''t resize the panel — added onChange handlers and fixed resizeIfNeeded to anchor bottom edge\n\nAlso fixed: mini panel width now matches input card width (700px instead of 860px)'
 id: FEAT-WSB
 kind: bug
-labels:
-    - reported-against:FEAT-NWL
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: 'Fix trigger issues: CMD+A, @ file explorer, # memory add, panel resize'
-updated_at: "2026-03-05T15:24:03Z"
-version: 8
+type: feature
 ---
 
 # Fix trigger issues: CMD+A, @ file explorer, # memory add, panel resize

@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-10T14:18:25Z"
-description: Create libs/plugin-bridge-slack/ mirroring Discord bridge plugin. Implement Slack Events API / Socket Mode gateway, REST client, command router with allowed-users check, notification service for workflow transitions, embed helpers (Block Kit), and 5 MCP tools (start_bot, stop_bot, bot_status, send_message, set_config). Scaffold with scripts/new-plugin.sh.
 estimate: L
 id: FEAT-MXX
 kind: feature
-labels:
-    - plan:PLAN-IDD
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Slack Bridge Plugin
-updated_at: "2026-03-10T14:37:46Z"
-version: 5
+type: feature
 ---
 
 # Slack Bridge Plugin

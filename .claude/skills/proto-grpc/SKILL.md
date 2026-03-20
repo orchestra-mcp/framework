@@ -1,8 +1,3 @@
----
-name: proto-grpc
-description: Protobuf/gRPC/Buf patterns for Go-Rust communication. Activates when working with .proto files, gRPC services, buf configuration, code generation, or service contracts between Go and Rust.
----
-
 # Proto & gRPC — Service Contracts
 
 Orchestra MCP uses Protocol Buffers as the contract layer between the Go backend and Rust engine, compiled via Buf and generated into both languages.

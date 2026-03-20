@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-01T12:32:31Z"
-description: Remove 32 plugin imports from serve.go. Keep 4 core (storage.markdown, transport.stdio, tools.features, tools.marketplace). Add QUIC bridge startup and loadExternalPlugins() call. Add --no-plugins flag. Update signal handling for external plugin shutdown.
 estimate: M
 id: FEAT-LNU
 kind: feature
-labels:
-    - plan:PLAN-YPA
 priority: P1
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Restructure serve.go for core+external model
-updated_at: "2026-03-01T12:47:01Z"
-version: 0
+type: feature
 ---
 
 # Restructure serve.go for core+external model

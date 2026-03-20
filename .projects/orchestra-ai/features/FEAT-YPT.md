@@ -1,16 +1,11 @@
 ---
-created_at: "2026-02-28T02:21:11Z"
-description: 'New bridge plugin for Firecrawl API. NOT a chat LLM — this is a web scraping/crawling service. Different tool pattern: scrape_url, crawl_site, search_web, extract_data, map_site. REST API at https://api.firecrawl.dev/v1. Env: FIRECRAWL_API_KEY. provides_ai: ["firecrawl"]. Unique bridge — not OpenAI-compatible, requires custom client.'
 id: FEAT-YPT
-labels:
-    - phase-1
-    - bridge
+kind: feature
 priority: P1
-project_id: orchestra-ai
+project_slug: orchestra-ai
 status: done
 title: 'Bridge: Firecrawl (Web scraping AI)'
-updated_at: "2026-02-28T02:35:02Z"
-version: 0
+type: feature
 ---
 
 # Bridge: Firecrawl (Web scraping AI)

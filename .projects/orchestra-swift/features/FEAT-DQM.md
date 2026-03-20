@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-05T11:31:19Z"
-description: Create FloatingPanelController.swift (NSPanel management, PanelMode enum, transitions, hotkey, drag), FloatingUIStore.swift (single ObservableObject for all floating UI state), and ClearHostingView.swift (extracted NSHostingView subclass). Replaces SmartInputWindowManager singleton + SmartInputState singleton.
 estimate: L
 id: FEAT-DQM
 kind: feature
-labels:
-    - plan:PLAN-ADU
 priority: P0
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: 'Foundation: FloatingPanelController + FloatingUIStore'
-updated_at: "2026-03-05T11:51:33Z"
-version: 8
+type: feature
 ---
 
 # Foundation: FloatingPanelController + FloatingUIStore

@@ -1,16 +1,11 @@
 ---
-created_at: "2026-02-28T02:21:06Z"
-description: 'New bridge plugin for xAI Grok API. OpenAI-compatible API (uses OPENAI_BASE_URL=https://api.x.ai/v1). Models: grok-3, grok-3-mini. Same 5-tool pattern. Env: XAI_API_KEY mapped to OPENAI_API_KEY. provides_ai: ["grok"].'
 id: FEAT-DPG
-labels:
-    - phase-1
-    - bridge
+kind: feature
 priority: P1
-project_id: orchestra-ai
+project_slug: orchestra-ai
 status: done
 title: 'Bridge: Grok (xAI)'
-updated_at: "2026-02-28T02:35:00Z"
-version: 0
+type: feature
 ---
 
 # Bridge: Grok (xAI)

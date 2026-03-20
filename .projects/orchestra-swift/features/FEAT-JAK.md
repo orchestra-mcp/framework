@@ -1,16 +1,11 @@
 ---
-created_at: "2026-03-09T14:05:37Z"
-description: ""
 id: FEAT-JAK
 kind: chore
 priority: P3
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: todo
 title: Create test.php file
-updated_at: "2026-03-09T14:05:37Z"
-version: 0
+type: feature
 ---
 
 # Create test.php file
-
-

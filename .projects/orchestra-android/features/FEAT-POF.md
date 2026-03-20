@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:07:07Z"
-description: 'OrchestraPlugin interface: id, name, icon (ImageVector), section (Sidebar/DevTools/Settings), order, supportedPlatforms (Phone/Tablet/ChromeOS/WearOS/TV/Auto), Content @Composable, onActivate/onDeactivate. PluginRegistry: register(), plugin(id), sidebarPlugins/devToolPlugins/settingsPlugins filtered by current platform. LocalPluginRegistry CompositionLocal. Platform detection: ChromeOS via org.chromium.arc feature flag, WearOS/TV/Auto via PackageManager, Tablet via sw600dp. Built-in plugins: Chat (All), Projects (Phone/Tablet/ChromeOS/TV), Notes (Phone/Tablet/ChromeOS), DevTools (Tablet/ChromeOS), Settings (All).'
 id: FEAT-POF
+kind: feature
 priority: P0
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Plugin system (OrchestraPlugin interface + PluginRegistry)
-updated_at: "2026-02-28T03:46:18Z"
-version: 0
+type: feature
 ---
 
 # Plugin system (OrchestraPlugin interface + PluginRegistry)

@@ -1,20 +1,11 @@
 ---
-blocks:
-    - FEAT-SOD
-    - FEAT-PFP
-created_at: "2026-02-28T02:11:25Z"
-description: 'Add lsp_open/close/update_document, lsp_goto_definition, lsp_find_references, lsp_hover, lsp_complete, lsp_diagnostics, lsp_workspace_symbols, lsp_build_index to engine-rag. New modules: lsp/document.rs, lsp/resolution.rs, lsp/completion.rs, lsp/docstring.rs. Symbol resolution graph in SQLite. New deps: lsp-types, ropey.'
 id: FEAT-WFH
-labels:
-    - phase-5
-    - rust-engine
-    - lsp
+kind: feature
 priority: P0
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Rust engine LSP tools (10 new tools in engine-rag)
-updated_at: "2026-02-28T03:52:18Z"
-version: 0
+type: feature
 ---
 
 # Rust engine LSP tools (10 new tools in engine-rag)

@@ -1,18 +1,11 @@
 ---
-blocks:
-    - FEAT-JGM
-created_at: "2026-02-28T02:19:38Z"
-description: 'Phase 1.1-1.2: Add Provider string to Account struct (agentops), refactor buildEnvVars() to switch on provider (claude/openai/gemini/ollama/grok/perplexity), return provider from get_account_env. DONE.'
 id: FEAT-GFO
-labels:
-    - phase-1
-    - core
+kind: feature
 priority: P0
-project_id: orchestra-ai
+project_slug: orchestra-ai
 status: done
 title: Provider field on Account + provider-aware env vars
-updated_at: "2026-02-28T02:22:10Z"
-version: 0
+type: feature
 ---
 
 # Provider field on Account + provider-aware env vars

@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:20:11Z"
-description: 'UpdateChecker service running via WorkManager every 6 hours. Checks GitHub releases API at github.com/orchestra-mcp/orchestra-kotlin for newer version tags. Compares against BuildConfig.VERSION_NAME using semver. On update found: shows UpdateAvailableNotification (channel: system) with Install action. Install action: opens Play Store listing (market://details?id=dev.orchestra.app) or direct APK download for sideloaded installs. UpdateInfoDialog in Settings → About: current version, latest version, changelog from GitHub release body, Install / Later buttons. Respects Play Store in-app updates API (AppUpdateManager) when installed via Play. Manual check button in Settings → About.'
 id: FEAT-NMC
+kind: feature
 priority: P2
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Auto-updater (GitHub releases + Play Store)
-updated_at: "2026-02-28T06:52:16Z"
-version: 0
+type: feature
 ---
 
 # Auto-updater (GitHub releases + Play Store)

@@ -1,18 +1,11 @@
 ---
-created_at: "2026-02-28T02:12:22Z"
-depends_on:
-    - FEAT-XEA
-description: 'Tools: component_list, component_preview, component_create, component_inspect, component_sync_figma, component_library. Cross-plugin calls to integration.figma + engine-rag parse_file/get_symbols. Depends on INT-FIGMA.'
 id: FEAT-ETS
-labels:
-    - phase-7
-    - integration
+kind: feature
 priority: P2
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Component library + Figma sync (devtools.components)
-updated_at: "2026-02-28T05:07:35Z"
-version: 0
+type: feature
 ---
 
 # Component library + Figma sync (devtools.components)

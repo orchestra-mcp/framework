@@ -1,36 +1,11 @@
 ---
-blocks:
-    - FEAT-ZCC
-created_at: "2026-02-28T03:14:02Z"
-depends_on:
-    - FEAT-HPJ
-description: |-
-    Embed the React dashboard build output into the Go binary so the gateway serves a single self-contained binary.
-
-    File: `libs/plugin-transport-webtransport/internal/assets.go`
-
-    Contents:
-    ```go
-    package internal
-    import "embed"
-    //go:embed dist/*
-    var dashboardFS embed.FS
-    ```
-
-    dist/ directory setup:
-    - Placeholder `libs/plugin-transport-webtransport/internal/dist/index.html` checked in (minimal HTML so go build works before React is built)
-    - Makefile build-transport-webtransport target copies apps/web/dist/* here before go build
-
-    Gateway initialization: pass dashboardFS to NewGateway(sender, apiKey, dashboardFS), exposed as g.dist fs.FS for serveDashboard()
-
-    Acceptance: go build works with placeholder dist/, make build-transport-webtransport copies real React build and binary serves correct dashboard
 id: FEAT-UTD
+kind: feature
 priority: P0
-project_id: orchestra-web
+project_slug: orchestra-web
 status: done
 title: Static File Embedding (go:embed)
-updated_at: "2026-02-28T03:58:54Z"
-version: 0
+type: feature
 ---
 
 # Static File Embedding (go:embed)

@@ -1,16 +1,11 @@
 ---
-created_at: "2026-03-14T18:43:11Z"
-description: 'Replace all silent error suppression patterns with proper error logging. Fix: storage.go:158 (_ = os.Remove), storage.go:185 (walkErr ignored), paths.go:61-62 (readVersion ignores parse errors), transport.go:120 (_ = t.writeResponse). Log errors at minimum, return where possible. Files: libs/plugin-storage-markdown/internal/storage.go, paths.go; libs/plugin-transport-stdio/internal/transport.go.'
 id: FEAT-YTQ
 kind: bug
-labels:
-    - plan:PLAN-MPF
 priority: P0
-project_id: orchestra-pro
+project_slug: orchestra-pro
 status: done
 title: Fix Silent Error Suppression
-updated_at: "2026-03-14T18:56:52Z"
-version: 4
+type: feature
 ---
 
 # Fix Silent Error Suppression

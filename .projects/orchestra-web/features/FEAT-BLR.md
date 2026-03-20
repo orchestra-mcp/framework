@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-09T05:35:53Z"
-description: DashboardGrid with DragProvider + 12-col CSS Grid, DashboardToolbar with customize/reset/show-hide, rewrite dashboard/page.tsx
 estimate: M
 id: FEAT-BLR
 kind: feature
-labels:
-    - plan:PLAN-BLV
 priority: P1
-project_id: orchestra-web
+project_slug: orchestra-web
 status: done
 title: DashboardGrid, Toolbar, and page rewrite
-updated_at: "2026-03-09T06:36:49Z"
-version: 5
+type: feature
 ---
 
 # DashboardGrid, Toolbar, and page rewrite

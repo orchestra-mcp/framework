@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:15:42Z"
-description: 'Account management screen in Settings plugin using tools.agentops (8 tools): create_account, list_accounts, get_account, remove_account, set_budget, get_account_env, check_budget, report_usage. AccountsScreen: list of AI provider accounts with provider icon, masked API key, budget status (ok=green, warning=amber, blocked=red). Create account sheet: provider picker (claude/openai/gemini/ollama/grok/perplexity/deepseek/qwen/kimi/firecrawl), auth method (api_key/claude_code/setup_token/custom), API key input. Budget settings: max_usd input, alert_at % slider. BudgetIndicator component reused in ChatTopBar showing current session cost. API keys stored in EncryptedSharedPreferences (never sent to storage plugin).'
 id: FEAT-WYB
+kind: feature
 priority: P1
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Account management UI (tools.agentops)
-updated_at: "2026-02-28T05:57:03Z"
-version: 0
+type: feature
 ---
 
 # Account management UI (tools.agentops)

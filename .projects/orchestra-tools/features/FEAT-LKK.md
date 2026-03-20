@@ -1,18 +1,11 @@
 ---
-created_at: "2026-02-28T02:11:55Z"
-depends_on:
-    - FEAT-NZM
-description: 'Tools: docker_list_containers, docker_start, docker_stop, docker_restart, docker_logs (streaming), docker_exec, docker_list_images, docker_compose_up, docker_compose_down, docker_inspect. Uses github.com/docker/docker/client. Depends on INFRA-STREAM.'
 id: FEAT-LKK
-labels:
-    - phase-6
-    - devtools
+kind: feature
 priority: P1
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Docker container manager (devtools.docker)
-updated_at: "2026-02-28T04:30:08Z"
-version: 0
+type: feature
 ---
 
 # Docker container manager (devtools.docker)

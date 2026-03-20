@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-05T13:59:26Z"
-description: Show context-aware suggested prompts when input is empty and focused, or when a new session is created. Add a sparkles button to the input bar that opens a popover with SuggestedPromptsProvider.suggestions(). Tapping a prompt inserts text and optionally auto-sends. Works in both FloatingInputCard and FloatingMiniPanel.
 estimate: M
 id: FEAT-YUT
 kind: feature
-labels:
-    - plan:PLAN-SRI
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Startup Prompts + Suggestions Bubble
-updated_at: "2026-03-05T15:11:22Z"
-version: 8
+type: feature
 ---
 
 # Startup Prompts + Suggestions Bubble

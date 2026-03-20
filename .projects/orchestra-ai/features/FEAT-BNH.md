@@ -1,16 +1,11 @@
 ---
-created_at: "2026-02-28T02:19:41Z"
-description: 'Phase 1.6: send_message gets provider from account alongside env vars, passes provider to spawn_session via CallToolWithProvider(). DONE.'
 id: FEAT-BNH
-labels:
-    - phase-1
-    - core
+kind: feature
 priority: P0
-project_id: orchestra-ai
+project_slug: orchestra-ai
 status: done
 title: Sessions plugin provider dispatch
-updated_at: "2026-02-28T02:22:15Z"
-version: 0
+type: feature
 ---
 
 # Sessions plugin provider dispatch

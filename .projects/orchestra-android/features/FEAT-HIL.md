@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:14:08Z"
-description: 'ai.screenshot: MediaProjection API screen capture (capture_screen, capture_region, capture_window, capture_interactive, annotate_screenshot, list_captures). Runtime permission request via startActivityForResult(projectionManager.createScreenCaptureIntent()). ai.vision: Claude Vision API or OpenAI Vision fallback (analyze_image, extract_text, find_elements, compare_images, describe_screen, extract_data). CameraX integration for live camera capture. ai.screen-reader: Android AccessibilityService API (get_accessibility_tree, get_focused_element, find_element, get_element_hierarchy, list_windows, get_window_elements). Accessibility service declared in AndroidManifest. ai.browser-context on ChromeOS: WebSocket bridge to Chrome extension (get_page_content, get_page_dom, get_selected_text, get_open_tabs, get_page_screenshot, navigate_to).'
 id: FEAT-HIL
+kind: feature
 priority: P2
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: AI Awareness — screenshot, vision, screen reader
-updated_at: "2026-02-28T06:41:56Z"
-version: 0
+type: feature
 ---
 
 # AI Awareness — screenshot, vision, screen reader

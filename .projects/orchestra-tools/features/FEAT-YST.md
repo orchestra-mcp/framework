@@ -1,16 +1,11 @@
 ---
-created_at: "2026-02-28T02:12:13Z"
-description: 'Tools: list_services, start_service, stop_service, restart_service, service_logs, service_info. macOS: launchctl. Linux: systemctl. Runtime platform detection.'
 id: FEAT-YST
-labels:
-    - phase-6
-    - devtools
+kind: feature
 priority: P2
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: OS service control (devtools.services)
-updated_at: "2026-02-28T05:44:24Z"
-version: 0
+type: feature
 ---
 
 # OS service control (devtools.services)

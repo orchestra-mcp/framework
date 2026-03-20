@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:13:43Z"
-description: 'Foldable-aware layouts using androidx.window:window WindowManager API. AdaptiveChatLayout: detects FoldingFeature via WindowInfoTracker.getOrCreate(activity).windowLayoutInfo flow. TableTop posture (hinge horizontal): ChatMessages fills top half, ChatInput fills bottom half, hinge acts as visual divider. Book posture (hinge vertical): ChatSessionList in left pane, ChatBox in right pane. Flat/unknown posture: standard single-pane or two-pane based on width. Tested on: Samsung Galaxy Z Fold, Z Flip, Pixel Fold. No activity recreation on fold/unfold — handled via configChanges=screenLayout.'
 id: FEAT-ZMS
+kind: feature
 priority: P2
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Foldable device support (Jetpack WindowManager)
-updated_at: "2026-02-28T06:08:21Z"
-version: 0
+type: feature
 ---
 
 # Foldable device support (Jetpack WindowManager)

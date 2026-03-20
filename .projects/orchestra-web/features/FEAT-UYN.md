@@ -1,14 +1,11 @@
 ---
-created_at: "2026-03-01T11:36:00Z"
-description: Runtime TypeError at team/page.tsx:184 — Cannot read properties of undefined (reading '0'). Happens when team.name is empty string or undefined after team creation. The expression team.name[0]?.toUpperCase() crashes. Need to add a safety guard for empty/undefined team name.
 id: FEAT-UYN
 kind: bug
 priority: P0
-project_id: orchestra-web
+project_slug: orchestra-web
 status: done
 title: Fix team page TypeError when creating team (name[0] undefined)
-updated_at: "2026-03-01T11:40:36Z"
-version: 0
+type: feature
 ---
 
 # Fix team page TypeError when creating team (name[0] undefined)

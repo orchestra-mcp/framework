@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-05T13:59:26Z"
-description: Wire SmartInputState trigger detection into FloatingInputCard and FloatingMiniPanel. Create a shared TriggerOverlay view that renders autocomplete results above the input bar. Handle arrow key navigation, Tab/Enter to apply, and Escape to dismiss. Connect onChange of store.inputText to SmartInputState.processTextChange(). All 3 triggers (@, /, !) flow through this overlay.
 estimate: L
 id: FEAT-YLL
 kind: feature
-labels:
-    - plan:PLAN-SRI
 priority: P0
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Trigger Autocomplete Overlay + SmartInputState Integration
-updated_at: "2026-03-05T14:26:51Z"
-version: 8
+type: feature
 ---
 
 # Trigger Autocomplete Overlay + SmartInputState Integration

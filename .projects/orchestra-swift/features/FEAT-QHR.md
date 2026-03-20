@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-10T14:18:25Z"
-description: Add slack provider to apps/web/internal/handlers/oauth.go (Slack OAuth2 with identity.basic scope). Add Slack button to login page, add Slack to connected accounts in settings page, add Slack OAuth admin fields in admin-integrations section. Mirror Discord OAuth implementation.
 estimate: M
 id: FEAT-QHR
 kind: feature
-labels:
-    - plan:PLAN-IDD
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Slack OAuth Login + Connected Account
-updated_at: "2026-03-10T14:44:45Z"
-version: 5
+type: feature
 ---
 
 # Slack OAuth Login + Connected Account

@@ -1,16 +1,11 @@
 ---
-created_at: "2026-03-14T18:43:11Z"
-description: 'Add ctx.Err() checks and select { case <-ctx.Done() } in all storage operations (Read, Write, Delete, List), external plugin QUIC calls, and long-running loops. A hung operation should respect cancellation instead of blocking forever. Files: libs/plugin-storage-markdown/internal/storage.go, libs/cli/internal/inprocess/router.go, external.go.'
 id: FEAT-JBJ
 kind: feature
-labels:
-    - plan:PLAN-MPF
 priority: P1
-project_id: orchestra-pro
+project_slug: orchestra-pro
 status: done
 title: Enforce Context Timeout in Storage and Transport
-updated_at: "2026-03-14T19:00:06Z"
-version: 5
+type: feature
 ---
 
 # Enforce Context Timeout in Storage and Transport

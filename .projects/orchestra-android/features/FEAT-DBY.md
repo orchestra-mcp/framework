@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:15:15Z"
-description: 'Integrate engine.rag Rust plugin (22 tools) for AI memory and codebase search. Memory panel in chat sidebar: search_memory, get_context, save_observation, get_project_summary, list_memories, get_memory, update_memory, delete_memory. Session lifecycle: start_session on new chat, end_session with summary on close. Search panel in DevTools (Tablet/ChromeOS): full-text search via search, search_symbols, index_directory, get_index_stats, clear_index. Code parsing for open files: parse_file, get_symbols, get_imports. MemoryCard event card type in chat showing recalled context. ContextBadge in ChatTopBar showing how many memories were injected into current prompt.'
 id: FEAT-DBY
+kind: feature
 priority: P1
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: AI memory + search integration (engine.rag)
-updated_at: "2026-02-28T06:04:40Z"
-version: 0
+type: feature
 ---
 
 # AI memory + search integration (engine.rag)

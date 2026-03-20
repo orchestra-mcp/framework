@@ -1,16 +1,11 @@
 ---
-created_at: "2026-02-28T02:19:45Z"
-description: 'Phase 1.3: bridge-gemini plugin with 5 tools. Uses generative-ai-go SDK. Default model gemini-2.0-flash. provides_ai: ["gemini"]. DONE.'
 id: FEAT-JQT
-labels:
-    - phase-1
-    - bridge
+kind: feature
 priority: P0
-project_id: orchestra-ai
+project_slug: orchestra-ai
 status: done
 title: 'Bridge: Google Gemini'
-updated_at: "2026-02-28T02:22:16Z"
-version: 0
+type: feature
 ---
 
 # Bridge: Google Gemini

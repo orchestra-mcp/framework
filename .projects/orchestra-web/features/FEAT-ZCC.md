@@ -1,57 +1,11 @@
 ---
-blocks:
-    - FEAT-VAJ
-    - FEAT-OMM
-created_at: "2026-02-28T03:14:16Z"
-depends_on:
-    - FEAT-UTD
-description: |-
-    Comprehensive test suite using httptest package + mockSender for orchestrator isolation.
-
-    File: `libs/plugin-transport-webtransport/internal/gateway_test.go`
-
-    Pattern: same as libs/plugin-transport-stdio/internal/transport_test.go
-    - mockSender struct implementing Sender interface, configurable return values
-    - Tests use httptest.NewRecorder() + http.NewRequest() pattern (not httptest.NewServer)
-
-    HTTP layer tests (8):
-    1. TestHealthEndpoint — GET /health returns 200 OK
-    2. TestCORSPreflight — OPTIONS /rpc returns 204 + Access-Control-Allow-Origin, Allow-Methods, Allow-Headers
-    3. TestCORSHeaders — POST /rpc response includes CORS headers
-    4. TestRPCInvalidContentType — Content-Type: text/plain returns 415
-    5. TestRPCEmptyBody — empty body returns {error: {code: -32700, message: "parse error"}}
-    6. TestRPCInvalidJSON — malformed JSON returns parse error
-    7. TestAuthRequired — POST /rpc without Authorization returns 401 when apiKey is set
-    8. TestAuthSuccess — correct Bearer token proceeds to dispatch
-
-    Handler tests (8):
-    9. TestInitialize — verify ProtocolVersion "2024-11-05", Capabilities contains tools+prompts, ServerInfo.Name "orchestra"
-    10. TestPing — verify Result is empty object {}
-    11. TestToolsList — mockSender returns 2 tools, verify MCPToolDefinition conversion
-    12. TestToolsCall — mockSender returns success, verify content blocks in response
-    13. TestToolsCallError — mockSender returns error, verify isError content block
-    14. TestToolsCallMissingName — params without name field returns -32602 InvalidParams
-    15. TestMethodNotFound — "unknown/method" returns -32601
-    16. TestNotification — "notifications/something" returns nil (no response written)
-
-    Translator tests (4):
-    17. TestStructToMap — round-trip: MapToStruct -> StructToMap gives identical map
-    18. TestToolDefinitionToMCP — protobuf ToolDefinition converts to MCPToolDefinition correctly
-    19. TestToolResponseToMCPSuccess — success result produces text content block
-    20. TestToolResponseToMCPError — error result produces isError: true content block
-
-    Prompt tests (2):
-    21. TestPromptsList — verify prompt list conversion from protobuf
-    22. TestPromptsGet — verify prompt get forwarding with arguments
-
-    Acceptance: go test ./libs/plugin-transport-webtransport/... -v — all 22 tests pass
 id: FEAT-ZCC
+kind: feature
 priority: P0
-project_id: orchestra-web
+project_slug: orchestra-web
 status: done
 title: Gateway Unit Tests (22 tests)
-updated_at: "2026-02-28T04:00:55Z"
-version: 0
+type: feature
 ---
 
 # Gateway Unit Tests (22 tests)

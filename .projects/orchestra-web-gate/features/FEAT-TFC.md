@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-07T06:25:18Z"
-description: 'When a machine starts the web gate, it generates a one-time registration token (displayed in terminal). The user copies this token to the web app to register the tunnel. The token contains: machine hostname, OS, IP (local), gate address, API key hash. The web backend verifies the token by calling the gate''s health endpoint. After registration, the tunnel is stored in the user''s account with a persistent connection token.'
 estimate: M
 id: FEAT-TFC
 kind: feature
-labels:
-    - plan:PLAN-PMK
 priority: P0
-project_id: orchestra-web-gate
+project_slug: orchestra-web-gate
 status: done
 title: Tunnel registration token system
-updated_at: "2026-03-07T07:05:53Z"
-version: 9
+type: feature
 ---
 
 # Tunnel registration token system

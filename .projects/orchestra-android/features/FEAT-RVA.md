@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:14:20Z"
-description: 'Voice plugin using services.voice (8 tools): tts_speak, tts_speak_provider, tts_list_voices, tts_stop, stt_listen, stt_transcribe_file, stt_list_models, voice_config. OS TTS: Android TextToSpeech engine (all platforms including Wear OS). OS STT: Android SpeechRecognizer with RecognitionListener (phone, tablet, ChromeOS, Auto). Provider TTS: ElevenLabs, OpenAI TTS, Google Cloud TTS via bridge plugins. Provider STT: OpenAI Whisper, Google Cloud Speech, Deepgram. VoiceFab in ChatInput: push-to-talk button, animated waveform while listening, auto-submit on silence. Permissions: RECORD_AUDIO required, requested on first voice tap. Voice settings: engine selector, voice picker, language, auto-submit threshold.'
 id: FEAT-RVA
+kind: feature
 priority: P2
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Voice plugin — STT/TTS (services.voice)
-updated_at: "2026-02-28T06:34:45Z"
-version: 0
+type: feature
 ---
 
 # Voice plugin — STT/TTS (services.voice)

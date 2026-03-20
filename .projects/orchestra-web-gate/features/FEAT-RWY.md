@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-07T06:25:18Z"
-description: Add a WebSocket listener to the QUIC bridge plugin so browsers can connect. The bridge currently only accepts QUIC connections — browsers can't do raw QUIC. Add a gorilla/websocket or nhooyr/websocket upgrade handler that accepts WebSocket connections on a configurable HTTP port (e.g. :9201), authenticates via API key or JWT, and forwards JSON-RPC requests to the orchestrator using the same Sender interface. Reuse existing framing.go (length-delimited JSON), translator.go (Protobuf↔JSON), and auth.go. Each WebSocket connection maps to one authenticated session. Support bidirectional streaming via WebSocket messages.
 estimate: M
 id: FEAT-RWY
 kind: feature
-labels:
-    - plan:PLAN-PMK
 priority: P0
-project_id: orchestra-web-gate
+project_slug: orchestra-web-gate
 status: done
 title: WebSocket transport layer in QUIC bridge
-updated_at: "2026-03-07T06:39:08Z"
-version: 8
+type: feature
 ---
 
 # WebSocket transport layer in QUIC bridge

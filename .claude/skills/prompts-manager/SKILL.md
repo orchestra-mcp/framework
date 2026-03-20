@@ -1,8 +1,3 @@
----
-name: prompts-manager
-description: Manage startup prompts and quick actions via MCP tools. Activates when creating, listing, updating, or deleting startup prompts or quick actions; or when the user mentions prompts, quick actions, startup configuration, or session initialization.
----
-
 # Prompts Manager — Startup Prompts & Quick Actions
 
 Manage reusable AI prompts and quick actions that can be triggered on session startup, manually, or on a schedule. Stored via MCP storage (synced to web dashboard).

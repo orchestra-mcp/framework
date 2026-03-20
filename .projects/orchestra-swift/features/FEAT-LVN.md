@@ -1,18 +1,11 @@
 ---
-created_at: "2026-03-05T11:31:26Z"
-depends_on:
-    - FEAT-KVQ
-description: Build MCPSessionService.swift (wraps MCP session tools via ToolService) and MCPStatusSync.swift (5s polling). Session status persists through MCP, local JSON stays as cache.
 id: FEAT-LVN
 kind: feature
-labels:
-    - plan:PLAN-ADU
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: MCP Session Integration and Status Persistence
-updated_at: "2026-03-05T13:33:58Z"
-version: 19
+type: feature
 ---
 
 # MCP Session Integration and Status Persistence

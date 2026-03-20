@@ -1,12 +1,3 @@
----
-name: qa-testing
-description: >-
-  Orchestrates multi-agent testing across Go, Rust, Node.js, and Playwright.
-  Activates when running tests, writing tests, debugging test failures, checking
-  coverage, or setting up CI test pipelines; or when the user mentions test,
-  testing, QA, spec, coverage, e2e, integration test, or unit test.
----
-
 # QA Testing — Multi-Agent Test Orchestration
 
 ## When to Apply

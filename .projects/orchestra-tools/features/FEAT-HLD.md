@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-01T12:32:31Z"
-description: 'New inprocess/quicserver.go: Router.ListenAndServeQUIC() creates a QUIC listener so child plugins can make storage/cross-plugin RPC calls back to the host process.'
 estimate: M
 id: FEAT-HLD
 kind: feature
-labels:
-    - plan:PLAN-YPA
 priority: P1
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Create QUIC bridge for storage access
-updated_at: "2026-03-01T12:44:25Z"
-version: 0
+type: feature
 ---
 
 # Create QUIC bridge for storage access

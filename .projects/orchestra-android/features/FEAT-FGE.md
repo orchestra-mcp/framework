@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:12:21Z"
-description: 'Settings plugin with sections: General (timezone, language), Appearance (25-theme picker + Material You toggle), Notifications (channels, DND), Display (layout mode, font size, code font), AI (default provider/model, auto-approve), Voice (STT engine, TTS voice), Sync & Account (status, devices, tokens), ChromeOS (Crostini host/port, Linux files toggle, window preset, extension URL), About (version, licenses, update check). Settings persisted in DataStore Proto. ConnectionIndicator component: green dot (Connected), amber pulsing (Connecting), red + retry (Error/Disconnected), tap to open connection sheet.'
 id: FEAT-FGE
+kind: feature
 priority: P1
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Settings plugin + ConnectionIndicator component
-updated_at: "2026-02-28T04:15:56Z"
-version: 0
+type: feature
 ---
 
 # Settings plugin + ConnectionIndicator component

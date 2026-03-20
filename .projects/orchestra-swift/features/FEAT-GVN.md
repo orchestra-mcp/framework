@@ -1,16 +1,11 @@
 ---
-created_at: "2026-03-01T16:10:00Z"
-description: The model/mode/thinking selectors in the input bar don't work properly as dropdowns/pickers. Convert thinking and mode to simple toggle buttons (like the vision awareness button). Keep only the model as text display. User wants tap-to-toggle behavior instead of dropdown pickers.
 id: FEAT-GVN
 kind: bug
-labels:
-    - request:REQ-XXA
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Replace model/mode/thinking pickers with toggle buttons like vision awareness
-updated_at: "2026-03-02T11:16:41Z"
-version: 0
+type: feature
 ---
 
 # Replace model/mode/thinking pickers with toggle buttons like vision awareness

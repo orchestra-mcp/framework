@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:14:29Z"
-description: 'Notifications plugin using services.notifications (8 tools): notify_send, notify_schedule, notify_cancel, notify_list_pending, notify_badge, notify_config, notify_history, notify_create_channel. 7 NotificationChannels: build, test, deploy, ai, reminder, system, git — each with appropriate importance level. Notification actions as PendingIntents that trigger MCP tool calls (e.g. approve/reject feature). POST_NOTIFICATIONS permission request on Android 13+ (API 33). FCM integration for remote push from orchestrator. DND hours respected via NotificationManager.getCurrentInterruptionFilter(). Badge count via ShortcutBadger. Notification history screen in Settings.'
 id: FEAT-FDG
+kind: feature
 priority: P2
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Notifications plugin (services.notifications)
-updated_at: "2026-02-28T06:27:16Z"
-version: 0
+type: feature
 ---
 
 # Notifications plugin (services.notifications)

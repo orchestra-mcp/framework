@@ -1,19 +1,12 @@
 ---
-created_at: "2026-03-07T08:56:17Z"
-depends_on:
-    - FEAT-QRF
-description: Convert 53 inline directional styles to CSS logical properties, convert 32 positional left/right properties, handle 34 directional icon instances, add RTL flip CSS rule, convert globals.css physical properties to logical
 estimate: M
 id: FEAT-UTB
 kind: feature
-labels:
-    - plan:PLAN-RRW
 priority: P1
-project_id: orchestra-web-gate
+project_slug: orchestra-web-gate
 status: in-testing
 title: RTL Layout + Directional CSS Conversion
-updated_at: "2026-03-07T09:07:31Z"
-version: 4
+type: feature
 ---
 
 # RTL Layout + Directional CSS Conversion

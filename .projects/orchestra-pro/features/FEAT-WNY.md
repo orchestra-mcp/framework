@@ -1,16 +1,11 @@
 ---
-created_at: "2026-03-14T18:43:11Z"
-description: 'Fix the JSON deserialization mismatch in plugin-tools-marketplace where PackRegistry.Packs is map[string]*PackEntry but registry.json stores an array. Handle both formats during read, migrate to map format on write. Fixes list_packs, get_pack, and recommend_packs (which crashes the orchestrator). Files: libs/plugin-tools-marketplace/internal/storage/client.go, registry types.'
 id: FEAT-WNY
 kind: bug
-labels:
-    - plan:PLAN-MPF
 priority: P0
-project_id: orchestra-pro
+project_slug: orchestra-pro
 status: done
 title: Fix Pack Registry Deserialization Bug
-updated_at: "2026-03-14T18:49:22Z"
-version: 4
+type: feature
 ---
 
 # Fix Pack Registry Deserialization Bug

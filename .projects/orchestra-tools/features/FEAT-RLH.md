@@ -1,18 +1,11 @@
 ---
-created_at: "2026-02-28T02:11:45Z"
-depends_on:
-    - FEAT-NZM
-description: 'Tools: get_page_content, get_page_dom, get_selected_text, get_open_tabs, get_page_screenshot, navigate_to, execute_script. WebSocket to Chrome extension service worker. Ref: orch-ref/resources/chrome/src/. Depends on INFRA-STREAM.'
 id: FEAT-RLH
-labels:
-    - phase-3
-    - ai-awareness
+kind: feature
 priority: P1
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Chrome extension browser context (ai.browser-context)
-updated_at: "2026-02-28T04:50:43Z"
-version: 0
+type: feature
 ---
 
 # Chrome extension browser context (ai.browser-context)

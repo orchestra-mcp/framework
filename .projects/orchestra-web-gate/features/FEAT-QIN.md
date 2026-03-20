@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-07T06:25:18Z"
-description: 'Create a generic MCP client library in apps/next/src/lib/mcp.ts that sends JSON-RPC 2.0 requests over the tunnel WebSocket. Functions: callTool(name, args) → Promise<result>, listTools() → Promise<Tool[]>, listPrompts() → Promise<Prompt[]>, getPrompt(name, args) → Promise<PromptResult>. Handle streaming responses (notifications/stream events). Request ID tracking with pending promise map. Timeout handling (30s default). Error parsing (JSON-RPC error codes). This is the foundation for all MCP-powered UI components.'
 estimate: M
 id: FEAT-QIN
 kind: feature
-labels:
-    - plan:PLAN-PMK
 priority: P0
-project_id: orchestra-web-gate
+project_slug: orchestra-web-gate
 status: done
 title: MCP tool call client in Next.js
-updated_at: "2026-03-07T08:06:32Z"
-version: 8
+type: feature
 ---
 
 # MCP tool call client in Next.js

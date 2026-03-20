@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-27T12:36:10Z"
-description: 'AI memory/RAG with LanceDB vector search and SQLite for structured data. Tools: save_memory, search_memory, get_context (hybrid search), list/update/delete_memory, start/end_session. Core AI feature from artifact 17.'
 id: FEAT-EUM
+kind: feature
 priority: P0
-project_id: orchestra-rag
+project_slug: orchestra-rag
 status: done
 title: Memory service (LanceDB + SQLite)
-updated_at: "2026-02-27T13:10:14Z"
-version: 0
+type: feature
 ---
 
 # Memory service (LanceDB + SQLite)

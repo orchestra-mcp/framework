@@ -1,20 +1,11 @@
 ---
-blocks:
-    - FEAT-VZV
-created_at: "2026-02-28T02:21:22Z"
-depends_on:
-    - FEAT-JGM
-description: 'Phase 2.3+2.5: Agent YAML definition format (id, provider, model, account_id, instruction, tools, max_budget, output_key). 4 MCP tools: define_agent, get_agent, list_agents, delete_agent. Stored via storage.markdown.'
 id: FEAT-MIT
-labels:
-    - phase-2
-    - adk
+kind: feature
 priority: P1
-project_id: orchestra-ai
+project_slug: orchestra-ai
 status: done
 title: Agent YAML format + CRUD tools (4)
-updated_at: "2026-02-28T02:55:12Z"
-version: 0
+type: feature
 ---
 
 # Agent YAML format + CRUD tools (4)

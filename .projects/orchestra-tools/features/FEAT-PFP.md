@@ -1,18 +1,11 @@
 ---
-created_at: "2026-02-28T02:12:15Z"
-depends_on:
-    - FEAT-WFH
-description: 'Tools: debug_start, debug_stop, debug_set_breakpoint, debug_remove_breakpoint, debug_continue, debug_step_over, debug_step_into, debug_evaluate. Debug Adapter Protocol connecting to delve (Go), lldb (Rust/Swift), node-debug (JS). Depends on ENGINE-LSP.'
 id: FEAT-PFP
-labels:
-    - phase-6
-    - devtools
+kind: feature
 priority: P2
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Code debugger - DAP (devtools.debugger)
-updated_at: "2026-02-28T05:14:45Z"
-version: 0
+type: feature
 ---
 
 # Code debugger - DAP (devtools.debugger)

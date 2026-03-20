@@ -1,14 +1,1 @@
----
-created_at: "2026-02-28T02:55:09Z"
-description: |-
-    Native Windows universal app for Orchestra MCP — C#/.NET 8 + WinUI 3 (Windows App SDK 1.5+). Supports Windows 10/11 Desktop, Xbox, HoloLens (Mixed Reality), and Windows IoT from a single codebase. Plugin-based architecture mirroring the Go framework and Swift/Linux desktop apps — every feature is a plugin.
-
-    Connects to 270+ MCP tools via QUIC (System.Net.Quic) + mTLS + length-delimited Protobuf. Features: AI chat (multi-LLM: Claude, OpenAI, Gemini, Ollama with streaming glow), project management (13-state workflow, backlog tree, sprint burndown), notes/docs (WebView2 + Markdown), developer tools (10 sub-plugins: file explorer + Monaco, PowerShell PTY via ConPTY, SSH, Windows services via sc.exe, Docker, DAP debugger, test runner, log viewer, DB query, DevOps), AI awareness (Windows.Graphics.Capture screenshots, Windows OCR, UI Automation accessibility, browser context via Chrome extension), voice (Windows.Media.SpeechSynthesis TTS + SpeechRecognition STT + ElevenLabs/Whisper), and Toast Notifications (AppNotificationManager, 7 channels).
-
-    Native Windows features: global hotkey (Win+Shift+O via RegisterHotKey), 3 window modes (Embedded full IDE / Spirit floating CompactOverlay / Bubble always-on-top 56x56), system tray (H.NotifyIcon.WinUI), credential storage (Windows.Security.Credentials PasswordVault), Windows.Graphics.Capture screen recording, UI Automation AT-SPI equivalent, auto-updater (MSIX + PackageManager API), Jump Lists, Share Target, Windows Hello biometric auth. Packaged as MSIX → Microsoft Store / winget / Chocolatey / sideload.
-id: orchestra-win
-name: orchestra-win
-slug: orchestra-win
-updated_at: "2026-02-28T02:55:09Z"
----
-
+{"slug":"orchestra-win","name":"orchestra-win"}

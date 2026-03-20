@@ -1,20 +1,11 @@
 ---
-blocks:
-    - FEAT-TLD
-created_at: "2026-02-28T02:21:32Z"
-depends_on:
-    - FEAT-VZV
-description: 'Phase 3.1: Test suite YAML format with test_cases (name, input with prompt+state, expected with contains/not_contains/regex/min_length assertions). Evaluator engine runs assertions against responses. Supports dry_run mode with canned responses for CI.'
 id: FEAT-KNF
-labels:
-    - phase-3
-    - testing
+kind: feature
 priority: P2
-project_id: orchestra-ai
+project_slug: orchestra-ai
 status: done
 title: 'Agent Testing Kit: test suite format + evaluator engine'
-updated_at: "2026-02-28T03:01:55Z"
-version: 0
+type: feature
 ---
 
 # Agent Testing Kit: test suite format + evaluator engine

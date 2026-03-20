@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-09T05:35:53Z"
-description: Reusable widget wrapper with header, resize dropdown, lock/hide toggles, drag handle, loading/error states
 estimate: M
 id: FEAT-NUL
 kind: feature
-labels:
-    - plan:PLAN-BLV
 priority: P1
-project_id: orchestra-web
+project_slug: orchestra-web
 status: done
 title: WidgetShell component
-updated_at: "2026-03-09T06:30:11Z"
-version: 5
+type: feature
 ---
 
 # WidgetShell component

@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-01T11:40:40Z"
-description: 'Parse tool_use and tool_result blocks from Claude Code stream-json responses. Render each tool call as a collapsible card showing: tool name, status (running/done/error), human-readable arguments, and result preview. Support all common tools: Read, Edit, Write, Bash, Glob, Grep, WebFetch, WebSearch, TodoWrite, AskUserQuestion, etc.'
 estimate: L
 id: FEAT-KXH
 kind: feature
-labels:
-    - plan:PLAN-JMG
 priority: P0
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Tool result cards — render Claude Code tools as styled cards
-updated_at: "2026-03-01T11:51:22Z"
-version: 0
+type: feature
 ---
 
 # Tool result cards — render Claude Code tools as styled cards

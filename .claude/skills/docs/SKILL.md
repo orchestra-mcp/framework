@@ -1,12 +1,3 @@
----
-name: orchestra-docs
-description: >-
-  Navigates and references Orchestra MCP documentation. Activates when finding docs,
-  understanding architecture, writing or updating documentation, or answering questions
-  about any component; or when the user mentions docs, documentation, README, architecture,
-  API reference, or asks how something works.
----
-
 # Orchestra Documentation
 
 ## When to Apply

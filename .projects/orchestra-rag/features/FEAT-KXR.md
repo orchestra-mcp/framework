@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-27T12:36:08Z"
-description: 'Full-text code search via Tantivy. Tools: index_file, search (fuzzy + filtered), delete_from_index, clear_index. Port from orch-ref/engine/src/index/.'
 id: FEAT-KXR
+kind: feature
 priority: P1
-project_id: orchestra-rag
+project_slug: orchestra-rag
 status: done
 title: Search service (Tantivy)
-updated_at: "2026-02-27T13:10:13Z"
-version: 0
+type: feature
 ---
 
 # Search service (Tantivy)

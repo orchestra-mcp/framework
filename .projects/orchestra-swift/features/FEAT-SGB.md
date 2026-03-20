@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-01T11:40:40Z"
-description: Display Chrome extension browser context (current URL, page content, selected text) in the chat UI when available. Show a browser context indicator. Allow users to include/exclude browser context from prompts.
 estimate: M
 id: FEAT-SGB
 kind: feature
-labels:
-    - plan:PLAN-JMG
 priority: P3
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Browser awareness UI for Chrome extension context
-updated_at: "2026-03-01T15:46:15Z"
-version: 0
+type: feature
 ---
 
 # Browser awareness UI for Chrome extension context

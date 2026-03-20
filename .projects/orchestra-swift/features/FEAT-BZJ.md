@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-01T11:40:40Z"
-description: Replace the static 3-dot typing indicator with animated loading words (e.g. 'Analyzing your codebase', 'Reading files', 'Writing code'). Make the loading words configurable in Settings. Cycle through them with a fade animation while waiting for response.
 estimate: S
 id: FEAT-BZJ
 kind: feature
-labels:
-    - plan:PLAN-JMG
 priority: P2
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Configurable loading words while agent responds
-updated_at: "2026-03-01T13:01:31Z"
-version: 0
+type: feature
 ---
 
 # Configurable loading words while agent responds

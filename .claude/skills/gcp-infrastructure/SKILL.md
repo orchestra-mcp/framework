@@ -1,8 +1,3 @@
----
-name: gcp-infrastructure
-description: GCP infrastructure, CI/CD, Docker, monitoring, and deployment. Activates when working with Cloud Run, Cloud SQL, Memorystore, CDN, Cloud Build, Artifact Registry, Secret Manager, Pub/Sub, Docker, nginx, Sentry, PostHog, or any deployment/infrastructure task.
----
-
 # GCP Infrastructure — Deploy, CI/CD, Monitoring
 
 Orchestra runs on Google Cloud Platform with Docker containers, managed databases, and CDN-hosted frontends.

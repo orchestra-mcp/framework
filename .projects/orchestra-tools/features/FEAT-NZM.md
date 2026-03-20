@@ -1,28 +1,11 @@
 ---
-blocks:
-    - FEAT-ATZ
-    - FEAT-QYY
-    - FEAT-RLH
-    - FEAT-PBG
-    - FEAT-KNK
-    - FEAT-LKK
-    - FEAT-TEY
-    - FEAT-EMD
-    - FEAT-XBK
-    - FEAT-NQB
-created_at: "2026-02-28T02:11:15Z"
-description: 'Add StreamStart, StreamCancel, StreamChunk, StreamEnd to plugin.proto. Add RegisterStreamingTool() + StreamingToolHandler to SDK. Add SendStream() to client. File: libs/proto/orchestra/plugin/v1/plugin.proto, libs/sdk-go/plugin/{plugin,server,client}.go'
 id: FEAT-NZM
-labels:
-    - phase-1
-    - infrastructure
-    - proto
+kind: feature
 priority: P0
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Add streaming messages to proto + SDK
-updated_at: "2026-02-28T02:27:56Z"
-version: 0
+type: feature
 ---
 
 # Add streaming messages to proto + SDK

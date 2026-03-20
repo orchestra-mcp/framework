@@ -1,8 +1,3 @@
----
-name: ai-agentic
-description: AI and agentic features with Anthropic SDK, OpenAI SDK, langchaingo, chromem-go, and pgvector. Activates when building AI chat, agent orchestration, embeddings, RAG, vector search, tool use, streaming, or any AI/LLM integration.
----
-
 # AI & Agentic — LLM Integration + RAG + Agent Orchestration
 
 Orchestra's AI system provides chat, code generation, embeddings, vector search, and autonomous agent capabilities across the IDE. The Go backend orchestrates AI interactions, while the Rust engine handles local vector operations.

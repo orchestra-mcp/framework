@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:19:34Z"
-description: 'Detect and adapt to Samsung DeX mode alongside ChromeOS. DeX detection via SEM_DESKTOP_MODE_ENABLED config field. isDesktopMode() returns true for both ChromeOS ARC and DeX. When in DeX: apply NavigationRail layout, enable DevTools plugin, enable full keyboard shortcuts, enable freeform multi-window via android:resizeableActivity. DeX window default size: 1280x860dp matching the macOS Spirit window equivalent. Tested on Samsung Galaxy Tab S series with DeX dock and DeX wireless. DeX-specific: context menus on right-click (PointerEventType.Press + isSecondaryPressed), hover tooltips via Modifier.hoverable, cursor changes.'
 id: FEAT-NCY
+kind: feature
 priority: P2
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Samsung DeX desktop mode support
-updated_at: "2026-02-28T06:45:56Z"
-version: 0
+type: feature
 ---
 
 # Samsung DeX desktop mode support

@@ -1,14 +1,11 @@
 ---
-created_at: "2026-03-01T11:36:20Z"
-description: Settings page needs a database seeder that populates default settings (appearance, AI config, general preferences, notification prefs) for new users. These settings should be fetched by the frontend on load and impact the UI (theme, sidebar collapse state, language, notification toggles, etc.). Currently settings are empty — need seed data + API to serve them + frontend integration.
 id: FEAT-QHS
 kind: feature
 priority: P2
-project_id: orchestra-web
+project_slug: orchestra-web
 status: done
 title: Add settings seeder with frontend impact
-updated_at: "2026-03-01T13:04:40Z"
-version: 0
+type: feature
 ---
 
 # Add settings seeder with frontend impact

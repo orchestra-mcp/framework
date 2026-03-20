@@ -1,16 +1,11 @@
 ---
-created_at: "2026-02-28T02:21:08Z"
-description: 'New bridge plugin for Perplexity API. OpenAI-compatible API (uses OPENAI_BASE_URL=https://api.perplexity.ai). Models: sonar, sonar-pro, sonar-reasoning. Unique: returns citations in responses. Same 5-tool pattern. provides_ai: ["perplexity"].'
 id: FEAT-HRZ
-labels:
-    - phase-1
-    - bridge
+kind: feature
 priority: P1
-project_id: orchestra-ai
+project_slug: orchestra-ai
 status: done
 title: 'Bridge: Perplexity'
-updated_at: "2026-02-28T02:35:01Z"
-version: 0
+type: feature
 ---
 
 # Bridge: Perplexity

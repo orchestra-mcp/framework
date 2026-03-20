@@ -1,14 +1,11 @@
 ---
-created_at: "2026-03-01T14:16:22Z"
-description: 'The 30-second gate cooldown is easily bypassed by agents using `sleep 30`. Strengthen evidence validation with: (1) higher minimum content requirements, (2) evidence uniqueness detection across consecutive gates, (3) minimum distinct file paths in Changes sections, (4) escalating cooldowns when multiple gates are passed rapidly.'
 id: FEAT-IAL
 kind: feature
 priority: P1
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Strengthen gate evidence validation to prevent sleep-based bypass
-updated_at: "2026-03-01T14:33:25Z"
-version: 0
+type: feature
 ---
 
 # Strengthen gate evidence validation to prevent sleep-based bypass

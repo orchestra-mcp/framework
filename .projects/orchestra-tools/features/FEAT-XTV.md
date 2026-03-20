@@ -1,14 +1,11 @@
 ---
-created_at: "2026-03-01T05:18:46Z"
-description: Add doc_scan tool to scan workspace docs/ folder for markdown files and import them as MCP docs. Enhance doc_generate to produce standard documentation with proper templates instead of stub TODO sections. Pass workspace path to docs plugin for filesystem access.
 id: FEAT-XTV
 kind: feature
 priority: P1
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: 'Enhance docs MCP tool: scan docs folder and generate standard docs'
-updated_at: "2026-03-01T05:27:00Z"
-version: 0
+type: feature
 ---
 
 # Enhance docs MCP tool: scan docs folder and generate standard docs

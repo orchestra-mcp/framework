@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-01T11:40:40Z"
-description: Allow users to drag files onto the chat input or paste files (Cmd+V) to attach them as context. Show attached files as removable chips above the input. File contents are included in the prompt sent to Claude Code.
 estimate: M
 id: FEAT-FFR
 kind: feature
-labels:
-    - plan:PLAN-JMG
 priority: P2
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: File drag-drop and paste on chat input
-updated_at: "2026-03-01T13:01:29Z"
-version: 0
+type: feature
 ---
 
 # File drag-drop and paste on chat input

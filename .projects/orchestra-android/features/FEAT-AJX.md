@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:13:11Z"
-description: 'Full keyboard shortcut map for physical keyboards on Tablet and ChromeOS. onPreviewKeyEvent handler in OrchestraContent. Shortcuts: Ctrl+N (new chat), Ctrl+K (search/command palette), Ctrl+` (toggle DevTools), Ctrl+1-4 (switch nav tab), Ctrl+Enter (send message), Ctrl+Shift+P (command palette), Ctrl+W (close session), Ctrl+, (open settings), Esc (dismiss/back). ChromeOS-specific: window tile shortcuts, system-level integration via InputMethodManager. KeyboardShortcutsHelp overlay (Ctrl+?) listing all shortcuts. ShortcutChip UI component showing key combos in settings.'
 id: FEAT-AJX
+kind: feature
 priority: P2
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Physical keyboard shortcuts (Tablet + ChromeOS)
-updated_at: "2026-02-28T05:30:00Z"
-version: 0
+type: feature
 ---
 
 # Physical keyboard shortcuts (Tablet + ChromeOS)

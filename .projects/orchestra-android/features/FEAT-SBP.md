@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:13:32Z"
-description: 'PiP mode for AI chat on Phone, Tablet, and ChromeOS. onUserLeaveHint() triggers enterPictureInPictureMode() when chatViewModel.isStreaming is true. PictureInPictureParams: aspect ratio 9:16, autoEnterEnabled=true, seamlessResizeEnabled=true. PiP layout: compact ChatMessages (last 3 messages) + streaming indicator + stop button as RemoteAction. onPictureInPictureModeChanged: switch between full ChatBox and minimal PiP composable. Tapping PiP window restores full activity. Works on API 26+ (O), enhanced on API 31+ (S) with seamless resize.'
 id: FEAT-SBP
+kind: feature
 priority: P1
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Picture-in-Picture (PiP) mini chat
-updated_at: "2026-02-28T05:49:18Z"
-version: 0
+type: feature
 ---
 
 # Picture-in-Picture (PiP) mini chat

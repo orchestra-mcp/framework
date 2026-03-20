@@ -1,19 +1,11 @@
 ---
-blocks:
-    - FEAT-VTK
-created_at: "2026-02-28T02:11:23Z"
-description: 'Go plugin returning typed AST JSON. Tools: md_parse, md_parse_file, md_parse_frontmatter, md_render_html, md_render_plaintext, md_toc, md_lint, md_transform. Supports GFM + Mermaid + KaTeX + footnotes + embeds. Uses goldmark. Single source of truth for Swift/React/RN.'
 id: FEAT-YPX
-labels:
-    - phase-2
-    - core-plugin
-    - markdown
+kind: feature
 priority: P0
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Markdown AST parser plugin (tools.markdown)
-updated_at: "2026-02-28T05:25:00Z"
-version: 0
+type: feature
 ---
 
 # Markdown AST parser plugin (tools.markdown)

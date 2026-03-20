@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:13:59Z"
-description: 'Static app shortcuts via shortcuts.xml: new_chat (Ctrl+N on ChromeOS, long-press launcher on phone), projects, new_note. Dynamic shortcuts via ShortcutManager: recent chat sessions (top 3), pinned projects. Deep link intent filters: orchestra://chat, orchestra://chat/{sessionId}, orchestra://projects, orchestra://projects/{slug}, orchestra://notes, orchestra://notes/{noteId}. NavController handles deep link navigation on launch. ShortcutManagerCompat for API compatibility. CredentialStore using EncryptedSharedPreferences (AES256-GCM via MasterKey) for API key storage. Auto-update check via WorkManager every 6 hours hitting GitHub releases API.'
 id: FEAT-FAC
+kind: feature
 priority: P2
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: App shortcuts + deep links
-updated_at: "2026-02-28T06:12:51Z"
-version: 0
+type: feature
 ---
 
 # App shortcuts + deep links

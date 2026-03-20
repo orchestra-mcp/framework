@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-01T12:32:31Z"
-description: 'New pluginloader.go: spawnPlugin() starts binaries as child processes, waits for READY, connects via QUIC, fetches tool/prompt defs, registers on router via RegisterExternal(). Includes topological sort and health monitoring.'
 estimate: M
 id: FEAT-GUX
 kind: feature
-labels:
-    - plan:PLAN-YPA
 priority: P1
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Create external plugin loader
-updated_at: "2026-03-01T12:41:21Z"
-version: 0
+type: feature
 ---
 
 # Create external plugin loader

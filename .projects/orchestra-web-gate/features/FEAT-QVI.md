@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-07T06:25:18Z"
-description: 'Build an AI chat interface in apps/next/ that uses MCP bridge tools (ai_prompt, spawn_session, session_status, list_active) through the tunnel. Chat view with message history, streaming responses, model selector (Claude/OpenAI/Gemini/Ollama). Session management: create, list, resume, delete. Uses the tunnel''s AI bridge accounts — each machine can have different API keys configured. The web app doesn''t need its own AI keys, it uses whatever the tunnel has.'
 estimate: L
 id: FEAT-QVI
 kind: feature
-labels:
-    - plan:PLAN-PMK
 priority: P1
-project_id: orchestra-web-gate
+project_slug: orchestra-web-gate
 status: done
 title: AI chat UI powered by MCP bridges
-updated_at: "2026-03-07T11:16:44Z"
-version: 25
+type: feature
 ---
 
 # AI chat UI powered by MCP bridges

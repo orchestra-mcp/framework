@@ -1,14 +1,11 @@
 ---
-created_at: "2026-03-05T14:45:49Z"
-description: 'Remove the MiniPanelTabBar from the mini panel. Replace it with a mode selector button in the header that shows a popover to pick the active mode (Chat, Projects, Notes, Wiki, DevTools). The chat input is always visible but its context/behavior changes based on the selected mode:\n- Chat: Normal AI conversation\n- Projects: Input searches projects/issues, content shows project list\n- Notes: Input searches notes, content shows notes list\n- Wiki: Input searches wiki pages, content shows wiki list\n- DevTools: Input runs dev commands\n\nThe mini panel becomes a unified chat-first interface where the mode controls what the input does and what content appears.'
 id: FEAT-JVT
 kind: feature
 priority: P0
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Replace tab bar with mode selector popover + context-aware chat input
-updated_at: "2026-03-05T14:52:02Z"
-version: 8
+type: feature
 ---
 
 # Replace tab bar with mode selector popover + context-aware chat input

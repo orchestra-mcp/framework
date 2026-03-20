@@ -68,6 +68,46 @@ else
     fail "user_config.workspace is not required"
 fi
 
+# Test: name is orchestra-mcp
+if python3 -c "import json; m=json.load(open('$MANIFEST')); assert m['name'] == 'orchestra-mcp'" 2>/dev/null; then
+    pass "name is orchestra-mcp"
+else
+    fail "name is not orchestra-mcp"
+fi
+
+# Test: display_name is Orchestra MCP
+if python3 -c "import json; m=json.load(open('$MANIFEST')); assert m['display_name'] == 'Orchestra MCP'" 2>/dev/null; then
+    pass "display_name is Orchestra MCP"
+else
+    fail "display_name is not Orchestra MCP"
+fi
+
+# Test: protocol_version is 2025-06-18
+if python3 -c "import json; m=json.load(open('$MANIFEST')); assert m['server']['protocol_version'] == '2025-06-18'" 2>/dev/null; then
+    pass "protocol_version is 2025-06-18"
+else
+    fail "protocol_version is not 2025-06-18"
+fi
+
+# Test: capabilities include resources and logging
+for cap in tools prompts resources logging; do
+    if python3 -c "import json; m=json.load(open('$MANIFEST')); assert m['capabilities']['$cap'] == True" 2>/dev/null; then
+        pass "capabilities.$cap is true"
+    else
+        fail "capabilities.$cap is not true"
+    fi
+done
+
+# Test: icon.png is a valid PNG
+if python3 -c "
+f = open('$SCRIPT_DIR/icon.png', 'rb')
+assert f.read(8) == b'\\x89PNG\\r\\n\\x1a\\n', 'Not a PNG'
+" 2>/dev/null; then
+    pass "icon.png is a valid PNG file"
+else
+    fail "icon.png is not a valid PNG file"
+fi
+
 # --- Build script validation ---
 
 BUILD_SCRIPT="$SCRIPT_DIR/build-mcpb.sh"

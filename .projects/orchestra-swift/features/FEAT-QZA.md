@@ -1,16 +1,11 @@
 ---
-created_at: "2026-03-01T16:10:00Z"
-description: When the user drags the floating input bar to a new position, the chat mini panel (expanded card above it) should move together with it. Currently they appear disconnected — dragging the input doesn't reposition the chat panel.
 id: FEAT-QZA
 kind: bug
-labels:
-    - request:REQ-UED
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Mini panel (chat card) must move with input bar when dragging
-updated_at: "2026-03-01T16:13:53Z"
-version: 0
+type: feature
 ---
 
 # Mini panel (chat card) must move with input bar when dragging

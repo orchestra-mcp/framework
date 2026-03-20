@@ -1,14 +1,11 @@
 ---
-created_at: "2026-03-01T11:36:06Z"
-description: 'Team section should not be in the sidebar body. Instead, team should appear next to the logo as a dropdown. The dropdown should show: current team name, team switcher (list of user''s teams), create new team option, and team settings link. Remove the TEAM section from the sidebar body entirely.'
 id: FEAT-QYD
 kind: feature
 priority: P1
-project_id: orchestra-web
+project_slug: orchestra-web
 status: done
 title: Move team to logo area with dropdown, switching, and settings
-updated_at: "2026-03-01T12:12:17Z"
-version: 0
+type: feature
 ---
 
 # Move team to logo area with dropdown, switching, and settings

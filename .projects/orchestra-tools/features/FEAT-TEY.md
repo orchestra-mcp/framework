@@ -1,18 +1,11 @@
 ---
-created_at: "2026-02-28T02:11:57Z"
-depends_on:
-    - FEAT-NZM
-description: 'Tools: test_discover, test_run (streaming), test_run_suite, test_results, test_coverage, test_watch (streaming). Multi-framework detection: Playwright (primary), go test, cargo test, vitest. Depends on INFRA-STREAM.'
 id: FEAT-TEY
-labels:
-    - phase-6
-    - devtools
+kind: feature
 priority: P1
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Test manager - Playwright (devtools.test-runner)
-updated_at: "2026-02-28T04:59:31Z"
-version: 0
+type: feature
 ---
 
 # Test manager - Playwright (devtools.test-runner)

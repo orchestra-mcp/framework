@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-01T11:40:40Z"
-description: Add a screenshot capture button to the chat input toolbar. Use macOS ScreenCaptureKit or CGWindowListCreateImage to capture screen/window/region. Show preview before sending. Attach screenshot as context to the AI prompt.
 estimate: M
 id: FEAT-LNX
 kind: feature
-labels:
-    - plan:PLAN-JMG
 priority: P3
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Screenshot helper UI
-updated_at: "2026-03-01T15:46:09Z"
-version: 0
+type: feature
 ---
 
 # Screenshot helper UI

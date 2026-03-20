@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-07T06:25:18Z"
-description: 'Add a Zustand tunnel store to apps/next/: tunnels[], activeTunnelId, connectionStatus per tunnel. Actions: fetchTunnels(), registerTunnel(token), removeTunnel(id), selectTunnel(id), getTunnelStatus(id). Add a useTunnelConnection() hook that establishes WebSocket to the active tunnel (via proxy or direct). Add a TunnelSwitcher component in the sidebar — shows all registered machines with online/offline status, click to switch active tunnel. All MCP tool calls route through the active tunnel''s WebSocket.'
 estimate: M
 id: FEAT-NUI
 kind: feature
-labels:
-    - plan:PLAN-PMK
 priority: P0
-project_id: orchestra-web-gate
+project_slug: orchestra-web-gate
 status: done
 title: Multi-tunnel state management in Next.js frontend
-updated_at: "2026-03-07T07:55:14Z"
-version: 17
+type: feature
 ---
 
 # Multi-tunnel state management in Next.js frontend

@@ -1,16 +1,11 @@
 ---
-created_at: "2026-03-05T14:52:58Z"
-description: The mode selector (Chat/Projects/Notes/Wiki/DevTools) should be a pill button on the ControlKeysBar row (where vision, browser, model, mode toggles live), not in the mini panel header. This matches the existing UI pattern — all input-related controls are pills below the text field.
 id: FEAT-URR
 kind: bug
-labels:
-    - reported-against:FEAT-JVT
 priority: P0
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Move mode selector from header to ControlKeysBar (input button row)
-updated_at: "2026-03-05T15:01:41Z"
-version: 8
+type: feature
 ---
 
 # Move mode selector from header to ControlKeysBar (input button row)

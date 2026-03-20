@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-07T08:56:17Z"
-description: Install next-intl, create i18n config/request/routing modules, update middleware for dual routing, create useDirection hook, update root layout for dynamic lang/dir, create skeleton translation JSON files
 estimate: M
 id: FEAT-QRF
 kind: feature
-labels:
-    - plan:PLAN-RRW
 priority: P0
-project_id: orchestra-web-gate
+project_slug: orchestra-web-gate
 status: done
 title: Core i18n Infrastructure Setup
-updated_at: "2026-03-07T09:06:12Z"
-version: 8
+type: feature
 ---
 
 # Core i18n Infrastructure Setup

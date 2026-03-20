@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-01T12:32:31Z"
-description: New plugincmd.go with orchestra plugin install/remove/list/enable/disable/search/update/info subcommands. Update main.go routing and help text. Update plugins.go to show enabled/disabled status.
 estimate: S
 id: FEAT-REI
 kind: feature
-labels:
-    - plan:PLAN-YPA
 priority: P1
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Create plugin CLI commands
-updated_at: "2026-03-01T12:53:57Z"
-version: 0
+type: feature
 ---
 
 # Create plugin CLI commands

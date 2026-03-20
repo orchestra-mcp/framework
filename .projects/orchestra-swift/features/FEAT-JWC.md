@@ -1,14 +1,11 @@
 ---
-created_at: "2026-03-10T22:11:35Z"
-description: Add OAuth 2.0 + PKCE flow for connecting Claude Code accounts to Orchestra. Works in both MCP CLI (2-call pattern) and web dashboard. Stores OAuth token as Orchestra account with auth_method="oauth".
 id: FEAT-JWC
 kind: feature
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Claude Code OAuth Account Setup
-updated_at: "2026-03-10T22:18:20Z"
-version: 5
+type: feature
 ---
 
 # Claude Code OAuth Account Setup

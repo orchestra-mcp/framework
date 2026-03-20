@@ -1,16 +1,11 @@
 ---
-created_at: "2026-02-28T02:12:07Z"
-description: 'Tools: get_accessibility_tree, get_focused_element, find_element, get_element_hierarchy, list_windows, get_window_elements. macOS: AXUIElement via CGo. Linux: AT-SPI2 via D-Bus.'
 id: FEAT-VEC
-labels:
-    - phase-3
-    - ai-awareness
+kind: feature
 priority: P2
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Accessibility tree plugin (ai.screen-reader)
-updated_at: "2026-02-28T05:34:18Z"
-version: 0
+type: feature
 ---
 
 # Accessibility tree plugin (ai.screen-reader)

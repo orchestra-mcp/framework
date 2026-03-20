@@ -1,16 +1,11 @@
 ---
-created_at: "2026-02-28T02:21:00Z"
-description: 'New bridge plugin for DeepSeek API. OpenAI-compatible API (uses OPENAI_BASE_URL=https://api.deepseek.com). Models: deepseek-chat, deepseek-reasoner. Same 5-tool pattern (ai_prompt, spawn_session, kill_session, session_status, list_active). Can reuse bridge-openai client with custom base URL, or standalone plugin for cleaner isolation. provides_ai: ["deepseek"].'
 id: FEAT-ZVV
-labels:
-    - phase-1
-    - bridge
+kind: feature
 priority: P1
-project_id: orchestra-ai
+project_slug: orchestra-ai
 status: done
 title: 'Bridge: DeepSeek'
-updated_at: "2026-02-28T02:34:58Z"
-version: 0
+type: feature
 ---
 
 # Bridge: DeepSeek

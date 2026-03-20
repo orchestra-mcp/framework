@@ -1,14 +1,11 @@
 ---
-created_at: "2026-03-01T11:35:53Z"
-description: Feature body markdown starts broken — the description text appears as raw unformatted text before the markdown section. The expanded feature card in projects/[id] page renders the body but the initial content is not properly parsed as markdown. Need to strip frontmatter/metadata prefix if present, and ensure ReactMarkdown receives clean markdown.
 id: FEAT-WFV
 kind: bug
 priority: P1
-project_id: orchestra-web
+project_slug: orchestra-web
 status: done
 title: Fix markdown rendering in feature body (broken start)
-updated_at: "2026-03-01T11:48:08Z"
-version: 0
+type: feature
 ---
 
 # Fix markdown rendering in feature body (broken start)

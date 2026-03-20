@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-01T11:40:40Z"
-description: Change / trigger to list available agents (from .claude/agents/ or list_agents tool) instead of all 290 MCP tools. When user selects an agent, insert /agent-name into the input field without sending the message. User can then type their prompt after the agent name.
 estimate: S
 id: FEAT-DXX
 kind: bug
-labels:
-    - plan:PLAN-JMG
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: / trigger shows agents list and inserts without sending
-updated_at: "2026-03-01T12:56:25Z"
-version: 0
+type: feature
 ---
 
 # / trigger shows agents list and inserts without sending

@@ -1,9 +1,1 @@
----
-created_at: "2026-02-28T03:06:31Z"
-description: 'Universal Android app for Orchestra MCP — supports Android Phone, Tablet, ChromeOS, Wear OS, Android TV, and Android Auto. Kotlin/Jetpack Compose plugin-based architecture mirroring the Go framework. Connects to orchestrator via QUIC + mTLS + Protobuf (Netty QUIC). ChromeOS runs the Go orchestrator in Linux (Crostini) and connects over localhost. Companion to orchestra-swift (artifact 18). Reference: docs/artifacts/21-kotlin-android-app.md'
-id: orchestra-android
-name: orchestra-android
-slug: orchestra-android
-updated_at: "2026-02-28T03:06:31Z"
----
-
+{"slug":"orchestra-android","name":"orchestra-android"}

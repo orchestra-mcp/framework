@@ -1,43 +1,11 @@
 ---
-blocks:
-    - FEAT-HPJ
-created_at: "2026-02-28T03:13:38Z"
-depends_on:
-    - FEAT-CCN
-description: |-
-    HTTP/2 TLS server accepting JSON-RPC 2.0 requests on POST /rpc, serving embedded dashboard static files, with full CORS support for browser clients.
-
-    File: `libs/plugin-transport-webtransport/internal/gateway.go`
-
-    Gateway struct fields: sender Sender, apiKey string, dist fs.FS
-
-    ListenAndServe(ctx context.Context, addr string, tlsConfig *tls.Config):
-    - Build http.ServeMux: POST /rpc -> g.handleRPC, GET /health -> 200 OK, GET /* -> g.serveDashboard()
-    - Wrap mux in corsMiddleware (sets Access-Control-Allow-Origin: *, Allow-Methods: POST GET OPTIONS, Allow-Headers: Content-Type Authorization, Max-Age: 86400, handles OPTIONS with 204)
-    - http.Server with ReadTimeout 30s, WriteTimeout 60s, IdleTimeout 120s, TLSConfig
-    - Start server.ListenAndServeTLS("", "") in goroutine (certs embedded in TLSConfig)
-    - Block on ctx.Done(), call server.Shutdown(5s timeout)
-
-    handleRPC(w http.ResponseWriter, r *http.Request):
-    - Validate Content-Type is application/json (else 415)
-    - Read body with http.MaxBytesReader(10MB)
-    - Optional API key auth: if g.apiKey != "" check Authorization: Bearer header (else 401)
-    - Decode JSON-RPC request, dispatch to handler
-    - Write JSON response with Content-Type: application/json
-
-    serveDashboard() http.Handler:
-    - fs.Sub(g.dist, "dist") to strip prefix from embedded FS
-    - http.FileServer wrapping the sub-FS
-    - SPA fallback: if requested file not found, rewrite URL to "/" so React Router handles routing
-
-    Acceptance: server starts on :4433, GET /health returns 200, OPTIONS /rpc returns CORS headers + 204, GET /nonexistent returns index.html
 id: FEAT-MSY
+kind: feature
 priority: P0
-project_id: orchestra-web
+project_slug: orchestra-web
 status: done
 title: HTTP/2 Gateway Server with CORS
-updated_at: "2026-02-28T03:57:55Z"
-version: 0
+type: feature
 ---
 
 # HTTP/2 Gateway Server with CORS

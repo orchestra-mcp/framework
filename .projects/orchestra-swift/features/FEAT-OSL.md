@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-01T11:40:40Z"
-description: Add voice input (STT) using SFSpeechRecognizer and voice output (TTS) using AVSpeechSynthesizer. Add a microphone button to the input bar for voice dictation. Add a speak button on assistant messages for TTS. Voice settings in the Settings pane.
 estimate: L
 id: FEAT-OSL
 kind: feature
-labels:
-    - plan:PLAN-JMG
 priority: P2
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: needs-edits
 title: Voice TTS/STT using macOS native APIs
-updated_at: "2026-03-01T13:31:42Z"
-version: 0
+type: feature
 ---
 
 # Voice TTS/STT using macOS native APIs

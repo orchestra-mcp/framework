@@ -1,14 +1,11 @@
 ---
-created_at: "2026-03-01T11:36:14Z"
-description: The web dashboard has no realtime connection. After sync pushes data, the frontend doesn't update until manual refresh or 30s polling. Implement a WebSocket connection from the Next.js frontend to the Go backend that pushes sync events (feature created/updated, project updated) so the UI updates immediately. The Go backend should broadcast to connected clients after each successful sync push.
 id: FEAT-CPB
 kind: feature
 priority: P1
-project_id: orchestra-web
+project_slug: orchestra-web
 status: done
 title: Add WebSocket connection for realtime updates
-updated_at: "2026-03-01T12:33:02Z"
-version: 0
+type: feature
 ---
 
 # Add WebSocket connection for realtime updates

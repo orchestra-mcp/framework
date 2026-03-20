@@ -1,8 +1,3 @@
----
-name: raycast-compat
-description: Raycast extension compatibility layer for running Raycast-style extensions in Orchestra. Activates when implementing Raycast API shimming, migrating Raycast extensions, building quick-action style extensions, or working on the Raycast compatibility runtime.
----
-
 # Raycast Compatibility — Quick Action Extensions
 
 Orchestra provides a compatibility layer that allows Raycast extensions to run with minimal modification. This gives Orchestra access to Raycast's rich extension ecosystem for quick actions, search, and utility tools.

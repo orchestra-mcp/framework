@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-01T11:40:40Z"
-description: Change @ trigger to call file_search or list_directory MCP tool to show actual files in the current workspace directory tree, instead of only searching via engine-rag. Show file icons, relative paths, and allow selection to insert file path as context.
 estimate: S
 id: FEAT-JAT
 kind: bug
-labels:
-    - plan:PLAN-JMG
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: '@ trigger lists workspace files from file_search tool'
-updated_at: "2026-03-01T12:36:43Z"
-version: 0
+type: feature
 ---
 
 # @ trigger lists workspace files from file_search tool

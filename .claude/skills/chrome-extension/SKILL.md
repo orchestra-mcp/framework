@@ -1,8 +1,3 @@
----
-name: chrome-extension
-description: Chrome Extension development with Manifest V3. Activates when working on the Chrome extension source, manifest.json, service worker, content scripts, side panel, or Chrome APIs.
----
-
 # Chrome Extension — Manifest V3
 
 The Chrome extension is one of Orchestra's five client platforms, providing a sidebar IDE experience within the browser.

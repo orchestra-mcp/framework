@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-01T11:40:40Z"
-description: Add a toggle in the chat input area to enable/disable extended thinking when the selected model supports it. Pass the thinking budget parameter to Claude Code. Show thinking content in a collapsible section above the response.
 estimate: M
 id: FEAT-DAX
 kind: feature
-labels:
-    - plan:PLAN-JMG
 priority: P2
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Thinking mode toggle for extended thinking
-updated_at: "2026-03-01T13:01:30Z"
-version: 0
+type: feature
 ---
 
 # Thinking mode toggle for extended thinking

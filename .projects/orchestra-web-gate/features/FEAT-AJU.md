@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-07T06:54:44Z"
-description: 'Admin overview: stats 2-col, tools 1-col, sidebar column stacks below. Users table becomes card list on mobile. Roles matrix scrollable. All 12 admin sub-pages get mobile treatment: categories, contact, docs, issues, marketplace, notifications, pages, posts.'
 estimate: L
 id: FEAT-AJU
 kind: feature
-labels:
-    - plan:PLAN-RKU
 priority: P1
-project_id: orchestra-web-gate
+project_slug: orchestra-web-gate
 status: done
 title: Mobile-responsive admin pages (overview + users + roles + teams + all sub-pages)
-updated_at: "2026-03-07T08:25:02Z"
-version: 8
+type: feature
 ---
 
 # Mobile-responsive admin pages (overview + users + roles + teams + all sub-pages)

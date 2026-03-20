@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-09T03:55:39Z"
-description: 'Wire @orchestra-mcp/theme into Next.js: extend useThemeStore with colorTheme+variant state, import theme base CSS in globals.css, call initTheme() in root layout, bridge old CSS vars to new --color-* vars, update ThemeToggle component'
 estimate: S
 id: FEAT-SBC
 kind: feature
-labels:
-    - plan:PLAN-WDV
 priority: P0
-project_id: orchestra-web
+project_slug: orchestra-web
 status: done
 title: Theme System Bootstrap
-updated_at: "2026-03-09T05:28:27Z"
-version: 5
+type: feature
 ---
 
 # Theme System Bootstrap

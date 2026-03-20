@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:13:52Z"
-description: 'Home screen widgets using androidx.glance:glance-appwidget + glance-material3. ProjectStatusWidget: shows active project name, completion % as LinearProgressIndicator (accent purple), task count. GlanceAppWidget.provideGlance with OrchestraWidgetTheme (dark surface #111520, accent #A900FF). Tap widget to open app to Projects screen. ProjectStatusWidgetReceiver extends GlanceAppWidgetReceiver. WorkManager periodic update every 15 minutes via GlanceAppWidgetManager.updateAll(). ChatQuickWidget: New Chat button that deep links to chat screen. Widget sizes: small (2x1), medium (4x2), large (4x4) with adaptive content. AndroidManifest widget receiver + appwidget-provider XML.'
 id: FEAT-WSX
+kind: feature
 priority: P2
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: Glance app widgets (home screen)
-updated_at: "2026-02-28T06:18:29Z"
-version: 0
+type: feature
 ---
 
 # Glance app widgets (home screen)

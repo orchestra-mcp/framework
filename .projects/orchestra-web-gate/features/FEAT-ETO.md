@@ -1,21 +1,11 @@
 ---
-created_at: "2026-03-09T02:14:41Z"
-description: |-
-    Restructure the dashboard from 2-panel (sidebar + content) to 3-panel layout:
-    1. **Icon Rail** (left, ~56px): Vertical icon-only navigation controlling which section is shown in the sidebar
-    2. **Sidebar** (~280px): Shows CRUD list items for the selected section (projects list, notes list, plans list, etc.)
-    3. **Content Area** (remaining): Preview/detail of the selected item
-
-    Navigation items: Dashboard, Projects, Notes, Plans, Tunnels, Chat + Admin section.
-    Clicking an icon in the rail switches the sidebar content. Clicking a list item opens the detail/preview.
 id: FEAT-ETO
 kind: feature
 priority: P1
-project_id: orchestra-web-gate
+project_slug: orchestra-web-gate
 status: in-review
 title: '3-Panel Dashboard Layout: Icon Rail + Sidebar List + Content Preview'
-updated_at: "2026-03-09T02:43:39Z"
-version: 9
+type: feature
 ---
 
 # 3-Panel Dashboard Layout: Icon Rail + Sidebar List + Content Preview

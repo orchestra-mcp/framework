@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:20:01Z"
-description: 'WebSocket bridge from the Android app to the Orchestra Chrome extension running in ChromeOS browser. ChromeExtensionBridge.kt in chromeos/ module: establishes WebSocket connection to chrome-extension bridge endpoint (configurable URL, default ws://localhost:8765). Implements ai.browser-context tools: get_page_content, get_page_dom, get_selected_text, get_open_tabs, get_page_screenshot, navigate_to, execute_script. Only available on ChromeOS (ChromeOSCompat.isChromeOS()). BrowserContextCard event card in chat showing page title + URL when browser context injected. Extension URL configurable in Settings → ChromeOS section. Graceful fallback: if bridge unavailable, browser-context tools hidden from chat tray.'
 id: FEAT-SNR
+kind: feature
 priority: P2
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: ChromeOS Chrome extension bridge (ai.browser-context)
-updated_at: "2026-02-28T07:41:22Z"
-version: 0
+type: feature
 ---
 
 # ChromeOS Chrome extension bridge (ai.browser-context)

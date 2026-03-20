@@ -1,18 +1,13 @@
 ---
 assignee: PERS-HUS
-created_at: "2026-03-07T06:54:44Z"
-description: 'Add mobile sidebar: hidden by default on <768px, hamburger toggle in header, overlay backdrop, swipe-to-close. Header becomes mobile-friendly with stacked layout. Sidebar closes on nav link click. Uses CSS media queries in globals.css + state in layout.tsx.'
 estimate: L
 id: FEAT-KBE
 kind: feature
-labels:
-    - plan:PLAN-RKU
 priority: P0
-project_id: orchestra-web-gate
+project_slug: orchestra-web-gate
 status: done
 title: Mobile-responsive app shell — sidebar drawer + hamburger + header
-updated_at: "2026-03-07T08:06:14Z"
-version: 17
+type: feature
 ---
 
 # Mobile-responsive app shell — sidebar drawer + hamburger + header

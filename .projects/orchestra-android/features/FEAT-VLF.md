@@ -1,13 +1,11 @@
 ---
-created_at: "2026-02-28T03:13:04Z"
-description: 'Additional DevTools sub-plugins for Tablet + ChromeOS. Terminal: QUIC-tunneled PTY sessions via devtools.terminal (6 tools). SSH: remote access + SFTP via devtools.ssh (7 tools). Database: SQL query editor + schema browser via devtools.database (8 tools). Log Viewer: streaming log search via devtools.log-viewer (5 tools). Docker: container management via devtools.docker (10 tools). Services: launchctl/systemctl manager via devtools.services (6 tools). Debugger: DAP protocol via devtools.debugger (8 tools). Test Runner: multi-framework via devtools.test-runner (6 tools). DevOps: CI/CD pipelines via devtools.devops (8 tools). Tab-based sub-navigation within DevToolsPlugin.'
 id: FEAT-VLF
+kind: feature
 priority: P2
-project_id: orchestra-android
+project_slug: orchestra-android
 status: done
 title: DevTools plugin — Terminal, SSH, Database, Log Viewer, Docker (Tablet + ChromeOS)
-updated_at: "2026-02-28T05:26:20Z"
-version: 0
+type: feature
 ---
 
 # DevTools plugin — Terminal, SSH, Database, Log Viewer, Docker (Tablet + ChromeOS)

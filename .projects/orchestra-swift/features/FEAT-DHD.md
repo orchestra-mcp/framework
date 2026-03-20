@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-01T11:40:40Z"
-description: Add a permission system in Settings (Allow All vs Manual Review). When in Manual Review mode, tool calls from Claude Code that require permission show an inline prompt with Accept, Accept All (for this project), and Reject buttons. Permissions are persisted per-project.
 estimate: L
 id: FEAT-DHD
 kind: feature
-labels:
-    - plan:PLAN-JMG
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Permission system — accept/reject/accept-all for tool calls
-updated_at: "2026-03-01T12:56:23Z"
-version: 0
+type: feature
 ---
 
 # Permission system — accept/reject/accept-all for tool calls

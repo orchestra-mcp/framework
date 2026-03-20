@@ -1,17 +1,12 @@
 ---
-created_at: "2026-03-05T13:59:26Z"
-description: 'Wire VoiceService into FloatingInputCard and FloatingMiniPanel. Add microphone button to input bar. Show voice inline indicator (phase dot + transcription text) when listening. Handle 4-phase loop: idle → listening → processing → speaking. TTS via /usr/bin/say. Auto-send on 1.5s silence. Speak agent responses. Resume listening after TTS with 0.8s delay. Handle mic permissions for tray-mode app.'
 estimate: L
 id: FEAT-MOY
 kind: feature
-labels:
-    - plan:PLAN-SRI
 priority: P1
-project_id: orchestra-swift
+project_slug: orchestra-swift
 status: done
 title: Voice Chat Mode (STT/TTS) Integration
-updated_at: "2026-03-05T15:21:21Z"
-version: 8
+type: feature
 ---
 
 # Voice Chat Mode (STT/TTS) Integration

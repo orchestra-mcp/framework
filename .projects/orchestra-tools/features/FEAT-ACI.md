@@ -1,14 +1,11 @@
 ---
-created_at: "2026-03-01T13:06:25Z"
-description: Create a GitHub Actions release workflow for each optional plugin repo so that tagging a version (v*) automatically builds per-platform binaries (darwin-amd64, darwin-arm64, linux-amd64, linux-arm64) and publishes them as GitHub release assets. This enables `orchestra plugin install` to download pre-built binaries instead of building from source.
 id: FEAT-ACI
 kind: feature
 priority: P0
-project_id: orchestra-tools
+project_slug: orchestra-tools
 status: done
 title: Add per-plugin GitHub release workflows for pre-built binaries
-updated_at: "2026-03-01T14:03:56Z"
-version: 0
+type: feature
 ---
 
 # Add per-plugin GitHub release workflows for pre-built binaries

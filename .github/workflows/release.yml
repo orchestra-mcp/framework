@@ -10,8 +10,6 @@ permissions:
 env:
   GONOSUMDB: "*"
   GONOPROXY: "*"
-  GONOSUMCHECK: "off"
-  GOFLAGS: "-mod=mod"
   GOPROXY: "https://proxy.golang.org,direct"
 
 jobs:
@@ -46,7 +44,6 @@ jobs:
         run: |
           go env -w GONOSUMDB="*"
           go env -w GONOPROXY="*"
-          go env -w GOFLAGS="-mod=mod"
 
       - name: Clone dependencies
         shell: bash
@@ -181,7 +178,6 @@ jobs:
         run: |
           go env -w GONOSUMDB="*"
           go env -w GONOPROXY="*"
-          go env -w GOFLAGS="-mod=mod"
 
       - name: Clone dependencies
         shell: bash

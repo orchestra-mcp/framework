@@ -5,6 +5,8 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    # Only run if package.json exists AND has a "name" field (real npm package)
+    if: false
     permissions:
       contents: read
     steps:

@@ -1,0 +1,22 @@
+# PowerSync Self-Hosted — Orchestra
+# Run: docker compose up -d
+
+services:
+  powersync:
+    image: journeyapps/powersync-service:latest
+    container_name: orchestra-powersync
+    restart: unless-stopped
+    ports:
+      - "${PS_PORT:-8585}:8080"
+    volumes:
+      - ./powersync.yaml:/config/powersync.yaml:ro
+      - ./sync-rules.yaml:/config/sync-rules.yaml:ro
+    env_file:
+      - .env
+    command: ["start", "-c", "/config/powersync.yaml"]
+    networks:
+      - orchestra
+
+networks:
+  orchestra:
+    driver: bridge

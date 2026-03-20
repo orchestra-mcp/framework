@@ -5,25 +5,27 @@ set -e
 
 INPUT=$(cat)
 
-# Extract fields from Claude Code hook JSON
-EVENT_NAME=$(echo "$INPUT" | jq -r '.hook_event_name // "unknown"')
-SESSION_ID=$(echo "$INPUT" | jq -r '.session_id // ""')
-TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name // ""')
-AGENT_TYPE=$(echo "$INPUT" | jq -r '.agent_type // ""')
+# Build the MCP messages: initialize handshake + tool call
+INIT='{"jsonrpc":"2.0","id":0,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"orchestra-hook","version":"1.0.0"}}}'
+INITIALIZED='{"jsonrpc":"2.0","method":"notifications/initialized","params":{}}'
 
-# Build JSON-RPC call to orchestra-mcp receive_hook_event tool
-echo "$INPUT" | jq -c '{
+TOOL_CALL=$(echo "$INPUT" | jq -c '{
   jsonrpc: "2.0", id: 1, method: "tools/call",
   params: {
     name: "receive_hook_event",
     arguments: {
-      event_type: .hook_event_name,
+      event_type: (.hook_event_name // "unknown"),
       session_id: (.session_id // ""),
       tool_name: (.tool_name // ""),
       agent_type: (.agent_type // ""),
       data: .
     }
   }
-}' | orchestra-mcp --workspace "${CLAUDE_PROJECT_DIR:-.}" 2>/dev/null | head -1 > /dev/null
+}')
+
+# Send all three messages (init handshake + tool call) to orchestra via stdio
+printf '%s\n%s\n%s\n' "$INIT" "$INITIALIZED" "$TOOL_CALL" \
+  | orchestra --workspace "${CLAUDE_PROJECT_DIR:-.}" 2>/dev/null \
+  | head -2 > /dev/null
 
 exit 0

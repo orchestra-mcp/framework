@@ -5,6 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.5] - 2026-03-20
+
+### Added
+
+- **MCP protocol `2025-06-18`**: Updated from `2024-11-05` to the latest stable MCP specification
+- **Resources capability**: Project features, notes, and docs exposed as MCP resources via `orchestra://` URI scheme
+  - `resources/list` — browse features, notes, and docs
+  - `resources/read` — read resource content by URI
+  - `resources/templates/list` — 3 URI templates for discovery
+- **Logging capability**: Server-side log messages with RFC 5424 severity levels
+  - `logging/setLevel` — set log threshold (debug through emergency)
+  - `notifications/message` — structured log notifications above threshold
+- **listChanged notifications**: Dynamic tool update notifications when plugins connect/disconnect
+  - `notifications/tools/list_changed` sent automatically on plugin registration
+  - `OnToolsChanged` callback system on the in-process router
+- **Claude Desktop config**: `orchestra init --ide claude-desktop` configures the Claude Desktop chat app's global MCP config
+  - Platform-specific paths: macOS (`~/Library/Application Support/Claude/`), Windows (`%APPDATA%/Claude/`), Linux (`~/.config/Claude/`)
+  - Preserves existing servers in `claude_desktop_config.json`
+- **MCPB bundle packaging**: `make mcpb` produces `dist/orchestra.mcpb` for one-click install in Claude Desktop
+  - MCPB v0.3 manifest with 5 platform targets (darwin arm64/amd64, linux arm64/amd64, windows amd64)
+  - Cross-compile build script with version injection
+  - 26 validation tests (`scripts/mcpb/test-mcpb.sh`)
+
+### Changed
+
+- MCP initialize response now includes `tools` (with `listChanged: true`), `prompts`, `resources`, and `logging` capabilities
+- WebGate (WebSocket :9201) mirrors all new MCP capabilities for browser clients
+- README updated with MCP capabilities, protocol documentation, and MCPB packaging
+
 ## [1.0.4] - 2026-03-20
 
 ### Added

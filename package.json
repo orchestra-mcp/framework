@@ -1,6 +1,6 @@
 {
   "name": "@orchestra-mcp/cli",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Orchestra MCP — AI-agentic IDE with project management, workflow engine, and multi-platform support",
   "license": "MIT",
   "repository": {

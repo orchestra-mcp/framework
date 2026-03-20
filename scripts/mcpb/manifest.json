@@ -1,0 +1,41 @@
+{
+  "manifest_version": "0.3",
+  "name": "orchestra",
+  "display_name": "Orchestra MCP",
+  "version": "1.0.5",
+  "description": "AI-powered project management with 290+ tools — features, workflows, notes, docs, AI agents, and marketplace.",
+  "author": "Orchestra MCP",
+  "homepage": "https://github.com/orchestra-mcp/framework",
+  "repository": "https://github.com/orchestra-mcp/framework",
+  "license": "MIT",
+  "icon": "icon.png",
+  "server": {
+    "type": "binary",
+    "entry_point": {
+      "darwin-arm64": "bin/orchestra-darwin-arm64",
+      "darwin-x64": "bin/orchestra-darwin-amd64",
+      "linux-arm64": "bin/orchestra-linux-arm64",
+      "linux-x64": "bin/orchestra-linux-amd64",
+      "win32-x64": "bin/orchestra-windows-amd64.exe"
+    },
+    "mcp_config": {
+      "command": "${entry_point}",
+      "args": ["serve", "--workspace", "${user_config.workspace}"]
+    }
+  },
+  "user_config": {
+    "workspace": {
+      "type": "directory",
+      "description": "Project workspace directory",
+      "required": true
+    }
+  },
+  "tools_generated": true,
+  "prompts_generated": true,
+  "capabilities": {
+    "tools": true,
+    "prompts": true,
+    "resources": true,
+    "logging": true
+  }
+}

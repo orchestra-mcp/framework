@@ -1,0 +1,33 @@
+_type: self-hosted
+
+replication:
+  connections:
+    - type: postgresql
+      hostname: host.docker.internal
+      port: 5432
+      database: orchestra_web
+      username: fadymondy
+      password: !env PS_DB_PASSWORD
+      sslmode: disable
+
+storage:
+  type: postgresql
+  hostname: host.docker.internal
+  port: 5432
+  database: powersync_storage
+  username: fadymondy
+  password: !env PS_DB_PASSWORD
+  sslmode: disable
+
+client_auth:
+  jwks_uri: !env PS_JWKS_URL
+  audience: ["powersync"]
+
+port: 8080
+
+sync_config:
+  path: /config/sync-rules.yaml
+
+api:
+  tokens:
+    - !env PS_API_TOKEN

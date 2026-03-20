@@ -1,0 +1,216 @@
+# PowerSync Sync Rules — Orchestra
+# Defines which PostgreSQL tables sync to client devices.
+# Each bucket uses row-level security via user_id.
+
+bucket_definitions:
+
+  # ── Per-user health data ──────────────────────────────────────
+  user_health:
+    parameters: SELECT request.user_id() as user_id
+    data:
+      - SELECT id, user_id, amount_ml, logged_at, source, is_gout_flush, created_at, updated_at
+        FROM water_logs
+        WHERE user_id = bucket.user_id
+
+      - SELECT id, user_id, drink_type, caffeine_mg, is_clean, sugar_g, logged_at, created_at, updated_at
+        FROM caffeine_logs
+        WHERE user_id = bucket.user_id
+
+      - SELECT id, user_id, name, is_safe, category, triggers, logged_at, created_at, updated_at
+        FROM meal_logs
+        WHERE user_id = bucket.user_id
+
+      - SELECT id, user_id, started_at, ended_at, duration_min, type, completed, created_at, updated_at
+        FROM pomodoro_sessions
+        WHERE user_id = bucket.user_id
+
+      - SELECT id, user_id, target_bedtime, shutdown_started_at, shutdown_active, wake_time, sleep_time, created_at, updated_at
+        FROM sleep_configs
+        WHERE user_id = bucket.user_id
+
+      - SELECT id, user_id, snapshot_date, weight_kg, body_fat_pct, metabolic_age, visceral_fat, body_water_pct, created_at, updated_at
+        FROM health_snapshots
+        WHERE user_id = bucket.user_id
+
+      - SELECT id, user_id, target_water_ml, caffeine_limit_mg, pomodoro_duration_min, conditions, wake_time, sleep_time, created_at, updated_at
+        FROM health_profiles
+        WHERE user_id = bucket.user_id
+
+      - SELECT id, user_id, bed_time, wake_time, quality_rating, duration_hours, logged_at, created_at, updated_at
+        FROM sleep_logs
+        WHERE user_id = bucket.user_id
+
+  # ── Per-user notes ────────────────────────────────────────────
+  user_notes:
+    parameters: SELECT request.user_id() as user_id
+    data:
+      - SELECT id, user_id, title, content, pinned, tags, created_at, updated_at
+        FROM notes
+        WHERE user_id = bucket.user_id AND deleted_at IS NULL
+
+  # ── Per-user projects ─────────────────────────────────────────
+  user_projects:
+    parameters: SELECT request.user_id() as user_id
+    data:
+      - SELECT id, user_id, name, slug, description, mode, stacks, created_at, updated_at
+        FROM projects
+        WHERE user_id = bucket.user_id AND deleted_at IS NULL
+
+  # ── Per-user features ─────────────────────────────────────────
+  user_features:
+    parameters: SELECT request.user_id() as user_id
+    data:
+      - SELECT id, user_id, project_slug, title, description, status, kind, priority, assignee, labels, body, created_at, updated_at
+        FROM features
+        WHERE user_id = bucket.user_id AND deleted_at IS NULL
+
+  # ── Per-user agents ───────────────────────────────────────────
+  user_agents:
+    parameters: SELECT request.user_id() as user_id
+    data:
+      - SELECT id, user_id, name, slug, description, content, scope, icon, color, version, created_at, updated_at
+        FROM agents
+        WHERE user_id = bucket.user_id AND deleted_at IS NULL
+
+  # ── Per-user skills ───────────────────────────────────────────
+  user_skills:
+    parameters: SELECT request.user_id() as user_id
+    data:
+      - SELECT id, user_id, name, slug, description, content, scope, icon, color, stacks, version, created_at, updated_at
+        FROM skills
+        WHERE user_id = bucket.user_id AND deleted_at IS NULL
+
+  # ── Per-user workflows ────────────────────────────────────────
+  user_workflows:
+    parameters: SELECT request.user_id() as user_id
+    data:
+      - SELECT id, user_id, project_slug, name, description, steps, states::text as states, transitions::text as transitions, gates::text as gates, initial_state, is_default, status, version, created_at, updated_at
+        FROM workflows
+        WHERE user_id = bucket.user_id AND deleted_at IS NULL
+
+  # ── Per-user docs ─────────────────────────────────────────────
+  user_docs:
+    parameters: SELECT request.user_id() as user_id
+    data:
+      - SELECT id, user_id, doc_id, title, body, category, tags, version, created_at, updated_at
+        FROM docs
+        WHERE user_id = bucket.user_id AND deleted_at IS NULL
+
+  # ── Per-user delegations ──────────────────────────────────────
+  user_delegations:
+    parameters: SELECT request.user_id() as user_id
+    data:
+      - SELECT id, user_id, delegation_id, from_person, to_person, question, context, response, status, created_at, updated_at
+        FROM delegations
+        WHERE user_id = bucket.user_id AND deleted_at IS NULL
+
+  # ── Per-user sessions ─────────────────────────────────────────
+  user_sessions:
+    parameters: SELECT request.user_id() as user_id
+    data:
+      - SELECT id, user_id, name, provider, model, status, created_at, updated_at
+        FROM sessions
+        WHERE user_id = bucket.user_id AND deleted_at IS NULL
+
+  # ── Per-user settings ─────────────────────────────────────────
+  user_settings:
+    parameters: SELECT request.user_id() as user_id
+    data:
+      - SELECT id, user_id, key, value, updated_at
+        FROM user_settings
+        WHERE user_id = bucket.user_id
+
+  # ── Per-user plans ───────────────────────────────────────────
+  user_plans:
+    parameters: SELECT request.user_id() as user_id
+    data:
+      - SELECT id, user_id, project_slug, plan_id, title, description, status, body, version, created_at, updated_at
+        FROM plans
+        WHERE user_id = bucket.user_id AND deleted_at IS NULL
+
+  # ── Per-user requests ──────────────────────────────────────
+  user_requests:
+    parameters: SELECT request.user_id() as user_id
+    data:
+      - SELECT id, user_id, project_slug, request_id, title, description, kind, priority, status, body, version, created_at, updated_at
+        FROM requests
+        WHERE user_id = bucket.user_id AND deleted_at IS NULL
+
+  # ── Per-user persons ───────────────────────────────────────
+  user_persons:
+    parameters: SELECT request.user_id() as user_id
+    data:
+      - SELECT id, user_id, project_slug, person_id, name, email, role, status, bio, body, version, created_at, updated_at
+        FROM persons
+        WHERE user_id = bucket.user_id AND deleted_at IS NULL
+
+  # ── Per-user workspaces ──────────────────────────────────────
+  user_workspaces:
+    parameters: SELECT request.user_id() as user_id
+    data:
+      - SELECT id, owner_id, name, folders::text as folders, primary_folder, status, metadata::text as metadata, version, created_at, updated_at
+        FROM workspaces
+        WHERE owner_id = bucket.user_id AND deleted_at IS NULL
+
+  # ── Per-user memberships ─────────────────────────────────────
+  user_memberships:
+    parameters: SELECT request.user_id() as user_id
+    data:
+      - SELECT id, user_id, team_id, role, created_at, updated_at
+        FROM memberships
+        WHERE user_id = bucket.user_id AND deleted_at IS NULL
+
+  # ── Per-user API collections ─────────────────────────────────
+  user_api_collections:
+    parameters: SELECT request.user_id() as user_id
+    data:
+      - SELECT id, user_id, name, slug, description, base_url, auth_type, auth_config::text as auth_config, variables::text as variables, visibility, version, created_at, updated_at
+        FROM api_collections
+        WHERE user_id = bucket.user_id AND deleted_at IS NULL
+
+      - SELECT id, collection_id, user_id, name, method, path, headers::text as headers, query_params::text as query_params, body, body_type, description, sort_order, folder_path, created_at, updated_at
+        FROM api_endpoints
+        WHERE user_id = bucket.user_id AND deleted_at IS NULL
+
+      - SELECT id, collection_id, user_id, name, variables::text as variables, is_active, created_at, updated_at
+        FROM api_environments
+        WHERE user_id = bucket.user_id AND deleted_at IS NULL
+
+  # ── Per-user presentations ──────────────────────────────────
+  user_presentations:
+    parameters: SELECT request.user_id() as user_id
+    data:
+      - SELECT id, user_id, title, slug, description, theme::text as theme, visibility, slide_count, version, created_at, updated_at
+        FROM presentations
+        WHERE user_id = bucket.user_id AND deleted_at IS NULL
+
+      - SELECT id, presentation_id, user_id, slide_number, layout, title, content, notes, properties::text as properties, created_at, updated_at
+        FROM presentation_slides
+        WHERE user_id = bucket.user_id AND deleted_at IS NULL
+
+  # ── Team-shared data (syncs to all team members) ──────────────
+  team_data:
+    parameters:
+      SELECT memberships.user_id as user_id, memberships.team_id as team_id
+      FROM memberships
+      WHERE memberships.user_id = request.user_id()
+    data:
+      - SELECT id, team_id, name, slug, description, mode, stacks, created_at, updated_at
+        FROM projects
+        WHERE team_id = bucket.team_id AND user_id = bucket.user_id
+
+      - SELECT id, team_id, title, content, pinned, tags, created_at, updated_at
+        FROM notes
+        WHERE team_id = bucket.team_id AND user_id = bucket.user_id
+
+  # ── Teams (one bucket per team, all members see it) ─────────
+  team_info:
+    parameters:
+      SELECT memberships.team_id as team_id
+      FROM memberships
+      WHERE memberships.user_id = request.user_id()
+    data:
+      - SELECT id, name, slug, plan, avatar_url, settings::text as settings, created_at, updated_at
+        FROM teams
+        WHERE id::text = bucket.team_id AND deleted_at IS NULL
+

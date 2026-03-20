@@ -46,13 +46,21 @@ stop_services() {
     echo ""
     echo -e "${YEL}[DEV]${RST} Stopping services..."
     # Kill ports directly — most reliable way to stop everything.
-    for port in 9201 8080 3000 3001 9245; do
+    # Skip 9201 if we didn't start it (MCP was already running).
+    for port in 8080 3000 3001 9245; do
         local pids
         pids=$(lsof -ti :"$port" 2>/dev/null || true)
         if [ -n "$pids" ]; then
             echo "$pids" | xargs kill 2>/dev/null || true
         fi
     done
+    if [ "${MCP_ALREADY_RUNNING:-0}" = "0" ]; then
+        local pids
+        pids=$(lsof -ti :9201 2>/dev/null || true)
+        if [ -n "$pids" ]; then
+            echo "$pids" | xargs kill 2>/dev/null || true
+        fi
+    fi
     # Kill desktop tray app by name (doesn't bind a port).
     pkill -f "$BIN_DIR/installer" 2>/dev/null || true
     # Also kill our tracked pipe PIDs.
@@ -60,14 +68,21 @@ stop_services() {
         kill "$pid" 2>/dev/null || true
     done
     sleep 0.5
-    # Force kill anything left.
-    for port in 9201 8080 3000 3001 9245; do
+    # Force kill anything left (skip 9201 if we didn't start it).
+    for port in 8080 3000 3001 9245; do
         local pids
         pids=$(lsof -ti :"$port" 2>/dev/null || true)
         if [ -n "$pids" ]; then
             echo "$pids" | xargs kill -9 2>/dev/null || true
         fi
     done
+    if [ "${MCP_ALREADY_RUNNING:-0}" = "0" ]; then
+        local pids
+        pids=$(lsof -ti :9201 2>/dev/null || true)
+        if [ -n "$pids" ]; then
+            echo "$pids" | xargs kill -9 2>/dev/null || true
+        fi
+    fi
     for pid in "${SERVICE_PGIDS[@]}"; do
         kill -9 "$pid" 2>/dev/null || true
     done
@@ -174,15 +189,16 @@ start_services() {
     echo -e "  ${D}log${RST}        $LOG_FILE"
     echo ""
 
-    # Orchestra MCP server
-    "$BIN_DIR/orchestra" serve \
-        --web-gate :9201 \
-        --workspace "$ROOT_DIR" \
-        > >(tag "MCP" "$GRN") \
-        2> >(tee -a "$LOG_FILE" | tag "MCP" "$GRN") &
-    SERVICE_PGIDS+=($!)
-
-    sleep 1
+    # Orchestra MCP server (skip if already running)
+    if [ "$MCP_ALREADY_RUNNING" = "0" ]; then
+        "$BIN_DIR/orchestra" serve \
+            --web-gate :9201 \
+            --workspace "$ROOT_DIR" \
+            > >(tag "MCP" "$GRN") \
+            2> >(tee -a "$LOG_FILE" | tag "MCP" "$GRN") &
+        SERVICE_PGIDS+=($!)
+        sleep 1
+    fi
 
     # Web API server
     "$BIN_DIR/web" -addr :8080 2>&1 | tag "WEB" "$BLU" &
@@ -204,7 +220,14 @@ start_services() {
 
 # ─── Initial startup ─────────────────────────────────────────────────
 
-kill_stale 9201
+# Skip orchestra (port 9201) if already running (e.g. started by MCP/IDE).
+MCP_ALREADY_RUNNING=0
+if lsof -ti :9201 >/dev/null 2>&1; then
+    MCP_ALREADY_RUNNING=1
+    echo -e "${GRN}[DEV]${RST} Orchestra MCP already running on :9201 — skipping"
+else
+    kill_stale 9201
+fi
 kill_stale 8080
 kill_stale 3000
 [ "$DESKTOP" = "1" ] && kill_stale 9245

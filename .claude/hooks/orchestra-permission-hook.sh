@@ -22,9 +22,6 @@ INPUT=$(cat)
 TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name // "unknown"')
 
 # ── Auto-approve safe (read-only / non-destructive) tools ──────────────────
-# These tools cannot modify files or execute commands, so they don't need
-# user approval. Only dangerous tools (Bash, Write, Edit, etc.) go through
-# the permission server for explicit user approval.
 case "$TOOL_NAME" in
     Read|Glob|Grep|WebFetch|WebSearch|AskUserQuestion|TodoWrite|EnterPlanMode|ExitPlanMode)
         exit 0
@@ -54,7 +51,6 @@ PAYLOAD=$(echo "$INPUT" | jq -c '{
 
 # POST to the bridge-claude permission server.
 # This call blocks until the user responds (or times out after 5 minutes).
-# The server returns {"decision": "approve"} or {"decision": "deny", "reason": "..."}
 RESPONSE=$(curl -s -X POST \
     -H "Content-Type: application/json" \
     -d "$PAYLOAD" \
@@ -62,7 +58,7 @@ RESPONSE=$(curl -s -X POST \
     "http://127.0.0.1:${PORT}/permission" 2>/dev/null)
 
 if [ $? -ne 0 ] || [ -z "$RESPONSE" ]; then
-    # curl failed or timed out — allow by default to avoid blocking Claude forever
+    # curl failed or timed out — allow by default
     exit 0
 fi
 

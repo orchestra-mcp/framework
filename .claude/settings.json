@@ -1,5 +1,86 @@
 {
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "async": true,
+            "command": "/Users/fadymondy/Sites/orchestra-agents/.claude/hooks/orchestra-mcp-hook.sh",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "/Users/fadymondy/Sites/orchestra-agents/.claude/hooks/orchestra-permission-hook.sh",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "async": true,
+            "command": "/Users/fadymondy/Sites/orchestra-agents/.claude/hooks/orchestra-mcp-hook.sh",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "async": true,
+            "command": "/Users/fadymondy/Sites/orchestra-agents/.claude/hooks/orchestra-mcp-hook.sh",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "async": true,
+            "command": "/Users/fadymondy/Sites/orchestra-agents/.claude/hooks/orchestra-mcp-hook.sh",
+            "type": "command"
+          }
+        ]
+      }
+    ]
+  },
   "permissions": {
+    "additionalDirectories": [
+      "/Users/fadymondy/Sites/orchestra-agents/.projects/bridge/sessions",
+      "/tmp",
+      "/private/tmp",
+      "/Users/fadymondy/.orchestra/plugins/bin",
+      "/Users/fadymondy/.orchestra",
+      "/Users/fadymondy/.claude",
+      "/Users/fadymondy/Sites/orchestra-agents",
+      "/Users/fadymondy/Sites/orchestra-agents/libs/plugin-storage-sqlite",
+      "/Users/fadymondy/Sites/orchestra-agents/libs/plugin-storage-markdown",
+      "/Users/fadymondy/Sites/orchestra-mcp/scripts",
+      "/Users/fadymondy/.orchestra/run",
+      "/Users/fadymondy/Library/Logs/Orchestra",
+      "/Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/(app)",
+      "/Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/[locale]",
+      "/Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/(app)/plans",
+      "/Users/fadymondy/Sites/orchestra-agents/libs/plugin-bridge-discord",
+      "/Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/[locale]/(marketing)",
+      "/Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/(app)/repos",
+      "/Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/(app)/admin/teams",
+      "/Users/fadymondy/Library/Fonts",
+      "/usr/local/bin",
+      "/Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/docs/[team]/[project]",
+      "/Users/fadymondy/Sites/orchestra-agents/apps/react-native/app/(tabs)/projects/[id]/features"
+    ],
     "allow": [
       "Bash(ls -la /Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/\\\\\\(marketing\\\\\\)/)",
       "Bash(ls -la \"/Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/\\(app\\)/admin/marketplace/\")",
@@ -8,8 +89,8 @@
       "Bash(find /Users/fadymondy/Sites/orchestra-agents/apps/swift -type f -name \"*.swift\" -exec grep -l \"struct SessionMetadata\\\\|class SessionMetadata\" {} ;)",
       "Bash(git add internal/database/seeder.go internal/handlers/admin_settings.go)",
       "Bash(git add 'src/app/\\(marketing\\)/blog/page.tsx' 'src/app/\\(marketing\\)/blog/BlogClient.tsx' 'src/app/\\(marketing\\)/docs/[[...slug]]/page.tsx' 'src/app/\\(marketing\\)/docs/[[...slug]]/DocsClient.tsx' 'src/app/\\(marketing\\)/download/page.tsx' 'src/app/\\(marketing\\)/download/DownloadClient.tsx' 'src/app/\\(marketing\\)/marketplace/page.tsx' 'src/app/\\(marketing\\)/marketplace/MarketplaceClient.tsx' 'src/app/page.tsx' 'src/app/LandingClient.tsx' 'src/components/marketing/blog-preview.tsx' 'src/components/marketing/hero-section.tsx' 'src/components/marketing/pricing-section.tsx')",
-      "Bash(ssh -o StrictHostKeyChecking=no deploy@152.53.136.52 \"sudo -u postgres psql orchestra_web -c \"\"SELECT key, \\(value::text\\)[:80] as value_preview FROM system_settings ORDER BY key;\"\" 2>&1\")",
-      "Bash(ssh -o StrictHostKeyChecking=no deploy@152.53.136.52 \"psql -U orchestra_user -d orchestra_web -c \"\"SELECT key, length\\(value::text\\) as len FROM system_settings ORDER BY key;\"\" 2>&1\")",
+      "Bash(ssh -o StrictHostKeyChecking=no deploy@152.53.136.52 \"sudo -u postgres psql orchestra_web -c \"\"SELECT key, \\(value::text\\)[:80] as value_preview FROM system_settings ORDER BY key;\"\" 2\u003e\u00261\")",
+      "Bash(ssh -o StrictHostKeyChecking=no deploy@152.53.136.52 \"psql -U orchestra_user -d orchestra_web -c \"\"SELECT key, length\\(value::text\\) as len FROM system_settings ORDER BY key;\"\" 2\u003e\u00261\")",
       "Bash(git add public/install.sh)",
       "Bash(for id in 0cc855d7-* 1aaa6ae3-* 2175feb9-* 4ed19e00-* 60292ee7-* 74a1e44f-* 7f84d43f-* 8058f929-* 934f946f-* 99a77d38-* d4e8e329-* d80fb862-* dd53b794-* e06a1b10-* f0ecf4b2-*)",
       "Bash(do echo \"skip\")",
@@ -184,7 +265,7 @@
       "Bash(pkill -f \"orchestra serve --workspace /tmp/test-update-tools\")",
       "Bash(gh repo create orchestra-mcp/plugin-sync-cloud --public --description \"Cloud sync plugin for Orchestra MCP — push projects/features/notes to the Orchestra web dashboard\")",
       "Bash(# Check if there''s a way to write a Swift test for this ls /Users/fadymondy/Sites/orchestra-agents/apps/swift/*Test* /Users/fadymondy/Sites/orchestra-agents/apps/swift/Tests # Check test targets xcodebuild -list)",
-      "Bash(# Kill any running Orchestra pkill -f \"\"Orchestra.app\"\" || true sleep 1 # Build fresh xcodebuild -scheme OrchestraMac -configuration Debug -arch arm64 build 2>&1)",
+      "Bash(# Kill any running Orchestra pkill -f \"\"Orchestra.app\"\" || true sleep 1 # Build fresh xcodebuild -scheme OrchestraMac -configuration Debug -arch arm64 build 2\u003e\u00261)",
       "Bash(timeout 8 head -100)",
       "Bash(/Users/fadymondy/Sites/orchestra-agents/libs/plugin-storage-sqlite/.github/workflows/ci.yml:*)",
       "Bash(sqlite3 ~/.orchestra/db/6072f896930c93c3.db \"SELECT id, version, status FROM features WHERE id=''FEAT-XZZ'';\")",
@@ -368,16 +449,16 @@
       "Bash(node -e \"const j=require\\(''./src/messages/en.json''\\); console.log\\(JSON.stringify\\(j.sidebar, null, 2\\)\\)\")",
       "Bash(node -e \"const j=require\\(''./src/messages/ar.json''\\); console.log\\(JSON.stringify\\(j.sidebar, null, 2\\)\\)\")",
       "Bash(node -e \"const j=require\\(''./src/messages/en.json''\\); console.log\\(JSON.stringify\\({dashboard: j.dashboard, settings: j.settings, tunnels: j.tunnels, app: j.app}, null, 2\\)\\)\")",
-      "Bash(node -e \"const en = require\\(''./src/messages/en.json''\\); const ar = require\\(''./src/messages/ar.json''\\); const enNav = en.sidebar.nav || {}; const arNav = ar.sidebar.nav || {}; const missing = Object.keys\\(enNav\\).filter\\(function\\(k\\){ return !arNav[k]; }\\); console.log\\(''Missing ar.sidebar.nav:'', missing\\); console.log\\(''ar member:'', ar.sidebar.member\\); console.log\\(''ar members:'', ar.sidebar.members\\); console.log\\(''ar signOut:'', ar.sidebar.nav && ar.sidebar.nav.signOut\\);\")",
-      "Bash(node -e 'var ar = require\\(\"\"./src/messages/ar.json\"\"\\); console.log\\(\"\"signOut:\"\", ar.sidebar && ar.sidebar.nav && ar.sidebar.nav.signOut\\); console.log\\(\"\"member:\"\", ar.sidebar && ar.sidebar.member\\); console.log\\(\"\"members:\"\", ar.sidebar && ar.sidebar.members\\);')",
+      "Bash(node -e \"const en = require\\(''./src/messages/en.json''\\); const ar = require\\(''./src/messages/ar.json''\\); const enNav = en.sidebar.nav || {}; const arNav = ar.sidebar.nav || {}; const missing = Object.keys\\(enNav\\).filter\\(function\\(k\\){ return !arNav[k]; }\\); console.log\\(''Missing ar.sidebar.nav:'', missing\\); console.log\\(''ar member:'', ar.sidebar.member\\); console.log\\(''ar members:'', ar.sidebar.members\\); console.log\\(''ar signOut:'', ar.sidebar.nav \u0026\u0026 ar.sidebar.nav.signOut\\);\")",
+      "Bash(node -e 'var ar = require\\(\"\"./src/messages/ar.json\"\"\\); console.log\\(\"\"signOut:\"\", ar.sidebar \u0026\u0026 ar.sidebar.nav \u0026\u0026 ar.sidebar.nav.signOut\\); console.log\\(\"\"member:\"\", ar.sidebar \u0026\u0026 ar.sidebar.member\\); console.log\\(\"\"members:\"\", ar.sidebar \u0026\u0026 ar.sidebar.members\\);')",
       "Bash(lsof -i :8080)",
       "Bash(node -e 'var ar = require\\(\"\"./src/messages/ar.json\"\"\\); console.log\\(Object.keys\\(ar\\).join\\(\"\", \"\"\\)\\); console.log\\(\"\"has app:\"\", !!ar.app\\); console.log\\(\"\"has dashboard:\"\", !!ar.dashboard\\); console.log\\(\"\"has settings:\"\", !!ar.settings\\); console.log\\(\"\"has tunnels:\"\", !!ar.tunnels\\);')",
       "Bash(node -e 'var ar = require\\(\"\"./src/messages/ar.json\"\"\\); console.log\\(Object.keys\\(ar\\).join\\(\"\", \"\"\\)\\);')",
       "Bash(node -e 'var en = require\\(\"\"./src/messages/en.json\"\"\\); var ar = require\\(\"\"./src/messages/ar.json\"\"\\); console.log\\(\"\"EN namespaces:\"\", Object.keys\\(en\\).join\\(\"\", \"\"\\)\\); console.log\\(\"\"AR namespaces:\"\", Object.keys\\(ar\\).join\\(\"\", \"\"\\)\\); var enKeys = Object.keys\\(en\\); var arKeys = Object.keys\\(ar\\); var missingInAr = enKeys.filter\\(function\\(k\\){ return arKeys.indexOf\\(k\\) === -1; }\\); var missingInEn = arKeys.filter\\(function\\(k\\){ return enKeys.indexOf\\(k\\) === -1; }\\); console.log\\(\"\"Missing in AR:\"\", missingInAr.join\\(\"\", \"\"\\) || \"\"none\"\"\\); console.log\\(\"\"Missing in EN:\"\", missingInEn.join\\(\"\", \"\"\\) || \"\"none\"\"\\);')",
       "Bash(ls -lt ~/Library/Logs/Orchestra/*.log)",
       "Bash(go build ./libs/cli/internal/inprocess/)",
-      "Bash(node -e \"const en = require\\(''./apps/next/src/messages/en.json''\\); const ar = require\\(''./apps/next/src/messages/ar.json''\\); const enKeys = Object.keys\\(en\\); const arKeys = Object.keys\\(ar\\); console.log\\(''EN namespaces:'', enKeys.length, enKeys.join\\('', ''\\)\\); console.log\\(''AR namespaces:'', arKeys.length, arKeys.join\\('', ''\\)\\); const missing = enKeys.filter\\(k => !arKeys.includes\\(k\\)\\); const extra = arKeys.filter\\(k => !enKeys.includes\\(k\\)\\); if \\(missing.length\\) console.log\\(''Missing in AR:'', missing\\); if \\(extra.length\\) console.log\\(''Extra in AR:'', extra\\); if \\(!missing.length && !extra.length\\) console.log\\(''Namespace parity OK''\\);\")",
-      "Bash(node -e 'const en = require\\(\"\"./apps/next/src/messages/en.json\"\"\\); const ar = require\\(\"\"./apps/next/src/messages/ar.json\"\"\\); const enKeys = Object.keys\\(en\\); const arKeys = Object.keys\\(ar\\); console.log\\(\"\"EN namespaces:\"\", enKeys.length, enKeys.join\\(\"\", \"\"\\)\\); console.log\\(\"\"AR namespaces:\"\", arKeys.length, arKeys.join\\(\"\", \"\"\\)\\); const missing = enKeys.filter\\(k => !arKeys.includes\\(k\\)\\); const extra = arKeys.filter\\(k => !enKeys.includes\\(k\\)\\); if \\(missing.length\\) console.log\\(\"\"Missing in AR:\"\", missing\\); if \\(extra.length\\) console.log\\(\"\"Extra in AR:\"\", extra\\); if \\(!missing.length && !extra.length\\) console.log\\(\"\"Namespace parity OK\"\"\\);')",
+      "Bash(node -e \"const en = require\\(''./apps/next/src/messages/en.json''\\); const ar = require\\(''./apps/next/src/messages/ar.json''\\); const enKeys = Object.keys\\(en\\); const arKeys = Object.keys\\(ar\\); console.log\\(''EN namespaces:'', enKeys.length, enKeys.join\\('', ''\\)\\); console.log\\(''AR namespaces:'', arKeys.length, arKeys.join\\('', ''\\)\\); const missing = enKeys.filter\\(k =\u003e !arKeys.includes\\(k\\)\\); const extra = arKeys.filter\\(k =\u003e !enKeys.includes\\(k\\)\\); if \\(missing.length\\) console.log\\(''Missing in AR:'', missing\\); if \\(extra.length\\) console.log\\(''Extra in AR:'', extra\\); if \\(!missing.length \u0026\u0026 !extra.length\\) console.log\\(''Namespace parity OK''\\);\")",
+      "Bash(node -e 'const en = require\\(\"\"./apps/next/src/messages/en.json\"\"\\); const ar = require\\(\"\"./apps/next/src/messages/ar.json\"\"\\); const enKeys = Object.keys\\(en\\); const arKeys = Object.keys\\(ar\\); console.log\\(\"\"EN namespaces:\"\", enKeys.length, enKeys.join\\(\"\", \"\"\\)\\); console.log\\(\"\"AR namespaces:\"\", arKeys.length, arKeys.join\\(\"\", \"\"\\)\\); const missing = enKeys.filter\\(k =\u003e !arKeys.includes\\(k\\)\\); const extra = arKeys.filter\\(k =\u003e !enKeys.includes\\(k\\)\\); if \\(missing.length\\) console.log\\(\"\"Missing in AR:\"\", missing\\); if \\(extra.length\\) console.log\\(\"\"Extra in AR:\"\", extra\\); if \\(!missing.length \u0026\u0026 !extra.length\\) console.log\\(\"\"Namespace parity OK\"\"\\);')",
       "Bash(node:*)",
       "Bash(pkill -9 -f 'plugin-\\(bridge|tools|storage|transport|engine|agent\\)')",
       "Bash(curl -s http://localhost:9201/health)",
@@ -475,7 +556,7 @@
       "Bash(ls /Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/\\\\\\(app\\\\\\)/wiki/)",
       "Bash(ls /Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/\\\\\\(app\\\\\\)/devtools/)",
       "Bash(wc -l /Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/\\\\\\(app\\\\\\)/settings/page.tsx)",
-      "Bash(xargs -I {} sh -c 'echo \"\"=== {} ===\"\" && ls -1 {} | head -10')",
+      "Bash(xargs -I {} sh -c 'echo \"\"=== {} ===\"\" \u0026\u0026 ls -1 {} | head -10')",
       "Bash(xargs ls -lah)",
       "Bash(go build -o bin/orchestra ./libs/cli)",
       "Bash(npx --yes pnpm build)",
@@ -729,7 +810,7 @@
       "Bash(open /Users/fadymondy/Sites/orchestra-agents/apps/installer/dist/Orchestra-1.0.0-arm64.dmg)",
       "Bash(magick identify /Users/fadymondy/Sites/orchestra-agents/arts/tray.png)",
       "Bash(magick identify /Users/fadymondy/Sites/orchestra-agents/arts/AppIcon.iconset/icon_16x16.png)",
-      "Bash(# Run electron directly \\(not via npm/node wrapper\\) to bypass module resolution quirks /Users/fadymondy/Sites/orchestra-agents/apps/installer/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron /Users/fadymondy/Sites/orchestra-agents/apps/installer 2>&1 & echo \"\"PID: $!\"\" sleep 5 cat /tmp/orchestra-installer-dev.log)",
+      "Bash(# Run electron directly \\(not via npm/node wrapper\\) to bypass module resolution quirks /Users/fadymondy/Sites/orchestra-agents/apps/installer/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron /Users/fadymondy/Sites/orchestra-agents/apps/installer 2\u003e\u00261 \u0026 echo \"\"PID: $!\"\" sleep 5 cat /tmp/orchestra-installer-dev.log)",
       "Read(//opt/homebrew/bin/**)",
       "Bash(\"/Users/fadymondy/Library/Application Support/Herd/config/nvm/versions/node/v22.22.0/bin/npm\" list -g pnpm)",
       "Bash(\"/Users/fadymondy/Library/Application Support/Herd/config/nvm/versions/node/v22.22.0/bin/npm\" install -g pnpm)",
@@ -882,7 +963,7 @@
       "Bash(GOWORK=off go build -buildvcs=false -gcflags=all=\"-l\" -o bin/installer .)",
       "Bash(wc -l /Users/fadymondy/Sites/orchestra-agents/apps/wails/*.go)",
       "Bash(head -80 /Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/[locale]/\\\\\\(auth\\\\\\)/login/page.tsx)",
-      "Bash(xargs -I {} sh -c 'echo \"\"=== {} ===\"\" && head -20 {}')",
+      "Bash(xargs -I {} sh -c 'echo \"\"=== {} ===\"\" \u0026\u0026 head -20 {}')",
       "Bash(head -60 \"/Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/\\(app\\)/devtools/page.tsx\")",
       "Bash(head -60 \"/Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/\\(app\\)/wiki/page.tsx\")",
       "Bash(head -60 \"/Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/\\(app\\)/cli-auth/page.tsx\")",
@@ -1017,33 +1098,15 @@
       "Bash(npx expo install react-native-reanimated)",
       "Bash(npm install react-native-reanimated@latest --legacy-peer-deps)",
       "Bash(grep -n \"Failed to validate worklets\" node_modules/react-native-reanimated/scripts/*.rb node_modules/react-native-reanimated/**/*.rb)",
-      "Bash(npm install react-native-worklets@0.7 --legacy-peer-deps)"
-    ],
-    "additionalDirectories": [
-      "/Users/fadymondy/Sites/orchestra-agents/.projects/bridge/sessions",
-      "/tmp",
-      "/private/tmp",
-      "/Users/fadymondy/.orchestra/plugins/bin",
-      "/Users/fadymondy/.orchestra",
-      "/Users/fadymondy/.claude",
-      "/Users/fadymondy/Sites/orchestra-agents",
-      "/Users/fadymondy/Sites/orchestra-agents/libs/plugin-storage-sqlite",
-      "/Users/fadymondy/Sites/orchestra-agents/libs/plugin-storage-markdown",
-      "/Users/fadymondy/Sites/orchestra-mcp/scripts",
-      "/Users/fadymondy/.orchestra/run",
-      "/Users/fadymondy/Library/Logs/Orchestra",
-      "/Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/(app)",
-      "/Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/[locale]",
-      "/Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/(app)/plans",
-      "/Users/fadymondy/Sites/orchestra-agents/libs/plugin-bridge-discord",
-      "/Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/[locale]/(marketing)",
-      "/Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/(app)/repos",
-      "/Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/(app)/admin/teams",
-      "/Users/fadymondy/Library/Fonts",
-      "/usr/local/bin",
-      "/Users/fadymondy/Sites/orchestra-agents/apps/next/src/app/docs/[team]/[project]",
-      "/Users/fadymondy/Sites/orchestra-agents/apps/react-native/app/(tabs)/projects/[id]/features"
+      "Bash(npm install react-native-worklets@0.7 --legacy-peer-deps)",
+      "Bash(pkill -f \"orchestra\")",
+      "Bash(pkill -f \"Flutter\")",
+      "Bash(pkill -f \"orchestra.app\")",
+      "WebFetch(domain:www.anthropic.com)",
+      "WebFetch(domain:support.claude.com)",
+      "Bash(printf '\\\\x89PNG\\\\r\\\\n\\\\x1a\\\\n\\\\x00\\\\x00\\\\x00\\\\rIHDR\\\\x00\\\\x00\\\\x00\\\\x01\\\\x00\\\\x00\\\\x00\\\\x01\\\\x08\\\\x02\\\\x00\\\\x00\\\\x00\\\\x90wS\\\\xde\\\\x00\\\\x00\\\\x00\\\\x0cIDATx\\\\x9cc\\\\xf8\\\\x0f\\\\x00\\\\x00\\\\x01\\\\x01\\\\x00\\\\x05\\\\x18\\\\xd8N\\\\x00\\\\x00\\\\x00\\\\x00IEND\\\\xaeB`\\\\x82')",
+      "Bash(dart test test/widgets/smart_action_dialog_test.dart)",
+      "Bash(./scripts/ship.sh v1.0.5 --skip-pr --message \"Add full MCP compatibility: protocol 2025-06-18, resources, logging, listChanged, Claude Desktop config, MCPB bundle\")"
     ]
-  },
-  "hooks": {}
+  }
 }

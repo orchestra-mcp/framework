@@ -18,6 +18,7 @@ use (
 	./libs/plugin-bridge-openai
 	./libs/plugin-bridge-slack
 	./libs/plugin-devtools-components
+	./libs/plugin-devtools-api
 	./libs/plugin-devtools-database
 	./libs/plugin-devtools-debugger
 	./libs/plugin-devtools-devops
@@ -35,13 +36,17 @@ use (
 	./libs/plugin-storage-markdown
 	./libs/plugin-storage-sqlite
 	./libs/plugin-sync-cloud
+	./libs/plugin-health
 	./libs/plugin-tools-agentops
 	./libs/plugin-tools-docs
 	./libs/plugin-tools-extension-generator
 	./libs/plugin-tools-features
 	./libs/plugin-tools-markdown
 	./libs/plugin-tools-marketplace
+	./libs/plugin-tools-hooks
 	./libs/plugin-tools-notes
+	./libs/plugin-tools-prompts
+	./libs/plugin-tools-secrets
 	./libs/plugin-tools-sessions
 	./libs/plugin-tools-workspace
 	./libs/plugin-transport-quic-bridge

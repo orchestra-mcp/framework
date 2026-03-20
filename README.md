@@ -2,7 +2,7 @@
 
 ![Orchestra Framework](https://raw.githubusercontent.com/orchestra-mcp/framework/master/arts/cover.jpg)
 
-An AI-agentic IDE framework with 300 MCP tools across 38 plugins. Single-process in-process architecture — 4 core plugins bundled, 34 optional plugins installable separately.
+An AI-agentic IDE framework with 290+ MCP tools across 38 plugins. MCP protocol `2025-06-18` with tools, prompts, resources, and logging. Single-process in-process architecture — 4 core plugins bundled, 34 optional plugins installable separately.
 
 ## Install
 
@@ -30,7 +30,7 @@ cd framework && make install
 cd your-project
 orchestra init
 
-# 2. That's it — your AI IDE now has 300 tools + 5 prompts
+# 2. That's it — your AI IDE now has 290+ tools + 5 prompts
 ```
 
 `orchestra init` detects your IDE and writes the correct MCP config:
@@ -38,6 +38,7 @@ orchestra init
 | IDE | Config File |
 |-----|-------------|
 | Claude Code | `.mcp.json` |
+| Claude Desktop | `claude_desktop_config.json` (global) |
 | Cursor | `.cursor/mcp.json` |
 | VS Code / Copilot | `.vscode/mcp.json` |
 | Cline | `.vscode/mcp.json` |
@@ -51,15 +52,28 @@ orchestra init
 # Configure a specific IDE
 orchestra init --ide=cursor
 
+# Configure Claude Desktop (global config)
+orchestra init --ide=claude-desktop
+
 # Configure ALL supported IDEs at once
 orchestra init --all
 ```
+
+### MCPB Bundle (Claude Desktop One-Click Install)
+
+```bash
+make mcpb
+# Produces: dist/orchestra.mcpb
+```
+
+The `.mcpb` bundle packages cross-compiled binaries for all platforms. Users install it through Claude Desktop's extension installer — it extracts the correct binary, prompts for the workspace directory, and configures the MCP server automatically.
 
 ## Architecture
 
 ```
 Agent (Claude, GPT, Gemini, etc.)
-  │ JSON-RPC (stdin/stdout)
+  │ MCP protocol 2025-06-18 (JSON-RPC over stdin/stdout)
+  │ Capabilities: tools, prompts, resources, logging
   ▼
 orchestra serve (single process)
   ├── storage.markdown        (in-process, disk storage)
@@ -67,6 +81,7 @@ orchestra serve (single process)
   ├── tools.marketplace       (in-process, 15 tools + 5 prompts)
   ├── transport.stdio         (in-process, JSON-RPC bridge)
   │
+  ├── WebSocket :9201         (for browser/web clients)
   ├── TCP server :50101       (for desktop apps — Swift, Windows, Linux)
   │
   └── External plugins        (QUIC + mTLS, optional)
@@ -81,6 +96,15 @@ orchestra serve (single process)
 ```
 
 **Single-process** — 4 core plugins run in-process via direct Go function calls. Optional plugins connect over QUIC with mTLS and Protobuf framing.
+
+### MCP Capabilities
+
+| Capability | Description |
+|------------|-------------|
+| **Tools** | 290+ tools with `listChanged` notifications (dynamic tool updates) |
+| **Prompts** | 5 prompts (setup-project, recommend-packs, audit-packs, search-marketplace, onboard-project) |
+| **Resources** | Project features, notes, and docs exposed via `orchestra://` URI scheme |
+| **Logging** | Server-side log messages with RFC 5424 severity levels and threshold filtering |
 
 ## CLI Commands
 
@@ -246,6 +270,11 @@ framework/
 │   ├── npm-postinstall.js             # npm postinstall binary downloader
 │   ├── deploy/setup-server.sh         # Ubuntu 24.04 server provisioning
 │   ├── deploy/deploy.sh               # Deploy script (web/next/powersync)
+│   ├── mcpb/                          # MCPB bundle packaging
+│   │   ├── manifest.json              #   MCPB v0.3 manifest
+│   │   ├── build-mcpb.sh             #   Cross-compile + package script
+│   │   ├── test-mcpb.sh              #   Validation tests (26 checks)
+│   │   └── icon.png                   #   Bundle icon
 │   ├── new-plugin.sh                  # Plugin generator
 │   ├── sync-repos.sh                  # Push libs/ to individual GitHub repos
 │   ├── release.sh                     # Tag + create GitHub releases
@@ -270,6 +299,7 @@ make test               # Run all unit tests
 make test-e2e           # Build + run end-to-end integration test
 make install            # Install binaries to /usr/local/bin
 make release            # Cross-compile for darwin/linux × amd64/arm64 + windows/amd64
+make mcpb               # Build .mcpb bundle for Claude Desktop one-click install
 make clean              # Remove build artifacts and certs
 make proto              # Lint + generate proto code
 ```
@@ -334,7 +364,17 @@ func main() {
 
 ## Protocol
 
-All inter-plugin communication uses length-delimited Protobuf over QUIC with mTLS:
+### MCP (IDE ↔ Orchestra)
+
+MCP protocol version `2025-06-18` over stdio (JSON-RPC 2.0). Supports:
+- `tools/list`, `tools/call` — 290+ tools with `listChanged` notifications
+- `prompts/list`, `prompts/get` — 5 prompts
+- `resources/list`, `resources/read`, `resources/templates/list` — project resources
+- `logging/setLevel` — server-side log filtering
+
+### Inter-Plugin (Orchestra ↔ Plugins)
+
+Length-delimited Protobuf over QUIC with mTLS:
 
 ```
 [4 bytes big-endian uint32 length][N bytes Protobuf PluginRequest/Response]
@@ -342,6 +382,7 @@ All inter-plugin communication uses length-delimited Protobuf over QUIC with mTL
 
 - **mTLS**: Auto-generated ed25519 CA + per-plugin certificates at `~/.orchestra/certs/`
 - **In-process**: Core plugins bypass QUIC entirely — direct Go function calls
+- **WebSocket**: Browser/web clients connect on port 9201 (JSON-RPC)
 - **TCP**: Desktop apps (Swift, Windows, Linux) connect via length-delimited Protobuf on port 50101
 - **Storage format**: YAML frontmatter (`---` delimiters) + Markdown body
 

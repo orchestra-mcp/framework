@@ -1,4 +1,4 @@
-.PHONY: proto build build-orchestrator build-storage-markdown build-storage-sqlite build-tools-features build-transport-stdio build-cli build-web build-next dev dev-next storybook-next test test-unit test-e2e test-engine-rag clean install release build-tools-marketplace build-engine-rag build-bridge-claude build-tools-agentops build-tools-sessions build-tools-workspace build-transport-quic-bridge build-bridge-openai build-bridge-gemini build-bridge-ollama build-bridge-firecrawl build-tools-markdown build-tools-docs build-tools-notes build-devtools-git build-agent-orchestrator build-ai-screenshot build-ai-vision build-ai-browser-context build-ai-screen-reader build-services-voice build-services-notifications build-tools-extension-generator build-devtools-file-explorer build-devtools-terminal build-devtools-ssh build-devtools-services build-devtools-docker build-devtools-debugger build-devtools-test-runner build-devtools-log-viewer build-devtools-database build-devtools-devops build-integration-figma build-devtools-components build-sync-cloud xcodegen-swift build-swift build-swift-ios run-swift test-swift dev-swift clean-swift build-bridge-discord build-bridge-slack
+.PHONY: proto build build-orchestrator build-storage-markdown build-storage-sqlite build-tools-features build-transport-stdio build-cli build-web build-next dev dev-next storybook-next test test-unit test-e2e test-engine-rag clean install release build-tools-marketplace build-engine-rag build-bridge-claude build-tools-agentops build-tools-sessions build-tools-workspace build-transport-quic-bridge build-bridge-openai build-bridge-gemini build-bridge-ollama build-bridge-firecrawl build-tools-markdown build-tools-docs build-tools-notes build-devtools-git build-agent-orchestrator build-ai-screenshot build-ai-vision build-ai-browser-context build-ai-screen-reader build-services-voice build-services-notifications build-tools-extension-generator build-devtools-file-explorer build-devtools-terminal build-devtools-ssh build-devtools-services build-devtools-docker build-devtools-debugger build-devtools-test-runner build-devtools-log-viewer build-devtools-database build-devtools-devops build-integration-figma build-devtools-components build-sync-cloud xcodegen-swift build-swift build-swift-ios run-swift test-swift dev-swift clean-swift build-bridge-discord build-bridge-slack mcpb
 
 # Directories
 ROOT_DIR := $(shell pwd)
@@ -165,6 +165,11 @@ release:
 	done
 	@echo "\nRelease tarballs in $(DIST_DIR)/"
 	@ls -lh $(DIST_DIR)/*.tar.gz
+
+# === MCPB Bundle ===
+
+mcpb: ## Build .mcpb bundle for Claude Desktop one-click install
+	bash scripts/mcpb/build-mcpb.sh
 
 # === Clean ===
 

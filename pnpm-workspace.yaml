@@ -1,0 +1,4 @@
+packages:
+  - 'apps/next'
+  - 'apps/components/*'
+  - 'apps/wails/frontend'

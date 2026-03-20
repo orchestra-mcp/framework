@@ -1,223 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-## Project Overview
-
-Orchestra MCP is an AI-agentic IDE targeting 5 platforms: Desktop (Wails), Chrome Extension, Mobile iOS, Mobile Android, and Web Dashboard. Built with Go (Fiber v3 + GORM), Rust (Tonic gRPC + Tree-sitter + Tantivy), and React/TypeScript (pnpm + Turborepo + Zustand).
-
-The old Laravel codebase is preserved at `old-ref/` for reference. All new development happens in the repo root.
-
-## Key Commands
-
-```bash
-# Development
-make dev                 # Start Go backend + Rust engine + all frontends
-make dev-go              # Go server only (air hot-reload)
-make dev-rust            # Rust engine only (cargo watch)
-make dev-frontend        # All frontends via Turborepo
-
-# Build
-make build               # Build everything (Go + Rust + MCP + frontends)
-make build-go            # Go server binary -> bin/server
-make build-rust          # Rust engine binary
-make build-mcp           # MCP plugin binary -> bin/orchestra-mcp
-make build-frontend      # All frontend apps
-
-# MCP Plugin
-make mcp-build           # Build MCP plugin binary
-make mcp-init            # Initialize MCP in current project
-make mcp-start           # Start MCP stdio server
-
-# Install & Test
-make install             # Install all deps (Go + Rust + pnpm)
-make test                # All tests (Go + MCP + Rust + Frontend)
-make clean               # Remove build artifacts
-
-# Proto (generate Go + Rust + TypeScript from .proto files)
-make proto
-
-# Add a shadcn component
-cd resources/ui && npx shadcn@latest add {component}
-```
-
-## Project Structure
-
-```
-orchestra-mcp/
-├── app/                      # Go backend (Fiber + GORM)
-│   ├── handlers/             # HTTP handlers (controllers)
-│   ├── models/               # GORM models
-│   ├── services/             # Business logic
-│   ├── repositories/         # Data access
-│   ├── middleware/            # Fiber middleware
-│   ├── routes/               # Route registration
-│   ├── plugins/              # Plugin runtime (8 files — the foundation)
-│   │   ├── contracts.go      # Plugin interface + 15 Has* capability interfaces
-│   │   ├── manager.go        # PluginManager with topological sort
-│   │   ├── context.go        # PluginContext with DI
-│   │   ├── manifest.go       # PluginManifest
-│   │   ├── registry.go       # ServiceRegistry (thread-safe DI)
-│   │   ├── contributes.go    # ContributesRegistry
-│   │   ├── features.go       # FeatureManager (feature flags)
-│   │   └── loader.go         # PluginLoader (auto-discovery)
-│   └── gen/proto/            # Generated protobuf Go code
-├── config/                   # Go configuration
-│   └── plugins.go            # Plugin registry config
-├── plugins/                  # ALL PLUGINS (each is standalone)
-│   └── mcp/                  # MCP Plugin — first plugin (85 tools)
-│       ├── go.mod            # Standalone module
-│       ├── config/mcp.go     # McpConfig
-│       ├── providers/        # Plugin registration (bridges to app/plugins)
-│       ├── src/
-│       │   ├── cmd/main.go   # CLI entry -> orchestra-mcp binary
-│       │   ├── types/        # Type definitions (5 files)
-│       │   ├── toon/         # TOON/YAML file parser
-│       │   ├── workflow/     # State machine transitions
-│       │   ├── helpers/      # Shared utilities (5 files)
-│       │   ├── transport/    # MCP stdio JSON-RPC server
-│       │   ├── tools/        # All 85 MCP tools
-│       │   └── bootstrap/    # Workspace init command
-│       └── resources/        # Bundled skills + agents
-├── cmd/server/main.go        # Go HTTP server entry point
-├── engine/                   # Rust engine (gRPC)
-│   └── src/                  # Tree-sitter, Tantivy, tower-lsp, rusqlite
-├── proto/                    # Shared protobuf definitions
-├── database/migrations/      # PostgreSQL SQL migrations
-├── resources/                # All frontends (pnpm monorepo)
-│   ├── shared/               # @orchestra/shared
-│   ├── ui/                   # @orchestra/ui (shadcn/ui)
-│   ├── extension/            # Chrome Extension
-│   ├── dashboard/            # Web Dashboard
-│   ├── desktop/              # Wails Desktop UI
-│   └── mobile/               # React Native
-├── old-ref/                  # Old Laravel codebase (reference only)
-├── Makefile                  # Central command runner
-├── go.mod                    # Root Go module
-└── pnpm-workspace.yaml       # Frontend workspace config
-```
-
-## Architecture
-
-### Plugin System (Component-First)
-
-Everything is a plugin. The plugin runtime at `app/plugins/` provides:
-- **Plugin interface** with capability contracts (Has* interfaces)
-- **PluginManager** with topological dependency sort and boot sequence
-- **FeatureManager** for runtime feature flags — disable any feature by turning off its plugin
-- **ServiceRegistry** for plugin-scoped dependency injection
-- **ContributesRegistry** for VS Code-style contributions (commands, menus, settings)
-
-Each plugin is a standalone Go module with its own `go.mod`, pushable as a separate GitHub repo. Plugin folder convention: `config/`, `providers/`, `src/`, `resources/`, `README.md`.
-
-### MCP Plugin (Pure Go, 85 tools)
-
-The first plugin at `plugins/mcp/`. Provides project management tools via MCP protocol:
-- **Build**: `cd plugins/mcp && go build -o orchestra-mcp ./src/cmd/`
-- **Run**: `orchestra-mcp --workspace .` (stdio JSON-RPC)
-- **Init**: `orchestra-mcp init --workspace .` (creates .mcp.json, .projects/, .claude/, CLAUDE.md, AGENTS.md, CONTEXT.md)
-- **Packages**: `types/`, `toon/`, `workflow/`, `helpers/`, `transport/`, `tools/`, `engine/`, `bootstrap/`
-- **Workflow**: 7-state lifecycle (todo → in-progress → in-testing → in-docs → in-review → done) with session-scoped locking
-- **Multi-Audience PRD**: 4 audience types (business/product/technical/qa) with conditional follow-up questions, validation, agent briefings, auto-backlog generation, and reusable templates
-- **Sprint Management**: Create/start/end sprints with auto task promotion (backlog→todo), velocity tracking, burndown charts, standup summaries, retrospectives
-- **Parallel Agents**: `get_next_task` supports `epic_id`, `story_id`, `assignee`, `label` filters for scoped agent work
-- **WIP Limits**: Configurable max in-progress tasks (global + per-assignee), enforced on `set_current_task`
-- **Dependencies**: Task dependency graph with blocker/blocked-by relationships
-- **Engine**: Optional Rust gRPC engine for vector search memory (auto-starts/stops, TOON fallback)
-- **Extensible**: Other plugins push tools via `RegisterExternalTools()` — appears in stdio + REST
-
-### Three-Layer Database
-
-- **PostgreSQL** (cloud) — Source of truth. pgvector for embeddings, JSONB for settings, tsvector for full-text search, partitioned sync_log
-- **SQLite** (local) — Offline support on Desktop and Mobile. Managed by Rust engine (rusqlite) and WatermelonDB (React Native)
-- **Redis** — Real-time pub/sub for sync, session cache, rate limiting
-
-### Sync System
-
-All syncable entities use UUID primary keys and include `version`, `created_at`, `updated_at`, `deleted_at`. Changes are logged to `sync_log` and published via Redis pub/sub. Clients push local changes and pull remote changes via WebSocket. Conflict resolution: last-write-wins with version vectors.
-
-### Go Backend (Fiber v3 + GORM)
-
-REST API, WebSocket sync hub, job queue, auth (JWT). Architecture: Handlers → Services → Repositories. All data mutations go through SyncService to log changes.
-
-### Rust Engine (Tonic gRPC)
-
-CPU-intensive operations: Tree-sitter parsing, Tantivy search indexing, file diffing, content hashing, zstd compression, AES-256-GCM encryption, local SQLite management. Go communicates with Rust via gRPC.
-
-### React Frontends (pnpm + Turborepo + Zustand)
-
-Five apps share `@orchestra/shared` (types, stores, hooks, API client) and `@orchestra/ui` (shadcn/ui components, Tailwind CSS v4 theme). Platform-specific code stays in each app directory.
-
-## Skills (Slash Commands)
-
-Every skill is both auto-activated by context AND available as a `/command`. Use `/skill-name` to manually load a skill's patterns and conventions.
-
-| Command | Domain | Technologies |
-|---------|--------|-------------|
-| `/go-backend` | Go API layer | Fiber v3, GORM, JWT, asynq, gocron, stripe-go, zerolog, go-mail, validator |
-| `/rust-engine` | Rust engine | Tonic gRPC, Tree-sitter, Tantivy, tower-lsp, ropey, dashmap, ring, rusqlite |
-| `/typescript-react` | Frontend | React, TypeScript, Zustand, React Query, Axios, React Router, Monaco, xterm.js, Vite |
-| `/ui-design` | Design system | shadcn/ui, Tailwind CSS v4, Lucide icons, themes, responsive, accessibility |
-| `/database-sync` | Data layer | PostgreSQL, pgvector, SQLite, Redis, sync protocol, migrations |
-| `/proto-grpc` | Contracts | Protobuf, Buf, tonic-build, Go/Rust code generation |
-| `/chrome-extension` | Browser | Chrome Manifest V3, service worker, content scripts, side panel |
-| `/wails-desktop` | Desktop | Wails v3, Go-React bindings, system tray, window management |
-| `/react-native-mobile` | Mobile | React Native, WatermelonDB, React Navigation, offline sync |
-| `/native-widgets` | OS Widgets | macOS WidgetKit, Windows Adaptive Cards, Linux GNOME/KDE |
-| `/macos-integration` | macOS | CGo, Spotlight, Keychain, iCloud, Notifications, file associations |
-| `/native-extensions` | Extension API | Lifecycle, commands, editor, AI, filesystem, UI, permissions, sandbox |
-| `/raycast-compat` | Raycast shim | List/Detail/Form/Action components, ~95% compatibility |
-| `/vscode-compat` | VS Code shim | LSP/DAP, themes, snippets, grammars, ~85% compatibility |
-| `/extension-marketplace` | Marketplace | Publishing, search, CLI, versioning, reviews, auto-updates |
-| `/ai-agentic` | AI/LLM | Anthropic SDK, OpenAI SDK, langchaingo, chromem-go, pgvector, RAG |
-| `/gcp-infrastructure` | Infrastructure | Cloud Run, Cloud SQL, CDN, Cloud Build, Docker, nginx, Sentry, PostHog |
-| `/project-manager` | Process | Sprint planning, feature breakdown, ADRs, cross-team coordination |
-| `/docs` | Documentation | Architecture, plugin system, API references, package relationships |
-| `/qa-testing` | QA/Testing | Multi-agent: go test, cargo test, vitest, Playwright, coverage, CI |
-| `/plugin-generator` | Plugin scaffolding | new-plugin.sh, tools/storage/transport templates, SDK patterns |
-
-## Agents
-
-Specialized agents in `.claude/agents/` auto-delegate based on task context. See [AGENTS.md](AGENTS.md) for full details.
-
-| Agent | Role |
-|-------|------|
-| `quic-protocol` | QUIC transport, mTLS, Protobuf framing, wire protocol |
-| `go-architect` | Go orchestrator, plugin SDK, Go plugins (quic-go) |
-| `rust-engineer` | Rust plugins (quinn, Tree-sitter, Tantivy, rusqlite) |
-| `swift-plugin` | Swift/macOS/iOS plugins (Network.framework, SwiftUI, WidgetKit) |
-| `kotlin-plugin` | Kotlin/Android plugins (Netty QUIC, Jetpack Compose) |
-| `csharp-plugin` | C#/Windows plugins (System.Net.Quic, WinUI 3) |
-| `frontend-dev` | React/TypeScript across all 5 platforms |
-| `ui-ux-designer` | shadcn/ui, Tailwind, accessibility, responsive |
-| `dba` | Cross-database coordination, sync protocol |
-| `postgres-dba` | PostgreSQL (pgvector, JSONB, tsvector, partitioning) |
-| `sqlite-engineer` | SQLite (rusqlite, go-sqlite3, WatermelonDB) |
-| `redis-engineer` | Redis (pub/sub, Streams, caching, rate limiting) |
-| `clickhouse-engineer` | ClickHouse (analytics, metrics, OLAP) |
-| `lancedb-engineer` | LanceDB (vector search, embeddings, AI memory) |
-| `gtk-plugin` | Linux desktop (GTK4, libadwaita, Flatpak) |
-| `mobile-dev` | React Native, WatermelonDB, offline sync |
-| `scrum-master` | Feature planning, cyclical delivery, WIP limits, ADRs, coordination |
-| `widget-engineer` | Native OS widgets (Swift/C#/JS/QML) |
-| `platform-engineer` | macOS CGo, Spotlight, Keychain, iCloud |
-| `extension-architect` | Extension system (native, Raycast, VS Code, marketplace) |
-| `ai-engineer` | AI chat, RAG, agents, embeddings, vector search |
-| `devops` | Docker, GCP, CI/CD, monitoring, deployment |
-| `qa-go` | Go testing (go test, testify, httptest, plugin tests) |
-| `qa-rust` | Rust testing (cargo test, tokio::test, tempfile) |
-| `qa-node` | Node/React testing (vitest, @testing-library, component/store tests) |
-| `qa-playwright` | E2E browser testing (Playwright, page objects, visual regression) |
-
-## User Interaction Rule (MANDATORY)
-
-**ALWAYS use the `AskUserQuestion` tool when you need user input.** Never print questions as plain text and wait for a response. The scrum-master agent and project-manager skill must use `AskUserQuestion` for:
-- PRD session questions (present MCP question via `AskUserQuestion`, then pass answer to `answer_prd_question`)
-- Sprint planning decisions (sprint goal, dates, scope)
-- Architecture and design choices
-- Priority and scope decisions
-- Review approval (Gate 4 requires human approval via `AskUserQuestion`)
-- Any clarification or confirmation needed from the user
+This project uses [Orchestra MCP](https://github.com/orchestra-mcp/framework) for AI-powered project management.
 
 ## Mandatory Workflow Rule
 
@@ -241,8 +24,9 @@ Every feature has a `kind` field: `feature` (default), `bug`, `hotfix`, or `chor
 - **bug** — Defect report (Gate 3/docs skipped automatically)
 - **hotfix** — Urgent fix (Gate 3/docs skipped automatically)
 - **chore** — Maintenance, refactoring, CI work
+- **testcase** — QA test case linked to a parent feature (Gate 3/docs skipped automatically)
 
-Use `create_bug_report` as a shortcut for bugs — it sets kind=bug, default priority=P1, and optionally links to the feature that caused the regression via `related_feature`.
+Use `create_bug_report` as a shortcut for bugs. Use `create_test_case` or `bulk_create_test_cases` for QA test cases linked to a feature.
 
 ### Plan-First for Large Tasks (MANDATORY)
 
@@ -282,7 +66,7 @@ When a completed feature causes a regression or breakage:
 **Status moves BEFORE the work, not after.** Call `advance_feature` to move to the next phase — the evidence proves the PREVIOUS phase is complete.
 
 | Status | ALLOWED | FORBIDDEN |
-|--------|---------|-----------|
+|--------|---------|----------|
 | `in-progress` | Write/edit source code files ONLY | Running tests, writing docs, asking for review |
 | `in-testing` | Write test files and run tests ONLY | Writing source code, writing docs, asking for review |
 | `in-docs` | Write/edit `.md` files in `/docs` folder ONLY | Writing source code, writing tests, asking for review |
@@ -293,12 +77,12 @@ When a completed feature causes a regression or breakage:
 The MCP **rejects** `advance_feature` if evidence is missing or malformed. Evidence must be markdown with a `## Section` header and at least 10 characters of content. **File-type validation** checks that referenced files match expected patterns.
 
 | Gate | Transition | Required Section | File-Type Check | Skippable |
-|------|-----------|-----------------|-----------------|-----------|
+|------|-----------|-----------------|-----------------|----------|
 | Code Complete | in-progress → in-testing | `## Changes` **(files)** | Any source files | No |
-| Test Complete | in-testing → in-docs | `## Results` **(files)** | Must match test patterns (`*_test.go`, `*.test.ts`, `*.spec.ts`, etc.) | No |
+| Test Complete | in-testing → in-docs | `## Results` **(files)** | Must match test patterns (`*_test.go`, `*.test.ts`, etc.) | No |
 | Docs Complete | in-docs → in-review | `## Docs` **(files)** | Must be `.md` files inside `docs/` folder | **Yes** (bug, hotfix, testcase) |
 
-**File-type validation:** If referenced files don't match expected patterns, MCP returns `needs_approval` error. The agent must then ask the user via `AskUserQuestion` — if the user approves, retry with `force: true`.
+**File-type validation:** If referenced files don't match expected patterns, MCP returns `needs_approval` error. Ask the user via `AskUserQuestion` — if approved, retry with `force: true`.
 
 **Gate evidence format:**
 ```
@@ -322,83 +106,42 @@ These transitions can be done without evidence:
 
 ### Session-Scoped Feature Locking
 
-Features are locked to the calling MCP session when work begins. This prevents concurrent sessions from interfering with each other.
+Features are locked to the calling MCP session when work begins. This prevents concurrent sessions from interfering.
 
-- **`set_current_feature`** acquires a session lock (auto-generated UUID per MCP connection)
-- **`advance_feature`** checks the lock belongs to the current session, refreshes on success
-- **`submit_review`** checks the lock, releases on `done`
-- **Lock expiry**: 30 minutes of inactivity — background reaper cleans stale locks every 5 minutes
-- **Disconnect cleanup**: When a session disconnects (EOF/context cancel), all its locks are released
-- **`unlock_feature`**: Admin recovery tool to force-release a stale lock (no session check)
-- **Backward compatible**: Old clients without session IDs are not affected (lock checks gate on `sessionID != ""`)
+- `set_current_feature` acquires a session lock (auto-generated UUID per MCP connection)
+- `advance_feature` and `submit_review` check the lock belongs to the current session
+- Locks auto-expire after 30 minutes of inactivity
+- `unlock_feature` is an admin recovery tool to force-release stale locks
 
-## Sub-Agent Orchestration Rules
+### Sub-Agent Rules
 
-Sub-agents (launched via the `Task` tool) do **NOT** have access to MCP tools. They cannot call `advance_feature`, `set_current_feature`, or any workflow tools. The main agent must own the full feature lifecycle.
+Sub-agents (Task tool) do **NOT** have MCP access. They cannot call `advance_feature` or any workflow tool.
 
-### Rules
-
-1. **Sub-agents are for code writing ONLY** — Use sub-agents only during the `in-progress` phase to write code. They return code results, nothing more.
-2. **Main agent owns the lifecycle** — The main agent (you) must handle ALL gate transitions: test, document, review. Never delegate gate work to a sub-agent that can't call MCP tools.
-3. **One feature at a time** — Work one feature through its FULL lifecycle (in-progress → done) before starting the next. Never batch multiple features in parallel through gates.
-4. **Summarize sub-agent results** — After a sub-agent returns, summarize what it built to the user before advancing. The user must see what happened.
-5. **Never mark done without gates** — After a sub-agent writes code, YOU must: run tests (Gate 1), verify coverage (Gate 2), write docs (Gate 3), get user review (Gate 4-5). Each gate needs structured evidence with `## Section` headers.
-
-### Correct Pattern
-
-```
-1. set_current_feature(feature_id)              → in-progress (lock acquired)
-   ALLOWED: write/edit source code ONLY
-2. Delegate code writing to sub-agent (Task tool)
-3. Sub-agent returns → summarize results to user
-4. advance_feature(evidence="## Changes\n- path/to/file.go\n- path/to/other.go")
-                                                 → in-testing [CODE COMPLETE gate]
-   ALLOWED: write test files + run tests ONLY
-5. Write tests, run tests
-6. advance_feature(evidence="## Results\n- path/to_test.go\n- test output summary")
-                                                 → in-docs [TEST COMPLETE gate]
-   ALLOWED: write .md files in /docs folder ONLY
-   (bug/hotfix/testcase: auto-skips to in-review)
-7. Write documentation in docs/ folder
-8. advance_feature(evidence="## Docs\n- docs/feature-x.md (new)")
-                                                 → in-review [DOCS COMPLETE gate]
-   ALLOWED: AskUserQuestion ONLY
-9. AskUserQuestion → present review to user for approval
-10. submit_review(status="approved")             → done (lock released)
-11. Move to next feature
-```
+- Sub-agents = code only (use during in-progress for writing code)
+- Main agent owns lifecycle (YOU handle all gates: test, document, review)
+- One feature at a time per assignee (complete full lifecycle before picking next)
+- Summarize to user (tell user what sub-agent built before advancing)
 
 ### Anti-Patterns (NEVER DO)
 
-- Spawning 5 sub-agents in parallel, then batch-advancing all 5 features to done
-- Letting a sub-agent "handle everything" including testing and docs
-- Advancing through gates without providing structured evidence (MCP will reject it)
-- Calling `advance_feature` from `in-review` (must use `submit_review`)
-- Calling `submit_review` without asking the user via `AskUserQuestion` first
-- Starting the next feature before the current one reaches done
 - Writing source code during `in-testing` phase (ONLY test code allowed)
 - Writing tests during `in-progress` phase (ONLY source code allowed)
 - Writing docs outside the `docs/` folder during `in-docs` phase
-- Writing fake/boilerplate evidence (e.g., "All tests passed" without actually running tests)
-- Requesting review for one feature, then immediately starting work on another before the review is resolved
+- Writing fake/boilerplate evidence without doing actual work
+- Advancing through gates without providing evidence that references real file paths
+- Requesting review for one feature then starting another before review resolves
+- Calling `submit_review` without asking the user via `AskUserQuestion` first
 
 ### Programmatic Guardrails (MCP-Enforced)
 
-These rules are enforced at the MCP tool level — violation attempts will return errors:
+These rules are enforced at the MCP tool level — violation attempts return errors:
 
-1. **Session-scoped locking** — `set_current_feature` acquires a lock tied to the current MCP session (auto-generated UUID). Other sessions cannot advance, submit review, or unlock the feature. MCP returns `session_lock` error if another session holds the lock. Locks auto-expire after 30 minutes of inactivity. Use `unlock_feature` for admin recovery.
-
-2. **Evidence with file paths** — All gates require `## Section` headers with file paths. The MCP rejects evidence that is pure prose without referencing real files.
-
-3. **File-type validation** — The Test Complete gate validates that referenced files match test patterns (`*_test.go`, `*.test.ts`, `*.spec.ts`, etc.). The Docs Complete gate validates that files are `.md` and inside `docs/`. If validation fails, MCP returns `needs_approval` — ask the user, then retry with `force: true`.
-
-4. **Docs gate auto-skip** — For `bug`, `hotfix`, and `testcase` kinds, the transition `in-testing → in-review` is allowed directly (skipping `in-docs`).
-
-5. **Review requires user approval** — `advance_feature` is blocked from `in-review`. Only `submit_review` can move to `done`, and it requires `AskUserQuestion` first.
-
-6. **Model capability check** — `set_current_feature` accepts a `model` parameter. If provided and the feature has an estimate, MCP validates the model can handle that size. Tier 1 (Haiku/Flash/GPT-3.5) → S only. Tier 2 (Sonnet/GPT-4o/Gemini Pro) → S, M. Tier 3 (Opus/GPT-4/Gemini Ultra) → S, M, L, XL. Returns `model_capability` error if the model is too small — break the feature down or use a bigger model.
-
-7. **Timestamped audit trail** — Every transition appends an ISO-8601 timestamp to the feature body.
+1. **Session-scoped locking** — `set_current_feature` acquires a lock tied to the current MCP session. Other sessions cannot advance or modify the locked feature. Returns `session_lock` error. Locks auto-expire after 30 minutes. Use `unlock_feature` for admin recovery.
+2. **File-type validation** — Test Complete gate validates test file patterns (`*_test.go`, `*.test.ts`, etc.). Docs Complete gate validates `.md` files in `docs/`. Returns `needs_approval` error — ask user, then retry with `force: true`.
+3. **Docs gate auto-skip** — For `bug`, `hotfix`, and `testcase` kinds, in-testing → in-review directly (skip in-docs).
+4. **Timestamped audit trail** — Every transition appends an ISO-8601 timestamp to the feature body.
+5. **Model capability check** — `set_current_feature` accepts a `model` parameter. Validates the model can handle the feature's size estimate (Haiku→S, Sonnet→S/M, Opus→S/M/L/XL). Returns `model_capability` error.
+6. **Review requires user approval** — `advance_feature` is blocked from `in-review`. Only `submit_review` can move to `done`.
 
 ## Git & Sync (Natural Language Mapping)
 
@@ -406,114 +149,124 @@ The MCP provides 6 git tools that use the current user's person profile for auth
 
 | User says | Action |
 |-----------|--------|
-| "sync my changes", "push my updates", "sync to cloud", "upload my changes" | `git_quick_commit` (stage all + commit) → `git_push` |
-| "get latest", "pull updates", "sync from cloud", "get project updates" | `git_pull` |
-| "save my work", "commit this", "commit these changes" | `git_quick_commit` |
+| "sync my changes", "push my updates", "sync to cloud" | `git_quick_commit` (stage all + commit) → `git_push` |
+| "get latest", "pull updates", "sync from cloud" | `git_pull` |
+| "save my work", "commit this" | `git_quick_commit` |
 | "push", "push to remote" | `git_push` |
-| "create a branch for X", "start working on X" | `git_create_branch` |
-| "merge X", "merge branch X" | `git_merge_branch` |
+| "create a branch for X" | `git_create_branch` |
+| "merge X" | `git_merge_branch` |
 | "what's the status", "git status" | `git_status_summary` |
-| "pull and rebase", "rebase on latest" | `git_pull` with `rebase: true` |
+| "pull and rebase" | `git_pull` with `rebase: true` |
 
-### Commit Message Convention
-
-When the user says "sync" or "push" without a specific message, generate a meaningful commit message from the staged changes. If the user provides a message, use it directly.
-
-### Identity
-
-All commits and merges use the current user's person profile (name + github_email from `~/.orchestra/me.json`). No `Co-Authored-By` lines — the person profile IS the author.
+When the user says "sync" without a specific message, generate a meaningful commit message from the staged changes. All commits use the current user's person profile (name + github_email). No `Co-Authored-By` lines.
 
 ## Onboarding (First Interaction)
 
-On the first interaction with a new user or project, check `get_current_user`. If not configured:
+On the first interaction with a new user, check `get_current_user`. If not configured:
 
 1. Use `AskUserQuestion` to collect: name, role, email, github_email, bio, timezone
-2. `create_person` with the collected data
+2. `create_person` with the collected profile data
 3. `set_current_user` to link them to the project
-4. Confirm the setup to the user
+4. Confirm the setup — the profile persists in `~/.orchestra/me.json` across sessions
 
-This only happens once — the profile persists in `~/.orchestra/me.json` across sessions.
+## Available Tools
 
-## Conventions
+Orchestra provides **85 tools** via MCP (70 feature workflow + 15 marketplace) and **5 prompts**.
 
-### Go
-- Handler methods: `Index`, `Show`, `Store`, `Update`, `Delete`
-- Services contain business logic; repositories are pure data access
-- All entities use UUID primary keys with `SyncModel` base
-- Error responses: `{"error": "code", "message": "...", "details": {}}`
-- Always pass `context.Context` through the call chain
-- Use interfaces for services (testability)
+Run `orchestra serve` to start the MCP server. IDE config is in `.mcp.json`.
 
-### Rust
-- Use `thiserror` for typed errors, `anyhow` for application errors
-- Never use `unwrap()` in production — use `?` operator
-- Use `tokio::task::spawn_blocking` for CPU-heavy synchronous work
-- Proto code via `tonic-build` in `build.rs` (not buf for Rust)
-- Logging via `tracing` crate
+## Installed Packs
 
-### TypeScript/React
-- Import types with `type` keyword
-- Zustand stores: separate `State` and `Actions` interfaces
-- Use `@orchestra/*` aliases, never relative `../../../` cross-package
-- All API responses typed with `ApiResponse<T>`
-- Functional components only, `FC` for typing
+No packs installed. Run `orchestra pack recommend` to get suggestions.
 
-### Database
-- All syncable entities: UUID PK + version + timestamps + soft delete
-- PostgreSQL: `TIMESTAMPTZ`; SQLite: ISO 8601 strings
-- JSONB for flexible metadata, never for queried fields
-- Never store file contents in DB — use content_hash + object storage
+## Skills (Slash Commands)
 
-## FLOW Ambient Rules
+| Command | Source |
+|---------|--------|
+| `/ai-agentic` | .claude/skills/ai-agentic/ |
+| `/chrome-extension` | .claude/skills/chrome-extension/ |
+| `/database-sync` | .claude/skills/database-sync/ |
+| `/docs` | .claude/skills/docs/ |
+| `/extension-marketplace` | .claude/skills/extension-marketplace/ |
+| `/flow` | .claude/skills/flow/ |
+| `/flow-archive` | .claude/skills/flow-archive/ |
+| `/flow-brief` | .claude/skills/flow-brief/ |
+| `/flow-coach` | .claude/skills/flow-coach/ |
+| `/flow-config` | .claude/skills/flow-config/ |
+| `/flow-contract` | .claude/skills/flow-contract/ |
+| `/flow-docs` | .claude/skills/flow-docs/ |
+| `/flow-experiment` | .claude/skills/flow-experiment/ |
+| `/flow-expert` | .claude/skills/flow-expert/ |
+| `/flow-gate` | .claude/skills/flow-gate/ |
+| `/flow-health` | .claude/skills/flow-health/ |
+| `/flow-init` | .claude/skills/flow-init/ |
+| `/flow-intake` | .claude/skills/flow-intake/ |
+| `/flow-kill` | .claude/skills/flow-kill/ |
+| `/flow-review` | .claude/skills/flow-review/ |
+| `/flow-spec` | .claude/skills/flow-spec/ |
+| `/flow-status` | .claude/skills/flow-status/ |
+| `/flow-tempo` | .claude/skills/flow-tempo/ |
+| `/flow-wip` | .claude/skills/flow-wip/ |
+| `/gcp-infrastructure` | .claude/skills/gcp-infrastructure/ |
+| `/macos-integration` | .claude/skills/macos-integration/ |
+| `/native-extensions` | .claude/skills/native-extensions/ |
+| `/native-widgets` | .claude/skills/native-widgets/ |
+| `/plugin-generator` | .claude/skills/plugin-generator/ |
+| `/project-manager` | .claude/skills/project-manager/ |
+| `/prompts-manager` | .claude/skills/prompts-manager/ |
+| `/proto-grpc` | .claude/skills/proto-grpc/ |
+| `/qa-testing` | .claude/skills/qa-testing/ |
+| `/raycast-compat` | .claude/skills/raycast-compat/ |
+| `/react-native-mobile` | .claude/skills/react-native-mobile/ |
+| `/rust-engine` | .claude/skills/rust-engine/ |
+| `/tailwindcss-development` | .claude/skills/tailwindcss-development/ |
+| `/typescript-react` | .claude/skills/typescript-react/ |
+| `/ui-design` | .claude/skills/ui-design/ |
+| `/vscode-compat` | .claude/skills/vscode-compat/ |
+| `/wails-desktop` | .claude/skills/wails-desktop/ |
 
-These 7 rules run passively on every interaction — no skill invocation needed. They form FLOW's ambient layer: always-on decision-centric guardrails.
+## Agents
 
-### 1. Mode Awareness
+Specialized agents in `.claude/agents/` auto-delegate based on task context.
 
-Before starting any work, determine: is this **Discovery** (learning) or **Outcome** (shipping)? Never confuse the two. Discovery produces evidence — hypotheses, experiment results, validated/invalidated assumptions. Outcome produces working product measured by a target metric. The mode determines which artifacts, gates, and rituals apply.
+| Agent | File |
+|-------|------|
+| `ai-engineer` | .claude/agents/ai-engineer.md |
+| `clickhouse-engineer` | .claude/agents/clickhouse-engineer.md |
+| `csharp-plugin` | .claude/agents/csharp-plugin.md |
+| `dba` | .claude/agents/dba.md |
+| `devops` | .claude/agents/devops.md |
+| `extension-architect` | .claude/agents/extension-architect.md |
+| `flutter-android` | .claude/agents/flutter-android.md |
+| `flutter-ios` | .claude/agents/flutter-ios.md |
+| `flutter-linux` | .claude/agents/flutter-linux.md |
+| `flutter-macos` | .claude/agents/flutter-macos.md |
+| `flutter-ui-ux` | .claude/agents/flutter-ui-ux.md |
+| `flutter-web` | .claude/agents/flutter-web.md |
+| `flutter-windows` | .claude/agents/flutter-windows.md |
+| `frontend-dev` | .claude/agents/frontend-dev.md |
+| `gtk-plugin` | .claude/agents/gtk-plugin.md |
+| `kotlin-plugin` | .claude/agents/kotlin-plugin.md |
+| `lancedb-engineer` | .claude/agents/lancedb-engineer.md |
+| `mobile-dev` | .claude/agents/mobile-dev.md |
+| `orchestra` | .claude/agents/orchestra.md |
+| `platform-engineer` | .claude/agents/platform-engineer.md |
+| `postgres-dba` | .claude/agents/postgres-dba.md |
+| `qa-node` | .claude/agents/qa-node.md |
+| `qa-playwright` | .claude/agents/qa-playwright.md |
+| `qa-rust` | .claude/agents/qa-rust.md |
+| `quic-protocol` | .claude/agents/quic-protocol.md |
+| `redis-engineer` | .claude/agents/redis-engineer.md |
+| `rust-engineer` | .claude/agents/rust-engineer.md |
+| `scrum-master` | .claude/agents/scrum-master.md |
+| `sqlite-engineer` | .claude/agents/sqlite-engineer.md |
+| `swift-plugin` | .claude/agents/swift-plugin.md |
+| `ui-ux-designer` | .claude/agents/ui-ux-designer.md |
+| `widget-engineer` | .claude/agents/widget-engineer.md |
 
-Ask: "Is the primary risk that we build the wrong thing, or that we fail to ship the right thing?"
+## Hooks
 
-### 2. Kill Conditions
-
-Every Discovery Brief and every SPEC-Lite MUST have a **pre-committed kill condition** — specific, measurable, timebound. Written BEFORE emotional attachment forms. When the condition is met, the default is kill. A 30-minute time-boxed inspection validates the data; ~90% of triggered kill conditions result in immediate kill. No sunk-cost negotiation. No "one more sprint."
-
-### 3. Spine Trace
-
-Every non-operational cycle must trace to the **Decision Spine**: Vision → Strategy → Bet → Cycle. If it doesn't trace, it doesn't enter the system. The spine is a spectrum of formality — mental (solo) to governance-documented (enterprise) — but the principle is universal: can you explain WHY this work matters in terms of strategy?
-
-### 4. WIP Limits
-
-Check capacity before accepting new work. Enforce limits by team size:
-
-| Team Size | Discovery WIP | Outcome WIP | Total |
-|-----------|--------------|-------------|-------|
-| Solo (1) | 1 | 1 | 1-2 |
-| Small (3-8) | 1-2 | 1-2 | 2-3 |
-| Medium (10-20) | 2-3 | 2-3 | 4-5 |
-| Large (25+) | 3-4 | 3-5 | 6-8 |
-
-At capacity? Ask: "What are you willing to stop?" Force the trade-off. Never silently exceed limits.
-
-### 5. Gate Enforcement
-
-Never skip gates. They are mechanical checklists, not meetings — 5 minutes if the work is solid, painful if it isn't (which means the work isn't ready).
-
-- **D1**: Is the Discovery Brief ready to pursue?
-- **D2**: Is the experiment designed properly?
-- **D3**: Is there enough evidence to switch modes?
-- **O1**: Is the bet worth pursuing?
-- **O2**: Is the SPEC ready for a Build Contract?
-- **O3**: Is the Build Contract complete?
-- **O4**: Is observability in place?
-- **O5**: Kill, Merge, or Continue?
-
-If a gate fails, give specific feedback on how to fix it. Don't just say "fail."
-
-### 6. Learning Capture
-
-When a cycle completes — whether killed or merged — capture what was learned. Every kill is a success: it saved resources that would have been wasted. Archive the learning so the team never re-runs the same failed experiment. The archive includes: what was hypothesized, what was tested, what happened, what was decided, and what the team would do differently.
-
-### 7. Tempo Awareness
-
-FLOW is speed-agnostic. Cycle duration is determined by the team's Tempo — not a global default. When builds are fast (agentic tooling), the bottleneck shifts to observation and decision capacity. Never assume "2-4 weeks" — ask about the team's Tempo.
+| Hook | File |
+|------|------|
+| `orchestra-mcp-hook` | .claude/hooks/orchestra-mcp-hook.sh |
+| `orchestra-permission-hook` | .claude/hooks/orchestra-permission-hook.sh |

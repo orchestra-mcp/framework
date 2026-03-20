@@ -18,8 +18,8 @@ use (
 	./libs/plugin-bridge-ollama
 	./libs/plugin-bridge-openai
 	./libs/plugin-bridge-slack
-	./libs/plugin-devtools-components
 	./libs/plugin-devtools-api
+	./libs/plugin-devtools-components
 	./libs/plugin-devtools-database
 	./libs/plugin-devtools-debugger
 	./libs/plugin-devtools-devops
@@ -31,20 +31,20 @@ use (
 	./libs/plugin-devtools-ssh
 	./libs/plugin-devtools-terminal
 	./libs/plugin-devtools-test-runner
+	./libs/plugin-health
 	./libs/plugin-integration-figma
 	./libs/plugin-services-notifications
 	./libs/plugin-services-voice
 	./libs/plugin-storage-markdown
 	./libs/plugin-storage-sqlite
 	./libs/plugin-sync-cloud
-	./libs/plugin-health
 	./libs/plugin-tools-agentops
 	./libs/plugin-tools-docs
 	./libs/plugin-tools-extension-generator
 	./libs/plugin-tools-features
+	./libs/plugin-tools-hooks
 	./libs/plugin-tools-markdown
 	./libs/plugin-tools-marketplace
-	./libs/plugin-tools-hooks
 	./libs/plugin-tools-notes
 	./libs/plugin-tools-prompts
 	./libs/plugin-tools-secrets
@@ -54,26 +54,4 @@ use (
 	./libs/plugin-transport-stdio
 	./libs/plugin-transport-webtransport
 	./libs/sdk-go
-)
-
-replace (
-	github.com/orchestra-mcp/gen-go                    v1.0.5 => ./libs/gen-go
-	github.com/orchestra-mcp/plugin-bridge-claude       v1.0.5 => ./libs/plugin-bridge-claude
-	github.com/orchestra-mcp/plugin-devtools-api        v1.0.5 => ./libs/plugin-devtools-api
-	github.com/orchestra-mcp/plugin-devtools-database   v1.0.5 => ./libs/plugin-devtools-database
-	github.com/orchestra-mcp/plugin-devtools-ssh        v1.0.5 => ./libs/plugin-devtools-ssh
-	github.com/orchestra-mcp/plugin-health              v1.0.5 => ./libs/plugin-health
-	github.com/orchestra-mcp/plugin-services-notifications v1.0.5 => ./libs/plugin-services-notifications
-	github.com/orchestra-mcp/plugin-services-voice      v1.0.5 => ./libs/plugin-services-voice
-	github.com/orchestra-mcp/plugin-storage-markdown    v1.0.5 => ./libs/plugin-storage-markdown
-	github.com/orchestra-mcp/plugin-storage-sqlite      v1.0.5 => ./libs/plugin-storage-sqlite
-	github.com/orchestra-mcp/plugin-sync-cloud          v1.0.5 => ./libs/plugin-sync-cloud
-	github.com/orchestra-mcp/plugin-tools-agentops      v1.0.5 => ./libs/plugin-tools-agentops
-	github.com/orchestra-mcp/plugin-tools-docs          v1.0.5 => ./libs/plugin-tools-docs
-	github.com/orchestra-mcp/plugin-tools-features      v1.0.5 => ./libs/plugin-tools-features
-	github.com/orchestra-mcp/plugin-tools-marketplace   v1.0.5 => ./libs/plugin-tools-marketplace
-	github.com/orchestra-mcp/plugin-tools-notes         v1.0.5 => ./libs/plugin-tools-notes
-	github.com/orchestra-mcp/plugin-tools-sessions      v1.0.5 => ./libs/plugin-tools-sessions
-	github.com/orchestra-mcp/plugin-transport-stdio     v1.0.5 => ./libs/plugin-transport-stdio
-	github.com/orchestra-mcp/sdk-go                     v1.0.5 => ./libs/sdk-go
 )

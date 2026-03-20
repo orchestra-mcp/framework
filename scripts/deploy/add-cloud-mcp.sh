@@ -49,16 +49,17 @@ ok "Credentials loaded"
 
 # ── 2. Clone or update repo ──
 info "Cloning cloud-mcp repo..."
-mkdir -p "$APP_DIR/cloud-mcp/bin"
-chown -R $DEPLOY_USER:$DEPLOY_USER "$APP_DIR/cloud-mcp"
-
 if [ -d "$APP_DIR/cloud-mcp/.git" ]; then
     su - $DEPLOY_USER -c "cd $APP_DIR/cloud-mcp && git fetch origin master && git reset --hard origin/master"
     ok "Repo updated"
 else
+    # Remove any partial/empty directory before cloning
+    rm -rf "$APP_DIR/cloud-mcp"
     su - $DEPLOY_USER -c "git clone $CLOUD_MCP_REPO $APP_DIR/cloud-mcp"
     ok "Repo cloned"
 fi
+mkdir -p "$APP_DIR/cloud-mcp/bin"
+chown -R $DEPLOY_USER:$DEPLOY_USER "$APP_DIR/cloud-mcp"
 
 # ── 3. Write env file ──
 info "Writing env file..."

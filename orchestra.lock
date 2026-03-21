@@ -374,23 +374,6 @@
             }
         },
         {
-            "name": "orchestra-mcp/plugin-health",
-            "version": "v1.0.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/orchestra-mcp/plugin-health.git",
-                "reference": "master"
-            },
-            "type": "tools",
-            "description": "Health monitoring plugin for Orchestra MCP.",
-            "path": "libs/plugin-health",
-            "binary": "plugin-health",
-            "require": {
-                "orchestra-mcp/gen-go": "^1.0.0",
-                "orchestra-mcp/sdk-go": "^1.0.0"
-            }
-        },
-        {
             "name": "orchestra-mcp/plugin-devtools-api",
             "version": "v1.0.7",
             "source": {

@@ -106,6 +106,7 @@ github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646/go.mod h1:jpp1/29i3P1S
 github.com/oklog/ulid/v2 v2.1.1/go.mod h1:rcEKHmBBKfef9DhnvX7y1HZBYxjXb0cP5ExxNsTT1QQ=
 github.com/orchestra-mcp/plugin-bridge-claude v1.0.6/go.mod h1:yUMocbTLYUKWtjRceXw8LqV4d2SV83eet10wsT6EL5U=
 github.com/orchestra-mcp/plugin-devtools-api v1.0.6/go.mod h1:7sk0HFPaO3LoUy+xTO+pjVzQNIBvESPOt26d3ocbgUE=
+github.com/orchestra-mcp/plugin-devtools-api v1.0.7/go.mod h1:VstdHE6YebByI/y5ekl+JXe6lVxI+R1ZvBsO4XcoSkk=
 github.com/orchestra-mcp/plugin-devtools-database v1.0.6/go.mod h1:cdBkGthlQgji9l2ay8z7ptyHo1w70HOnbNMukAZnxZI=
 github.com/orchestra-mcp/plugin-devtools-ssh v1.0.6/go.mod h1:DMBiqp8CMk+/8AYPf1O4TSotqyJJewFuBBKnTawX9vE=
 github.com/orchestra-mcp/plugin-health v1.0.6/go.mod h1:xxSqyvTTzYvQuHGPE3hwqiqpz8lD1+W4o7sOC6VxjMg=
@@ -213,4 +214,3 @@ google.golang.org/protobuf v1.26.0-rc.1/go.mod h1:jlhhOSvTdKEhbULTjvd4ARK9grFBp0
 google.golang.org/protobuf v1.33.0/go.mod h1:c6P6GXX6sHbq/GpV6MGZEdwhWPcYBgnhAHhKbcUYpos=
 howett.net/plist v1.0.2-0.20250314012144-ee69052608d9/go.mod h1:fyFX5Hj5tP1Mpk8obqA9MZgXT416Q5711SDT7dQLTLk=
 mvdan.cc/sh/v3 v3.12.0/go.mod h1:Se6Cj17eYSn+sNooLZiEUnNNmNxg0imoYlTu4CyaGyg=
-github.com/orchestra-mcp/plugin-health v1.0.6/go.mod h1:xxSqyvTTzYvQuHGPE3hwqiqpz8lD1+W4o7sOC6VxjMg=

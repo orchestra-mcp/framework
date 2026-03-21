@@ -1,4 +1,4 @@
-.PHONY: proto build build-orchestrator build-storage-markdown build-storage-sqlite build-tools-features build-transport-stdio build-cli build-web build-next dev dev-next storybook-next test test-unit test-e2e test-engine-rag clean install release build-tools-marketplace build-engine-rag build-bridge-claude build-tools-agentops build-tools-sessions build-tools-workspace build-transport-quic-bridge build-bridge-openai build-bridge-gemini build-bridge-ollama build-bridge-firecrawl build-tools-markdown build-tools-docs build-tools-notes build-devtools-git build-agent-orchestrator build-ai-screenshot build-ai-vision build-ai-browser-context build-ai-screen-reader build-services-voice build-services-notifications build-tools-extension-generator build-devtools-file-explorer build-devtools-terminal build-devtools-ssh build-devtools-services build-devtools-docker build-devtools-debugger build-devtools-test-runner build-devtools-log-viewer build-devtools-database build-devtools-devops build-integration-figma build-devtools-components build-sync-cloud xcodegen-swift build-swift build-swift-ios run-swift test-swift dev-swift clean-swift build-bridge-discord build-bridge-slack mcpb
+.PHONY: proto build build-orchestrator build-storage-markdown build-storage-sqlite build-tools-features build-transport-stdio build-cli build-web build-next dev dev-next storybook-next test test-unit test-e2e test-engine-rag clean install release build-tools-marketplace build-engine-rag build-bridge-claude build-tools-agentops build-tools-sessions build-tools-workspace build-transport-quic-bridge build-bridge-openai build-bridge-gemini build-bridge-ollama build-bridge-firecrawl build-tools-markdown build-tools-docs build-tools-notes build-devtools-git build-devtools-api build-agent-orchestrator build-ai-screenshot build-ai-vision build-ai-browser-context build-ai-screen-reader build-services-voice build-services-notifications build-tools-extension-generator build-devtools-file-explorer build-devtools-terminal build-devtools-ssh build-devtools-services build-devtools-docker build-devtools-debugger build-devtools-test-runner build-devtools-log-viewer build-devtools-database build-devtools-devops build-integration-figma build-devtools-components build-sync-cloud xcodegen-swift build-swift build-swift-ios run-swift test-swift dev-swift clean-swift build-bridge-discord build-bridge-slack mcpb
 
 # Directories
 ROOT_DIR := $(shell pwd)
@@ -13,7 +13,7 @@ proto:
 
 # === Build ===
 
-build: build-orchestrator build-storage-markdown build-storage-sqlite build-tools-features build-transport-stdio build-cli build-tools-marketplace build-bridge-claude build-tools-agentops build-tools-sessions build-tools-workspace build-transport-quic-bridge build-bridge-openai build-bridge-gemini build-bridge-ollama build-bridge-firecrawl build-tools-markdown build-tools-docs build-tools-notes build-devtools-git build-agent-orchestrator build-ai-screenshot build-ai-vision build-ai-browser-context build-ai-screen-reader build-services-voice build-services-notifications build-tools-extension-generator build-devtools-file-explorer build-devtools-terminal build-devtools-ssh build-devtools-services build-devtools-docker build-devtools-debugger build-devtools-test-runner build-devtools-log-viewer build-devtools-database build-devtools-devops build-integration-figma build-devtools-components build-sync-cloud build-bridge-discord build-bridge-slack
+build: build-orchestrator build-storage-markdown build-storage-sqlite build-tools-features build-transport-stdio build-cli build-tools-marketplace build-bridge-claude build-tools-agentops build-tools-sessions build-tools-workspace build-transport-quic-bridge build-bridge-openai build-bridge-gemini build-bridge-ollama build-bridge-firecrawl build-tools-markdown build-tools-docs build-tools-notes build-devtools-git build-devtools-api build-agent-orchestrator build-ai-screenshot build-ai-vision build-ai-browser-context build-ai-screen-reader build-services-voice build-services-notifications build-tools-extension-generator build-devtools-file-explorer build-devtools-terminal build-devtools-ssh build-devtools-services build-devtools-docker build-devtools-debugger build-devtools-test-runner build-devtools-log-viewer build-devtools-database build-devtools-devops build-integration-figma build-devtools-components build-sync-cloud build-bridge-discord build-bridge-slack
 
 build-all: build build-web build-engine-rag
 
@@ -113,7 +113,7 @@ test-e2e: build
 # === Install ===
 
 PREFIX ?= /usr/local
-BINARIES := orchestra orchestrator storage-markdown tools-features transport-stdio web tools-marketplace engine-rag bridge-claude tools-agentops tools-sessions tools-workspace transport-quic-bridge bridge-openai bridge-gemini bridge-ollama bridge-firecrawl tools-markdown tools-docs tools-notes devtools-git agent-orchestrator ai-screenshot ai-vision ai-browser-context ai-screen-reader services-voice services-notifications tools-extension-generator devtools-file-explorer devtools-terminal devtools-ssh devtools-services devtools-docker devtools-debugger devtools-test-runner devtools-log-viewer devtools-database devtools-devops integration-figma devtools-components bridge-discord bridge-slack
+BINARIES := orchestra orchestrator storage-markdown tools-features transport-stdio web tools-marketplace engine-rag bridge-claude tools-agentops tools-sessions tools-workspace transport-quic-bridge bridge-openai bridge-gemini bridge-ollama bridge-firecrawl tools-markdown tools-docs tools-notes devtools-git devtools-api agent-orchestrator ai-screenshot ai-vision ai-browser-context ai-screen-reader services-voice services-notifications tools-extension-generator devtools-file-explorer devtools-terminal devtools-ssh devtools-services devtools-docker devtools-debugger devtools-test-runner devtools-log-viewer devtools-database devtools-devops integration-figma devtools-components bridge-discord bridge-slack
 
 install: build
 	@mkdir -p $(PREFIX)/bin
@@ -242,6 +242,10 @@ build-tools-notes:
 build-devtools-git:
 	@mkdir -p $(BIN_DIR)
 	cd libs/plugin-devtools-git && go build -o $(BIN_DIR)/devtools-git ./cmd/
+
+build-devtools-api:
+	@mkdir -p $(BIN_DIR)
+	cd libs/plugin-devtools-api && go build -o $(BIN_DIR)/devtools-api ./cmd/
 
 build-agent-orchestrator:
 	@mkdir -p $(BIN_DIR)

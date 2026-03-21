@@ -444,9 +444,10 @@ EOF
 if [ "$EXISTING_INSTALL" = true ] && [ -f /etc/caddy/Caddyfile ] && ! grep -q "yourdomain.com" /etc/caddy/Caddyfile; then
     echo "Caddyfile already configured with a real domain — adding PowerSync route if missing"
     if ! grep -q "powersync" /etc/caddy/Caddyfile; then
-        # Insert PowerSync route before the generic /api/* handler
-        sed -i '/handle \/api\/\*/ i\\thandle /api/powersync/* {\n\t\turi strip_prefix /api/powersync\n\t\treverse_proxy localhost:8585\n\t}' /etc/caddy/Caddyfile
-        echo "Added PowerSync route to existing Caddyfile"
+        # Insert PowerSync auth endpoints (token/keys → Go) before the PowerSync proxy block,
+        # and the PowerSync proxy block before the generic /api/* handler.
+        sed -i '/handle \/api\/\*/ i\\thandle /api/powersync/token {\n\t\treverse_proxy localhost:8080 {\n\t\t\theader_up X-Real-IP {remote_host}\n\t\t\theader_up X-Forwarded-For {remote_host}\n\t\t\theader_up X-Forwarded-Proto {scheme}\n\t\t}\n\t}\n\thandle /api/powersync/keys {\n\t\treverse_proxy localhost:8080 {\n\t\t\theader_up X-Real-IP {remote_host}\n\t\t\theader_up X-Forwarded-For {remote_host}\n\t\t\theader_up X-Forwarded-Proto {scheme}\n\t\t}\n\t}\n\thandle /api/powersync/* {\n\t\turi strip_prefix /api/powersync\n\t\treverse_proxy localhost:8585\n\t}' /etc/caddy/Caddyfile
+        echo "Added PowerSync routes to existing Caddyfile"
     fi
 else
 cat > /etc/caddy/Caddyfile << 'EOF'
@@ -485,6 +486,22 @@ yourdomain.com {
 	handle /api/tunnels/*/ws {
 		reverse_proxy localhost:8080 {
 			flush_interval -1
+		}
+	}
+
+	# PowerSync auth endpoints → Go backend (must be before the PowerSync proxy)
+	handle /api/powersync/token {
+		reverse_proxy localhost:8080 {
+			header_up X-Real-IP {remote_host}
+			header_up X-Forwarded-For {remote_host}
+			header_up X-Forwarded-Proto {scheme}
+		}
+	}
+	handle /api/powersync/keys {
+		reverse_proxy localhost:8080 {
+			header_up X-Real-IP {remote_host}
+			header_up X-Forwarded-For {remote_host}
+			header_up X-Forwarded-Proto {scheme}
 		}
 	}
 

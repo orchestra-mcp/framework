@@ -285,7 +285,7 @@ jobs:
               if pkg_type in ("proto", "cli") or "engine-rag" in path:
                   continue
               print(f"  Testing {path}...")
-              result = subprocess.run(["go", "test", "./...", "-v"], capture_output=True, text=True, cwd=path)
+              result = subprocess.run(["go", "test", "./...", "-v", "-parallel", "1"], capture_output=True, text=True, cwd=path)
               print(result.stdout)
               if result.returncode != 0:
                   print(result.stderr, file=sys.stderr)

@@ -489,7 +489,7 @@ yourdomain.com {
 		}
 	}
 
-	# PowerSync auth endpoints → Go backend (must be before the PowerSync proxy)
+	# PowerSync Go-backend endpoints (must be before the PowerSync proxy)
 	handle /api/powersync/token {
 		reverse_proxy localhost:8080 {
 			header_up X-Real-IP {remote_host}
@@ -498,6 +498,13 @@ yourdomain.com {
 		}
 	}
 	handle /api/powersync/keys {
+		reverse_proxy localhost:8080 {
+			header_up X-Real-IP {remote_host}
+			header_up X-Forwarded-For {remote_host}
+			header_up X-Forwarded-Proto {scheme}
+		}
+	}
+	handle /api/powersync/crud {
 		reverse_proxy localhost:8080 {
 			header_up X-Real-IP {remote_host}
 			header_up X-Forwarded-For {remote_host}

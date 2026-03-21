@@ -748,6 +748,23 @@
             }
         },
         {
+            "name": "orchestra-mcp/plugin-tools-hooks",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/orchestra-mcp/plugin-tools-hooks.git",
+                "reference": "master"
+            },
+            "type": "tools",
+            "description": "Hook event logging and notification plugin for Orchestra MCP.",
+            "path": "libs/plugin-tools-hooks",
+            "binary": "tools-hooks",
+            "require": {
+                "orchestra-mcp/gen-go": "^1.0.0",
+                "orchestra-mcp/sdk-go": "^1.0.0"
+            }
+        },
+        {
             "name": "orchestra-mcp/plugin-tools-workspace",
             "version": "v1.0.6",
             "source": {

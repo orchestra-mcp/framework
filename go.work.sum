@@ -109,7 +109,6 @@ github.com/orchestra-mcp/plugin-devtools-api v1.0.6/go.mod h1:7sk0HFPaO3LoUy+xTO
 github.com/orchestra-mcp/plugin-devtools-api v1.0.7/go.mod h1:VstdHE6YebByI/y5ekl+JXe6lVxI+R1ZvBsO4XcoSkk=
 github.com/orchestra-mcp/plugin-devtools-database v1.0.6/go.mod h1:cdBkGthlQgji9l2ay8z7ptyHo1w70HOnbNMukAZnxZI=
 github.com/orchestra-mcp/plugin-devtools-ssh v1.0.6/go.mod h1:DMBiqp8CMk+/8AYPf1O4TSotqyJJewFuBBKnTawX9vE=
-github.com/orchestra-mcp/plugin-health v1.0.6/go.mod h1:xxSqyvTTzYvQuHGPE3hwqiqpz8lD1+W4o7sOC6VxjMg=
 github.com/orchestra-mcp/plugin-services-notifications v1.0.6/go.mod h1:M+4+0eLPeGAGahBt7hsGJbqerR+XQNo/F0Qd9Xlkqco=
 github.com/orchestra-mcp/plugin-services-voice v1.0.6/go.mod h1:eGlLt2NrtIMddrChBq/1OWTW9uIV4kMLz/D43vYTlYw=
 github.com/orchestra-mcp/plugin-storage-markdown v1.0.6/go.mod h1:VmTMhiWAeAzMf3IULONSG4otZgmjoT4XNkwfKhn0+To=

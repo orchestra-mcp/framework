@@ -5,6 +5,45 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.6] - 2026-03-21
+
+### Added
+
+- **`plugin-tools-hooks`** ([`tools.hooks`](https://github.com/orchestra-mcp/plugin-tools-hooks)): New plugin for Claude Code hook event logging
+  - `receive_hook_event` — Ingest hook events fired by `orchestra-mcp-hook.sh` (Notification, ToolUse, SubagentStart, TaskComplete, etc.)
+  - `get_hook_events` — Query stored hook events with filters (event_type, session_id, limit)
+  - Persists events to local SQLite via globaldb
+  - Added to workspace (orchestra.lock + Makefile `build-tools-hooks` target)
+- **Workflow CRUD tools** in `tools.features`: `create_workflow`, `get_workflow`, `update_workflow`, `delete_workflow`, `list_workflows`
+  - JSON/YAML-driven custom workflow definitions (states, transitions, gates)
+  - Validates structure: initial state must exist, transitions reference valid states, gates reference defined gate IDs
+  - Workflow IDs use `WFL-` prefix; stored in globaldb per project
+- **Delegation tools** in `tools.features`: `delegate_feature`, `respond_delegation`, `get_delegation`, `list_delegations`, `get_pending_delegations`
+- **Plan tools** in `tools.features`: `create_plan`, `approve_plan`, `breakdown_plan`, `complete_plan`, `delete_plan`, `get_plan`, `list_plans`, `update_plan`
+- **Person tools** in `tools.features`: `create_person`, `get_person`, `update_person`, `delete_person`, `list_persons`, `get_person_workload`
+- **Request tools** in `tools.features`: `create_request`, `get_request`, `list_requests`, `dismiss_request`, `convert_request`, `get_next_request`
+- **Experiment tools** in `tools.features`: `create_experiment`, `start_experiment`, `complete_experiment`, `abandon_experiment`, `update_experiment`, `get_experiment`, `list_experiments`, `spawn_feature_from_experiment`
+- **Discovery tools** in `tools.features`: `create_discovery_cycle`, `get_discovery_cycle`, `update_discovery_cycle`, `complete_discovery_cycle`, `delete_discovery_cycle`, `list_discovery_cycles`, `create_discovery_review`, `get_discovery_review`, `record_review_decisions`, `get_discovery_status`
+- **Gate requirements tool**: `get_gate_requirements` — returns what's needed for the next transition
+
+### Fixed
+
+- **Windows build** for `plugin-devtools-log-viewer`: Split `process.go` into `process_unix.go` (`//go:build !windows`) and `process_windows.go` (`//go:build windows`)
+  - Windows version uses `cmd /C command` and `p.Cmd.Process.Kill()` instead of Unix `syscall.Kill` + `Setpgid`
+  - All 5 platforms now build successfully in CI
+- **`globaldb.Close()` thread safety** (`sdk-go`): Added `globalMu sync.Mutex` to protect concurrent `Close()` calls
+  - Prevents `SQLITE_BUSY` errors when `t.Cleanup` callbacks from one test overlap with the next test's setup
+- **SQLite test race** in `plugin-tools-features` workflow tests: Added `dbTestMu sync.Mutex` in `workflow_crud_test.go`
+  - Mutex held for full test lifetime (acquired in `setupTestDB`, released in `t.Cleanup`) to fully serialize DB access
+  - Each test gets its own isolated `HOME` directory via `t.Setenv("HOME", tmpDir)`
+- **`StorageWriteResponse.NewVersion`** field name in `cli` `dual_storage_test.go` (was `Version`, renamed in gen-go v1.0.6)
+- **`plugin-tools-hooks` CI build command**: Fixed `go build ./cmd/` → `go build -o /tmp/tools-hooks ./cmd/` (prevents "build output already exists" error)
+- **CI**: Removed `Configure git credentials` step from test and lint jobs (plugin-health is public; credentials not needed)
+
+### Changed
+
+- `release.yml` test step now passes `-parallel 1` to serialize SQLite access during test runs
+
 ## [1.0.5] - 2026-03-20
 
 ### Added

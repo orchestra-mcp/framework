@@ -2,7 +2,7 @@
 
 ![Orchestra Framework](https://raw.githubusercontent.com/orchestra-mcp/framework/master/arts/cover.jpg)
 
-An AI-agentic IDE framework with 290+ MCP tools across 38 plugins. MCP protocol `2025-06-18` with tools, prompts, resources, and logging. Single-process in-process architecture — 4 core plugins bundled, 34 optional plugins installable separately.
+An AI-agentic IDE framework with 290+ MCP tools across 39 plugins. MCP protocol `2025-06-18` with tools, prompts, resources, and logging. Single-process in-process architecture — 4 core plugins bundled, 35 optional plugins installable separately.
 
 ## Install
 
@@ -144,7 +144,7 @@ orchestra pack recommend                # Recommend packs for your project
 | **Agent** | [agent.orchestrator](https://github.com/orchestra-mcp/plugin-agent-orchestrator) | 20 |
 | **DevTools** | [devtools.git](https://github.com/orchestra-mcp/plugin-devtools-git), [devtools.docker](https://github.com/orchestra-mcp/plugin-devtools-docker), [devtools.terminal](https://github.com/orchestra-mcp/plugin-devtools-terminal), [devtools.ssh](https://github.com/orchestra-mcp/plugin-devtools-ssh), [devtools.file-explorer](https://github.com/orchestra-mcp/plugin-devtools-file-explorer), [devtools.database](https://github.com/orchestra-mcp/plugin-devtools-database), [devtools.debugger](https://github.com/orchestra-mcp/plugin-devtools-debugger), [devtools.test-runner](https://github.com/orchestra-mcp/plugin-devtools-test-runner), [devtools.log-viewer](https://github.com/orchestra-mcp/plugin-devtools-log-viewer), [devtools.services](https://github.com/orchestra-mcp/plugin-devtools-services), [devtools.devops](https://github.com/orchestra-mcp/plugin-devtools-devops), [devtools.components](https://github.com/orchestra-mcp/plugin-devtools-components) | 110+ |
 | **AI Awareness** | [ai.screenshot](https://github.com/orchestra-mcp/plugin-ai-screenshot), [ai.vision](https://github.com/orchestra-mcp/plugin-ai-vision), [ai.browser-context](https://github.com/orchestra-mcp/plugin-ai-browser-context), [ai.screen-reader](https://github.com/orchestra-mcp/plugin-ai-screen-reader) | 25 |
-| **Tools** | [tools.agentops](https://github.com/orchestra-mcp/plugin-tools-agentops), [tools.sessions](https://github.com/orchestra-mcp/plugin-tools-sessions), [tools.workspace](https://github.com/orchestra-mcp/plugin-tools-workspace), [tools.notes](https://github.com/orchestra-mcp/plugin-tools-notes), [tools.docs](https://github.com/orchestra-mcp/plugin-tools-docs), [tools.markdown](https://github.com/orchestra-mcp/plugin-tools-markdown), [tools.extension-generator](https://github.com/orchestra-mcp/plugin-tools-extension-generator) | 56 |
+| **Tools** | [tools.agentops](https://github.com/orchestra-mcp/plugin-tools-agentops), [tools.sessions](https://github.com/orchestra-mcp/plugin-tools-sessions), [tools.workspace](https://github.com/orchestra-mcp/plugin-tools-workspace), [tools.hooks](https://github.com/orchestra-mcp/plugin-tools-hooks), [tools.notes](https://github.com/orchestra-mcp/plugin-tools-notes), [tools.docs](https://github.com/orchestra-mcp/plugin-tools-docs), [tools.markdown](https://github.com/orchestra-mcp/plugin-tools-markdown), [tools.extension-generator](https://github.com/orchestra-mcp/plugin-tools-extension-generator) | 58 |
 | **Services** | [services.voice](https://github.com/orchestra-mcp/plugin-services-voice), [services.notifications](https://github.com/orchestra-mcp/plugin-services-notifications) | 16 |
 | **Integration** | [integration.figma](https://github.com/orchestra-mcp/plugin-integration-figma) | 6 |
 | **Transport** | [transport.quic-bridge](https://github.com/orchestra-mcp/plugin-transport-quic-bridge), [transport.webtransport](https://github.com/orchestra-mcp/plugin-transport-webtransport) | — |
@@ -195,9 +195,9 @@ orchestra pack recommend    # Auto-detect stacks and suggest packs
 orchestra pack search "react"
 ```
 
-## Feature Workflow (34 Tools)
+## Feature Workflow (70+ Tools)
 
-The tools.features plugin implements an 11-state feature lifecycle:
+The tools.features plugin implements an 11-state feature lifecycle with full project management capabilities:
 
 ```
 backlog → todo → in-progress → ready-for-testing → in-testing →
@@ -212,12 +212,19 @@ backlog → todo → in-progress → ready-for-testing → in-testing →
 |----------|-------|-------|
 | **Project** | 4 | `create_project`, `list_projects`, `delete_project`, `get_project_status` |
 | **Feature** | 6 | `create_feature`, `get_feature`, `update_feature`, `list_features`, `delete_feature`, `search_features` |
-| **Workflow** | 5 | `advance_feature`, `reject_feature`, `get_next_feature`, `set_current_feature`, `get_workflow_status` |
+| **Workflow** | 6 | `advance_feature`, `reject_feature`, `get_next_feature`, `set_current_feature`, `get_workflow_status`, `get_gate_requirements` |
+| **Custom Workflows** | 5 | `create_workflow`, `get_workflow`, `update_workflow`, `delete_workflow`, `list_workflows` |
 | **Review** | 3 | `request_review`, `submit_review`, `get_pending_reviews` |
 | **Dependencies** | 4 | `add_dependency`, `remove_dependency`, `get_dependency_graph`, `get_blocked_features` |
 | **WIP Limits** | 3 | `set_wip_limits`, `get_wip_limits`, `check_wip_limit` |
 | **Reporting** | 3 | `get_progress`, `get_review_queue`, `get_blocked_features` |
 | **Metadata** | 8 | `add_labels`, `remove_labels`, `assign_feature`, `unassign_feature`, `set_estimate`, `save_note`, `list_notes` |
+| **Plans** | 8 | `create_plan`, `approve_plan`, `breakdown_plan`, `complete_plan`, `delete_plan`, `get_plan`, `list_plans`, `update_plan` |
+| **Persons** | 6 | `create_person`, `get_person`, `update_person`, `delete_person`, `list_persons`, `get_person_workload` |
+| **Delegations** | 5 | `delegate_feature`, `respond_delegation`, `get_delegation`, `list_delegations`, `get_pending_delegations` |
+| **Requests** | 6 | `create_request`, `get_request`, `list_requests`, `dismiss_request`, `convert_request`, `get_next_request` |
+| **Experiments** | 8 | `create_experiment`, `start_experiment`, `complete_experiment`, `abandon_experiment`, `update_experiment`, `get_experiment`, `list_experiments`, `spawn_feature_from_experiment` |
+| **Discovery** | 10 | `create_discovery_cycle`, `get_discovery_cycle`, `update_discovery_cycle`, `complete_discovery_cycle`, `delete_discovery_cycle`, `list_discovery_cycles`, `create_discovery_review`, `get_discovery_review`, `record_review_decisions`, `get_discovery_status` |
 
 ## Server Deployment
 
@@ -403,6 +410,7 @@ All 48 packages are published as independent Go modules under [`github.com/orche
 | | | [plugin-tools-agentops](https://github.com/orchestra-mcp/plugin-tools-agentops) |
 | | | [plugin-tools-sessions](https://github.com/orchestra-mcp/plugin-tools-sessions) |
 | | | [plugin-tools-workspace](https://github.com/orchestra-mcp/plugin-tools-workspace) |
+| | | [plugin-tools-hooks](https://github.com/orchestra-mcp/plugin-tools-hooks) |
 | | | [plugin-tools-notes](https://github.com/orchestra-mcp/plugin-tools-notes) |
 | | | [plugin-tools-docs](https://github.com/orchestra-mcp/plugin-tools-docs) |
 | | | [plugin-tools-markdown](https://github.com/orchestra-mcp/plugin-tools-markdown) |

@@ -6,7 +6,7 @@ bucket_definitions:
 
   # ── Per-user health data ──────────────────────────────────────
   user_health:
-    parameters: SELECT request.user_id() as user_id
+    parameters: SELECT CAST(request.user_id() AS INTEGER) as user_id
     data:
       - SELECT id, user_id, amount_ml, logged_at, source, is_gout_flush, created_at, updated_at
         FROM water_logs
@@ -42,7 +42,7 @@ bucket_definitions:
 
   # ── Per-user notes ────────────────────────────────────────────
   user_notes:
-    parameters: SELECT request.user_id() as user_id
+    parameters: SELECT CAST(request.user_id() AS INTEGER) as user_id
     data:
       - SELECT id, user_id, title, content, pinned, tags, created_at, updated_at
         FROM notes
@@ -50,7 +50,7 @@ bucket_definitions:
 
   # ── Per-user projects ─────────────────────────────────────────
   user_projects:
-    parameters: SELECT request.user_id() as user_id
+    parameters: SELECT CAST(request.user_id() AS INTEGER) as user_id
     data:
       - SELECT id, user_id, name, slug, description, mode, stacks, created_at, updated_at
         FROM projects
@@ -58,7 +58,7 @@ bucket_definitions:
 
   # ── Per-user features ─────────────────────────────────────────
   user_features:
-    parameters: SELECT request.user_id() as user_id
+    parameters: SELECT CAST(request.user_id() AS INTEGER) as user_id
     data:
       - SELECT id, user_id, project_slug, title, description, status, kind, priority, assignee, labels, body, created_at, updated_at
         FROM features
@@ -66,7 +66,7 @@ bucket_definitions:
 
   # ── Per-user agents ───────────────────────────────────────────
   user_agents:
-    parameters: SELECT request.user_id() as user_id
+    parameters: SELECT CAST(request.user_id() AS INTEGER) as user_id
     data:
       - SELECT id, user_id, name, slug, description, content, scope, icon, color, version, created_at, updated_at
         FROM agents
@@ -74,7 +74,7 @@ bucket_definitions:
 
   # ── Per-user skills ───────────────────────────────────────────
   user_skills:
-    parameters: SELECT request.user_id() as user_id
+    parameters: SELECT CAST(request.user_id() AS INTEGER) as user_id
     data:
       - SELECT id, user_id, name, slug, description, content, scope, icon, color, stacks, version, created_at, updated_at
         FROM skills
@@ -82,7 +82,7 @@ bucket_definitions:
 
   # ── Per-user workflows ────────────────────────────────────────
   user_workflows:
-    parameters: SELECT request.user_id() as user_id
+    parameters: SELECT CAST(request.user_id() AS INTEGER) as user_id
     data:
       - SELECT id, user_id, project_slug, name, description, steps, states::text as states, transitions::text as transitions, gates::text as gates, initial_state, is_default, status, version, created_at, updated_at
         FROM workflows
@@ -90,7 +90,7 @@ bucket_definitions:
 
   # ── Per-user docs ─────────────────────────────────────────────
   user_docs:
-    parameters: SELECT request.user_id() as user_id
+    parameters: SELECT CAST(request.user_id() AS INTEGER) as user_id
     data:
       - SELECT id, user_id, doc_id, title, body, category, tags, version, created_at, updated_at
         FROM docs
@@ -98,7 +98,7 @@ bucket_definitions:
 
   # ── Per-user delegations ──────────────────────────────────────
   user_delegations:
-    parameters: SELECT request.user_id() as user_id
+    parameters: SELECT CAST(request.user_id() AS INTEGER) as user_id
     data:
       - SELECT id, user_id, delegation_id, from_person, to_person, question, context, response, status, created_at, updated_at
         FROM delegations
@@ -106,7 +106,7 @@ bucket_definitions:
 
   # ── Per-user sessions ─────────────────────────────────────────
   user_sessions:
-    parameters: SELECT request.user_id() as user_id
+    parameters: SELECT CAST(request.user_id() AS INTEGER) as user_id
     data:
       - SELECT id, user_id, name, provider, model, status, created_at, updated_at
         FROM sessions
@@ -114,7 +114,7 @@ bucket_definitions:
 
   # ── Per-user settings ─────────────────────────────────────────
   user_settings:
-    parameters: SELECT request.user_id() as user_id
+    parameters: SELECT CAST(request.user_id() AS INTEGER) as user_id
     data:
       - SELECT id, user_id, key, value, updated_at
         FROM user_settings
@@ -122,7 +122,7 @@ bucket_definitions:
 
   # ── Per-user plans ───────────────────────────────────────────
   user_plans:
-    parameters: SELECT request.user_id() as user_id
+    parameters: SELECT CAST(request.user_id() AS INTEGER) as user_id
     data:
       - SELECT id, user_id, project_slug, plan_id, title, description, status, body, version, created_at, updated_at
         FROM plans
@@ -130,7 +130,7 @@ bucket_definitions:
 
   # ── Per-user requests ──────────────────────────────────────
   user_requests:
-    parameters: SELECT request.user_id() as user_id
+    parameters: SELECT CAST(request.user_id() AS INTEGER) as user_id
     data:
       - SELECT id, user_id, project_slug, request_id, title, description, kind, priority, status, body, version, created_at, updated_at
         FROM requests
@@ -138,7 +138,7 @@ bucket_definitions:
 
   # ── Per-user persons ───────────────────────────────────────
   user_persons:
-    parameters: SELECT request.user_id() as user_id
+    parameters: SELECT CAST(request.user_id() AS INTEGER) as user_id
     data:
       - SELECT id, user_id, project_slug, person_id, name, email, role, status, bio, body, version, created_at, updated_at
         FROM persons
@@ -146,7 +146,7 @@ bucket_definitions:
 
   # ── Per-user workspaces ──────────────────────────────────────
   user_workspaces:
-    parameters: SELECT request.user_id() as user_id
+    parameters: SELECT CAST(request.user_id() AS INTEGER) as user_id
     data:
       - SELECT id, owner_id, name, folders::text as folders, primary_folder, status, metadata::text as metadata, version, created_at, updated_at
         FROM workspaces
@@ -154,7 +154,7 @@ bucket_definitions:
 
   # ── Per-user memberships ─────────────────────────────────────
   user_memberships:
-    parameters: SELECT request.user_id() as user_id
+    parameters: SELECT CAST(request.user_id() AS INTEGER) as user_id
     data:
       - SELECT id, user_id, team_id, role, created_at, updated_at
         FROM memberships
@@ -162,7 +162,7 @@ bucket_definitions:
 
   # ── Per-user API collections ─────────────────────────────────
   user_api_collections:
-    parameters: SELECT request.user_id() as user_id
+    parameters: SELECT CAST(request.user_id() AS INTEGER) as user_id
     data:
       - SELECT id, user_id, name, slug, description, base_url, auth_type, auth_config::text as auth_config, variables::text as variables, visibility, version, created_at, updated_at
         FROM api_collections
@@ -178,7 +178,7 @@ bucket_definitions:
 
   # ── Per-user presentations ──────────────────────────────────
   user_presentations:
-    parameters: SELECT request.user_id() as user_id
+    parameters: SELECT CAST(request.user_id() AS INTEGER) as user_id
     data:
       - SELECT id, user_id, title, slug, description, theme::text as theme, visibility, slide_count, version, created_at, updated_at
         FROM presentations
@@ -193,7 +193,7 @@ bucket_definitions:
     parameters:
       SELECT memberships.user_id as user_id, memberships.team_id as team_id
       FROM memberships
-      WHERE memberships.user_id = request.user_id()
+      WHERE memberships.user_id = CAST(request.user_id() AS INTEGER)
     data:
       - SELECT id, team_id, name, slug, description, mode, stacks, created_at, updated_at
         FROM projects
@@ -208,7 +208,7 @@ bucket_definitions:
     parameters:
       SELECT memberships.team_id as team_id
       FROM memberships
-      WHERE memberships.user_id = request.user_id()
+      WHERE memberships.user_id = CAST(request.user_id() AS INTEGER)
     data:
       - SELECT id, name, slug, plan, avatar_url, settings::text as settings, created_at, updated_at
         FROM teams

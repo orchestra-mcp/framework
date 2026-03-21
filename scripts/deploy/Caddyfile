@@ -63,6 +63,39 @@ yourdomain.com {
 		}
 	}
 
+	# PowerSync token + JWKS — handled by Go backend (auth + key issuance)
+	handle /api/powersync/token {
+		reverse_proxy localhost:8080 {
+			header_up X-Real-IP {remote_host}
+			header_up X-Forwarded-For {remote_host}
+			header_up X-Forwarded-Proto {scheme}
+		}
+	}
+	handle /api/powersync/keys {
+		reverse_proxy localhost:8080 {
+			header_up X-Real-IP {remote_host}
+			header_up X-Forwarded-For {remote_host}
+			header_up X-Forwarded-Proto {scheme}
+		}
+	}
+	handle /api/powersync/crud {
+		reverse_proxy localhost:8080 {
+			header_up X-Real-IP {remote_host}
+			header_up X-Forwarded-For {remote_host}
+			header_up X-Forwarded-Proto {scheme}
+		}
+	}
+
+	# PowerSync sync stream — proxied to PowerSync service (port 8585).
+	# flush_interval -1 is required for the long-lived streaming connection.
+	# Must be before the generic /api/* handler.
+	handle /api/powersync/* {
+		uri strip_prefix /api/powersync
+		reverse_proxy localhost:8585 {
+			flush_interval -1
+		}
+	}
+
 	# API routes → Go backend
 	handle /api/* {
 		reverse_proxy localhost:8080 {

@@ -103,7 +103,7 @@
         },
         {
             "name": "orchestra-mcp/plugin-tools-features",
-            "version": "v1.0.6",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestra-mcp/plugin-tools-features.git",

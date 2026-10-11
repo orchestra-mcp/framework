@@ -1,0 +1,28 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.orchestra-mcp/orchestra",
+  "title": "Orchestra MCP",
+  "description": "AI-agentic IDE framework in Go: 290+ MCP tools for projects, workflows, devtools, skills and agents.",
+  "version": "1.0.7",
+  "websiteUrl": "https://orchestra-mcp.dev",
+  "repository": {
+    "url": "https://github.com/orchestra-mcp/framework",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@orchestra-mcp/cli",
+      "version": "1.0.7",
+      "transport": {
+        "type": "stdio"
+      },
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "serve"
+        }
+      ]
+    }
+  ]
+}

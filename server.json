@@ -3,7 +3,7 @@
   "name": "io.github.orchestra-mcp/orchestra",
   "title": "Orchestra MCP",
   "description": "AI-agentic IDE framework in Go: 290+ MCP tools for projects, workflows, devtools, skills and agents.",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "websiteUrl": "https://orchestra-mcp.dev",
   "repository": {
     "url": "https://github.com/orchestra-mcp/framework",
@@ -13,7 +13,7 @@
     {
       "registryType": "npm",
       "identifier": "@orchestra-mcp/cli",
-      "version": "1.0.7",
+      "version": "1.0.8",
       "transport": {
         "type": "stdio"
       },

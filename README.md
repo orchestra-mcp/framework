@@ -451,6 +451,8 @@ Moharrik and Hosbah. The best way to support Orchestra MCP is to **sponsor ToGO*
 
 **[Sponsor ToGO →](https://to-go.dev/sponsor)**
 
+Or back Orchestra directly on Open Collective: **[opencollective.com/orchestra-mcp →](https://opencollective.com/orchestra-mcp)**
+
 <p>
   <a href="https://to-go.dev/sponsor"><img src="https://img.shields.io/badge/Sponsor-ToGO-00ADD8?logo=go&logoColor=white" alt="Sponsor ToGO" /></a>
   <a href="https://github.com/sponsors/fadymondy"><img src="https://img.shields.io/badge/GitHub%20Sponsors-fadymondy-ea4aaa?logo=githubsponsors&logoColor=white" alt="GitHub Sponsors" /></a>
